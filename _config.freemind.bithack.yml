@@ -52,8 +52,8 @@ favicon: favicon.png
 
 # Analytics
 google_analytics:
-  enable: true
-  siteid: UA-70812759-1
+  enable: false
+  siteid: 
 
 
 # search
