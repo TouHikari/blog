@@ -3,17 +3,17 @@
 ## Source: https://github.com/hexojs/hexo/
 
 # Site
-title: TouHikari 的小窝
-subtitle: ''
-description: ''
-keywords:
+title: "[TouHikari@localhost ~]$"
+subtitle: "Where shadows dance with data streams."
+description: "TouHikari 的数字幽灵日志。穿梭于代码与现实的边界，记录那些隐藏在防火墙之后的故事、实验和顿悟。这个网站本身，就是一个正在进行的实验。谨慎访问。"
+keywords: "TouHikari, 黑客, Hacker, 极客, Geek, 网络安全, Cybersecurity, 信息安全, InfoSec, 编程, Coding, 开发, Development, 代码, Code, Linux, 命令行, Command Line, Terminal, 像素字体, Pixel Font, 复古, Retro, Dark Theme, 技术博客, Tech Blog, 个人博客, Personal Blog, 赛博朋克, Cyberpunk, 神秘, 酷, 隐私, Privacy, 加密, Cryptography, Python, C, C++"
 author: TouHikari
 language: zh
 timezone: Asia/Shanghai
 
 # URL
 ## Set your site url here. For example, if you use GitHub Page, set url as 'https://username.github.io/project'
-url: http://example.com
+url: http://touhikari.top
 permalink: :year/:month/:day/:title/
 permalink_defaults:
 pretty_urls:
@@ -45,12 +45,14 @@ relative_link: false
 future: true
 syntax_highlighter: highlight.js
 highlight:
+  enable: false
   line_number: true
   auto_detect: false
   tab_replace: ''
   wrap: true
   hljs: false
 prismjs:
+  enable: true
   preprocess: true
   line_number: true
   tab_replace: ''
@@ -96,9 +98,28 @@ ignore:
 # Extensions
 ## Plugins: https://hexo.io/plugins/
 ## Themes: https://hexo.io/themes/
-theme: freemind.bithack
+theme: freemind.bithack.touhikari
+plugins:
+- hexo-browsersync
+
+hexo-browsersync:
+ghostMode: true # 同步滚动条位置等行为
+notify: true # 开启通知提醒
+open: true # 自动打开浏览器
 
 # Deployment
 ## Docs: https://hexo.io/docs/one-command-deployment
 deploy:
   type: ''
+
+category_generator:
+  per_page: 0
+
+tag_generator:
+   per_page: 0
+
+excerpt:
+  depth: 10
+  excerpt_excludes: []
+  more_excludes: []
+  hideWholePostExcerpts: true
