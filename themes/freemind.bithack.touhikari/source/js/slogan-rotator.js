@@ -1,5 +1,5 @@
 document.addEventListener('DOMContentLoaded', function() {
-    const slogans = [
+    const allSlogans = [
         "> Executing life script...",
         "// Penetrating the reality matrix",
         "[ Status: Online & Dangerous ]",
@@ -30,57 +30,79 @@ document.addEventListener('DOMContentLoaded', function() {
     ];
 
     const sloganElement = document.getElementById('rotating-slogan');
-    let sloganIndex = 0; // 当前 Slogan 在列表中的索引
+    let availableSlogans = []; // 当前可用的、未播放的 Slogan 列表
+    let currentSloganText = ''; // 当前正在处理的 Slogan 文本
     let charIndex = 0;   // 当前处理到的字符索引
     let isDeleting = false; // 是否正在删除
-    const typingSpeed = 100; // 打字速度 (ms)
-    const deletingSpeed = 50; // 删除速度 (ms)
-    const delayBeforeDeleting = 2000; // 打完字后停留多久开始删除 (ms)
+    const typingSpeed = 70; // 打字速度 (ms)
+    const deletingSpeed = 35; // 删除速度 (ms)
+    const delayBeforeDeleting = 1500; // 打完字后停留多久开始删除 (ms)
     const delayBeforeTypingNew = 500; // 删除完后停留多久开始打新字 (ms)
 
-    function typeWriter() {
-        if (!sloganElement) return; // 如果元素不存在则退出
+    // --- 新增：填充或重置可用 Slogan 列表 ---
+    function refillAvailableSlogans() {
+        // 将 allSlogans 的内容复制到 availableSlogans
+        availableSlogans = [...allSlogans]; // 使用扩展运算符创建副本
+    }
 
-        const currentSlogan = slogans[sloganIndex];
+    // --- 新增：从可用列表中随机选择并移除一个 Slogan ---
+    function getNextSlogan() {
+        if (availableSlogans.length === 0) {
+            refillAvailableSlogans(); // 如果列表空了，重新填满
+        }
+        // 随机选择一个索引
+        const randomIndex = Math.floor(Math.random() * availableSlogans.length);
+        // 从列表中取出该 Slogan 并从列表中移除
+        const chosenSlogan = availableSlogans.splice(randomIndex, 1)[0];
+        return chosenSlogan;
+    }
+
+    function typeWriter() {
+        if (!sloganElement) return;
+
         let textToShow = '';
 
         if (isDeleting) {
             // 删除状态
-            textToShow = currentSlogan.substring(0, charIndex - 1);
+            textToShow = currentSloganText.substring(0, charIndex - 1);
             charIndex--;
         } else {
             // 打字状态
-            textToShow = currentSlogan.substring(0, charIndex + 1);
+            textToShow = currentSloganText.substring(0, charIndex + 1);
             charIndex++;
         }
 
-        // 添加一个闪烁的光标效果 (通过 CSS 实现)
+        // 添加光标效果
         sloganElement.innerHTML = textToShow + '<span class="cursor">_</span>';
 
-        let delay = typingSpeed; // 默认使用打字速度
+        let delay = typingSpeed;
 
         if (isDeleting) {
-            delay = deletingSpeed; // 删除时使用删除速度
+            delay = deletingSpeed;
         }
 
-        if (!isDeleting && charIndex === currentSlogan.length) {
+        if (!isDeleting && charIndex === currentSloganText.length) {
             // 打字完成
-            delay = delayBeforeDeleting; // 设置删除前的停留时间
-            isDeleting = true; // 切换到删除状态
+            delay = delayBeforeDeleting;
+            isDeleting = true;
         } else if (isDeleting && charIndex === 0) {
             // 删除完成
-            isDeleting = false; // 切换到打字状态
-            sloganIndex = (sloganIndex + 1) % slogans.length; // 切换到下一个 Slogan
-            delay = delayBeforeTypingNew; // 设置打新字前的停留时间
+            isDeleting = false;
+            // --- 修改：获取下一个不重复的 Slogan ---
+            currentSloganText = getNextSlogan();
+            delay = delayBeforeTypingNew;
         }
 
-        setTimeout(typeWriter, delay); // 在指定延迟后再次调用自身
+        setTimeout(typeWriter, delay);
     }
 
-    // 启动打字机效果
+    // --- 启动打字机效果 ---
     if (sloganElement) {
-         // 可以随机一个起始 Slogan
-         // sloganIndex = Math.floor(Math.random() * slogans.length);
-        setTimeout(typeWriter, delayBeforeTypingNew); // 初始延迟后开始
+        // 1. 先填充列表
+        refillAvailableSlogans();
+        // 2. 获取第一个随机 Slogan
+        currentSloganText = getNextSlogan();
+        // 3. 初始延迟后开始打印第一个 Slogan
+        setTimeout(typeWriter, delayBeforeTypingNew);
     }
 });
