@@ -295,7 +295,9 @@ video {
     animation-name: blink;
     animation-iteration-count: infinite;
     animation-direction: alternate;
-    animation-timing-function: ease-in-out
+    animation-timing-function: ease-in-out;
+
+    opacity: 1;
 }
 
 @keyframes blink {
@@ -760,4 +762,34 @@ border: 2px solid rgb(255, 255, 255) !important;
     width: 100%;
     height: 100%;
     fill: #ffffff !important;
+}
+
+/* Slogan 打字机光标效果 */
+.slogan .cursor {
+  display: inline-block; /* 确保光标能正确显示 */
+  margin-left: 2px; /* 给光标一点左边距 */
+  opacity: 1;
+  animation: blink_cursor 0.7s infinite;
+  font-weight: bold; /* 让光标更明显一点 */
+  position: relative; /* 有时候需要微调位置 */
+  top: 1px;
+}
+
+@keyframes blink_cursor {
+  0% { opacity: 1; }
+  49% { opacity: 1; }
+  50% { opacity: 0; }
+  100% { opacity: 0; }
+}
+
+/* 确保 slogan 容器能容纳光标，防止换行问题 */
+#rotating-slogan {
+    display: inline; /* 或者 inline-block，根据你的布局调整 */
+    white-space: nowrap; /* 防止中途换行 */
+}
+
+/* 如果你的心形图标和slogan在同一行，可能需要调整 .slogan 的样式 */
+.slogan {
+    display: flex;
+    align-items: center;
 }

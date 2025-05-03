@@ -30,24 +30,57 @@ document.addEventListener('DOMContentLoaded', function() {
     ];
 
     const sloganElement = document.getElementById('rotating-slogan');
-    let currentIndex = 0;
+    let sloganIndex = 0; // 当前 Slogan 在列表中的索引
+    let charIndex = 0;   // 当前处理到的字符索引
+    let isDeleting = false; // 是否正在删除
+    const typingSpeed = 100; // 打字速度 (ms)
+    const deletingSpeed = 50; // 删除速度 (ms)
+    const delayBeforeDeleting = 2000; // 打完字后停留多久开始删除 (ms)
+    const delayBeforeTypingNew = 500; // 删除完后停留多久开始打新字 (ms)
 
-    function rotateSlogan() {
-        if (sloganElement) {
-            // 计算下一个 slogan 的索引
-            currentIndex = (currentIndex + 1) % slogans.length;
-            // 更新 HTML 元素的文本内容
-            sloganElement.textContent = slogans[currentIndex];
+    function typeWriter() {
+        if (!sloganElement) return; // 如果元素不存在则退出
+
+        const currentSlogan = slogans[sloganIndex];
+        let textToShow = '';
+
+        if (isDeleting) {
+            // 删除状态
+            textToShow = currentSlogan.substring(0, charIndex - 1);
+            charIndex--;
+        } else {
+            // 打字状态
+            textToShow = currentSlogan.substring(0, charIndex + 1);
+            charIndex++;
         }
+
+        // 添加一个闪烁的光标效果 (通过 CSS 实现)
+        sloganElement.innerHTML = textToShow + '<span class="cursor">_</span>';
+
+        let delay = typingSpeed; // 默认使用打字速度
+
+        if (isDeleting) {
+            delay = deletingSpeed; // 删除时使用删除速度
+        }
+
+        if (!isDeleting && charIndex === currentSlogan.length) {
+            // 打字完成
+            delay = delayBeforeDeleting; // 设置删除前的停留时间
+            isDeleting = true; // 切换到删除状态
+        } else if (isDeleting && charIndex === 0) {
+            // 删除完成
+            isDeleting = false; // 切换到打字状态
+            sloganIndex = (sloganIndex + 1) % slogans.length; // 切换到下一个 Slogan
+            delay = delayBeforeTypingNew; // 设置打新字前的停留时间
+        }
+
+        setTimeout(typeWriter, delay); // 在指定延迟后再次调用自身
     }
 
-    // 页面加载完成后，立即设置第一个 slogan
+    // 启动打字机效果
     if (sloganElement) {
-         // 如果想随机开始，取消下面这行的注释
-         // currentIndex = Math.floor(Math.random() * slogans.length);
-         sloganElement.textContent = slogans[currentIndex];
+         // 可以随机一个起始 Slogan
+         // sloganIndex = Math.floor(Math.random() * slogans.length);
+        setTimeout(typeWriter, delayBeforeTypingNew); // 初始延迟后开始
     }
-
-    // 设置定时器，每隔一段时间切换 slogan (例如：5000毫秒 = 5秒)
-    setInterval(rotateSlogan, 3000);
 });
