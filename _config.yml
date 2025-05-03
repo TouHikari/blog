@@ -8,7 +8,7 @@ subtitle: "Where shadows dance with data streams."
 description: "TouHikari 的数字幽灵日志。穿梭于代码与现实的边界，记录那些隐藏在防火墙之后的故事、实验和顿悟。这个网站本身，就是一个正在进行的实验。谨慎访问。"
 keywords: "TouHikari, 黑客, Hacker, 极客, Geek, 网络安全, Cybersecurity, 信息安全, InfoSec, 编程, Coding, 开发, Development, 代码, Code, Linux, 命令行, Command Line, Terminal, 像素字体, Pixel Font, 复古, Retro, Dark Theme, 技术博客, Tech Blog, 个人博客, Personal Blog, 赛博朋克, Cyberpunk, 神秘, 酷, 隐私, Privacy, 加密, Cryptography, Python, C, C++"
 author: TouHikari
-language: zh
+language: zh-CN
 timezone: Asia/Shanghai
 
 # URL

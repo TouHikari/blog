@@ -45,7 +45,7 @@ body {
 .page,
 .post {
     line-height: 1.5em;
-    font-family: Fira code,SimHei,Monaco, Menlo, Consolas,DOS,  'Courier New', monospace
+    font-family: Consolas, Fira code, SimHei, Monaco, Menlo, Consolas, DOS, 'Courier New', monospace
 }
 
 .page .more {
@@ -352,22 +352,27 @@ h1 {
     font-size: 1.9em;
     margin-bottom: .6667em
 }
+
 h2 {
     font-size: 1.7em;
     margin-bottom: .6667em
 }
+
 h3 {
     font-size: 1.5em;
     margin-bottom: .6667em
 }
+
 h4 {
     font-size: 1.3em;
     margin-bottom: .6667em
 }
+
 h5 {
     font-size: 1.1em;
     margin-bottom: .6667em
 }
+
 h1,
 h2,
 h3,
@@ -397,9 +402,11 @@ h2 {
     border-radius: 6px 6px 0 0;
     font-size: 1.3em
 }
-em{
-    font-style:oblique;
+
+em {
+    font-style: oblique;
 }
+
 .page .entry {
     padding-top: 10px;
     padding-bottom: 10px
@@ -589,7 +596,7 @@ figure {
 
 pre,
 code {
-    font-family: Fira Code,Monaco, Menlo, Consolas,DOS,  "Courier New", monospace !important
+    font-family: Consolas, Fira Code, Monaco, Menlo, Consolas, DOS, "Courier New", monospace !important
 }
 
 .fancybox-close:hover {
@@ -604,7 +611,7 @@ code {
     background: url("../fancybox/fancybox_sprite.png")
 }
 
- .article-footer-copyright {
+.article-footer-copyright {
     margin: 1.5em 0 0;
     padding: 0em 1em;
     border-left: 3px solid #ff1700;
@@ -617,15 +624,15 @@ code {
 /*valine 评论系统样式*/
 
 
-  
 
-.v .vwrap{
-border: 2px solid rgb(255, 255, 255) !important;
+
+.v .vwrap {
+    border: 2px solid rgb(255, 255, 255) !important;
 
 }
-  
+
 .v * {
-    color: #e4e4e4!important;
+    color: #e4e4e4 !important;
 }
 
 
@@ -634,18 +641,21 @@ border: 2px solid rgb(255, 255, 255) !important;
 
 }
 
-.v .vbtn{
+.v .vbtn {
     background: #000 !important;
-    
+
 }
 
-.post-meta-item-text::before, em::after {
+.post-meta-item-text::before,
+em::after {
     content: '';
 }
-.post-meta-item-text{
+
+.post-meta-item-text {
     font-size: 12px;
 }
-.leancloud-visitors-count{
+
+.leancloud-visitors-count {
     font-size: 12px;
 }
 
@@ -658,11 +668,11 @@ border: 2px solid rgb(255, 255, 255) !important;
     --waline-white: #000;
     --waline-light-grey: #666;
     --waline-dark-grey: #999;
-  
+
     /* 主题色 */
     --waline-theme-color: #27ae60;
     --waline-active-color: #2ecc71;
-  
+
     /* 布局颜色 */
     --waline-color: #e4e4e4;
     --waline-bgcolor: #000000;
@@ -672,29 +682,30 @@ border: 2px solid rgb(255, 255, 255) !important;
     --waline-disable-bgcolor: #444;
     --waline-disable-color: #272727;
     --waline-code-bgcolor: #282c34;
-  
+
     /* 特殊颜色 */
     --waline-bq-color: #272727;
-  
+
     /* 头像 */
     --waline-avatar-size: 3.25rem;
     --waline-m-avatar-size: calc(var(--waline-avatar-size) * 9 / 13);
-  
+
     /* 徽章 */
     --waline-badge-color: #3498db;
     --waline-badge-font-size: 0.775em;
-  
+
     /* 信息 */
     --waline-info-bgcolor: #000000;
     --waline-info-color: #e4e4e4;
     --waline-info-font-size: 0.625em;
-  
+
     /* 渲染选择 */
     --waline-border: 1px solid var(--waline-border-color);
     --waline-avatar-radius: 50%;
     --waline-box-shadow: none;
-  }
-  .wl-cards {
+}
+
+.wl-cards {
     --waline-color: #e3e3e3;
     --waline-bgcolor: #000000;
     --waline-bgcolor-light: #1a1a1a;
@@ -707,11 +718,11 @@ border: 2px solid rgb(255, 255, 255) !important;
     --waline-info-bgcolor: #000000;
     --waline-info-color: #e4e4e4;
 
-    }
+}
 
 /*gitalk 评论系统样式*/
 
-.gt-container .gt-header-textarea{
+.gt-container .gt-header-textarea {
 
     background-color: #000 !important;
     border: 1px solid #8b8b8b !important;
@@ -725,18 +736,18 @@ border: 2px solid rgb(255, 255, 255) !important;
 
 .gt-container .gt-header-preview {
 
-    border: 1px solid rgba(0,0,0,0.1)!important;
+    border: 1px solid rgba(0, 0, 0, 0.1) !important;
     background-color: #000000 !important;
 }
 
-.gt-container .gt-header-preview.markdown-body{
+.gt-container .gt-header-preview.markdown-body {
 
     color: #ffffff !important;
 }
 
 .gt-container .gt-btn {
 
-    background-color: #2bbc8a!important;
+    background-color: #2bbc8a !important;
     color: #000 !important;
     border: 1px solid #000000 !important;
     font-size: 0.8em !important;
@@ -744,12 +755,14 @@ border: 2px solid rgb(255, 255, 255) !important;
 
 .gt-container .gt-header-controls-tip {
 
-    color: #2bbc8a!important;
+    color: #2bbc8a !important;
 }
+
 .gt-container a {
 
     color: #2bbc8a !important;
 }
+
 .gt-container .gt-comment-content {
     background-color: #101010 !important;
 }
@@ -766,26 +779,43 @@ border: 2px solid rgb(255, 255, 255) !important;
 
 /* Slogan 打字机光标效果 */
 .slogan .cursor {
-  display: inline-block; /* 确保光标能正确显示 */
-  margin-left: 2px; /* 给光标一点左边距 */
-  opacity: 1;
-  animation: blink_cursor 0.7s infinite;
-  font-weight: bold; /* 让光标更明显一点 */
-  position: relative; /* 有时候需要微调位置 */
-  top: 1px;
+    display: inline-block;
+    /* 确保光标能正确显示 */
+    margin-left: 2px;
+    /* 给光标一点左边距 */
+    opacity: 1;
+    animation: blink_cursor 0.7s infinite;
+    font-weight: bold;
+    /* 让光标更明显一点 */
+    position: relative;
+    /* 有时候需要微调位置 */
+    top: 1px;
 }
 
 @keyframes blink_cursor {
-  0% { opacity: 1; }
-  49% { opacity: 1; }
-  50% { opacity: 0; }
-  100% { opacity: 0; }
+    0% {
+        opacity: 1;
+    }
+
+    49% {
+        opacity: 1;
+    }
+
+    50% {
+        opacity: 0;
+    }
+
+    100% {
+        opacity: 0;
+    }
 }
 
 /* 确保 slogan 容器能容纳光标，防止换行问题 */
 #rotating-slogan {
-    display: inline; /* 或者 inline-block，根据你的布局调整 */
-    white-space: nowrap; /* 防止中途换行 */
+    display: inline;
+    /* 或者 inline-block，根据你的布局调整 */
+    white-space: nowrap;
+    /* 防止中途换行 */
 }
 
 /* 如果你的心形图标和slogan在同一行，可能需要调整 .slogan 的样式 */
