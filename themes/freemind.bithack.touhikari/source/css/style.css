@@ -58,8 +58,9 @@ body {
 }
 
 .mypage {
-    padding-bottom: 30px;
-    border-bottom: 1px solid #fff
+    margin-bottom: 40px;
+    padding-bottom: 40px;
+    border-bottom: 1px solid #ffffff;
 }
 
 .navbar-brand {
@@ -150,7 +151,11 @@ li i {
 }
 
 #local-search-input {
-    background-color: #000;
+    padding-left: 5px;
+    padding-top: 1em;
+    padding-bottom: 1em;
+    border-radius: 3px;
+    background-color: #2b2b2b;
     color: #fff;
     font-family: dos;
     -webkit-text-fill-color: #bbb
@@ -160,7 +165,9 @@ li i {
     scroll: auto;
     overflow: auto;
     max-height: 3in;
-    background-color: #000
+    background-color: #000;
+    margin-bottom: 20px;
+    border-bottom: 1px solid #ffffff
 }
 
 ul.search-result-list {
@@ -408,8 +415,10 @@ em {
 }
 
 .page .entry {
-    padding-top: 10px;
-    padding-bottom: 10px
+    /* padding-top: 10px; */
+    margin-bottom: 40px;
+    padding-bottom: 40px;
+    border-bottom: 1px solid #ffffff
 }
 
 .page .entry .row {
@@ -428,7 +437,7 @@ em {
 .page h3.title {
     position: relative;
     padding: 5px 0px 0px 0px;
-    font-size: 1.5em;
+    font-size: 2em;
     line-height: 1.3em;
     font-weight: bold;
     font-family: DOS, SimHei, Monaco, Menlo, Consolas, 'Courier New', monospace

@@ -27,15 +27,16 @@ menu:
   #   icon: "fa fa-user"
 
 links:
+  - title: TouHikari's GitHub
+    url: https://github.com/touhikari
+    intro: ""
+    icon: false
+
   - title: hexo-theme-bithack
     url: https://github.com/Ares-X/hexo-theme-freemind.bithack
     intro: ""
     icon: false
 
-  # - title: "My LinkedIn"
-  #   url: http://www.linkedin.com/in/xxx
-  #   intro: "My Linkin account."
-  #   icon: "fa fa-linkedin"
 
 widgets:
 - search

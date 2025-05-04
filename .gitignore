@@ -9,3 +9,4 @@ _multiconfig.yml
 *.tar
 *.tar.gz
 package-lock.json
+pnpm-lock.yaml
