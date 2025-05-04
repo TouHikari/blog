@@ -777,18 +777,13 @@ em::after {
     fill: #ffffff !important;
 }
 
-/* Slogan 打字机光标效果 */
 .slogan .cursor {
     display: inline-block;
-    /* 确保光标能正确显示 */
     margin-left: 2px;
-    /* 给光标一点左边距 */
     opacity: 1;
     animation: blink_cursor 0.7s infinite;
     font-weight: bold;
-    /* 让光标更明显一点 */
     position: relative;
-    /* 有时候需要微调位置 */
     top: 1px;
 }
 
@@ -810,16 +805,26 @@ em::after {
     }
 }
 
-/* 确保 slogan 容器能容纳光标，防止换行问题 */
 #rotating-slogan {
-    display: inline;
-    /* 或者 inline-block，根据你的布局调整 */
-    white-space: nowrap;
-    /* 防止中途换行 */
+    display: inline-block;
+    white-space: normal;
+    overflow-wrap: break-word;
+    word-wrap: break-word;
+    max-width: 100%;
+    line-height: 1.5em;
 }
 
-/* 如果你的心形图标和slogan在同一行，可能需要调整 .slogan 的样式 */
 .slogan {
     display: flex;
-    align-items: center;
+    align-items: flex-start;
+    flex-wrap: nowrap;
+    margin-bottom: 1.2em;
+    min-height: 3.0em;
+
+    padding: 0;
+}
+
+.slogan .fa-heart {
+    margin-right: 8px;
+    margin-top: 4px;
 }
