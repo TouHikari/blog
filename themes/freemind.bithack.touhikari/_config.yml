@@ -76,7 +76,7 @@ waline:
   enable: false
   serverURL: ''
   pageview: false
-  lang: en
+  lang: zh-CN
   dark: true
   requiredMeta: ['nick', 'mail']
   locale:

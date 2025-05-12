@@ -39,13 +39,13 @@ body {
 }
 
 .page {
-    font-size: 16px
+    font-size: 20px
 }
 
 .page,
 .post {
     line-height: 1.5em;
-    font-family: Consolas, Fira code, SimHei, Monaco, Menlo, Consolas, DOS, 'Courier New', monospace
+    font-family: Consolas, Fira code, sans-serif, SimHei, Monaco, Menlo, Consolas, DOS, 'Courier New', monospace
 }
 
 .page .more {
@@ -216,7 +216,7 @@ a.label-anchor {
     text-align: right;
     width: 200px;
     left: -210px;
-    font-family: DOS, SimHei, Monaco, Menlo, Consolas, 'Courier New', monospace
+    font-family: DOS, sans-serif, SimHei, Monaco, Menlo, Consolas, 'Courier New', monospace
 }
 
 a.label-anchor:target span {
@@ -261,7 +261,7 @@ blockquote ol,
 blockquote ul,
 blockquote li,
 .slogan {
-    font-family: DOS, SimHei, Monaco, Menlo, Consolas, 'Courier New', monospace
+    font-family: DOS, sans-serif, SimHei, Monaco, Menlo, Consolas, 'Courier New', monospace
 }
 
 img,
@@ -357,28 +357,32 @@ header h1 {
 
 h1 {
     font-size: 1.9em;
-    margin-top: 1.3em;
-    margin-bottom: .6667em
+    margin-top: 1.5em;
+    margin-bottom: 1.5em
 }
 
 h2 {
     font-size: 1.7em;
-    margin-bottom: .6667em
+    margin-top: 2em;
+    margin-bottom: 1em
 }
 
 h3 {
     font-size: 1.5em;
-    margin-bottom: .6667em
+    margin-top: 2em;
+    margin-bottom: 1em
 }
 
 h4 {
     font-size: 1.3em;
-    margin-bottom: .6667em
+    margin-top: 2em;
+    margin-bottom: 1em
 }
 
 h5 {
     font-size: 1.1em;
-    margin-bottom: .6667em
+    margin-top: 2em;
+    margin-bottom: 1em
 }
 
 h1,
@@ -390,15 +394,15 @@ h6 {
     text-rendering: optimizelegibility;
     font-weight: bold;
     line-height: 1.2em;
-    font-family: DOS, SimHei, Monaco, Menlo, Consolas, 'Courier New', monospace;
+    font-family: DOS, sans-serif, SimHei, Monaco, Menlo, Consolas, 'Courier New', monospace;
     color: #fff
 }
 
-h2 {
+/* h2 {
     color: #fff;
     padding-top: 40px;
     margin: -25px 0 .83em
-}
+} */
 
 .page-header {
     -webkit-background-clip: border-box;
@@ -441,7 +445,7 @@ em {
     font-size: 2em;
     line-height: 1.3em;
     font-weight: bold;
-    font-family: DOS, SimHei, Monaco, Menlo, Consolas, 'Courier New', monospace
+    font-family: DOS, sans-serif, SimHei, Monaco, Menlo, Consolas, 'Courier New', monospace
 }
 
 .page h3.title div.article-title {
@@ -465,9 +469,9 @@ em {
 }
 
 .toc {
-    font-size: 10pt;
+    font-size: 16px;
     width: auto;
-    padding: 10px;
+    padding-left: 10px;
     background: #000
 }
 
@@ -477,24 +481,33 @@ em {
 
 .toc-article {
     list-style: circle;
-    line-height: 1em;
-    margin-bottom: 0;
-    padding: 10px 12px
+    line-height: 24px;
+    /* margin-bottom: 0; */
+    /* padding-top: 5px; */
+    padding-left: 0px;
+}
+
+.toc-article span {
+    padding: 1px 0;
 }
 
 .toc-article li {
     margin-left: 5px !important;
-    padding: 0 !important
+    /* padding-top: 5px !important; */
+    padding-left: 5px !important;
+    padding-right: 5px !important
 }
 
 .toc-article ol {
     list-style: square;
-    padding: 5px 10px
+    /* padding-top: 5px; */
+    padding-left: 5px
 }
 
 .toc-article ol ol {
     list-style: circle;
-    padding: 5px 10px
+    /* padding-top: 5px; */
+    padding-left: 5px
 }
 
 .line {
@@ -534,7 +547,8 @@ td {
 }
 
 hr {
-    border-top: 2px solid #fff
+    border-top: 2px solid #fff;
+    padding: 0;
 }
 
 .btn {
@@ -838,39 +852,4 @@ em::after {
 .slogan .fa-heart {
     margin-right: 8px;
     margin-top: 4px;
-}
-
-/* 文章目录（TOC）样式 - 适应暗色主题 */
-.widget-toc {
-  margin-top: 20px;
-  padding: 15px;
-  /* border: 1px solid #eee; */ /* 移除或修改边框 */
-  border: 1px solid #333; /* 使用一个深色的边框 */
-  background-color: #101010; /* 使用接近评论区的背景色 */
-  border-radius: 4px;
-  word-break: break-all;
-  /* box-shadow: 0 2px 5px rgba(0,0,0,0.1); */ /* 可以移除或使用更深的阴影 */
-  box-shadow: 0 2px 5px rgba(0,0,0,0.3); /* 更深的阴影 */
-}
-
-.widget-toc .widget-title {
-  font-size: 1.3em;
-  margin-bottom: 10px;
-  padding-bottom: 5px;
-  border-bottom: 1px dashed #555; /* 标题下划虚线颜色 */
-  color: #e4e4e4; /* 标题颜色 */
-  white-space: nowrap;
-  overflow: hidden;
-  text-overflow: ellipsis;
-}
-
-.widget-toc .widget-body ul {
-  list-style: none;
-  padding-left: 0;
-  margin: 0;
-}
-
-.widget-toc .widget-body li {
-  margin-bottom: 8px;
-  line-height: 1.4;
 }

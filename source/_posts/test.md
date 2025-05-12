@@ -113,7 +113,7 @@ def factorial(n):
     else:
         return n * factorial(n-1)
 
-# Example usage
+## Example usage
 num = 5
 print(f"The factorial of {num} is {factorial(num)}")
 ```
@@ -239,9 +239,9 @@ Remember to clear Hexo cache and regenerate site files after adding/modifying po
 
 ***
 
-# 数和二叉树的定义
+## 数和二叉树的定义
 
-## 5.1.1 树的定义
+### 5.1.1 树的定义
 树（Tree）是 $\begin{matrix} n & (n≥0) \end{matrix}$ 个结点的有限集，它或为空树（$n=0$）；或为非空树，对于非空树 $T$ ：
 1. 有且仅有一个称之为根的结点；
 2. 除根结点以外的其余结点可分为 $\begin{matrix} m & (m>0) \end{matrix}$ 个互不相交的有限集 $T_1,T_2,\cdots ,T_m$ 其中每一个集合本身又是一棵树，并且称为根的子树（SubTree）。
@@ -262,7 +262,7 @@ Remember to clear Hexo cache and regenerate site files after adding/modifying po
 ---
 
 
-## <span id="5.1.2树的基本术语">5.1.2 树的基本术语</span>
+### <span id="5.1.2树的基本术语">5.1.2 树的基本术语</span>
 1. **结点**：树中的一个独立单元。包含一个数据元素及若干指向其子树的分支，如[*上数第二张图*](#树的示例) (b) 中的 $A$ 、 $B$ 、 $C$ 、 $D$ 等。（下面术语中均以该图为例来说明）
 2. **结点的度**：结点拥有的子树数称为结点的度。例如， $A$ 的度为 $3$ ， $C$ 的度为 $1$ ， $F$ 的度为 $0$ 。
 3. **树的度**：树的度是树内各结点度的最大值。图 (b) 所示的树的度为 $3$ 。
@@ -288,7 +288,7 @@ $$RF=\lbrace\langle root,r_i\rangle\ |\ i=1,2,\cdots,m,\ m>0\rbrace$$
 ---
 
 
-## 5.1.3 二叉树的定义
+### 5.1.3 二叉树的定义
 **二叉树**（Binary Tree）是 $\begin{matrix} n & (n≥0) \end{matrix}$ 个结点所构成的集合，它或为空树（ $n=0$ ）；或为非空树，对于非空树 $T$ ：
 1. 有且仅有一个称之为根的结点；
 2. 除根结点以外的其余结点分为两个互不相交的子集 $T_1$ 和 $T_2$ ，分别称为 $T$ 的左子树和右子树，且 $T_1$ 和 $T_2$ 本身又都是二叉树。
