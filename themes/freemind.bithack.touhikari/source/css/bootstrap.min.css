@@ -1452,7 +1452,8 @@ img {
 }
 
 hr {
-    margin-top: 9px;
+    margin-top: 40px;
+    margin-bottom: 40px;
     padding-top: 9px;
     border: 0;
     border-top: 2px solid #000
@@ -1939,7 +1940,7 @@ samp {
 code {
     padding: 0;
     font-size: 18px;
-    color: #c7254e;
+    color: #ff6580;
     background-color: #f9f2f4
 }
 

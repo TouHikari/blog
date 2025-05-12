@@ -5,6 +5,7 @@ tags:
   - Meta
   - Personal
   - Announcement
+toc: true
 ---
 
 信号已同步。节点 `TouHikari` 响应。

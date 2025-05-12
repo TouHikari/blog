@@ -123,3 +123,11 @@ excerpt:
   excerpt_excludes: []
   more_excludes: []
   hideWholePostExcerpts: true
+
+# TOC (Table of Contents) Settings
+toc:
+  enable: true      # 确保启用 TOC 显示
+  # 其他可能的选项，如：
+  # list_number: true # 是否显示列表编号
+  # max_depth: 3      # 最大标题深度
+  # wrap: false       # 是否包裹在一个容器里
