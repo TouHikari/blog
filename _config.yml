@@ -131,3 +131,22 @@ toc:
   # list_number: true # 是否显示列表编号
   # max_depth: 3      # 最大标题深度
   # wrap: false       # 是否包裹在一个容器里
+
+# MathJax or KaTeX config (for hexo-filter-mathjax)
+# See https://www.npmjs.com/package/hexo-filter-mathjax
+math:
+  enable: true           # Enable the math filter
+  # Configure delimiters to be recognized by the filter
+  # These settings help prevent Markdown conflicts
+  inline_dollars: true   # Enable $...$ for inline math
+  inline_escape: \\$     # Allow escaping $ with \$ if needed
+  block_dollars: true    # Enable $$...$$ for block math
+  block_escape: \\[       # Allow escaping \[ with \\[, useful if you use \[...\]
+  # Choose the service. Does NOT automatically load the script, but used internally by the filter
+  service: KaTeX         # You can also use MathJax if preferred
+  # Insert global KaTeX/MathJax config here if using the auto script injection feature
+  # But manual inclusion in theme templates offers more control (recommended)
+  # data-processing: true  # Optional: Enables math processing within the filter, sometimes needed for complex cases
+  # --- Recommended manual script loading in theme templates ---
+  # Do NOT put client-side config here unless you use plugin's auto script injection
+  # For manual loading, configure client-side script in theme templates

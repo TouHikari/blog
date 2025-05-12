@@ -29,3 +29,33 @@
      searchFunc(path, 'local-search-input', 'local-search-result');
    </script>
 <% } %>
+
+<% if (theme.math && theme.math.enable && theme.math.service === 'KaTeX') { %>
+  <script defer src="https://cdn.bootcdn.net/ajax/libs/KaTeX/0.16.9/katex.min.js" crossorigin="anonymous"></script>
+  <script defer src="https://cdn.bootcdn.net/ajax/libs/KaTeX/0.16.9/contrib/auto-render.min.js" crossorigin="anonymous"></script>
+
+  <script>
+      document.addEventListener("DOMContentLoaded", function() {
+          var renderConfig = {
+              delimiters: <%- JSON.stringify((theme.math && theme.math.katex && theme.math.katex.delimiters) || [
+                  {left: '$$', right: '$$', display: true},
+                  {left: '$', right: '$', display: false},
+                  {left: '\\(', right: '\\)', display: false},
+                  {left: '\\[', right: '\\]', display: true}
+               ]) %>
+          };
+
+          <% if (theme.math && theme.math.katex && theme.math.katex.options) { %>
+          var themeOptions = <%- JSON.stringify(theme.math.katex.options) %>;
+          Object.assign(renderConfig, themeOptions);
+          <% } %>
+
+          renderMathInElement(document.body, renderConfig);
+      });
+  </script>
+<% } %>
+
+<%- js('/js/toc-sticky.js') %> <%# <!-- 侧边栏 TOC 浮动和滚动脚本 --> %>
+
+</body>
+   </html>

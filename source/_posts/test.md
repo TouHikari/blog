@@ -242,7 +242,7 @@ Remember to clear Hexo cache and regenerate site files after adding/modifying po
 # 数和二叉树的定义
 
 ## 5.1.1 树的定义
-树（Tree）是 $\begin{matrix} n & (n≥0) \end{matrix}$ 个结点的有限集，它或为空树（ $n=0$ ）；或为非空树，对于非空树 $T$ ：
+树（Tree）是 $\begin{matrix} n & (n≥0) \end{matrix}$ 个结点的有限集，它或为空树（$n=0$）；或为非空树，对于非空树 $T$ ：
 1. 有且仅有一个称之为根的结点；
 2. 除根结点以外的其余结点可分为 $\begin{matrix} m & (m>0) \end{matrix}$ 个互不相交的有限集 $T_1,T_2,\cdots ,T_m$ 其中每一个集合本身又是一棵树，并且称为根的子树（SubTree）。
 
@@ -280,7 +280,7 @@ Remember to clear Hexo cache and regenerate site files after adding/modifying po
 
 就逻辑结构而言，任何一棵树都是一个二元组 $Tree=(root,F)$ ，其中 $root$ 是数据元素，称作树的根结点； $F$ 是 $\begin{matrix} m & (m≥0) \end{matrix}$ 棵树的森林， $F=(T_1,T_2,\cdots ,T_m)$ ，其中 $T=(r_i,F_i)$ 称作根 $root$ 的第 $i$ 棵子树；当 $m≠0$ 时，在树根和其子树森林之间存在下列关系：
 
-$$RF=\{\langle root,r_i\rangle\ |\ i=1,2,\cdots,m,\ m>0\}$$
+$$RF=\lbrace\langle root,r_i\rangle\ |\ i=1,2,\cdots,m,\ m>0\rbrace$$
 
 这个定义将有助于得到森林和树与二叉树之间转换的递归定义。
 
@@ -304,3 +304,12 @@ $$RF=\{\langle root,r_i\rangle\ |\ i=1,2,\cdots,m,\ m>0\}$$
 
 [5.1.2 小节](#5.1.2树的基本术语) 中引入的有关树的术语是都适用于二叉树。
 
+```c
+#include <stdio.h>
+
+int main(void)
+{
+    printf("$$something$$\n");
+    return 0;
+}
+```

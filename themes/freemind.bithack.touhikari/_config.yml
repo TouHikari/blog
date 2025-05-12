@@ -91,3 +91,28 @@ gitalk:
   admin: ['']
   id: location.pathname
   distractionFreeMode: true
+
+# Math config
+math:
+  enable: true     # Enable math rendering (load scripts)
+  service: KaTeX   # Choose rendering service: KaTeX or MathJax
+
+  # If using MathJax, uncomment and configure:
+  # mathjax:
+  #   # MathJax configuration options go here
+  #   # See https://docs.mathjax.org/en/latest/options/index.html
+  #   # Example:
+  #   tex:
+  #     inlineMath: [['$', '$'], ['\\(', '\\)']]
+  #     displayMath: [['$$', '$$'], ['\\[', '\\]']]
+  #   options:
+  #     skipHtmlTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code', 'a'] # Important to skip code blocks
+
+  # If using KaTeX, uncomment and configure (optional):
+  # These options are passed to the KaTeX auto-render script
+  katex:
+    inlineMath: [['$', '$'], ['\\(', '\\)']]   # Delimiters for inline math
+    displayMath: [['$$', '$$'], ['\\[', '\\]']] # Delimiters for block math
+    options:
+       throwOnError: false # Don't throw errors on invalid math
+       # ignoredClasses: ["no-math", "code", "highlight"] # Optional: skip rendering within these classes (useful for code blocks)

@@ -62,4 +62,9 @@
   <!-- analytics -->
   <%- partial('post/analytics') %>
 
+  <% if (theme.math && theme.math.enable && theme.math.service === 'KaTeX') { %>
+    <%# KaTeX CSS %>
+    <link rel="stylesheet" href="<%- config.root %>katex/katex.min.css">
+  <% } %>
+
 </head>
