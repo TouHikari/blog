@@ -144,22 +144,6 @@ console.log(greet("Tester"));
 
 [refLink]: https://www.example.com/reference "可选的参考链接标题"
 
-### 图片测试
-
-行内图片：
-
-![Hexo Logo](https://hexo.io/images/hexo-logo.svg)
-
-带有 Alt 文本的图片：
-
-![这是一张示例图片](https://via.placeholder.com/300x200?text=Placeholder)
-
-参考式图片：
-
-![参考图片示例][refImage]
-
-[refImage]: https://via.placeholder.com/200x150/FF5733/FFFFFF?text=Reference+Image "参考图片标题"
-
 ## 三级测试区：表格与脚注
 
 表格和脚注在某些文档中也很常用。

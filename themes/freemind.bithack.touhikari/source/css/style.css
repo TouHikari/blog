@@ -23,8 +23,8 @@ body {
 }
 
 .content {
-    padding: 20px;
-    margin: 20px -20px;
+    padding: 20px 8px;
+    margin: 20px 0;
     -webkit-border-radius: 6px 6px 6px 6px;
     -moz-border-radius: 6px 6px 6px 6px;
     border-radius: 6px 6px 6px 6px
@@ -45,7 +45,7 @@ body {
 .page,
 .post {
     line-height: 1.5em;
-    font-family: Consolas, Fira code, sans-serif, SimHei, Monaco, Menlo, Consolas, DOS, 'Courier New', monospace
+    font-family: Fira code, sans-serif, SimHei, Monaco, Menlo, Consolas, DOS, 'Courier New', monospace
 }
 
 .page .more {
@@ -267,7 +267,7 @@ blockquote li,
 img,
 video {
     max-width: 97.5%;
-    margin: 15px auto;
+    margin: 15px 15px 20px 15px auto;
     display: block;
     height: auto
 }
@@ -357,8 +357,6 @@ header h1 {
 
 h1 {
     font-size: 1.9em;
-    margin-top: 1.5em;
-    margin-bottom: 1.5em
 }
 
 h2 {
@@ -408,11 +406,13 @@ h6 {
     -webkit-background-clip: border-box;
     -webkit-background-origin: padding-box;
     -webkit-background-size: cover;
-    padding: 10px 20px 0px;
+    padding: 0px 20px 0px;
     margin: -20px -20px 20px;
     color: #fff;
     border-radius: 6px 6px 0 0;
-    font-size: 1.3em
+    font-size: 1.3em;
+    white-space: normal;
+    word-break: break-word;
 }
 
 em {
@@ -517,7 +517,8 @@ em {
 table {
     border-collapse: separate;
     border-spacing: 0;
-    vertical-align: middle
+    vertical-align: middle;
+    margin-bottom: 20px;
 }
 
 th {
@@ -552,8 +553,10 @@ hr {
 }
 
 .btn {
-    margin-bottom: 10px;
+    font-size: 0.9em;
     border-radius: 2px;
+    padding: 0 6px;
+    font-family: DOS, Consolas, Fira code, sans-serif, SimHei, Monaco, Menlo, 'Courier New', monospace;
 }
 
 .btn:active {
@@ -865,3 +868,59 @@ em::after {
         width: 24%;
     }
 }
+
+ul, ol {
+    margin-top: 0;
+    margin-bottom: 20px;
+}
+
+@media (min-width: 1440px) {
+    .container {
+        width: 1280px;
+    }
+}
+
+@media (min-width: 2000px) {
+    .container {
+        width: 1440px;
+    }
+}
+
+@media (min-width: 2560px) {
+    .container {
+        width: 1560px;
+    }
+}
+
+.alert {
+    padding: 20px 20px;
+    margin: 20px 0;
+}
+
+/*
+.container>.navbar-collapse {
+    margin-right: -20px;
+    margin-left: -20px;
+    padding-top: 20px;
+} 
+
+.nav>li {
+    position: relative;
+    display: block;
+    padding: 5px 0;
+}
+
+.container>.navbar-header {
+    display: block;
+    width: 30px;
+    height: 20px;
+    margin: 5px 0px;
+}
+
+.navbar-toggle .icon-bar {
+    color: #fff;
+    width: 10px;
+    height: 1px;
+    margin: 3px
+ }
+*/
