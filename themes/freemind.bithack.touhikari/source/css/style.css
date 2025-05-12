@@ -35,11 +35,11 @@ body {
 }
 
 .post {
-    font-size: 1.0em
+    font-size: 1em
 }
 
 .page {
-    font-size: 20px
+    font-size: 0.95em
 }
 
 .page,
@@ -171,7 +171,7 @@ li i {
 }
 
 ul.search-result-list {
-    padding-left: 10px
+    padding: 0
 }
 
 a.search-result-title {
@@ -363,13 +363,13 @@ h1 {
 
 h2 {
     font-size: 1.7em;
-    margin-top: 2em;
+    padding-top: 2em;
     margin-bottom: 1em
 }
 
 h3 {
     font-size: 1.5em;
-    margin-top: 2em;
+    padding-top: 1.6em;
     margin-bottom: 1em
 }
 
@@ -471,7 +471,7 @@ em {
 .toc {
     font-size: 16px;
     width: auto;
-    padding-left: 10px;
+    padding-left: 20px;
     background: #000
 }
 
@@ -482,8 +482,8 @@ em {
 .toc-article {
     list-style: circle;
     line-height: 24px;
-    /* margin-bottom: 0; */
-    /* padding-top: 5px; */
+    margin-bottom: 0;
+    padding-top: 5px;
     padding-left: 0px;
 }
 
@@ -493,7 +493,7 @@ em {
 
 .toc-article li {
     margin-left: 5px !important;
-    /* padding-top: 5px !important; */
+    padding-top: 1px !important;
     padding-left: 5px !important;
     padding-right: 5px !important
 }
@@ -852,4 +852,16 @@ em::after {
 .slogan .fa-heart {
     margin-right: 8px;
     margin-top: 4px;
+}
+
+@media (min-width: 992px) {
+    .col-md-8 {
+        width: 74%;
+    }
+}
+
+@media (min-width: 992px) {
+    .col-md-4 {
+        width: 24%;
+    }
 }
