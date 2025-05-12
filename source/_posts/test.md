@@ -303,3 +303,4 @@ $$RF=\{\langle root,r_i\rangle\ |\ i=1,2,\cdots,m,\ m>0\}$$
   ![二叉树的5种基本形态](https://static.owo.cab/notes/image/cs/ds/chapter05/二叉树的5种基本形态.webp "二叉树的5种基本形态")
 
 [5.1.2 小节](#5.1.2树的基本术语) 中引入的有关树的术语是都适用于二叉树。
+
