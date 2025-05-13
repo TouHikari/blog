@@ -31,7 +31,7 @@ body {
 }
 
 #sidebar {
-    font-size: .9em
+    font-size: .8em
 }
 
 .post {
@@ -39,7 +39,7 @@ body {
 }
 
 .page {
-    font-size: 0.95em
+    font-size: 0.88em
 }
 
 .page,
@@ -94,7 +94,7 @@ li i {
 
 .meta-widget {
     margin: 10px 0;
-    font-size: .9em;
+    font-size: .8em;
 }
 
 .meta-widget a {
@@ -469,14 +469,14 @@ em {
 }
 
 .toc {
-    font-size: 16px;
+    font-size: 1em;
     width: auto;
     padding-left: 20px;
     background: #000
 }
 
 .toc .toc-title {
-    font-size: 125%
+    font-size: 100%
 }
 
 .toc-article {

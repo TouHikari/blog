@@ -56,7 +56,7 @@ toc: true
     [https://github.com/TouHikari](https://github.com/TouHikari)
 *   :: Email | 电子邮箱 :: 
     [tang20051026@foxmail.com](mailto:tang20051026@foxmail.com)
-*   :: BiliBili | 哔哩哔哩 :: 
+*   :: bilibili | 哔哩哔哩 :: 
     [https://space.bilibili.com/123365221](https://space.bilibili.com/123365221)
 *   :: NetEase Music | 网易云音乐 :: 
     [https://music.163.com/#/user/home?id=436110203](https://music.163.com/#/user/home?id=436110203)
