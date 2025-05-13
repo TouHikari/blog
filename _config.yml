@@ -150,3 +150,5 @@ math:
   # --- Recommended manual script loading in theme templates ---
   # Do NOT put client-side config here unless you use plugin's auto script injection
   # For manual loading, configure client-side script in theme templates
+
+site_birthday: "2025-05-02T01:37:13"

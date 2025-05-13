@@ -4,8 +4,71 @@
   <% } else { %>
   &copy; <%= new Date().getFullYear() %> <%= config.title %>
   <% } %>
-      powered by <a href="http://hexo.io/" target="_blank">Hexo</a>. Theme <a href="https://github.com/Ares-X/hexo-theme-freemind.bithack" target="_blank">freemind.bithack</a>. 
+      <br><br>Powered by <a href="http://hexo.io/" target="_blank">Hexo</a>. <br>Theme <a href="https://github.com/Ares-X/hexo-theme-freemind.bithack" target="_blank">freemind.bithack</a>. 
 </p>
+
+<br>
+
+<%# --- Start of Site Uptime Display --- %>
+<% if (config.site_birthday) { %> <%# Use site_birthday from _config.yml %>
+<p id="site-runtime-display">Establishing uplink with site daemon...</p>
+<script type="text/javascript">
+  function updateSiteRuntime() {
+    const siteBirthday = new Date("<%= config.site_birthday %>"); // Get birthday from Hexo config
+    const now = new Date();
+    let timeDiff = now.getTime() - siteBirthday.getTime(); // Difference in milliseconds
+
+    // Handle potential invalid date from config or future date
+    if (isNaN(timeDiff) || timeDiff < 0) {
+      document.getElementById("site-runtime-display").innerHTML = "System clock anomaly detected. Awaiting synchronization...";
+      return;
+    }
+
+    const days = Math.floor(timeDiff / (1000 * 60 * 60 * 24));
+    timeDiff -= days * (1000 * 60 * 60 * 24);
+
+    const hours = Math.floor(timeDiff / (1000 * 60 * 60));
+    timeDiff -= hours * (1000 * 60 * 60);
+
+    const minutes = Math.floor(timeDiff / (1000 * 60));
+    timeDiff -= minutes * (1000 * 60);
+
+    const seconds = Math.floor(timeDiff / 1000);
+
+    // Hacker-ish display string versions
+    let displayString;
+    if (days > 0) {
+      displayString = `Signal active for ${days} cycles, ${hours}h:${minutes}m:${seconds}s through the digital void.`;
+    } else if (hours > 0) {
+      displayString = `Connection established for ${hours} hours, ${minutes} minutes, ${seconds} seconds. Accessing matrix...`;
+    } else if (minutes > 0) {
+      displayString = `System online for ${minutes} m, ${seconds} s. Data streams flowing...`;
+    } else {
+      displayString = `Logon sequence initiated ${seconds} seconds ago. Welcome, Operator.`;
+    }
+    
+    // More concise version with padding for hours, minutes, seconds
+    let runtimeString = `LOGGED_IN_FOR: ${days}d ${String(hours).padStart(2, '0')}h:${String(minutes).padStart(2, '0')}m:${String(seconds).padStart(2, '0')}s`;
+    let statusString = '[STATUS:ONLINE]'
+
+    // Choose which string to display. Let's go with the concise one.
+    document.getElementById("site-runtime-display").innerHTML = `TouHikari ${statusString} ${runtimeString}`;
+  }
+
+  // Update the runtime every second
+  setInterval(updateSiteRuntime, 1000);
+
+  // Call it once immediately on page load
+  // Use a small delay to ensure the <p> element is in the DOM
+  if (document.getElementById("site-runtime-display")) {
+    setTimeout(updateSiteRuntime, 100);
+  }
+</script>
+<% } else { %>
+  <%# Optional: Display a message if site_birthday is not set in _config.yml %>
+  <%# <p>Site birthday not configured for uptime display.</p> %>
+<% } %>
+<%# --- End of Site Uptime Display --- %>
 
 <br>
 

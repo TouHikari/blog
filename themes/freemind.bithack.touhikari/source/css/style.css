@@ -924,3 +924,11 @@ ul, ol {
     margin: 3px
  }
 */
+
+.container-narrow>footer p {
+    color: #AAAAAA
+}
+
+#site-runtime-display {
+    color: #00FFFF
+}
