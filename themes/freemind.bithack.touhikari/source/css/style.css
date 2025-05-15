@@ -330,7 +330,9 @@ video {
     right: 50px;
     text-decoration: none;
     display: none;
-    background-color: #000
+    background-color: #00000080;
+    border: solid 1px #ffffff80;
+    border-radius: 5px;
 }
 
 #gotop span {
@@ -428,7 +430,7 @@ em {
 
 .page .entry .row {
     padding-left: 20px;
-    padding-right: 5px
+    padding-right: 20px
 }
 
 .page .entry .col-md-8 {
@@ -556,6 +558,7 @@ hr {
     font-size: 0.9em;
     border-radius: 2px;
     padding: 0 6px;
+    margin-inline-start: 10px;
     font-family: DOS, Consolas, Fira code, sans-serif, SimHei, Monaco, Menlo, 'Courier New', monospace;
 }
 
@@ -857,6 +860,11 @@ em::after {
     margin-top: 4px;
 }
 
+ul, ol {
+    margin-top: 0;
+    margin-bottom: 20px;
+}
+
 @media (min-width: 992px) {
     .col-md-8 {
         width: 74%;
@@ -867,11 +875,6 @@ em::after {
     .col-md-4 {
         width: 24%;
     }
-}
-
-ul, ol {
-    margin-top: 0;
-    margin-bottom: 20px;
 }
 
 @media (min-width: 1440px) {
@@ -937,10 +940,15 @@ footer {
     background-color: #111111;
     background: linear-gradient(#000000 5%, #001010 70%, #002020 100%);
     position: absolute;
+    margin-top: auto;
     margin-top: 1em;
     padding-top: 6em;
     padding-bottom: 1.5em;
     left: 0;
     width: 100%;
     text-align: center;
+}
+
+p {
+    text-align: justify;
 }

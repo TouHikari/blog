@@ -10,7 +10,6 @@ body {
 /* 涵盖段落、标题、列表项、链接、代码块、引用、表格等 */
 body,
 /* 也作用于 body，以防 theme 有直接子元素 */
-.navbar-inverse .navbar-brand,
 p,
 h1,
 h2,
@@ -53,22 +52,21 @@ option,
 button,
 hr,
 marker,
-del,
-.logo
-
+del
 /* 表单元素也可能需要 */
-    {
-    /* 关键：使用 currentcolor 让阴影颜色等于文本颜色 */
-    /* 通过叠加多层阴影制造扩散光芒 */
+{
     text-shadow:
-        0 0 7px currentcolor;
-        /* 核心光晕 */
-        /* 0 0 10px currentcolor, */
-        /* 外层较淡的光晕 */
-        /* 0 0 21px currentcolor, */
-        /* 更外层更淡的光晕 */
-        /* 0 0 42px currentcolor; */
-    /* 最外层微弱的光感 */
+    0 0 7px currentcolor;
+}
+
+.navbar-inverse .navbar-brand, .navbar-inverse .navbar-nav>li>a, 
+.logo>h1, .slogan>span, .slogan>i
+{
+    text-shadow:
+        0 0 7px currentcolor,
+        0 0 10px currentcolor,
+        0 0 21px currentcolor,
+        0 0 42px currentcolor;
 }
 
 /* 确保不会给图片、SVG 等非文本元素添加 text-shadow */
@@ -113,7 +111,6 @@ body::before {
 
 /* --- CRT 轻微闪烁动画 (可选) --- */
 @keyframes flicker {
-
     0%,
     100% {
         opacity: 1;
@@ -124,19 +121,15 @@ body::before {
         opacity: 0.98;
     }
 
-    /* 略微下降 */
     30%,
     80% {
         opacity: 1.02;
     }
 
-    /* 略微升高 */
     50%,
     90% {
         opacity: 0.95;
     }
-
-    /* 再次下降 */
 }
 
 /* 应用到 body 或包裹主要内容的容器 (.your-main-content-container) */
