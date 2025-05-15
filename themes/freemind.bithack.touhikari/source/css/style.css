@@ -4,7 +4,7 @@
 }
 
 .container-narrow>footer {
-    margin-top: 20px;
+    /* margin-top: 20px; */
     text-align: center
 }
 
@@ -543,9 +543,9 @@ td {
     clear: both
 }
 
-.cf {
+/* .cf {
     *zoom: 1
-}
+} */
 
 hr {
     border-top: 2px solid #fff;
@@ -931,4 +931,16 @@ ul, ol {
 
 #site-runtime-display {
     color: #00FFFF
+}
+
+footer {
+    background-color: #111111;
+    background: linear-gradient(#000000 5%, #001010 70%, #002020 100%);
+    position: absolute;
+    margin-top: 1em;
+    padding-top: 6em;
+    padding-bottom: 1.5em;
+    left: 0;
+    width: 100%;
+    text-align: center;
 }

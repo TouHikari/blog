@@ -1,26 +1,20 @@
 /* --- Glitch Mouse Effects --- */
 
-/* 通用粒子基础样式 */
 .mouse-trail-particle,
 .click-particle {
-  position: fixed; /* 使用 fixed 定位，相对于视口 */
-  pointer-events: none; /* 让鼠标事件穿透粒子，不影响页面交互 */
-  z-index: 9999; /* 确保在顶层 */
-  background-color: #ffffff; /* 白色像素块 */
-  border-radius: 0; /* 方块，无圆角 */
-  /* 初始状态 */
-  opacity: 0.9; /* 可以稍微透明 */
-  /* transform: translate(-50%, -50%); 如果想让中心点在鼠标位置，取消注释 */
+  position: fixed;
+  pointer-events: none;
+  z-index: 9999;
+  background-color: #b0ffff;
+  border-radius: 0;
+  opacity: 0.9;
 }
 
-/* 拖尾粒子特定样式 */
 .mouse-trail-particle {
-  transition: opacity 0.5s cubic-bezier(0.25, 0.8, 0.25, 1); /* 淡出动画 (500ms, 匹配 JS) */
-  /* 可以添加 transform transition */
+  transition: opacity 0.5s cubic-bezier(0.25, 0.8, 0.25, 1);
   transition: opacity 0.5s ease-out, transform 0.5s ease-out;
 }
 
-/* 点击爆炸粒子特定样式 */
 .click-particle {
   transition: opacity 0.6s cubic-bezier(0.165, 0.84, 0.44, 1), transform 0.6s cubic-bezier(0.23, 1, 0.32, 1); /* 移动和淡出动画 (600ms, 匹配 JS) */
 }
