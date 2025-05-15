@@ -1,0 +1,151 @@
+/* --- Global Terminal Look (Background, Font, etc.) --- */
+
+body {
+    overflow-x: hidden;
+    /* 防止扫描线或阴影在横向滚动时出现异常 */
+}
+
+/* --- 文本散光效果 (使用 currentcolor 让光芒随文本颜色变化) --- */
+/* 为所有常见的文本元素添加散光效果 */
+/* 涵盖段落、标题、列表项、链接、代码块、引用、表格等 */
+body,
+/* 也作用于 body，以防 theme 有直接子元素 */
+.navbar-inverse .navbar-brand,
+p,
+h1,
+h2,
+h3,
+h4,
+h5,
+h6,
+li,
+ol,
+ul,
+dl,
+dd,
+dt,
+a,
+span,
+strong,
+em,
+i,
+b,
+blockquote,
+q,
+cite,
+pre,
+code,
+samp,
+kbd,
+var,
+table,
+thead,
+tbody,
+tfoot,
+tr,
+th,
+td,
+caption,
+label,
+textarea,
+select,
+option,
+button,
+hr,
+marker,
+del,
+.logo
+
+/* 表单元素也可能需要 */
+    {
+    /* 关键：使用 currentcolor 让阴影颜色等于文本颜色 */
+    /* 通过叠加多层阴影制造扩散光芒 */
+    text-shadow:
+        0 0 7px currentcolor;
+        /* 核心光晕 */
+        /* 0 0 10px currentcolor, */
+        /* 外层较淡的光晕 */
+        /* 0 0 21px currentcolor, */
+        /* 更外层更淡的光晕 */
+        /* 0 0 42px currentcolor; */
+    /* 最外层微弱的光感 */
+}
+
+/* 确保不会给图片、SVG 等非文本元素添加 text-shadow */
+/* 理论上 text-shadow 只对文本生效，但显式关闭更安全 */
+a.btn,
+.tag_box a,
+/* img, */
+svg,
+canvas,
+video,
+audio {
+    text-shadow: none !important;
+}
+
+/* --- 模拟扫描线 --- */
+/* 应用到 body 或包裹主要内容的容器 (.your-main-content-container) */
+body::before {
+    content: '';
+    position: fixed;
+    /* 使用 fixed 确保覆盖整个视口 */
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: 9999;
+    /* 确保在最顶层 */
+    pointer-events: none;
+    /* 使扫描线不影响鼠标交互 */
+    opacity: 0.15;
+    /* 调整扫描线的透明度 */
+    /* 使用 repeating-linear-gradient 创建扫描线 */
+    background: repeating-linear-gradient(to bottom,
+            transparent 0px,
+            /* 条纹之间的间隔 */
+            transparent 2px,
+            rgba(18, 16, 16, 0.2) 3px,
+            /* 扫描线颜色和透明度 */
+            rgba(18, 16, 16, 0.2) 4px);
+    background-size: 100% 4px;
+    /* 控制条纹的高度和间隔 */
+}
+
+/* --- CRT 轻微闪烁动画 (可选) --- */
+@keyframes flicker {
+
+    0%,
+    100% {
+        opacity: 1;
+    }
+
+    10%,
+    60% {
+        opacity: 0.98;
+    }
+
+    /* 略微下降 */
+    30%,
+    80% {
+        opacity: 1.02;
+    }
+
+    /* 略微升高 */
+    50%,
+    90% {
+        opacity: 0.95;
+    }
+
+    /* 再次下降 */
+}
+
+/* 应用到 body 或包裹主要内容的容器 (.your-main-content-container) */
+body {
+    /* 确保此动画不会与主题给 body 设置的动画冲突 */
+    /* 如果冲突，考虑应用到 .your-main-content-container */
+    animation: flicker 3s infinite alternate;
+}
+
+/* 调整某些可能不需要散光或散光效果不好的元素 */
+/* 例如，字体图标、一些复杂的 UI 组件 */
+.icon { text-shadow: none !important; }
