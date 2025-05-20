@@ -11,12 +11,6 @@ body {
 body,
 /* 也作用于 body，以防 theme 有直接子元素 */
 p,
-h1,
-h2,
-h3,
-h4,
-h5,
-h6,
 li,
 ol,
 ul,
@@ -57,6 +51,29 @@ del
 {
     text-shadow:
     0 0 7px currentcolor;
+}
+
+strong
+{
+    text-shadow:
+        0 0 7px currentcolor,
+        /* 0 0 10px currentcolor, */
+        /* 0 0 21px currentcolor, */
+        0 0 42px currentcolor;
+}
+
+h1, h1>span,
+h2, h2>span,
+h3, h3>span, h3>a,
+h4, h4>span,
+h5, h5>span,
+h6, h6>span
+{
+    text-shadow:
+        0 0 7px currentcolor,
+        /* 0 0 10px currentcolor, */
+        0 0 21px currentcolor,
+        0 0 42px currentcolor;
 }
 
 .navbar-inverse .navbar-brand, .navbar-inverse .navbar-nav>li>a, 
