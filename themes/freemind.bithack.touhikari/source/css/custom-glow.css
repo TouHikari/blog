@@ -47,14 +47,15 @@ button,
 hr,
 marker,
 del
+
 /* 表单元素也可能需要 */
-{
+    {
     text-shadow:
-    0 0 7px currentcolor;
+        0 0 7px currentcolor;
 }
 
-strong
-{
+h3>a,
+strong {
     text-shadow:
         0 0 7px currentcolor,
         /* 0 0 10px currentcolor, */
@@ -62,23 +63,28 @@ strong
         0 0 42px currentcolor;
 }
 
-h1, h1>span,
-h2, h2>span,
-h3, h3>span, h3>a,
-h4, h4>span,
-h5, h5>span,
-h6, h6>span
-{
+h1,
+h1>span,
+h2,
+h2>span,
+h3,
+h3>span,
+h4,
+h4>span,
+h5,
+h5>span,
+h6,
+h6>span {
     text-shadow:
         0 0 7px currentcolor,
         /* 0 0 10px currentcolor, */
-        0 0 21px currentcolor,
-        0 0 42px currentcolor;
+        0 0 21px currentcolor;
+    /* 0 0 42px currentcolor; */
 }
 
-.navbar-inverse .navbar-brand, .navbar-inverse .navbar-nav>li>a, 
-.logo>h1, .slogan>span, .slogan>i
-{
+.logo>h1,
+.slogan>span,
+.slogan>i {
     text-shadow:
         0 0 7px currentcolor,
         0 0 10px currentcolor,
@@ -86,9 +92,22 @@ h6, h6>span
         0 0 42px currentcolor;
 }
 
+.mouse-trail-particle,
+.click-particle {
+    box-shadow:
+        0 0 7px #00ffff;
+}
+
+.btn,
+.tag_box a {
+    box-shadow:
+        0 0 7px #fff;
+}
+
 /* 确保不会给图片、SVG 等非文本元素添加 text-shadow */
 /* 理论上 text-shadow 只对文本生效，但显式关闭更安全 */
 a.btn,
+a>i,
 .tag_box a,
 /* img, */
 svg,
@@ -128,6 +147,7 @@ body::before {
 
 /* --- CRT 轻微闪烁动画 (可选) --- */
 @keyframes flicker {
+
     0%,
     100% {
         opacity: 1;
@@ -158,4 +178,6 @@ body {
 
 /* 调整某些可能不需要散光或散光效果不好的元素 */
 /* 例如，字体图标、一些复杂的 UI 组件 */
-.icon { text-shadow: none !important; }
+.icon {
+    text-shadow: none !important;
+}
