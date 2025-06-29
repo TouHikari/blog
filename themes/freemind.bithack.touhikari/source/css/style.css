@@ -559,7 +559,7 @@ td {
 } */
 
 hr {
-    border-top: 2px solid #fff;
+    border-top: 2px solid var(--cyberpunk-light-yellow);
     padding: 0;
 }
 
