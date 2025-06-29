@@ -1,7 +1,7 @@
 pre,
 .highlight,
 .gist {
-    background: #333;
+    background: transparent;
     margin: 20px 0;
     padding: 1em 2%;
     overflow: auto;
@@ -37,7 +37,7 @@ code {
     text-align: left;
     padding-right: 20px;
     width: 100%;
-    color: #666
+    /* color: #666 */
 }
 
 pre,
