@@ -8,19 +8,12 @@ body {
 /* --- 文本散光效果 (使用 currentcolor 让光芒随文本颜色变化) --- */
 /* 为所有常见的文本元素添加散光效果 */
 /* 涵盖段落、标题、列表项、链接、代码块、引用、表格等 */
-body,
-/* 也作用于 body，以防 theme 有直接子元素 */
-p,
-li,
-ol,
-ul,
+footer,
 dl,
 dd,
 dt,
-a,
 span,
 strong,
-em,
 i,
 b,
 blockquote,
@@ -47,20 +40,18 @@ button,
 hr,
 marker,
 del
-
 /* 表单元素也可能需要 */
     {
     text-shadow:
         0 0 7px currentcolor;
 }
 
-h3>a,
-strong {
+h3>a {
     text-shadow:
-        0 0 7px currentcolor,
+        /* 0 0 7px currentcolor, */
         /* 0 0 10px currentcolor, */
-        /* 0 0 21px currentcolor, */
-        0 0 42px currentcolor;
+        0 0 21px currentcolor;
+        /* 0 0 42px currentcolor; */
 }
 
 h1,
@@ -98,7 +89,6 @@ h6>span {
         0 0 7px #00ffff;
 }
 
-.btn,
 .tag_box a {
     box-shadow:
         0 0 7px #fff;
@@ -109,6 +99,7 @@ h6>span {
 a.btn,
 a>i,
 .tag_box a,
+.katex *,
 /* img, */
 svg,
 canvas,

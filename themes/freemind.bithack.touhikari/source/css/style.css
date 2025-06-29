@@ -35,7 +35,7 @@ body {
 }
 
 .post {
-    font-size: 1em
+    font-size: .9em
 }
 
 .page {
@@ -557,17 +557,24 @@ hr {
 .btn {
     font-size: 0.9em;
     border-radius: 2px;
+    margin: 10px 0;
     padding: 0 6px;
     margin-inline-start: 10px;
     font-family: DOS, Consolas, Fira code, sans-serif, SimHei, Monaco, Menlo, 'Courier New', monospace;
+    cursor: pointer;
 }
 
 .btn:active {
     -webkit-box-shadow: #000 0 0 0 0;
     box-shadow: #000 0 0 0 0;
-    margin: 10px 0 0 10px;
+    margin: 10px 0;
+    margin-inline-start: 10px;
     outline: #000 none;
     background: #bbb !important
+}
+
+.btn-default.disabled {
+    color: #999;
 }
 
 .ds-thread {
@@ -951,4 +958,14 @@ footer {
 
 p {
     text-align: justify;
+}
+
+.alert-success {
+    background-color: #0a0;
+    border-color: #0a0;
+}
+
+.alert-success>:hover {
+    background-color: rgb(0, 220, 0);
+    border-color: rgb(0, 220, 0);
 }
