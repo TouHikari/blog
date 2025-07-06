@@ -979,11 +979,10 @@ body {
 
 footer {
     background-color: #111111;
-    background: linear-gradient(transparent 30%, var(--cyberpunk-cyan) 600%);
+    background: linear-gradient(transparent 10%, var(--cyberpunk-cyan) 600%);
     position: absolute;
     margin-top: auto;
     margin-top: 1em;
-    padding-top: 6em;
     padding-bottom: 1.5em;
     left: 0;
     width: 100%;
@@ -1018,4 +1017,8 @@ code {
 
 .toc .toc-title, .meta-widget {
     color: var(--cyberpunk-light-yellow)
+}
+
+del {
+    background: none;
 }
