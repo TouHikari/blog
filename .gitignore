@@ -7,6 +7,7 @@
 /.vite
 /.temp
 *.tsbuildinfo
+db.json
 
 # 日志文件
 logs
