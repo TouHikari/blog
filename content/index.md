@@ -10,7 +10,7 @@ description: 欢迎来到 TouHikari 的个人数字空间
 ## 最新文章
 
 - [创世纪：代号 TouHikari 已上线](/blog/genesis)
-- [在 Vue 3 项目中前端使用 Luckysheet 遇到的若干问题及解决方法](/blog/luckysheet-in-Vue-3-frontend)
+- [在 Vue 3 项目中前端使用 Luckysheet 遇到的若干问题及解决方法](/blog/luckysheet-in-vue-3-frontend)
 
 ## 关于这个站点
 
