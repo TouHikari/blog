@@ -1,5 +1,8 @@
 <script setup lang="ts">
-const { data: home } = await useAsyncData(() => queryCollection('content').path('/index').first())
+// 查询首页内容
+const { data: home } = await useAsyncData('home-content', async () => {
+  return await queryCollection('content').path('/').first()
+})
 
 useSeoMeta({
   title: home.value?.title || 'TouHikari.top',
@@ -9,5 +12,5 @@ useSeoMeta({
 
 <template>
   <ContentRenderer v-if="home" :value="home" />
-  <div v-else>Home not found</div>
+  <div v-else>首页内容加载中...</div>
 </template>
