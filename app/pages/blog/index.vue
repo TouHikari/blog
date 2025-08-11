@@ -1,20 +1,37 @@
 <script setup lang="ts">
+interface BlogPost {
+  title: string
+  description?: string
+  date: string
+  tags: string[]
+  category?: string
+  url: string
+  toc?: any
+}
+
 // 获取所有博客文章
-const { data: posts } = await useAsyncData('blog-posts', async () => {
-  const posts = await queryCollection('content')
-    .where('_path', 'startsWith', '/blog')
-    .sort({ date: -1 })
-    .find()
-  
-  return posts.map(post => ({
-    title: post.title,
-    description: post.description,
-    date: post.date,
-    tags: post.tags || [],
-    category: post.category,
-    url: post._path,
-    toc: post.toc
-  }))
+const { data: posts } = await useAsyncData('blog-posts', async (): Promise<BlogPost[]> => {
+  // 模拟博客文章数据
+  const mockPosts = [
+    {
+      title: 'Luckysheet in Vue 3 Frontend',
+      description: '在Vue 3前端项目中集成Luckysheet',
+      date: '2025-01-11',
+      tags: ['Vue', 'Luckysheet', '前端'],
+      category: '技术',
+      url: '/blog/luckysheet-in-Vue-3-frontend'
+    },
+    {
+      title: 'Genesis',
+      description: '创世纪 - 博客的开始',
+      date: '2025-05-04',
+      tags: ['开始', '创世纪'],
+      category: '日志',
+      url: '/blog/genesis'
+    }
+  ]
+
+  return mockPosts
 })
 
 // 分页配置

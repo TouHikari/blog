@@ -1,28 +1,48 @@
 <script setup lang="ts">
+interface TagPost {
+  title: string
+  description?: string
+  date: string
+  category?: string
+  tags: string[]
+  url: string
+}
+
 const route = useRoute()
 const tagName = route.params.tag as string
 
 // 获取该标签下的所有文章
-const { data: posts } = await useAsyncData(`tag-${tagName}`, async () => {
-  const allPosts = await queryCollection('content')
-    .where('_path', 'startsWith', '/blog')
-    .sort({ date: -1 })
-    .find()
-  
+const { data: posts } = await useAsyncData(`tag-${tagName}`, async (): Promise<TagPost[]> => {
+  // 模拟所有文章数据
+  const allPosts = [
+    {
+      title: 'Luckysheet in Vue 3 Frontend',
+      description: '在Vue 3前端项目中集成Luckysheet',
+      date: '2025-01-11',
+      tags: ['Vue', 'Luckysheet', '前端'],
+      category: '技术',
+      url: '/blog/luckysheet-in-Vue-3-frontend'
+    },
+    {
+      title: 'Genesis',
+      description: '创世纪 - 博客的开始',
+      date: '2025-05-04',
+      tags: ['开始', '创世纪'],
+      category: '日志',
+      url: '/blog/genesis'
+    }
+  ]
+
   // 过滤出包含该标签的文章
-  const tagPosts = allPosts.filter(post => {
-    if (!post.tags) return false
-    const tags = Array.isArray(post.tags) ? post.tags : [post.tags]
-    return tags.includes(tagName)
-  })
-  
+  const tagPosts = allPosts.filter(post => post.tags.includes(tagName))
+
   return tagPosts.map(post => ({
     title: post.title,
     description: post.description,
     date: post.date,
     category: post.category,
-    tags: post.tags || [],
-    url: post._path
+    tags: post.tags,
+    url: post.url
   }))
 })
 

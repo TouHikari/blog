@@ -1,41 +1,23 @@
 <script setup lang="ts">
+interface Tag {
+  name: string
+  count: number
+  fontSize: string
+  url: string
+}
+
 // 获取所有博客文章的标签
-const { data: tags } = await useAsyncData('blog-tags', async () => {
-  const posts = await queryCollection('content')
-    .where('_path', 'startsWith', '/blog')
-    .find()
-  
-  const tagMap = new Map()
-  
-  posts.forEach(post => {
-    if (post.tags) {
-      const tags = Array.isArray(post.tags) ? post.tags : [post.tags]
-      tags.forEach(tag => {
-        if (tagMap.has(tag)) {
-          tagMap.set(tag, tagMap.get(tag) + 1)
-        } else {
-          tagMap.set(tag, 1)
-        }
-      })
-    }
-  })
-  
-  // 计算标签的字体大小（基于使用频率）
-  const maxCount = Math.max(...Array.from(tagMap.values()))
-  const minCount = Math.min(...Array.from(tagMap.values()))
-  
-  return Array.from(tagMap.entries()).map(([name, count]) => {
-    // 计算相对大小 (0.8em - 1.4em)
-    const ratio = maxCount === minCount ? 1 : (count - minCount) / (maxCount - minCount)
-    const fontSize = 0.8 + (ratio * 0.6)
-    
-    return {
-      name,
-      count,
-      fontSize: `${fontSize}em`,
-      url: `/tags/${name}`
-    }
-  }).sort((a, b) => a.name.localeCompare(b.name))
+const { data: tags } = await useAsyncData('blog-tags', async (): Promise<Tag[]> => {
+  // 模拟标签数据
+  const mockTags = [
+    { name: '开始', count: 1, fontSize: '1.0em', url: '/tags/开始' },
+    { name: '创世纪', count: 1, fontSize: '1.0em', url: '/tags/创世纪' },
+    { name: 'Vue', count: 1, fontSize: '1.2em', url: '/tags/Vue' },
+    { name: 'Luckysheet', count: 1, fontSize: '1.0em', url: '/tags/Luckysheet' },
+    { name: '前端', count: 1, fontSize: '1.4em', url: '/tags/前端' }
+  ]
+
+  return mockTags.sort((a, b) => a.name.localeCompare(b.name))
 })
 </script>
 

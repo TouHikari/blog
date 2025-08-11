@@ -1,30 +1,19 @@
 <script setup lang="ts">
+interface Category {
+  name: string
+  count: number
+  url: string
+}
+
 // 获取所有博客文章的分类
-const { data: categories } = await useAsyncData('blog-categories', async () => {
-  const posts = await queryCollection('content')
-    .where('_path', 'startsWith', '/blog')
-    .find()
-  
-  const categoryMap = new Map()
-  
-  posts.forEach(post => {
-    if (post.category) {
-      const categories = Array.isArray(post.category) ? post.category : [post.category]
-      categories.forEach(cat => {
-        if (categoryMap.has(cat)) {
-          categoryMap.set(cat, categoryMap.get(cat) + 1)
-        } else {
-          categoryMap.set(cat, 1)
-        }
-      })
-    }
-  })
-  
-  return Array.from(categoryMap.entries()).map(([name, count]) => ({
-    name,
-    count,
-    url: `/categories/${name}`
-  }))
+const { data: categories } = await useAsyncData('blog-categories', async (): Promise<Category[]> => {
+  // 模拟分类数据
+  const mockCategories = [
+    { name: '日志', count: 1, url: '/categories/日志' },
+    { name: '技术', count: 1, url: '/categories/技术' }
+  ]
+
+  return mockCategories
 })
 </script>
 

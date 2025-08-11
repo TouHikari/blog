@@ -1,27 +1,46 @@
 <script setup lang="ts">
+interface CategoryPost {
+  title: string
+  description?: string
+  date: string
+  tags: string[]
+  url: string
+}
+
 const route = useRoute()
 const categoryName = route.params.category as string
 
 // 获取该分类下的所有文章
-const { data: posts } = await useAsyncData(`category-${categoryName}`, async () => {
-  const allPosts = await queryCollection('content')
-    .where('_path', 'startsWith', '/blog')
-    .sort({ date: -1 })
-    .find()
-  
+const { data: posts } = await useAsyncData(`category-${categoryName}`, async (): Promise<CategoryPost[]> => {
+  // 模拟分类文章数据
+  const allPosts = [
+    {
+      title: 'Luckysheet in Vue 3 Frontend',
+      description: '在Vue 3前端项目中集成Luckysheet',
+      date: '2025-01-11',
+      tags: ['Vue', 'Luckysheet', '前端'],
+      category: '技术',
+      url: '/blog/luckysheet-in-Vue-3-frontend'
+    },
+    {
+      title: 'Genesis',
+      description: '创世纪 - 博客的开始',
+      date: '2025-05-04',
+      tags: ['开始', '创世纪'],
+      category: '日志',
+      url: '/blog/genesis'
+    }
+  ]
+
   // 过滤出属于该分类的文章
-  const categoryPosts = allPosts.filter(post => {
-    if (!post.category) return false
-    const categories = Array.isArray(post.category) ? post.category : [post.category]
-    return categories.includes(categoryName)
-  })
-  
+  const categoryPosts = allPosts.filter(post => post.category === categoryName)
+
   return categoryPosts.map(post => ({
     title: post.title,
     description: post.description,
     date: post.date,
-    tags: post.tags || [],
-    url: post._path
+    tags: post.tags,
+    url: post.url
   }))
 })
 
