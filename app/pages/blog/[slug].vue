@@ -14,7 +14,7 @@ useSeoMeta({
 </script>
 
 <template>
-  <div>
+  <div class="container cyber-container content-prose">
     <ContentRenderer v-if="post" :value="post" />
     <div v-else>
       <h1>文章未找到</h1>
