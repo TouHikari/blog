@@ -1,6 +1,8 @@
 @use './variables' as *;
 @use './mixins' as *;
 @use './fonts' as *;
+@use './blog' as *;
+@use './cyber-effects' as *;
 
 /* 全局字体应用 */
 html {

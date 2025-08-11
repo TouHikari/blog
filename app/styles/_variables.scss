@@ -3,11 +3,23 @@
 // ============================================================================
 
 // ----------------------------------------------------------------------------
-// 基础颜色系统
+// 基础颜色系统（基于原Hexo主题）
 // ----------------------------------------------------------------------------
 
+// 原主题赛博朋克颜色变量
+$cyberpunk-pink: #FF4080;
+$cyberpunk-background-pink: #ff408040;
+$cyberpunk-light-pink: #FF69B4;
+$cyberpunk-orange: #FB5607;
+$cyberpunk-yellow: #FFBE0B;
+$cyberpunk-light-yellow: #FFFF00;
+$cyberpunk-purple: #8338EC;
+$cyberpunk-blue: #3A86FF;
+$cyberpunk-cyan: #00FFFF;
+$cyberpunk-light-green: #00FF80;
+
 // 主背景色
-$bg-primary: #0a0f10;
+$bg-primary: #000000;
 $bg-secondary: #0a0d0e;
 $bg-tertiary: #0b1011;
 
@@ -18,7 +30,7 @@ $black-85: rgba(0, 0, 0, 0.85);
 $black-55: rgba(0, 0, 0, 0.55);
 
 // 霓虹色系 - 青绿色（主色调）
-$neon-cyan: #00ffd5;
+$neon-cyan: $cyberpunk-cyan;
 $neon-cyan-light: #a8fff1;
 $neon-cyan-bright: #b2fff3;
 $neon-cyan-soft: #7dffe8;
@@ -27,7 +39,7 @@ $neon-cyan-code: #8cffda;
 $neon-cyan-inline: #bdfff4;
 
 // 霓虹色系 - 粉紫色（强调色）
-$neon-pink: #ff5ac7;
+$neon-pink: $cyberpunk-pink;
 $neon-pink-light: rgba(255, 90, 199, 0.5);
 $neon-pink-bg: rgba(255, 90, 199, 0.06);
 $neon-pink-border: rgba(255, 90, 199, 0.3);
