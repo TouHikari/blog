@@ -10,14 +10,11 @@
     "postinstall": "nuxt prepare"
   },
   "dependencies": {
-    "@fortawesome/fontawesome-free": "^7.0.0",
     "@nuxt/content": "^3.6.3",
     "@nuxt/eslint": "^1.8.0",
-    "@nuxt/fonts": "^0.11.4",
     "@nuxt/icon": "^1.15.0",
     "@nuxt/image": "^1.11.0",
     "better-sqlite3": "^12.2.0",
-    "bootstrap": "^5.3.7",
     "eslint": "^9.32.0",
     "katex": "^0.16.22",
     "nuxt": "^4.0.1",

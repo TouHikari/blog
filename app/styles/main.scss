@@ -6,36 +6,31 @@
 
 /* 全局字体应用 */
 html {
-  font-family: var(--font-sans);
+  font-family: $font-sans;
+  color: $white;
+  background-color: $black;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   text-rendering: auto;
-  background-color: $black;
 }
 
 body {
-  height: 100vh;
-  font-family: var(--font-sans);
+  font-family: $font-sans;
   line-height: $line-height-base;
   font-weight: $font-weight-normal;
   font-size: $font-size-base;
   letter-spacing: $letter-spacing-normal;
+  margin: 0;
 }
 
 /* 标题字体 - 赛博朋克风格 */
-h1 {
-  @include cyber-heading(1);
-}
-
-h2 {
-  @include cyber-heading(2);
-}
-
+h1,
+h2,
 h3,
 h4,
 h5,
 h6 {
-  font-family: var(--font-sans);
+  font-family: $font-cyber;
   font-weight: $font-weight-medium;
   letter-spacing: $letter-spacing-normal;
 }
@@ -45,18 +40,8 @@ code,
 pre,
 kbd,
 samp {
-  font-family: var(--font-mono);
+  font-family: $font-mono;
   font-feature-settings: "liga" 1, "calt" 1;
-}
-
-/* 内联代码样式 */
-code:not(pre code) {
-  @include code-text(true);
-}
-
-/* 代码块样式 */
-pre {
-  @include code-text(false);
 }
 
 pre code {
@@ -65,26 +50,6 @@ pre code {
   border-radius: 0;
   font-size: $font-size-small;
   line-height: $line-height-tight;
-}
-
-/* 响应式字体大小 */
-@include mobile {
-  body {
-    font-size: $font-size-mobile;
-    line-height: $line-height-mobile;
-  }
-
-  h1 {
-    font-size: $font-size-h1;
-  }
-
-  h2 {
-    font-size: $font-size-h2;
-  }
-
-  h3 {
-    font-size: $font-size-h3;
-  }
 }
 
 /* 霓虹链接、选区、滚动条、按钮等全局风格 */
@@ -96,37 +61,16 @@ pre code {
 a {
   color: $neon-cyan-soft;
   text-decoration: none;
-  @include smooth-transition(color);
 }
 
 a:hover {
   color: $neon-cyan-bright;
-  text-shadow: $text-shadow-hover;
-}
-
-::-webkit-scrollbar {
-  width: 10px;
-  height: 10px;
-}
-
-::-webkit-scrollbar-track {
-  background: $bg-tertiary;
-}
-
-::-webkit-scrollbar-thumb {
-  background: $gradient-scrollbar;
-  border-radius: $border-radius-full;
-  box-shadow: $box-shadow-scrollbar;
 }
 
 /* 内容容器与排版（Markdown 渲染适配） */
-.cyber-container {
-  @include cyber-container();
-}
-
 .content-prose :deep(h1) {
   color: #a8fff1;
-  font-family: var(--font-cyber);
+  font-family: $font-cyber;
   text-shadow: 0 0 12px rgba(0, 255, 213, .55);
   border-bottom: 1px dashed rgba(0, 255, 170, .25);
   padding-bottom: .5rem;

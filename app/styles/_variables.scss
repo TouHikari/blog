@@ -25,6 +25,36 @@ $black-80: rgba(0, 0, 0, 0.8);
 $black-85: rgba(0, 0, 0, 0.85);
 $black-55: rgba(0, 0, 0, 0.55);
 
+// 白色系
+$white: #ffffff;
+$white-80: rgba(255, 255, 255, 0.8);
+$white-85: rgba(255, 255, 255, 0.85);
+$white-55: rgba(255, 255, 255, 0.55);
+
+// 灰色系
+$gray-50: #fafafa;
+$gray-100: #f5f5f5;
+$gray-200: #eeeeee;
+$gray-300: #e0e0e0;
+$gray-400: #bdbdbd;
+$gray-500: #9e9e9e;
+$gray-600: #757575;
+$gray-700: #616161;
+$gray-800: #424242;
+$gray-900: #212121;
+
+// 灰色系 - 透明度变体
+$gray-50-80: rgba(250, 250, 250, 0.8);
+$gray-100-80: rgba(245, 245, 245, 0.8);
+$gray-200-80: rgba(238, 238, 238, 0.8);
+$gray-300-80: rgba(224, 224, 224, 0.8);
+$gray-400-80: rgba(189, 189, 189, 0.8);
+$gray-500-80: rgba(158, 158, 158, 0.8);
+$gray-600-80: rgba(117, 117, 117, 0.8);
+$gray-700-80: rgba(97, 97, 97, 0.8);
+$gray-800-80: rgba(66, 66, 66, 0.8);
+$gray-900-80: rgba(33, 33, 33, 0.8);
+
 // 霓虹色系 - 青绿色（主色调）
 $neon-cyan: $cyberpunk-cyan;
 $neon-cyan-light: #a8fff1;
@@ -58,35 +88,6 @@ $bg-selection: rgba(0, 255, 170, 0.35);
 $bg-code-inline: rgba(0, 255, 213, 0.08);
 $bg-code-block: rgba(0, 255, 213, 0.06);
 $bg-blockquote: rgba(0, 255, 213, 0.06);
-
-// ----------------------------------------------------------------------------
-// 渐变系统
-// ----------------------------------------------------------------------------
-$gradient-neon: linear-gradient(90deg, #{$neon-cyan}, #{$neon-pink});
-$gradient-scrollbar: linear-gradient(180deg, #{$neon-cyan}, #{$neon-pink});
-$gradient-bg-primary: linear-gradient(180deg, #{$bg-primary} 0%, #{$bg-secondary} 100%);
-$gradient-header: linear-gradient(180deg, rgba(10, 15, 16, 0.9), rgba(10, 13, 14, 0.65));
-$gradient-footer: linear-gradient(180deg, rgba(10, 13, 14, 0.6), rgba(10, 15, 16, 0.9));
-
-// 径向渐变（背景光晕）
-$radial-cyan: radial-gradient(1200px 600px at 80% -10%, rgba(0, 255, 204, 0.08), transparent 60%);
-$radial-pink: radial-gradient(1000px 500px at 10% 110%, rgba(255, 0, 204, 0.06), transparent 60%);
-
-// ----------------------------------------------------------------------------
-// 阴影系统
-// ----------------------------------------------------------------------------
-
-// 文字阴影
-$text-shadow-neon-cyan: 0 0 10px rgba(0, 255, 213, 0.6), 0 0 2px rgba(0, 255, 213, 0.8);
-$text-shadow-neon-pink: 0 0 10px rgba(255, 90, 199, 0.6);
-$text-shadow-hover: 0 0 8px rgba(0, 255, 213, 0.5);
-$text-shadow-strong: 0 0 12px rgba(0, 255, 213, 0.55);
-
-// 盒子阴影
-$box-shadow-container: 0 0 20px rgba(0, 255, 213, 0.06), inset 0 0 30px rgba(255, 90, 199, 0.05);
-$box-shadow-code: 0 0 14px rgba(0, 255, 213, 0.06);
-$box-shadow-scrollbar: inset 0 0 4px rgba(0, 0, 0, 0.6);
-$box-shadow-nav-glow: 0 0 8px rgba(0, 255, 213, 0.6), 0 0 8px rgba(255, 90, 199, 0.6);
 
 // ----------------------------------------------------------------------------
 // 间距系统
