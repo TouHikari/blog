@@ -1,0 +1,45 @@
+:root {
+  /* 主要字体栈 - 优先使用系统字体，适合博客阅读 */
+  --font-sans:
+    system-ui,
+    -apple-system,
+    BlinkMacSystemFont,
+    "Segoe UI",
+    "PingFang SC",
+    "Hiragino Sans GB",
+    "Noto Sans SC",
+    "Microsoft YaHei",
+    "WenQuanYi Micro Hei",
+    "Helvetica Neue",
+    Helvetica,
+    Arial,
+    sans-serif;
+
+  /* 等宽字体栈 - 用于代码显示，赛博朋克风格 */
+  --font-mono:
+    "JetBrains Mono",
+    "Fira Code",
+    "SF Mono",
+    "Monaco",
+    "Inconsolata",
+    "Roboto Mono",
+    "Source Code Pro",
+    "Consolas",
+    "Courier New",
+    monospace;
+
+  /* 衬线字体栈 - 用于标题或特殊文本 */
+  --font-serif:
+    "Times New Roman",
+    "Songti SC",
+    "SimSun",
+    serif;
+
+  /* 赛博朋克风格的标题字体 */
+  --font-cyber:
+    "SF Mono",
+    "Monaco",
+    "Consolas",
+    "Courier New",
+    monospace;
+}

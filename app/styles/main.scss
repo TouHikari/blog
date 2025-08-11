@@ -1,0 +1,213 @@
+@use './variables' as *;
+@use './mixins' as *;
+@use './fonts' as *;
+
+/* 全局字体应用 */
+html {
+  font-family: var(--font-sans);
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  text-rendering: auto;
+  background-color: $black;
+}
+
+body {
+  font-family: var(--font-sans);
+  line-height: $line-height-base;
+  font-weight: $font-weight-normal;
+  font-size: $font-size-base;
+  letter-spacing: $letter-spacing-normal;
+}
+
+/* 标题字体 - 赛博朋克风格 */
+h1 {
+  @include cyber-heading(1);
+}
+
+h2 {
+  @include cyber-heading(2);
+}
+
+h3,
+h4,
+h5,
+h6 {
+  font-family: var(--font-sans);
+  font-weight: $font-weight-medium;
+  letter-spacing: $letter-spacing-normal;
+}
+
+/* 代码字体 */
+code,
+pre,
+kbd,
+samp {
+  font-family: var(--font-mono);
+  font-feature-settings: "liga" 1, "calt" 1;
+}
+
+/* 内联代码样式 */
+code:not(pre code) {
+  @include code-text(true);
+}
+
+/* 代码块样式 */
+pre {
+  @include code-text(false);
+}
+
+pre code {
+  background: none;
+  padding: 0;
+  border-radius: 0;
+  font-size: $font-size-small;
+  line-height: $line-height-tight;
+}
+
+/* 响应式字体大小 */
+@include mobile {
+  body {
+    font-size: $font-size-mobile;
+    line-height: $line-height-mobile;
+  }
+
+  h1 {
+    font-size: $font-size-h1;
+  }
+
+  h2 {
+    font-size: $font-size-h2;
+  }
+
+  h3 {
+    font-size: $font-size-h3;
+  }
+}
+
+/* 霓虹链接、选区、滚动条、按钮等全局风格 */
+::selection {
+  background: $bg-selection;
+  color: $text-selection-bg;
+}
+
+a {
+  color: $neon-cyan-soft;
+  text-decoration: none;
+  @include smooth-transition(color);
+}
+
+a:hover {
+  color: $neon-cyan-bright;
+  text-shadow: $text-shadow-hover;
+}
+
+::-webkit-scrollbar {
+  width: 10px;
+  height: 10px;
+}
+
+::-webkit-scrollbar-track {
+  background: $bg-tertiary;
+}
+
+::-webkit-scrollbar-thumb {
+  background: $gradient-scrollbar;
+  border-radius: $border-radius-full;
+  box-shadow: $box-shadow-scrollbar;
+}
+
+/* 内容容器与排版（Markdown 渲染适配） */
+.cyber-container {
+  @include cyber-container();
+}
+
+.content-prose :deep(h1) {
+  color: #a8fff1;
+  font-family: var(--font-cyber);
+  text-shadow: 0 0 12px rgba(0, 255, 213, .55);
+  border-bottom: 1px dashed rgba(0, 255, 170, .25);
+  padding-bottom: .5rem;
+  margin-bottom: 1.2rem;
+}
+
+.content-prose :deep(h2) {
+  color: #86ffe9;
+  margin-top: 2rem;
+  margin-bottom: .8rem;
+  border-left: 4px solid rgba(255, 90, 199, .5);
+  padding-left: .8rem;
+}
+
+.content-prose :deep(p) {
+  color: #e7fffa;
+  opacity: .9;
+}
+
+.content-prose :deep(ul),
+.content-prose :deep(ol) {
+  padding-left: 1.2rem;
+}
+
+.content-prose :deep(li) {
+  margin: .35rem 0;
+}
+
+/* 引用与提示 */
+.content-prose :deep(blockquote) {
+  margin: 1.2rem 0;
+  padding: .8rem 1rem;
+  background: rgba(0, 255, 213, 0.06);
+  border-left: 3px solid rgba(0, 255, 213, .45);
+  color: #a8fff1;
+}
+
+/* 代码块与内联代码覆盖 */
+.content-prose :deep(pre) {
+  background: rgba(0, 0, 0, .85);
+  color: #8cffda;
+  border: 1px solid rgba(0, 255, 170, .28);
+  box-shadow: 0 0 14px rgba(0, 255, 213, 0.06);
+}
+
+.content-prose :deep(code:not(pre code)) {
+  background: rgba(0, 255, 213, .08);
+  color: #bdfff4;
+  border: 1px solid rgba(0, 255, 213, .24);
+}
+
+/* 图片与表格 */
+.content-prose :deep(img) {
+  max-width: 100%;
+  border-radius: 8px;
+  border: 1px solid rgba(0, 255, 170, .2);
+}
+
+.content-prose :deep(table) {
+  width: 100%;
+  border-collapse: collapse;
+}
+
+.content-prose :deep(th),
+.content-prose :deep(td) {
+  border: 1px solid rgba(0, 255, 170, .18);
+  padding: .5rem .6rem;
+}
+
+/* 警告/信息块（如果使用 content 的自定义容器） */
+.content-prose :deep(.info),
+.content-prose :deep(.tip),
+.content-prose :deep(.warning) {
+  padding: .8rem 1rem;
+  border-radius: 8px;
+  margin: 1rem 0;
+}
+
+.content-prose :deep(.info) {
+  background: rgba(0, 255, 213, 0.06);
+  border: 1px solid rgba(0, 255, 213, .3);
+}
+
+.content-prose :deep(.warning) {
+  background: rgba(255, 90, 199, 0.06);
+  border: 1px solid rgba(255, 90, 199, .3);
+}
