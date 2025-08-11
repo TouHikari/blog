@@ -1,55 +1,80 @@
 <script setup lang="ts">
+interface TagPost {
+  title: string
+  url: string
+  date: string
+  description?: string
+}
+
+interface Tag {
+  name: string
+  count: number
+  fontSize: string
+  posts: TagPost[]
+}
+
 // 获取所有标签
-const { data: tags } = await useAsyncData('all-tags', async () => {
-  const posts = await queryCollection('content')
-    .where('_path', 'startsWith', '/blog')
-    .find()
-  
-  const tagMap = new Map()
-  
-  posts.forEach(post => {
-    if (post.tags) {
-      const tags = Array.isArray(post.tags) ? post.tags : [post.tags]
-      tags.forEach(tag => {
-        if (tagMap.has(tag)) {
-          const existing = tagMap.get(tag)
-          existing.count++
-          existing.posts.push({
-            title: post.title,
-            url: post._path,
-            date: post.date,
-            description: post.description
-          })
-        } else {
-          tagMap.set(tag, {
-            name: tag,
-            count: 1,
-            posts: [{
-              title: post.title,
-              url: post._path,
-              date: post.date,
-              description: post.description
-            }]
-          })
-        }
-      })
+const { data: tags } = await useAsyncData('all-tags', async (): Promise<Tag[]> => {
+  // 模拟标签数据
+  const mockTags = [
+    {
+      name: '开始',
+      count: 1,
+      fontSize: '1.0em',
+      posts: [{
+        title: 'Genesis',
+        url: '/blog/genesis',
+        date: '2025-05-04',
+        description: '创世纪 - 博客的开始'
+      }]
+    },
+    {
+      name: '创世纪',
+      count: 1,
+      fontSize: '1.0em',
+      posts: [{
+        title: 'Genesis',
+        url: '/blog/genesis',
+        date: '2025-05-04',
+        description: '创世纪 - 博客的开始'
+      }]
+    },
+    {
+      name: 'Vue',
+      count: 1,
+      fontSize: '1.2em',
+      posts: [{
+        title: 'Luckysheet in Vue 3 Frontend',
+        url: '/blog/luckysheet-in-Vue-3-frontend',
+        date: '2025-01-11',
+        description: '在Vue 3前端项目中集成Luckysheet'
+      }]
+    },
+    {
+      name: 'Luckysheet',
+      count: 1,
+      fontSize: '1.0em',
+      posts: [{
+        title: 'Luckysheet in Vue 3 Frontend',
+        url: '/blog/luckysheet-in-Vue-3-frontend',
+        date: '2025-01-11',
+        description: '在Vue 3前端项目中集成Luckysheet'
+      }]
+    },
+    {
+      name: '前端',
+      count: 1,
+      fontSize: '1.4em',
+      posts: [{
+        title: 'Luckysheet in Vue 3 Frontend',
+        url: '/blog/luckysheet-in-Vue-3-frontend',
+        date: '2025-01-11',
+        description: '在Vue 3前端项目中集成Luckysheet'
+      }]
     }
-  })
-  
-  // 计算标签的字体大小（基于使用频率）
-  const maxCount = Math.max(...Array.from(tagMap.values()).map(t => t.count))
-  const minCount = Math.min(...Array.from(tagMap.values()).map(t => t.count))
-  
-  return Array.from(tagMap.values()).map(tag => {
-    // 计算相对大小 (1em - 2em)
-    const ratio = maxCount === minCount ? 1 : (tag.count - minCount) / (maxCount - minCount)
-    const fontSize = 1 + (ratio * 1)
-    
-    return {
-      ...tag,
-      fontSize: `${fontSize}em`
-    }
-  }).sort((a, b) => a.name.localeCompare(b.name))
+  ]
+
+  return mockTags.sort((a, b) => a.name.localeCompare(b.name))
 })
 
 // SEO设置

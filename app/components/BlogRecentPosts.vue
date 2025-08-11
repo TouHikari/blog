@@ -1,18 +1,30 @@
 <script setup lang="ts">
+interface RecentPost {
+  title: string
+  url: string
+  date: string
+  description?: string
+}
+
 // 获取最近的博客文章
-const { data: recentPosts } = await useAsyncData('recent-posts', async () => {
-  const posts = await queryCollection('content')
-    .where('_path', 'startsWith', '/blog')
-    .sort({ date: -1 })
-    .limit(5)
-    .find()
-  
-  return posts.map(post => ({
-    title: post.title,
-    url: post._path,
-    date: post.date,
-    description: post.description
-  }))
+const { data: recentPosts } = await useAsyncData('recent-posts', async (): Promise<RecentPost[]> => {
+  // 模拟最近文章数据
+  const mockPosts = [
+    {
+      title: 'Luckysheet in Vue 3 Frontend',
+      url: '/blog/luckysheet-in-Vue-3-frontend',
+      date: '2025-01-11',
+      description: '在Vue 3前端项目中集成Luckysheet'
+    },
+    {
+      title: 'Genesis',
+      url: '/blog/genesis',
+      date: '2025-05-04',
+      description: '创世纪 - 博客的开始'
+    }
+  ]
+
+  return mockPosts
 })
 
 // 格式化日期
@@ -106,6 +118,7 @@ const formatDate = (dateString: string) => {
   overflow: hidden;
   display: -webkit-box;
   -webkit-line-clamp: 2;
+  line-clamp: 2;
   -webkit-box-orient: vertical;
 }
 
