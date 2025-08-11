@@ -6,7 +6,6 @@ export default defineNuxtConfig({
   modules: [
     "@nuxt/content",
     "@nuxt/eslint",
-    // "@nuxt/fonts",
     "@nuxt/icon",
     "@nuxt/image",
   ],
@@ -69,10 +68,6 @@ export default defineNuxtConfig({
             "description": "TouHikari 的数字幽灵日志。穿梭于代码与现实的边界，记录那些隐藏在防火墙之后的故事、实验和顿悟。"
           })
         },
-        {
-          src: "/js/glitch-mouse-effects.js",
-          defer: true
-        }
       ]
     },
   },
@@ -81,8 +76,6 @@ export default defineNuxtConfig({
   ssr: true,
 
   css: [
-    "bootstrap/dist/css/bootstrap.min.css",
-    "@fortawesome/fontawesome-free/css/all.min.css",
     "katex/dist/katex.min.css",
     "~/styles/main.scss"
   ],

@@ -11,7 +11,7 @@ useSeoMeta({
 </script>
 
 <template>
-  <div class="container cyber-container content-prose">
+  <div>
     <ContentRenderer v-if="home" :value="home" />
     <div v-else>首页内容加载中...</div>
   </div>
