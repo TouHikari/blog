@@ -25,10 +25,18 @@ const buttonClass = computed(() => {
   cursor: pointer;
 }
 
-.navbar-brand, .nav {
+.navbar-brand,
+.nav {
   font-family: $font-cyber;
   background: transparent;
   border: none;
-  padding: 0 10px;
+}
+
+.navbar-brand {
+  padding: 0;
+}
+
+.nav {
+  padding: 0 15px;
 }
 </style>

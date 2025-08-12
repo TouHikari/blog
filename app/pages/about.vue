@@ -1,5 +1,11 @@
+<script lang="ts" setup>
+const { data: about } = await useAsyncData('about-content', async () => {
+  return await queryCollection('content').path('/about').first()
+})
+</script>
+
 <template>
-  <section>
-    <p>This page will be displayed at the /about route.</p>
-  </section>
+  <div>
+    <ContentRenderer v-if="about" :value="about" />
+  </div>
 </template>
