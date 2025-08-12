@@ -5,24 +5,34 @@
 <template>
   <div class="header-container">
     <div class="navbar">
-      <UiButton type="navbar-brand" class="nav-brand">[TouHikari@localhost ~]$</UiButton>
+      <NuxtLink to="/">
+        <UiButton type="navbar-brand" class="nav-brand">[TouHikari@localhost ~]$</UiButton>
+      </NuxtLink>
       <div class="nav-items">
-        <UiButton type="nav" class="nav-button">
-          <Icon name="mdi:database" class="nav-icon" />
-          Archives
-        </UiButton>
-        <UiButton type="nav" class="nav-button">
-          <Icon name="mdi:folder-network" class="nav-icon" />
-          Categories
-        </UiButton>
-        <UiButton type="nav" class="nav-button">
-          <Icon name="mdi:tag-multiple" class="nav-icon" />
-          Tags
-        </UiButton>
-        <UiButton type="nav" class="nav-button">
-          <Icon name="mdi:account-circle" class="nav-icon" />
-          About
-        </UiButton>
+        <NuxtLink to="blog">
+          <UiButton type="nav" class="nav-button">
+            <Icon name="mdi:database" class="nav-icon" />
+            Archives
+          </UiButton>
+        </NuxtLink>
+        <NuxtLink to="categories">
+          <UiButton type="nav" class="nav-button">
+            <Icon name="mdi:folder-network" class="nav-icon" />
+            Categories
+          </UiButton>
+        </NuxtLink>
+        <NuxtLink to="tags">
+          <UiButton type="nav" class="nav-button">
+            <Icon name="mdi:tag-multiple" class="nav-icon" />
+            Tags
+          </UiButton>
+        </NuxtLink>
+        <NuxtLink to="about">
+          <UiButton type="nav" class="nav-button">
+            <Icon name="mdi:account-circle" class="nav-icon" />
+            About
+          </UiButton>
+        </NuxtLink>
       </div>
     </div>
   </div>
