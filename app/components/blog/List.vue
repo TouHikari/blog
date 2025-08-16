@@ -1,39 +1,32 @@
 <script setup lang="ts">
-// 查询所有博客文章
-const { data: articles } = await useAsyncData('blog-articles', async () => {
+
+// 自动查询所有博客文章
+const { data: articles } = await useAsyncData('blog-articles', async (): Promise<any[]> => {
   try {
-    // 手动获取所有博客文章
-    const articlePaths = ['genesis', 'luckysheet-in-vue-3-frontend', 'test', 'vuepress-features-demo']
-    const articles = []
+    // 直接获取blog集合中的所有文章
+    const allBlogArticles = await queryCollection('blog').all()
 
-    for (const path of articlePaths) {
-      try {
-        const article = await queryCollection('blog').path(`/blog/${path}`).first()
-        if (article) {
-          // 处理摘要
-          let excerpt = ''
-          if (article.body) {
-            const bodyText = JSON.stringify(article.body)
-            const moreIndex = bodyText.indexOf('<!--more-->')
-            if (moreIndex !== -1) {
-              excerpt = bodyText.substring(0, moreIndex).replace(/[{}"]/g, '').trim()
-            } else {
-              excerpt = bodyText.substring(0, 200).replace(/[{}"]/g, '').trim() + '...'
-            }
-          }
-
-          articles.push({
-            ...article,
-            excerpt
-          })
-        }
-      } catch (e) {
-        console.log(`无法加载文章: ${path}`)
-      }
+    if (!allBlogArticles || allBlogArticles.length === 0) {
+      return []
     }
 
-    // 按日期排序
-    return articles.sort((a: any, b: any) => new Date(b.date).getTime() - new Date(a.date).getTime())
+    // 处理每篇文章的摘要数据
+    const processedArticles = allBlogArticles.map((article: any) => {
+      let excerptContent = null
+
+      // 使用现成的excerpt数据
+      if (article.meta && article.meta.excerpt) {
+        excerptContent = article.meta.excerpt
+      }
+
+      return {
+        ...article,
+        excerptContent
+      }
+    })
+
+    // 按日期降序排序
+    return processedArticles.sort((a: any, b: any) => new Date(b.date).getTime() - new Date(a.date).getTime())
   } catch (error) {
     console.error('获取博客文章失败:', error)
     return []
@@ -50,7 +43,10 @@ const { data: articles } = await useAsyncData('blog-articles', async () => {
         </h3>
         <div class="blog-date">post @ {{ article.date }}</div>
       </div>
-      <div class="blog-excerpt" v-html="article.excerpt"></div>
+      <div class="blog-excerpt">
+        <ContentRenderer v-if="article.excerptContent" :value="article.excerptContent" />
+        <p v-else>{{ article.description || '暂无摘要' }}</p>
+      </div>
       <div class="blog-tags" v-if="article.meta?.tags">
         <span v-for="tag in article.meta.tags" :key="tag" class="blog-tag">{{ tag }}</span>
       </div>
