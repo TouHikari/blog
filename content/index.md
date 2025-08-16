@@ -1,16 +1,11 @@
 ---
-title: TouHikari.top
+title: "[TouHikari@localhost ~]$"
 description: 欢迎来到 TouHikari 的个人数字空间
 ---
 
 # 欢迎来到 TouHikari.top
 
 这里是我的思考碎片、技术探索和在二进制海洋中航行日志的汇集地。
-
-## 最新文章
-
-- [创世纪：代号 TouHikari 已上线](/blog/genesis)
-- [在 Vue 3 项目中前端使用 Luckysheet 遇到的若干问题及解决方法](/blog/luckysheet-in-vue-3-frontend)
 
 ## 关于这个站点
 

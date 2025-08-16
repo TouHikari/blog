@@ -6,12 +6,14 @@
 
 /* 全局字体应用 */
 html {
+  color-scheme: dark;
   font-family: $font-sans;
   color: $white;
   background-color: $black;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   text-rendering: auto;
+  overflow-y: scroll;
 }
 
 body {
@@ -114,6 +116,74 @@ a:hover {
   color: #8cffda;
   border: 1px solid rgba(0, 255, 170, .28);
   box-shadow: 0 0 14px rgba(0, 255, 213, 0.06);
+  border-radius: 8px;
+  padding: 1rem;
+  overflow-x: auto;
+  font-family: 'Courier New', monospace;
+  font-size: 0.9rem;
+  line-height: 1.5;
+  position: relative;
+}
+
+/* VuePress 风格的代码块扩展 */
+
+/* 代码块标题样式 */
+.content-prose :deep(pre[data-title])::before {
+  content: attr(data-title);
+  position: absolute;
+  top: -2rem;
+  left: 0;
+  right: 0;
+  background: rgba(0, 255, 170, 0.1);
+  color: #8cffda;
+  padding: 0.5rem 1rem;
+  font-size: 0.8rem;
+  border: 1px solid rgba(0, 255, 170, .28);
+  border-bottom: none;
+  border-radius: 8px 8px 0 0;
+  font-weight: bold;
+}
+
+/* 行号样式 */
+.content-prose :deep(.shiki .line) {
+  display: block;
+  min-height: 1rem;
+}
+
+.content-prose :deep(.shiki.has-line-numbers .line::before) {
+  content: attr(data-line);
+  display: inline-block;
+  width: 2rem;
+  margin-right: 1rem;
+  text-align: right;
+  color: rgba(140, 255, 218, 0.4);
+  user-select: none;
+  border-right: 1px solid rgba(0, 255, 170, .28);
+  padding-right: 0.5rem;
+}
+
+/* 行高亮样式 */
+.content-prose :deep(.shiki .highlighted) {
+  background: rgba(0, 255, 170, 0.1);
+  display: block;
+  margin: 0 -1rem;
+  padding: 0 1rem;
+  border-left: 3px solid #00ffaa;
+}
+
+/* 差异显示样式 */
+.content-prose :deep(.shiki .diff.add) {
+  background: rgba(0, 255, 0, 0.1);
+  display: block;
+  margin: 0 -1rem;
+  padding: 0 1rem;
+}
+
+.content-prose :deep(.shiki .diff.remove) {
+  background: rgba(255, 0, 0, 0.1);
+  display: block;
+  margin: 0 -1rem;
+  padding: 0 1rem;
 }
 
 .content-prose :deep(code:not(pre code)) {
