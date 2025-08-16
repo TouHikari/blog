@@ -1,6 +1,6 @@
 ---
 title: 创世纪：代号 TouHikari 已上线
-date: 2025-05-04 16:04:08
+date: 2025-05-04
 tags:
   - Meta
   - Personal
