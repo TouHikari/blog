@@ -5,9 +5,19 @@
 <template>
   <div class="container">
     <AppHeader />
-    <main>
+    <main class="main-content">
       <HomeTitle />
-      <slot />
+      <div class="page-container">
+        <div class="page-content">
+          <div class="page-home-slot">
+            <slot />
+          </div>
+          <div class="page-blog">
+
+          </div>
+        </div>
+        <div class="page-sidebar"></div>
+      </div>
     </main>
     <AppFooter />
   </div>
@@ -19,6 +29,31 @@
 .container {
   max-width: 1200px;
   margin: 0 auto;
+}
+
+.main-content {
+  padding-top: 1.5em;
+}
+
+.page-home-slot {
+  text-align: center;
+}
+
+.page-container {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  margin-top: 1em;
+
+  .page-content {
+    flex: 2;
+    min-width: 0;
+  }
+
+  .page-sidebar {
+    flex: 1;
+    min-width: 0;
+  }
 }
 
 // 手机端

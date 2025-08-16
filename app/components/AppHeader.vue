@@ -1,9 +1,24 @@
 <script setup lang="ts">
+import { ref, onMounted, onUnmounted } from 'vue'
 
+const isScrolled = ref(false)
+const scrollThreshold = 100 // 滚动多少像素后触发半透明效果
+
+const handleScroll = () => {
+  isScrolled.value = window.scrollY > scrollThreshold
+}
+
+onMounted(() => {
+  window.addEventListener('scroll', handleScroll)
+})
+
+onUnmounted(() => {
+  window.removeEventListener('scroll', handleScroll)
+})
 </script>
 
 <template>
-  <div class="header-container">
+  <div class="header-container" :class="{ 'scrolled': isScrolled }">
     <div class="navbar">
       <NuxtLink to="/">
         <UiButton type="navbar-brand" class="nav-brand">[TouHikari@localhost ~]$</UiButton>
@@ -43,19 +58,38 @@
 @use '~/styles/variables' as *;
 
 .header-container {
-  display: flex;
+  position: fixed;
   top: 0;
-  padding-top: 5px;
+  left: 0;
+  right: 0;
+  z-index: 1000;
+  display: flex;
   min-height: 1.5rem;
   max-height: 2rem;
   font-family: $font-cyber;
+  backdrop-filter: blur(2px);
+  transition: all 0.3s ease;
+
+  &.scrolled {
+    opacity: .5;
+  }
+
+  &:hover {
+    opacity: 1;
+    background: linear-gradient($black-55, $transparent);
+    backdrop-filter: blur(1px);
+  }
 }
 
 .navbar {
   display: flex;
   flex-direction: row;
   justify-content: space-between;
+  align-items: center;
   flex: 1;
+  max-width: 1200px;
+  margin: 0 auto;
+  width: 100%;
 }
 
 .nav-brand {
@@ -73,6 +107,7 @@
 .nav-items {
   display: flex;
   flex-direction: row;
+  height: 100%;
 }
 
 .nav-button {
@@ -83,6 +118,7 @@
   font-weight: bold;
   color: $gray-400;
   height: 100%;
+  transition: all 0.08s ease;
 
   &:hover {
     color: black;

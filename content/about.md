@@ -13,7 +13,7 @@ toc: true
 # 建立连接到用户节点...
 # 协议握手完成。
 # 验证数字指纹...
-# 认证成功。[touhikari@cyberspace] ~ $ _whoami
+# 认证成功。[touhikari@cyberspace]~$ _whoami
 ```
 
 ---

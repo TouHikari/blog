@@ -5,7 +5,7 @@
 <template>
   <div class="container">
     <AppHeader />
-    <main>
+    <main class="main-content">
       <BlogTitle />
       <slot />
     </main>
@@ -19,6 +19,10 @@
 .container {
   max-width: 1200px;
   margin: 0 auto;
+}
+
+.main-content {
+  padding-top: 1.5em;
 }
 
 // 手机端
