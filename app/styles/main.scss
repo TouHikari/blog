@@ -4,8 +4,7 @@
 @use './blog' as *;
 @use './cyber-effects' as *;
 
-/* 全局字体应用 */
-html {
+/* 全局字体应用 */html {
   color-scheme: dark;
   font-family: $font-sans;
   color: $white;
@@ -35,6 +34,10 @@ h6 {
   font-family: $font-cyber;
   font-weight: $font-weight-medium;
   letter-spacing: $letter-spacing-normal;
+}
+
+h3 {
+  font-size: 21px;
 }
 
 /* 代码字体 */

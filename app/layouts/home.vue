@@ -13,7 +13,7 @@
             <slot />
           </div>
           <div class="page-blog">
-
+            <BlogList />
           </div>
         </div>
         <div class="page-sidebar"></div>
@@ -37,6 +37,15 @@
 
 .page-home-slot {
   text-align: center;
+  margin-top: 0;
+
+  :deep(h1) {
+    margin-top: 0 !important;
+  }
+}
+
+.page-blog {
+  margin-top: 2em;
 }
 
 .page-container {
@@ -48,11 +57,13 @@
   .page-content {
     flex: 2;
     min-width: 0;
+    padding: 0 10px;
   }
 
   .page-sidebar {
     flex: 1;
     min-width: 0;
+    padding: 0 10px;
   }
 }
 

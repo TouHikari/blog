@@ -1,7 +1,7 @@
 ---
 title: "VuePress 风格的 Markdown 功能演示"
 description: "展示如何在 Nuxt Content 中使用 VuePress 风格的 Markdown 扩展功能"
-date: "2025-01-12"
+date: 2025-08-12
 tags: ["markdown", "vuepress", "nuxt-content"]
 ---
 
