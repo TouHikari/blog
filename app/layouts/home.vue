@@ -6,7 +6,7 @@
   <div class="container">
     <AppHeader />
     <main>
-      <BlogTitle />
+      <HomeTitle />
       <slot />
     </main>
     <AppFooter />

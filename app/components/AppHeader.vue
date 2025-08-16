@@ -63,6 +63,7 @@
   font-weight: bold;
   color: $gray-400;
   transition: all 0.3s ease;
+  height: 100%;
 
   &:hover {
     color: white;
@@ -81,6 +82,7 @@
   font-size: large;
   font-weight: bold;
   color: $gray-400;
+  height: 100%;
 
   &:hover {
     color: black;

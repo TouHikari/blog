@@ -7,8 +7,37 @@ export default defineNuxtConfig({
     "@nuxt/content",
     "@nuxt/eslint",
     "@nuxt/icon",
-    "@nuxt/image",
+    "@nuxt/image"
   ],
+
+  content: {
+    build: {
+      markdown: {
+        toc: {
+          depth: 3, // include h3 headings
+        },
+        highlight: {
+          theme: 'houston',
+          // Shiki 支持的语言
+          langs: [
+            'javascript',
+            'typescript',
+            'vue',
+            'html',
+            'css',
+            'scss',
+            'bash',
+            'json',
+            'markdown',
+            'python',
+            'java',
+            'cpp',
+            'rust'
+          ]
+        },
+      },
+    },
+  },
 
   // 在Nuxt 4中，可以通过app配置来控制加载行为
   app: {
