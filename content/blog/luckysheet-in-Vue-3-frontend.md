@@ -9,7 +9,6 @@ tags:
   - JavaScript
   - TypeScript
   - Scss
-description: Luckysheet 已不再维护，官方推荐使用升级版 Univer 用于生产环境部署。
 toc: true
 ---
 
@@ -17,7 +16,7 @@ toc: true
 
 如果你正在构建新项目，建议使用 [Univer](https://github.com/dream-num/univer)，**Luckysheet 已停止维护**。
 
-本文仅作为需要使用 Luckysheet 在其 Vue 3 项目中的前端开发者的避坑提示。**尤其是那些正在氛围编程的开发者，AI 可不会告诉你这么多 :P。**
+本文仅作为需要使用 Luckysheet 在其 Vue 3 项目中的前端开发者的避坑提示。**尤其是那些正在氛围编程的开发者，AI 可不会告诉你这么多 \:P。**
 
 <!--more-->
 
