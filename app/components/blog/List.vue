@@ -1,5 +1,4 @@
 <script setup lang="ts">
-
 // 自动查询所有博客文章
 const { data: articles } = await useAsyncData('blog-articles', async (): Promise<any[]> => {
   try {

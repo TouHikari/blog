@@ -1,6 +1,6 @@
 <template>
   <div class="title-container">
-    <h1 class="title">Where shadows dance with data streams.<span class="blink-fast">|</span></h1>
+    <h1 class="title">Where shadows dance with data streams.<span class="blink-fast"> |</span></h1>
     <hr />
     <div class="slogan-container">
       <img></img>
@@ -14,6 +14,8 @@
 </script>
 
 <style lang="scss" scoped>
+@use '~/styles/terminal-glow' as *;
+
 .title-container {
   margin-top: 50px;
 }
@@ -26,15 +28,19 @@
   0% {
     opacity: 1;
   }
+
   30% {
     opacity: 0.9;
   }
+
   50% {
     opacity: 0;
   }
+
   80% {
     opacity: 0.9;
   }
+
   100% {
     opacity: 1;
   }
@@ -43,5 +49,8 @@
 .slogan-container {
   display: flex;
   flex-direction: row;
+  min-height: 60px;
+
+  @include glow-text-sm-1();
 }
 </style>

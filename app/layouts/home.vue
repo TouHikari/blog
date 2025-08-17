@@ -41,11 +41,16 @@
 
   :deep(h1) {
     margin-top: 0 !important;
+    margin-bottom: 0.3em !important;
+  }
+
+  :deep(p) {
+    margin-top: 0;
   }
 }
 
 .page-blog {
-  margin-top: 2em;
+  margin-top: 3em;
 }
 
 .page-container {

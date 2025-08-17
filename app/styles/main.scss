@@ -3,8 +3,10 @@
 @use './fonts' as *;
 @use './blog' as *;
 @use './cyber-effects' as *;
+@use './terminal-glow' as *;
 
-/* 全局字体应用 */html {
+/* 全局 */
+html {
   color-scheme: dark;
   font-family: $font-sans;
   color: $white;
@@ -24,7 +26,7 @@ body {
   margin: 0;
 }
 
-/* 标题字体 - 赛博朋克风格 */
+/* 标题 */
 h1,
 h2,
 h3,
@@ -38,6 +40,26 @@ h6 {
 
 h3 {
   font-size: 21px;
+}
+
+/* 溢光效果 */
+h1 {
+  @include glow-text-lg-1();
+}
+
+h2 {
+  @include glow-text-md-3();
+}
+
+h3,
+h4,
+h5,
+h6 {
+  @include glow-text-sm-2();
+}
+
+strong {
+  @include glow-text-sm-1();
 }
 
 /* 代码字体 */
@@ -64,170 +86,55 @@ pre code {
 }
 
 a {
-  color: $neon-cyan-soft;
+  text-decoration: none;
+  transition: all 0.1s ease;
+}
+
+.footer-container a,
+.main-content a {
+  color: $cyberpunk-cyan;
   text-decoration: none;
 }
 
-a:hover {
-  color: $neon-cyan-bright;
+.footer-container a:hover,
+.main-content a:hover {
+  color: $cyberpunk-pink;
+  background-color: $cyberpunk-light-yellow;
+  text-shadow: none;
 }
 
-/* 内容容器与排版（Markdown 渲染适配） */
-.content-prose :deep(h1) {
-  color: #a8fff1;
-  font-family: $font-cyber;
-  text-shadow: 0 0 12px rgba(0, 255, 213, .55);
-  border-bottom: 1px dashed rgba(0, 255, 170, .25);
-  padding-bottom: .5rem;
-  margin-bottom: 1.2rem;
+.content-prose h1>a,
+.content-prose h2>a,
+.content-prose h3>a,
+.content-prose h4>a,
+.content-prose h5>a,
+.content-prose h6>a {
+  color: white;
+
+  &:hover {
+    color: white;
+    background-color: transparent;
+    @include glow-text-lg-1();
+  }
 }
 
-.content-prose :deep(h2) {
-  color: #86ffe9;
-  margin-top: 2rem;
+.main-content h2 {
+  margin-top: 2em;
   margin-bottom: .8rem;
-  border-left: 4px solid rgba(255, 90, 199, .5);
-  padding-left: .8rem;
 }
 
-.content-prose :deep(p) {
-  color: #e7fffa;
-  opacity: .9;
+.main-content h3 {
+  margin-top: 1.5em;
+  margin-bottom: .6rem;
 }
 
-.content-prose :deep(ul),
-.content-prose :deep(ol) {
-  padding-left: 1.2rem;
-}
-
-.content-prose :deep(li) {
-  margin: .35rem 0;
-}
-
-/* 引用与提示 */
-.content-prose :deep(blockquote) {
-  margin: 1.2rem 0;
-  padding: .8rem 1rem;
-  background: rgba(0, 255, 213, 0.06);
-  border-left: 3px solid rgba(0, 255, 213, .45);
-  color: #a8fff1;
-}
-
-/* 代码块与内联代码覆盖 */
-.content-prose :deep(pre) {
-  background: rgba(0, 0, 0, .85);
-  color: #8cffda;
-  border: 1px solid rgba(0, 255, 170, .28);
-  box-shadow: 0 0 14px rgba(0, 255, 213, 0.06);
-  border-radius: 8px;
-  padding: 1rem;
-  overflow-x: auto;
-  font-family: 'Courier New', monospace;
-  font-size: 0.9rem;
-  line-height: 1.5;
-  position: relative;
-}
-
-/* VuePress 风格的代码块扩展 */
-
-/* 代码块标题样式 */
-.content-prose :deep(pre[data-title])::before {
-  content: attr(data-title);
-  position: absolute;
-  top: -2rem;
-  left: 0;
-  right: 0;
-  background: rgba(0, 255, 170, 0.1);
-  color: #8cffda;
-  padding: 0.5rem 1rem;
-  font-size: 0.8rem;
-  border: 1px solid rgba(0, 255, 170, .28);
-  border-bottom: none;
-  border-radius: 8px 8px 0 0;
-  font-weight: bold;
-}
-
-/* 行号样式 */
-.content-prose :deep(.shiki .line) {
-  display: block;
-  min-height: 1rem;
-}
-
-.content-prose :deep(.shiki.has-line-numbers .line::before) {
-  content: attr(data-line);
-  display: inline-block;
-  width: 2rem;
-  margin-right: 1rem;
-  text-align: right;
-  color: rgba(140, 255, 218, 0.4);
-  user-select: none;
-  border-right: 1px solid rgba(0, 255, 170, .28);
-  padding-right: 0.5rem;
-}
-
-/* 行高亮样式 */
-.content-prose :deep(.shiki .highlighted) {
-  background: rgba(0, 255, 170, 0.1);
-  display: block;
-  margin: 0 -1rem;
-  padding: 0 1rem;
-  border-left: 3px solid #00ffaa;
-}
-
-/* 差异显示样式 */
-.content-prose :deep(.shiki .diff.add) {
-  background: rgba(0, 255, 0, 0.1);
-  display: block;
-  margin: 0 -1rem;
-  padding: 0 1rem;
-}
-
-.content-prose :deep(.shiki .diff.remove) {
-  background: rgba(255, 0, 0, 0.1);
-  display: block;
-  margin: 0 -1rem;
-  padding: 0 1rem;
-}
-
-.content-prose :deep(code:not(pre code)) {
-  background: rgba(0, 255, 213, .08);
-  color: #bdfff4;
-  border: 1px solid rgba(0, 255, 213, .24);
-}
-
-/* 图片与表格 */
-.content-prose :deep(img) {
-  max-width: 100%;
-  border-radius: 8px;
-  border: 1px solid rgba(0, 255, 170, .2);
-}
-
-.content-prose :deep(table) {
-  width: 100%;
-  border-collapse: collapse;
-}
-
-.content-prose :deep(th),
-.content-prose :deep(td) {
-  border: 1px solid rgba(0, 255, 170, .18);
-  padding: .5rem .6rem;
-}
-
-/* 警告/信息块（如果使用 content 的自定义容器） */
-.content-prose :deep(.info),
-.content-prose :deep(.tip),
-.content-prose :deep(.warning) {
-  padding: .8rem 1rem;
-  border-radius: 8px;
-  margin: 1rem 0;
-}
-
-.content-prose :deep(.info) {
-  background: rgba(0, 255, 213, 0.06);
-  border: 1px solid rgba(0, 255, 213, .3);
-}
-
-.content-prose :deep(.warning) {
-  background: rgba(255, 90, 199, 0.06);
-  border: 1px solid rgba(255, 90, 199, .3);
+.main-content :not(pre)>code {
+    margin: 0;
+    padding: 3px 6px;
+    border-radius: 4px;
+    color: $cyberpunk-pink;
+    background: rgba(142, 150, 170, .14);
+    font-size: .875em;
+    overflow-wrap: break-word;
+    transition: background-color var(--vp-t-color), color var(--vp-t-color);
 }
