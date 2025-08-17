@@ -2,6 +2,27 @@
 // 获取当前路由
 const route = useRoute()
 
+
+// 博客文章标题数据
+const blogArticle = ref<any | null>(null)
+
+// 监听路由变化，若为博客文章则拉取对应标题
+watch(
+  () => route.path,
+  async (newPath) => {
+    if (newPath.startsWith('/blog/')) {
+      const slug = newPath.replace(/^\/blog\//, '').replace(/\/$/, '')
+      const { data } = await useAsyncData(`blog-${slug}`, async () => {
+        return await queryCollection('blog').path(`/blog/${slug}`).first()
+      })
+      blogArticle.value = data.value
+    } else {
+      blogArticle.value = null
+    }
+  },
+  { immediate: true }
+)
+
 // 动态标题，根据路由直接生成
 const pageTitle = computed(() => {
   const path = route.path
@@ -22,8 +43,10 @@ const pageTitle = computed(() => {
 
   // 对于博客文章，尝试获取标题
   if (path.startsWith('/blog/')) {
-    // 这里可以添加获取具体博客文章标题的逻辑
-    return 'Blog Post'
+    // 优先显示内容集合里的标题，其次 fallback 到路径片段
+    if (blogArticle.value?.title) return blogArticle.value.title
+    const slugPart = path.split('/').filter(Boolean).slice(1).join('/');
+    return decodeURIComponent(slugPart || 'Blog Post')
   }
 
   // 默认标题
