@@ -7,7 +7,9 @@
     <AppHeader />
     <main class="main-content">
       <BlogTitle />
-      <slot />
+      <div class="content-prose">
+        <slot />
+      </div>
     </main>
     <AppFooter />
   </div>

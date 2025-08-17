@@ -33,7 +33,7 @@ const pageTitle = computed(() => {
 
 <template>
   <div class="title-container">
-    <h1 class="title">{{ pageTitle }}<span class="blink-fast">|</span></h1>
+    <h1 class="title">{{ pageTitle }}<span class="blink-fast"> |</span></h1>
     <hr />
   </div>
 </template>

@@ -49,7 +49,7 @@ onUnmounted(() => {
 </script>
 
 <template>
-  <div class="footer-header">
+  <div class="footer-container">
     <p class="greetings">--- W E L L C O M E ---</p>
     <div class="info">
       <div class="copyright">© 2025 TouHikari's Blog</div>
@@ -64,7 +64,7 @@ onUnmounted(() => {
 @use '~/styles/fonts' as *;
 @use '~/styles/variables' as *;
 
-.footer-header {
+.footer-container {
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -84,5 +84,6 @@ onUnmounted(() => {
 
 #site-runtime-display {
   color: $cyberpunk-light-yellow;
+  min-height: 30px;
 }
 </style>

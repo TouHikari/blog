@@ -11,18 +11,18 @@
       0 0 5px currentColor,
       0 0 10px currentColor,
       0 0 15px currentColor,
-      0 0 20px var(--cyberpunk-cyan),
-      0 0 35px var(--cyberpunk-cyan),
-      0 0 40px var(--cyberpunk-cyan);
+      0 0 20px $cyberpunk-cyan,
+      0 0 35px $cyberpunk-cyan,
+      0 0 40px $cyberpunk-cyan;
   }
   50% {
     text-shadow: 
       0 0 2px currentColor,
       0 0 5px currentColor,
       0 0 8px currentColor,
-      0 0 12px var(--cyberpunk-cyan),
-      0 0 18px var(--cyberpunk-cyan),
-      0 0 25px var(--cyberpunk-cyan);
+      0 0 12px $cyberpunk-cyan,
+      0 0 18px $cyberpunk-cyan,
+      0 0 25px $cyberpunk-cyan;
   }
 }
 
