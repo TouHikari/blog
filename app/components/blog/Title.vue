@@ -1,7 +1,14 @@
 <script setup lang="ts">
+import { ref, onMounted, onUnmounted, nextTick, computed, watch } from 'vue'
+
 // 获取当前路由
 const route = useRoute()
 
+// 打字效果相关
+const titleElement = ref<HTMLElement | null>(null)
+let isTypingComplete = false
+let typingTimer: NodeJS.Timeout | null = null
+const typingSpeed = 40 // 打字速度 (ms)
 
 // 博客文章标题数据
 const blogArticle = ref<any | null>(null)
@@ -32,8 +39,8 @@ const pageTitle = computed(() => {
     '/': 'Home',
     '/about': '[:INIT_USER/TouHikari]',
     '/blog': '[SYS_ARCHIVES]',
-    '/categories': '[TAG_CLOUD]',
-    '/tags': '[:METADATA_INDEX]'
+    '/categories': '[:METADATA_INDEX]',
+    '/tags': '[TAG_CLOUD]'
   }
 
   // 如果有直接映射，使用映射的标题
@@ -52,11 +59,72 @@ const pageTitle = computed(() => {
   // 默认标题
   return 'Page'
 })
+
+// 清理定时器函数
+function clearTypingTimer() {
+  if (typingTimer) {
+    clearTimeout(typingTimer)
+    typingTimer = null
+  }
+}
+
+// 一次性打字效果函数
+function typeWriter(text: string, charIndex: number = 0) {
+  if (!titleElement.value || isTypingComplete) return
+
+  if (charIndex < text.length) {
+    // 打字状态
+    const textToShow = text.substring(0, charIndex + 1)
+    titleElement.value.innerHTML = textToShow + '<span class="cursor"> |</span>'
+    
+    typingTimer = setTimeout(() => {
+      typeWriter(text, charIndex + 1)
+    }, typingSpeed)
+  } else {
+    // 打字完成，保持光标闪烁
+    titleElement.value.innerHTML = text + '<span class="cursor"> |</span>'
+    isTypingComplete = true
+  }
+}
+
+// 监听标题变化，重新开始打字效果
+watch(pageTitle, async (newTitle) => {
+  if (!titleElement.value) return
+  
+  // 清理旧的定时器
+  clearTypingTimer()
+  
+  // 重置状态
+  isTypingComplete = false
+  titleElement.value.innerHTML = ''
+  
+  // 等待下一个tick后开始打字
+  await nextTick()
+  typingTimer = setTimeout(() => {
+    typeWriter(newTitle)
+  }, 100)
+}, { immediate: false })
+
+// 组件挂载后开始打字效果
+onMounted(async () => {
+  await nextTick()
+  
+  if (titleElement.value && pageTitle.value) {
+    typingTimer = setTimeout(() => {
+      typeWriter(pageTitle.value)
+    }, 100)
+  }
+})
+
+// 组件卸载时清理定时器
+onUnmounted(() => {
+  clearTypingTimer()
+})
 </script>
 
 <template>
   <div class="title-container">
-    <h1 class="title">{{ pageTitle }}<span class="blink-fast"> |</span></h1>
+    <h1 ref="titleElement" class="title"></h1>
     <hr />
   </div>
 </template>
@@ -68,28 +136,21 @@ const pageTitle = computed(() => {
 
 .title {
   font-size: 2rem;
-  margin-bottom: 10px;
+  min-height: 54.39px;
 }
 
-.blink-fast {
-  animation: blink-fast 1s ease-in-out infinite;
+:deep(.cursor) {
+  animation: blink 1s infinite;
 }
 
-@keyframes blink-fast {
-  0% {
-    opacity: 1;
-  }
-  30% {
-    opacity: 0.9;
-  }
+@keyframes blink {
+  0%,
   50% {
-    opacity: 0;
-  }
-  80% {
-    opacity: 0.9;
-  }
-  100% {
     opacity: 1;
+  }
+  51%,
+  100% {
+    opacity: 0;
   }
 }
 </style>

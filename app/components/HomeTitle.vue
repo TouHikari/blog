@@ -21,28 +21,17 @@
 }
 
 .blink-fast {
-  animation: blink-fast 1s ease-in-out infinite;
+  animation: blink 1s infinite;
 }
 
-@keyframes blink-fast {
-  0% {
-    opacity: 1;
-  }
-
-  30% {
-    opacity: 0.9;
-  }
-
+@keyframes blink {
+  0%,
   50% {
-    opacity: 0;
-  }
-
-  80% {
-    opacity: 0.9;
-  }
-
-  100% {
     opacity: 1;
+  }
+  51%,
+  100% {
+    opacity: 0;
   }
 }
 
