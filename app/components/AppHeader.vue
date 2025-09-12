@@ -24,25 +24,25 @@ onUnmounted(() => {
         <UiButton type="navbar-brand" class="nav-brand">[TouHikari@localhost ~]$</UiButton>
       </NuxtLink>
       <div class="nav-items">
-        <NuxtLink to="blog">
+        <NuxtLink to="/blog">
           <UiButton type="nav" class="nav-button">
             <Icon name="mdi:database" class="nav-icon" />
             Archives
           </UiButton>
         </NuxtLink>
-        <NuxtLink to="categories">
+        <NuxtLink to="/categories">
           <UiButton type="nav" class="nav-button">
             <Icon name="mdi:folder-network" class="nav-icon" />
             Categories
           </UiButton>
         </NuxtLink>
-        <NuxtLink to="tags">
+        <NuxtLink to="/tags">
           <UiButton type="nav" class="nav-button">
             <Icon name="mdi:tag-multiple" class="nav-icon" />
             Tags
           </UiButton>
         </NuxtLink>
-        <NuxtLink to="about">
+        <NuxtLink to="/about">
           <UiButton type="nav" class="nav-button">
             <Icon name="mdi:account-circle" class="nav-icon" />
             About
