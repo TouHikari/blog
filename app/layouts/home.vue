@@ -16,7 +16,16 @@
             <BlogList />
           </div>
         </div>
-        <div class="page-sidebar"></div>
+        <div class="page-sidebar">
+          <HomeSearch />
+          <hr />
+          <HomeRecentPosts />
+          <hr />
+          <HomeTagsCloud />
+          <hr />
+          <HomeLinks />
+          <hr />
+        </div>
       </div>
     </main>
     <AppFooter />
@@ -60,7 +69,7 @@
   margin-top: 1em;
 
   .page-content {
-    flex: 2;
+    flex: 3;
     min-width: 0;
     padding: 0 10px;
   }
