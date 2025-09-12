@@ -76,7 +76,7 @@ function typeWriter(text: string, charIndex: number = 0) {
     // 打字状态
     const textToShow = text.substring(0, charIndex + 1)
     titleElement.value.innerHTML = textToShow + '<span class="cursor">|</span>'
-    
+
     typingTimer = setTimeout(() => {
       typeWriter(text, charIndex + 1)
     }, typingSpeed)
@@ -90,14 +90,14 @@ function typeWriter(text: string, charIndex: number = 0) {
 // 监听标题变化，重新开始打字效果
 watch(pageTitle, async (newTitle) => {
   if (!titleElement.value) return
-  
+
   // 清理旧的定时器
   clearTypingTimer()
-  
+
   // 重置状态
   isTypingComplete = false
   titleElement.value.innerHTML = ''
-  
+
   // 等待下一个tick后开始打字
   await nextTick()
   typingTimer = setTimeout(() => {
@@ -108,7 +108,7 @@ watch(pageTitle, async (newTitle) => {
 // 组件挂载后开始打字效果
 onMounted(async () => {
   await nextTick()
-  
+
   if (titleElement.value && pageTitle.value) {
     typingTimer = setTimeout(() => {
       typeWriter(pageTitle.value)
@@ -137,6 +137,8 @@ onUnmounted(() => {
 .title {
   font-size: 2rem;
   min-height: 54.39px;
+  cursor: default;
+  user-select: none;
 }
 
 :deep(.cursor) {
@@ -144,10 +146,12 @@ onUnmounted(() => {
 }
 
 @keyframes blink {
+
   0%,
   50% {
     opacity: 1;
   }
+
   51%,
   100% {
     opacity: 0;

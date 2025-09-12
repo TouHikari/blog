@@ -69,6 +69,8 @@ onUnmounted(() => {
   font-family: $font-cyber;
   backdrop-filter: blur(2px);
   transition: all 0.3s ease;
+  cursor: default;
+  user-select: none;
 
   &.scrolled {
     opacity: .5;
