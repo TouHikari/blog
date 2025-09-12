@@ -27,10 +27,9 @@ function updateSiteRuntime() {
   const seconds = Math.floor(timeDiff / 1000)
 
   // Format: %dd %hh:%mm:%ss
-  const runtimeString = `LOGGED_IN_FOR: ${days}d ${String(hours).padStart(2, '0')}h:${String(minutes).padStart(2, '0')}m:${String(seconds).padStart(2, '0')}s`
-  const statusString = '[STATUS:ONLINE]'
+  const runtimeString = `${days}d ${String(hours).padStart(2, '0')}h:${String(minutes).padStart(2, '0')}m:${String(seconds).padStart(2, '0')}s`
 
-  siteRuntimeDisplay.value = `TouHikari ${statusString} ${runtimeString}`
+  siteRuntimeDisplay.value = `TouHikari [STATUS:ONLINE] LOGGED_IN_FOR: ${runtimeString}`
 }
 
 onMounted(() => {
