@@ -75,7 +75,7 @@ function typeWriter(text: string, charIndex: number = 0) {
   if (charIndex < text.length) {
     // 打字状态
     const textToShow = text.substring(0, charIndex + 1)
-    titleElement.value.innerHTML = textToShow + '<span class="cursor"> |</span>'
+    titleElement.value.innerHTML = textToShow + '<span class="cursor">|</span>'
     
     typingTimer = setTimeout(() => {
       typeWriter(text, charIndex + 1)
