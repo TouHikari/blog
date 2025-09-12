@@ -1,16 +1,24 @@
 <template>
   <div class="title-container">
-    <h1 class="title bootup">Where shadows dance with data streams.<span class="blink-fast"> |</span></h1>
+    <h1 :class="['title', { 'bootup': isMounted }]">Where shadows dance with data streams.<span class="blink-fast">
+        |</span></h1>
     <hr />
     <div class="slogan-container">
-      <img></img>
+      <Icon v-if="isMounted" name="mdi:heart" class="heart-icon" />
       <TypewriterSlogan />
     </div>
   </div>
 </template>
 
 <script setup lang="ts">
-// 打字机效果由 TypewriterSlogan.client.vue 处理
+import { ref, onMounted } from 'vue'
+
+// 确保服务端和客户端渲染一致性
+const isMounted = ref(false)
+
+onMounted(() => {
+  isMounted.value = true
+})
 </script>
 
 <style lang="scss" scoped>
@@ -129,8 +137,33 @@
 .slogan-container {
   display: flex;
   flex-direction: row;
+  align-items: center;
   min-height: 60px;
+  gap: 8px;
 
   @include glow-text-sm-1();
+}
+
+.heart-icon {
+  color: #ff0000;
+  font-size: 1.2em;
+  @include glow-text-sm-1();
+  animation: heartbeat 2s ease-in-out infinite;
+  filter: drop-shadow(0 0 8px rgba(255, 71, 87, 0.6));
+  transition: all 0.3s ease;
+}
+
+@keyframes heartbeat {
+  0% {
+    opacity: 0;
+  }
+
+  50% {
+    opacity: 1;
+  }
+
+  100% {
+    opacity: 0;
+  }
 }
 </style>
