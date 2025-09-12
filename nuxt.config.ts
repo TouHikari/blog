@@ -35,6 +35,12 @@ export default defineNuxtConfig({
             'rust'
           ]
         },
+        remarkPlugins: {
+          'remark-math': true
+        },
+        rehypePlugins: {
+          'rehype-katex': { output: 'htmlAndMathml' }
+        }
       },
     },
   },
