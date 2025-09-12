@@ -1,0 +1,101 @@
+/* ========== 纯西文字体栈（不包含中文） ========== */
+
+/* 纯西文无衬线字体 */
+$font-latin-sans:
+  "Helvetica Neue",
+  sans-serif;
+
+/* 纯西文等宽字体 */
+$font-latin-mono:
+  "JetBrains Mono",
+  "Maple Mono NF CN",
+  "Fira Code",
+  "SF Mono",
+  "Monaco",
+  "Inconsolata",
+  "Roboto Mono",
+  "Source Code Pro",
+  "Consolas",
+  "Courier New";
+
+/* 纯西文衬线字体 */
+$font-latin-serif:
+  "Times New Roman",
+  "Georgia",
+  "Times";
+
+/* 纯西文赛博朋克字体 */
+$font-latin-cyber:
+  "SF Mono",
+  "Monaco",
+  "Cascadia Code",
+  "Roboto Mono",
+  "Consolas",
+  "Courier New",
+  "Liberation Mono",
+  "Menlo";
+
+/* ========== 中文字体栈 ========== */
+
+/* 中文无衬线字体 */
+$font-cjk-sans:
+  "PingFang SC",
+  "Hiragino Sans GB",
+  "Noto Sans SC",
+  "Source Han Sans SC",
+  "Microsoft YaHei UI",
+  "Microsoft YaHei",
+  "WenQuanYi Micro Hei",
+  sans-serif;
+
+/* 中文等宽字体 */
+$font-cjk-mono:
+  "Sarasa Gothic SC",
+  "WenQuanYi Zen Hei Mono",
+  "Noto Sans Mono CJK SC",
+  "PingFang SC",
+  "Microsoft YaHei",
+  monospace;
+
+/* 中文衬线字体 */
+$font-cjk-serif:
+  "Songti SC",
+  "SimSun",
+  "NSimSun",
+  serif;
+
+/* 中文赛博朋克字体 */
+$font-cjk-cyber:
+  $font-cjk-sans;
+
+/* ========== 系统回退字体栈 ========== */
+
+/* 系统无衬线回退字体（包含中文） */
+$font-fallback-sans:
+  system-ui,
+  -apple-system,
+  BlinkMacSystemFont,
+  "Segoe UI",
+  sans-serif;
+
+/* 系统等宽回退字体 */
+$font-fallback-mono:
+  monospace;
+
+/* 系统衬线回退字体 */
+$font-fallback-serif:
+  serif;
+
+/* ========== 最终组合字体栈 ========== */
+
+/* 主要字体栈 - 纯西文 → 纯中文 → 系统回退 */
+$font-sans: $font-latin-sans, $font-cjk-sans, $font-fallback-sans;
+
+/* 等宽字体栈 - 纯西文 → 纯中文 → 系统回退 */
+$font-mono: $font-latin-mono, $font-cjk-mono, $font-fallback-mono;
+
+/* 衬线字体栈 - 纯西文 → 纯中文 → 系统回退 */
+$font-serif: $font-latin-serif, $font-cjk-serif, $font-fallback-serif;
+
+/* 赛博朋克字体栈 - 纯西文 → 纯中文 → 系统回退 */
+$font-cyber: $font-latin-cyber, $font-cjk-cyber, $font-fallback-mono;

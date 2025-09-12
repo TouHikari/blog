@@ -1,0 +1,140 @@
+@use './variables' as *;
+@use './mixins' as *;
+@use './fonts' as *;
+@use './blog' as *;
+@use './cyber-effects' as *;
+@use './terminal-glow' as *;
+
+/* 全局 */
+html {
+  color-scheme: dark;
+  font-family: $font-sans;
+  color: $white;
+  background-color: $black;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  text-rendering: auto;
+  overflow-y: scroll;
+}
+
+body {
+  font-family: $font-sans;
+  line-height: $line-height-base;
+  font-weight: $font-weight-normal;
+  font-size: $font-size-base;
+  letter-spacing: $letter-spacing-normal;
+  margin: 0;
+}
+
+/* 标题 */
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  font-family: $font-cyber;
+  font-weight: $font-weight-medium;
+  letter-spacing: $letter-spacing-normal;
+}
+
+h3 {
+  font-size: 21px;
+}
+
+/* 溢光效果 */
+h1 {
+  @include glow-text-lg-1();
+}
+
+h2 {
+  @include glow-text-md-3();
+}
+
+h3,
+h4,
+h5,
+h6 {
+  @include glow-text-sm-2();
+}
+
+strong {
+  @include glow-text-sm-1();
+}
+
+/* 代码字体 */
+code,
+pre,
+kbd,
+samp {
+  font-family: $font-mono;
+  font-feature-settings: "liga" 1, "calt" 1;
+}
+
+pre code {
+  background: none;
+  padding: 0;
+  border-radius: 0;
+  font-size: $font-size-small;
+  line-height: $line-height-tight;
+}
+
+/* 霓虹链接、选区、滚动条、按钮等全局风格 */
+::selection {
+  background: $cyberpunk-blue;
+  color: $text-selection-bg;
+}
+
+a {
+  text-decoration: none;
+  transition: all 0.1s ease;
+}
+
+.footer-container a,
+.main-content a {
+  color: $cyberpunk-cyan;
+  text-decoration: none;
+}
+
+.footer-container a:hover,
+.main-content a:hover {
+  color: $cyberpunk-pink;
+  background-color: $cyberpunk-light-yellow;
+  text-shadow: none;
+}
+
+.content-prose h1>a,
+.content-prose h2>a,
+.content-prose h3>a,
+.content-prose h4>a,
+.content-prose h5>a,
+.content-prose h6>a {
+  color: white;
+
+  &:hover {
+    color: white;
+    background-color: transparent;
+    @include glow-text-lg-1();
+  }
+}
+
+.main-content h2 {
+  margin-top: 2em;
+  margin-bottom: .8rem;
+}
+
+.main-content h3 {
+  margin-top: 1.5em;
+  margin-bottom: .6rem;
+}
+
+.main-content :not(pre)>code {
+    margin: 0;
+    padding: 3px 6px;
+    border-radius: 4px;
+    color: $cyberpunk-pink;
+    background: rgba(142, 150, 170, .14);
+    font-size: .875em;
+    overflow-wrap: break-word;
+    transition: background-color var(--vp-t-color), color var(--vp-t-color);
+}

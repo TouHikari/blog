@@ -1,0 +1,314 @@
+// ============================================================================
+// 赛博朋克特效样式
+// ============================================================================
+
+@use './variables' as *;
+
+// 眩光效果
+@keyframes neon-glow {
+  0%, 100% {
+    text-shadow: 
+      0 0 5px currentColor,
+      0 0 10px currentColor,
+      0 0 15px currentColor,
+      0 0 20px $cyberpunk-cyan,
+      0 0 35px $cyberpunk-cyan,
+      0 0 40px $cyberpunk-cyan;
+  }
+  50% {
+    text-shadow: 
+      0 0 2px currentColor,
+      0 0 5px currentColor,
+      0 0 8px currentColor,
+      0 0 12px $cyberpunk-cyan,
+      0 0 18px $cyberpunk-cyan,
+      0 0 25px $cyberpunk-cyan;
+  }
+}
+
+// 故障效果
+@keyframes glitch {
+  0% {
+    transform: translate(0);
+  }
+  20% {
+    transform: translate(-2px, 2px);
+  }
+  40% {
+    transform: translate(-2px, -2px);
+  }
+  60% {
+    transform: translate(2px, 2px);
+  }
+  80% {
+    transform: translate(2px, -2px);
+  }
+  100% {
+    transform: translate(0);
+  }
+}
+
+// 扫描线动画
+@keyframes scan {
+  0% {
+    background-position: 0 0;
+  }
+  100% {
+    background-position: 0 100vh;
+  }
+}
+
+// 闪烁效果
+@keyframes flicker {
+  0%, 19%, 21%, 23%, 25%, 54%, 56%, 100% {
+    opacity: 1;
+  }
+  20%, 24%, 55% {
+    opacity: 0.4;
+  }
+  22% {
+    opacity: 0.1;
+  }
+}
+
+// 脉冲效果
+@keyframes pulse {
+  0% {
+    box-shadow: 0 0 0 0 rgba(0, 255, 213, 0.7);
+  }
+  70% {
+    box-shadow: 0 0 0 10px rgba(0, 255, 213, 0);
+  }
+  100% {
+    box-shadow: 0 0 0 0 rgba(0, 255, 213, 0);
+  }
+}
+
+// 数据流效果
+@keyframes data-stream {
+  0% {
+    transform: translateY(-100%);
+    opacity: 0;
+  }
+  10% {
+    opacity: 1;
+  }
+  90% {
+    opacity: 1;
+  }
+  100% {
+    transform: translateY(100vh);
+    opacity: 0;
+  }
+}
+
+// 应用眩光效果的类
+.neon-glow {
+  animation: neon-glow 2s ease-in-out infinite alternate;
+}
+
+// 故障效果类
+.glitching {
+  animation: glitch 0.3s ease-in-out;
+  position: relative;
+}
+
+.glitching::before,
+.glitching::after {
+  content: attr(data-text);
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+}
+
+.glitching::before {
+  animation: glitch 0.3s ease-in-out;
+  color: var(--cyberpunk-pink);
+  z-index: -1;
+  transform: translate(-2px, -2px);
+}
+
+.glitching::after {
+  animation: glitch 0.3s ease-in-out reverse;
+  color: var(--cyberpunk-cyan);
+  z-index: -2;
+  transform: translate(2px, 2px);
+}
+
+// 闪烁效果
+.flicker {
+  animation: flicker 3s linear infinite;
+}
+
+// 脉冲效果
+.pulse {
+  animation: pulse 2s infinite;
+}
+
+// 悬停时的特效
+.cyber-hover {
+  transition: all 0.3s ease;
+  position: relative;
+}
+
+.cyber-hover:hover {
+  color: var(--cyberpunk-light-yellow);
+  text-shadow: 
+    0 0 5px currentColor,
+    0 0 10px currentColor,
+    0 0 15px var(--cyberpunk-cyan);
+  transform: scale(1.05);
+}
+
+// 按钮特效
+.cyber-button {
+  background: linear-gradient(45deg, transparent, rgba(0, 255, 213, 0.1), transparent);
+  border: 1px solid var(--cyberpunk-cyan);
+  color: var(--cyberpunk-cyan);
+  padding: 10px 20px;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  position: relative;
+  overflow: hidden;
+  transition: all 0.3s ease;
+}
+
+.cyber-button::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: -100%;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.2), transparent);
+  transition: left 0.5s ease;
+}
+
+.cyber-button:hover::before {
+  left: 100%;
+}
+
+.cyber-button:hover {
+  background: var(--cyberpunk-cyan);
+  color: #000;
+  box-shadow: 
+    0 0 10px var(--cyberpunk-cyan),
+    inset 0 0 10px rgba(0, 0, 0, 0.2);
+}
+
+// 网格背景
+.cyber-grid {
+  background-image: 
+    linear-gradient(rgba(0, 255, 213, 0.1) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(0, 255, 213, 0.1) 1px, transparent 1px);
+  background-size: 20px 20px;
+  position: relative;
+}
+
+.cyber-grid::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: 
+    radial-gradient(circle at 20% 80%, rgba(0, 255, 213, 0.1) 0%, transparent 50%),
+    radial-gradient(circle at 80% 20%, rgba(255, 64, 128, 0.1) 0%, transparent 50%);
+  pointer-events: none;
+}
+
+// 扫描线效果
+.cyber-scanlines {
+  position: relative;
+  overflow: hidden;
+}
+
+.cyber-scanlines::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: repeating-linear-gradient(
+    0deg,
+    transparent,
+    transparent 2px,
+    rgba(0, 0, 0, 0.1) 2px,
+    rgba(0, 0, 0, 0.1) 4px
+  );
+  pointer-events: none;
+  animation: scan 10s linear infinite;
+}
+
+// 数据流效果
+.data-stream {
+  position: fixed;
+  top: 0;
+  width: 2px;
+  height: 100px;
+  background: linear-gradient(
+    to bottom,
+    transparent,
+    var(--cyberpunk-cyan),
+    transparent
+  );
+  animation: data-stream 3s linear infinite;
+  pointer-events: none;
+  z-index: 1;
+}
+
+// 终端光标效果
+.terminal-cursor {
+  display: inline-block;
+  background-color: var(--cyberpunk-cyan);
+  animation: flicker 1s infinite;
+  width: 8px;
+  height: 1em;
+  margin-left: 2px;
+}
+
+// 加载动画
+.cyber-loading {
+  display: inline-block;
+  width: 20px;
+  height: 20px;
+  border: 2px solid rgba(0, 255, 213, 0.3);
+  border-radius: 50%;
+  border-top-color: var(--cyberpunk-cyan);
+  animation: spin 1s ease-in-out infinite;
+}
+
+@keyframes spin {
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+// 全屏背景效果
+.cyber-bg {
+  background: 
+    radial-gradient(ellipse at top, rgba(0, 255, 213, 0.05) 0%, transparent 70%),
+    radial-gradient(ellipse at bottom, rgba(255, 64, 128, 0.05) 0%, transparent 70%),
+    linear-gradient(180deg, #000000 0%, #0a0a0a 100%);
+  min-height: 100vh;
+  position: relative;
+}
+
+// 响应式调整
+@media (max-width: 768px) {
+  .neon-glow {
+    animation-duration: 3s;
+  }
+  
+  .cyber-hover:hover {
+    transform: scale(1.02);
+  }
+  
+  .cyber-grid {
+    background-size: 15px 15px;
+  }
+}

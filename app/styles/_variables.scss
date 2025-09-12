@@ -1,0 +1,195 @@
+// ----------------------------------------------------------------------------
+// 基础颜色系统
+// ----------------------------------------------------------------------------
+
+// 颜色变量
+$cyberpunk-pink: #FF4080;
+$cyberpunk-background-pink: #ff408040;
+$cyberpunk-light-pink: #FF69B4;
+$cyberpunk-orange: #FB5607;
+$cyberpunk-yellow: #FFBE0B;
+$cyberpunk-light-yellow: #FFFF00;
+$cyberpunk-purple: #8338EC;
+$cyberpunk-blue: #3A86FF;
+$cyberpunk-cyan: #00FFFF;
+$cyberpunk-light-green: #00FF80;
+
+// 主背景色
+$bg-primary: #000000;
+$bg-secondary: #0a0d0e;
+$bg-tertiary: #0b1011;
+
+// 透明色
+$transparent: rgba(0, 0, 0, 0);
+
+// 黑色系
+$black: #000000;
+$black-80: rgba(0, 0, 0, 0.8);
+$black-85: rgba(0, 0, 0, 0.85);
+$black-55: rgba(0, 0, 0, 0.55);
+
+// 白色系
+$white: #ffffff;
+$white-80: rgba(255, 255, 255, 0.8);
+$white-85: rgba(255, 255, 255, 0.85);
+$white-55: rgba(255, 255, 255, 0.55);
+
+// 灰色系
+$gray-50: #fafafa;
+$gray-100: #f5f5f5;
+$gray-200: #eeeeee;
+$gray-300: #e0e0e0;
+$gray-400: #bdbdbd;
+$gray-500: #9e9e9e;
+$gray-600: #757575;
+$gray-700: #616161;
+$gray-800: #424242;
+$gray-900: #212121;
+
+// 灰色系 - 透明度变体
+$gray-50-80: rgba(250, 250, 250, 0.8);
+$gray-100-80: rgba(245, 245, 245, 0.8);
+$gray-200-80: rgba(238, 238, 238, 0.8);
+$gray-300-80: rgba(224, 224, 224, 0.8);
+$gray-400-80: rgba(189, 189, 189, 0.8);
+$gray-500-80: rgba(158, 158, 158, 0.8);
+$gray-600-80: rgba(117, 117, 117, 0.8);
+$gray-700-80: rgba(97, 97, 97, 0.8);
+$gray-800-80: rgba(66, 66, 66, 0.8);
+$gray-900-80: rgba(33, 33, 33, 0.8);
+
+// 霓虹色系 - 青绿色（主色调）
+$neon-cyan: $cyberpunk-cyan;
+$neon-cyan-light: #a8fff1;
+$neon-cyan-bright: #b2fff3;
+$neon-cyan-soft: #7dffe8;
+$neon-cyan-pale: #86ffe9;
+$neon-cyan-code: #8cffda;
+$neon-cyan-inline: #bdfff4;
+
+// 霓虹色系 - 粉紫色（强调色）
+$neon-pink: $cyberpunk-pink;
+$neon-pink-light: rgba(255, 90, 199, 0.5);
+$neon-pink-bg: rgba(255, 90, 199, 0.06);
+$neon-pink-border: rgba(255, 90, 199, 0.3);
+
+// 文本颜色
+$text-primary: #e7fffa;
+$text-secondary: #e6fff9;
+$text-muted: #a7ffef;
+$text-selection-bg: $cyberpunk-light-yellow;
+
+// 边框颜色
+$border-primary: rgba(0, 255, 170, 0.18);
+$border-secondary: rgba(0, 255, 170, 0.2);
+$border-accent: rgba(0, 255, 170, 0.25);
+$border-strong: rgba(0, 255, 170, 0.28);
+
+// 背景色变体
+$bg-overlay: rgba(0, 255, 170, 0.08);
+$bg-selection: rgba(0, 255, 170, 0.35);
+$bg-code-inline: rgba(0, 255, 213, 0.08);
+$bg-code-block: rgba(0, 255, 213, 0.06);
+$bg-blockquote: rgba(0, 255, 213, 0.06);
+
+// ----------------------------------------------------------------------------
+// 间距系统
+// ----------------------------------------------------------------------------
+$spacing-xs: 0.25rem;   // 4px
+$spacing-sm: 0.5rem;    // 8px
+$spacing-md: 0.8rem;    // 12.8px
+$spacing-lg: 1rem;      // 16px
+$spacing-xl: 1.2rem;    // 19.2px
+$spacing-2xl: 2rem;     // 32px
+$spacing-3xl: 3rem;     // 48px
+
+// 容器间距
+$container-padding: 2rem 1.2rem;
+$container-padding-mobile: 1.2rem 0 2rem;
+
+// ----------------------------------------------------------------------------
+// 字体系统
+// ----------------------------------------------------------------------------
+
+// 字体大小
+$font-size-base: 16px;
+$font-size-mobile: 14px;
+$font-size-small: 0.9rem;
+$font-size-h1: 1.8rem;
+$font-size-h2: 1.5rem;
+$font-size-h3: 1.3rem;
+
+// 行高
+$line-height-base: 1.7;
+$line-height-mobile: 1.6;
+$line-height-tight: 1.5;
+$line-height-loose: 1.8;
+
+// 字重
+$font-weight-normal: 400;
+$font-weight-medium: 600;
+$font-weight-bold: 700;
+
+// 字间距
+$letter-spacing-normal: 0.01em;
+$letter-spacing-wide: 0.02em;
+$letter-spacing-wider: 0.08em;
+
+// ----------------------------------------------------------------------------
+// 布局系统
+// ----------------------------------------------------------------------------
+
+// 容器宽度
+$container-max-width: 900px;
+$container-header-width: 1050px;
+
+// 头部高度
+$header-height: 64px;
+$header-height-mobile: 56px;
+
+// 边框圆角
+$border-radius-sm: 3px;
+$border-radius-md: 8px;
+$border-radius-lg: 12px;
+$border-radius-full: 10px;
+
+// Z-index 层级
+$z-index-header: 20;
+$z-index-overlay: 10;
+$z-index-background: -1;
+
+// ----------------------------------------------------------------------------
+// 响应式断点
+// ----------------------------------------------------------------------------
+$breakpoint-mobile: 768px;
+$breakpoint-tablet: 1024px;
+$breakpoint-desktop: 1200px;
+
+// ----------------------------------------------------------------------------
+// 动画系统
+// ----------------------------------------------------------------------------
+
+// 过渡时间
+$transition-fast: 0.15s;
+$transition-normal: 0.25s;
+$transition-slow: 0.35s;
+
+// 缓动函数
+$ease-out: ease-out;
+$ease-in-out: ease-in-out;
+$ease-linear: linear;
+
+// 动画持续时间
+$animation-scan: 6s;
+
+// ----------------------------------------------------------------------------
+// 网格系统（背景装饰）
+// ----------------------------------------------------------------------------
+$grid-size: 32px;
+$grid-color-primary: rgba(0, 255, 170, 0.08);
+$grid-color-secondary: rgba(0, 255, 170, 0.06);
+
+// 扫描线
+$scanline-opacity-min: 0.35;
+$scanline-opacity-max: 0.6;
+$scanline-color: rgba(0, 0, 0, 0.18);
