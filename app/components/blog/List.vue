@@ -93,12 +93,17 @@ const { data: articles } = await useAsyncData('blog-articles', async (): Promise
   }
 }
 
+.blog-excerpt {
+  text-wrap: pretty;
+}
+
 .blog-tags {
   display: flex;
   flex-direction: row;
   justify-content: flex-end;
   margin-top: 1em;
   gap: 5px;
+  flex-wrap: wrap;
 
   .blog-tag {
     font-family: $font-mono;
@@ -116,6 +121,7 @@ const { data: articles } = await useAsyncData('blog-articles', async (): Promise
     transition: all 0.05s ease;
     cursor: default;
     user-select: none;
+    white-space: nowrap;
 
     // 内部发光效果
     box-shadow:
@@ -155,5 +161,34 @@ const { data: articles } = await useAsyncData('blog-articles', async (): Promise
       left: 100%;
     }
   }
+}
+
+@media (max-width: #{$breakpoint-mobile - 1px}) {
+  .blog-header {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    align-items: flex-start;
+
+    .blog-date {
+      align-self: flex-end;
+    }
+  }
+}
+
+@media (min-width: #{$breakpoint-mobile}) and (max-width: #{$breakpoint-tablet - 1px}) {
+  //
+}
+
+@media (min-width: #{$breakpoint-tablet}) and (max-width: #{$breakpoint-desktop - 1px}) {
+  //
+}
+
+@media (min-width: #{$breakpoint-desktop}) and (max-width: #{$breakpoint-desktop-lg - 1px}) {
+  //
+}
+
+@media (min-width: #{$breakpoint-desktop-lg}) {
+  //
 }
 </style>

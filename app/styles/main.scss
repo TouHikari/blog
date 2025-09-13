@@ -1,7 +1,5 @@
 @use './variables' as *;
-@use './mixins' as *;
 @use './fonts' as *;
-@use './blog' as *;
 @use './cyber-effects' as *;
 @use './terminal-glow' as *;
 
@@ -137,4 +135,28 @@ a {
   font-size: .875em;
   overflow-wrap: break-word;
   transition: background-color var(--vp-t-color), color var(--vp-t-color);
+}
+
+@media (max-width: #{$breakpoint-mobile - 1px}) {
+  h1 {
+    font-size: 1.7em !important;
+  }
+}
+
+@media (min-width: #{$breakpoint-mobile}) and (max-width: #{$breakpoint-tablet - 1px}) {
+  h1 {
+    font-size: 1.7em !important;
+  }
+}
+
+@media (min-width: #{$breakpoint-tablet}) and (max-width: #{$breakpoint-desktop - 1px}) {
+  //
+}
+
+@media (min-width: #{$breakpoint-desktop}) and (max-width: #{$breakpoint-desktop-lg - 1px}) {
+  //
+}
+
+@media (min-width: #{$breakpoint-desktop-lg}) {
+  //
 }

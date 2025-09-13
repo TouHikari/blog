@@ -2,7 +2,7 @@
   <p class="slogan">
     <span style="color: cyan;">touhikari</span><span style="color: gray;">@</span><span
       style="color: yellow;">localhost</span><span style="color: white;">:~$ </span>
-    <span ref="sloganElement" class="slogan-text">Slogan.</span>
+    <span ref="sloganElement" class="slogan-text">_</span>
   </p>
 </template>
 
@@ -131,6 +131,7 @@ onMounted(async () => {
 .slogan {
   font-family: $font-mono;
   color: $cyberpunk-pink;
+  margin: 0;
 }
 
 .slogan-text {
