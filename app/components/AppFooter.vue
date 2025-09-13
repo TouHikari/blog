@@ -29,7 +29,7 @@ function updateSiteRuntime() {
   // Format: %dd %hh:%mm:%ss
   const runtimeString = `${days}d ${String(hours).padStart(2, '0')}h:${String(minutes).padStart(2, '0')}m:${String(seconds).padStart(2, '0')}s`
 
-  siteRuntimeDisplay.value = `TouHikari [STATUS:ONLINE] LOGGED_IN_FOR: ${runtimeString}`
+  siteRuntimeDisplay.value = `${runtimeString}`
 }
 
 onMounted(() => {
@@ -54,7 +54,10 @@ onUnmounted(() => {
       <div class="copyright">© 2025 TouHikari's Blog</div>
       <div class="driver">Powered by <a class="nust-link" href="https://nuxt.com/" target="_blank">Nust 4</a>.</div>
     </div>
-    <p id="site-runtime-display">{{ siteRuntimeDisplay }}</p>
+    <p id="site-runtime-display">
+      <span class="runtime-prefix">TouHikari [STATUS:ONLINE] LOGGED_IN_FOR: </span>
+      <span class="runtime">{{ siteRuntimeDisplay }}</span>
+    </p>
     <a class="beian-link" href="https://beian.miit.gov.cn/" target="_blank">陕ICP备2025068002号</a>
   </div>
 </template>
@@ -66,7 +69,7 @@ onUnmounted(() => {
 .footer-container {
   display: flex;
   flex-direction: column;
-  align-items: center;
+  text-align: center;
   font-family: $font-cyber;
   margin: 60px 0 30px 0;
 }
@@ -78,12 +81,36 @@ onUnmounted(() => {
 .info {
   display: flex;
   flex-direction: column;
-  align-items: center;
+  text-align: center;
 }
 
 #site-runtime-display {
   font-family: $font-mono;
   color: $cyberpunk-light-yellow;
   min-height: 30px;
+}
+
+@media (max-width: #{$breakpoint-mobile - 1px}) {
+  #site-runtime-display {
+    display: flex;
+    flex-direction: column;
+    text-align: center;
+  }
+}
+
+@media (min-width: #{$breakpoint-mobile}) and (max-width: #{$breakpoint-tablet - 1px}) {
+  //
+}
+
+@media (min-width: #{$breakpoint-tablet}) and (max-width: #{$breakpoint-desktop - 1px}) {
+  //
+}
+
+@media (min-width: #{$breakpoint-desktop}) and (max-width: #{$breakpoint-desktop-lg - 1px}) {
+  //
+}
+
+@media (min-width: #{$breakpoint-desktop-lg}) {
+  //
 }
 </style>

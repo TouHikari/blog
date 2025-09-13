@@ -1,7 +1,10 @@
 <template>
-  <div class="title-container">
-    <h1 :class="['title', { 'bootup': isMounted }]">Where shadows dance with data streams.<span class="blink-fast">
-        |</span></h1>
+  <div class="home-title-container">
+    <div class="title-container">
+      <h1 :class="['title', { 'bootup': isMounted }]">Where shadows dance with data streams.
+        <span class="blink-fast"> |</span>
+      </h1>
+    </div>
     <hr />
     <div class="slogan-container">
       <Icon v-if="isMounted" name="mdi:heart" class="heart-icon" />
@@ -22,12 +25,18 @@ onMounted(() => {
 </script>
 
 <style lang="scss" scoped>
+@use '~/styles/variables' as *;
 @use '~/styles/terminal-glow' as *;
 
-.title-container {
+.home-title-container {
   margin-top: 50px;
   cursor: default;
   user-select: none;
+}
+
+.title {
+  text-wrap: balance;
+  opacity: 0.1;
 }
 
 .blink-fast {
@@ -35,7 +44,7 @@ onMounted(() => {
 }
 
 .bootup {
-  animation: bootup 2s ease;
+  animation: bootup 2s ease forwards;
 }
 
 @keyframes blink {
@@ -137,9 +146,10 @@ onMounted(() => {
 .slogan-container {
   display: flex;
   flex-direction: row;
-  align-items: center;
+  align-items: flex-start;
   min-height: 60px;
   gap: 8px;
+  margin-top: 10px;
 
   @include glow-text-sm-1();
 }
@@ -147,6 +157,8 @@ onMounted(() => {
 .heart-icon {
   color: #ff0000;
   font-size: 1.2em;
+  min-width: 1.2em;
+  margin-top: 6px;
   @include glow-text-sm-1();
   animation: heartbeat 2s ease-in-out infinite;
   filter: drop-shadow(0 0 8px rgba(255, 71, 87, 0.6));
@@ -165,5 +177,43 @@ onMounted(() => {
   100% {
     opacity: 0;
   }
+}
+
+@media (max-width: #{$breakpoint-mobile - 1px}) {
+  .title-container {
+    text-align: center;
+  }
+
+  .slogan-container {
+    min-height: 60px;
+  }
+
+  @media (max-width: 540px) {
+    .slogan-container {
+      min-height: 85px;
+    }
+  }
+
+  @media (max-width: 380px) {
+    .slogan-container {
+      min-height: 110px;
+    }
+  }
+}
+
+@media (min-width: #{$breakpoint-mobile}) and (max-width: #{$breakpoint-tablet - 1px}) {
+  //
+}
+
+@media (min-width: #{$breakpoint-tablet}) and (max-width: #{$breakpoint-desktop - 1px}) {
+  //
+}
+
+@media (min-width: #{$breakpoint-desktop}) and (max-width: #{$breakpoint-desktop-lg - 1px}) {
+  //
+}
+
+@media (min-width: #{$breakpoint-desktop-lg}) {
+  //
 }
 </style>

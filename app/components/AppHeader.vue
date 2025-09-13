@@ -3,9 +3,14 @@ import { ref, onMounted, onUnmounted } from 'vue'
 
 const isScrolled = ref(false)
 const scrollThreshold = 100 // 滚动多少像素后触发半透明效果
+const isMenuOpen = ref(false)
 
 const handleScroll = () => {
   isScrolled.value = window.scrollY > scrollThreshold
+}
+
+const toggleMenu = () => {
+  isMenuOpen.value = !isMenuOpen.value
 }
 
 onMounted(() => {
@@ -49,6 +54,37 @@ onUnmounted(() => {
           </UiButton>
         </NuxtLink>
       </div>
+      <div class="mobile-nav">
+        <UiButton type="nav" class="hamburger-button" @click="toggleMenu">
+          <Icon :name="isMenuOpen ? 'mdi:close' : 'mdi:menu'" />
+        </UiButton>
+      </div>
+    </div>
+    <div v-if="isMenuOpen" class="mobile-nav-items">
+      <NuxtLink to="/blog" @click="toggleMenu">
+        <UiButton type="nav" class="nav-button">
+          <Icon name="mdi:database" class="nav-icon" />
+          Archives
+        </UiButton>
+      </NuxtLink>
+      <NuxtLink to="/categories" @click="toggleMenu">
+        <UiButton type="nav" class="nav-button">
+          <Icon name="mdi:folder-network" class="nav-icon" />
+          Categories
+        </UiButton>
+      </NuxtLink>
+      <NuxtLink to="/tags" @click="toggleMenu">
+        <UiButton type="nav" class="nav-button">
+          <Icon name="mdi:tag-multiple" class="nav-icon" />
+          Tags
+        </UiButton>
+      </NuxtLink>
+      <NuxtLink to="/about" @click="toggleMenu">
+        <UiButton type="nav" class="nav-button">
+          <Icon name="mdi:account-circle" class="nav-icon" />
+          About
+        </UiButton>
+      </NuxtLink>
     </div>
   </div>
 </template>
@@ -64,6 +100,7 @@ onUnmounted(() => {
   right: 0;
   z-index: 1000;
   display: flex;
+  flex-direction: column;
   min-height: 1.5rem;
   max-height: 2rem;
   font-family: $font-mono;
@@ -113,6 +150,33 @@ onUnmounted(() => {
   height: 100%;
 }
 
+.mobile-nav {
+  display: none;
+}
+
+.hamburger-button {
+  font-size: x-large;
+  color: $gray-400;
+}
+
+.mobile-nav-items {
+  display: flex;
+  gap: 10px;
+  flex-direction: column;
+  color: $gray-400;
+  background: rgba(0, 0, 0, 0.8);
+  position: absolute;
+  top: 100%;
+  left: 0;
+  right: 0;
+  padding: 10px;
+
+  .nav-button {
+    width: 100%;
+    justify-content: center;
+  }
+}
+
 .nav-button {
   display: flex;
   align-items: center;
@@ -127,6 +191,61 @@ onUnmounted(() => {
   &:hover {
     color: black;
     background-color: $gray-400;
+  }
+}
+
+@media (max-width: #{$breakpoint-tablet - 1px}) {
+  .nav-items {
+    display: none;
+  }
+
+  .mobile-nav {
+    display: block;
+  }
+}
+
+@media (max-width: #{$breakpoint-mobile - 1px}) {
+  .navbar {
+    padding: 0 10px;
+  }
+
+  .nav-brand,
+  .nav-button {
+    font-size: medium;
+  }
+}
+
+@media (min-width: #{$breakpoint-mobile}) and (max-width: #{$breakpoint-tablet - 1px}) {
+  .navbar {
+    max-width: 680px;
+  }
+
+  .nav-brand,
+  .nav-button {
+    font-size: medium;
+  }
+}
+
+@media (min-width: #{$breakpoint-tablet}) and (max-width: #{$breakpoint-desktop - 1px}) {
+  .navbar {
+    max-width: 920px;
+  }
+
+  .nav-brand,
+  .nav-button {
+    font-size: medium;
+  }
+}
+
+@media (min-width: #{$breakpoint-desktop}) and (max-width: #{$breakpoint-desktop-lg - 1px}) {
+  .navbar {
+    max-width: 1000px;
+  }
+}
+
+@media (min-width: #{$breakpoint-desktop-lg}) {
+  .navbar {
+    max-width: 1200px;
   }
 }
 </style>
