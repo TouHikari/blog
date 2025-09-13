@@ -130,6 +130,8 @@ onUnmounted(() => {
 </template>
 
 <style lang="scss" scoped>
+@use '~/styles/variables' as *;
+
 .title-container {
   margin-top: 50px;
 }
