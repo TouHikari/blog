@@ -55,7 +55,7 @@ onUnmounted(() => {
       <div class="driver">Powered by <a class="nust-link" href="https://nuxt.com/" target="_blank">Nust 4</a>.</div>
     </div>
     <p id="site-runtime-display">{{ siteRuntimeDisplay }}</p>
-    <a href="https://beian.miit.gov.cn/" target="_blank">陕ICP备2025068002号</a>
+    <a class="beian-link" href="https://beian.miit.gov.cn/" target="_blank">陕ICP备2025068002号</a>
   </div>
 </template>
 
@@ -82,6 +82,7 @@ onUnmounted(() => {
 }
 
 #site-runtime-display {
+  font-family: $font-mono;
   color: $cyberpunk-light-yellow;
   min-height: 30px;
 }

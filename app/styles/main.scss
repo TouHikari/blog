@@ -129,12 +129,12 @@ a {
 }
 
 .main-content :not(pre)>code {
-    margin: 0;
-    padding: 3px 6px;
-    border-radius: 4px;
-    color: $cyberpunk-pink;
-    background: rgba(142, 150, 170, .14);
-    font-size: .875em;
-    overflow-wrap: break-word;
-    transition: background-color var(--vp-t-color), color var(--vp-t-color);
+  margin: 0;
+  padding: 3px 6px;
+  border-radius: 4px;
+  color: $cyberpunk-pink;
+  background: rgba(142, 150, 170, .14);
+  font-size: .875em;
+  overflow-wrap: break-word;
+  transition: background-color var(--vp-t-color), color var(--vp-t-color);
 }

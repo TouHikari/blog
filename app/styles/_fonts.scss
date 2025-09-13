@@ -1,3 +1,10 @@
+@import '@fontsource/jetbrains-mono/400.css';
+@import '@fontsource/jetbrains-mono/700.css';
+@import '@fontsource/noto-sans-sc/400.css';
+@import '@fontsource/noto-sans-sc/700.css';
+@import '@fontsource/orbitron/400.css';
+@import '@fontsource/orbitron/700.css';
+
 /* ========== 纯西文字体栈（不包含中文） ========== */
 
 /* 纯西文无衬线字体 */
@@ -26,6 +33,7 @@ $font-latin-serif:
 
 /* 纯西文赛博朋克字体 */
 $font-latin-cyber:
+  "Orbitron",
   "SF Mono",
   "Monaco",
   "Cascadia Code",
@@ -39,11 +47,9 @@ $font-latin-cyber:
 
 /* 中文无衬线字体 */
 $font-cjk-sans:
+  "Noto Sans SC",
   "PingFang SC",
   "Hiragino Sans GB",
-  "Noto Sans SC",
-  "Source Han Sans SC",
-  "Microsoft YaHei UI",
   "Microsoft YaHei",
   "WenQuanYi Micro Hei",
   sans-serif;

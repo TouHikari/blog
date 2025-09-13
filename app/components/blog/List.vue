@@ -101,7 +101,7 @@ const { data: articles } = await useAsyncData('blog-articles', async (): Promise
   gap: 5px;
 
   .blog-tag {
-    font-family: $font-cyber;
+    font-family: $font-mono;
     font-size: 0.75em;
     font-weight: 600;
     color: $cyberpunk-pink;
