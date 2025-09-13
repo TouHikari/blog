@@ -10,6 +10,9 @@
     "postinstall": "nuxt prepare"
   },
   "dependencies": {
+    "@fontsource/jetbrains-mono": "^5.2.6",
+    "@fontsource/noto-sans-sc": "^5.2.6",
+    "@fontsource/orbitron": "^5.2.7",
     "@nuxt/content": "^3.6.3",
     "@nuxt/eslint": "^1.8.0",
     "@nuxt/icon": "^1.15.0",

@@ -66,7 +66,7 @@ onUnmounted(() => {
   display: flex;
   min-height: 1.5rem;
   max-height: 2rem;
-  font-family: $font-cyber;
+  font-family: $font-mono;
   backdrop-filter: blur(2px);
   transition: all 0.3s ease;
   cursor: default;
@@ -95,6 +95,7 @@ onUnmounted(() => {
 }
 
 .nav-brand {
+  font-family: $font-mono;
   font-size: large;
   font-weight: bold;
   color: $gray-400;
@@ -116,6 +117,7 @@ onUnmounted(() => {
   display: flex;
   align-items: center;
   gap: 5px;
+  font-family: $font-mono;
   font-size: large;
   font-weight: bold;
   color: $gray-400;
