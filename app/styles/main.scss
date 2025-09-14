@@ -1,5 +1,6 @@
 @use './variables' as *;
 @use './fonts' as *;
+@use './content' as *;
 @use './cyber-effects' as *;
 @use './terminal-glow' as *;
 
@@ -99,6 +100,10 @@ a {
   color: $cyberpunk-pink;
   background-color: $cyberpunk-light-yellow;
   text-shadow: none;
+}
+
+.content-prose {
+  max-width: 100%;
 }
 
 .content-prose h1>a,

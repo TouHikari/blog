@@ -1,0 +1,29 @@
+@use './variables' as *;
+
+.content-prose pre {
+  max-width: 100%;
+  overflow-x: auto;
+  background-color: $white-15;
+  border-radius: 2px;
+  padding: 10px;
+
+  &::-webkit-scrollbar {
+    height: 2px;
+  }
+
+  &::-webkit-scrollbar-track {
+    background: $bg-secondary;
+  }
+
+  &::-webkit-scrollbar-thumb {
+    background: $cyberpunk-cyan;
+  }
+
+  &::-webkit-scrollbar-thumb:hover {
+    background: $cyberpunk-pink;
+  }
+}
+.code {
+  max-width: 100%;
+  overflow-x: auto;
+}

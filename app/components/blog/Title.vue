@@ -87,32 +87,54 @@ function typeWriter(text: string, charIndex: number = 0) {
   }
 }
 
-// 监听标题变化，重新开始打字效果
-watch(pageTitle, async (newTitle) => {
+// 设置并启动打字机效果
+async function setupAndStartTypewriter(title: string) {
   if (!titleElement.value) return
 
-  // 清理旧的定时器
-  clearTypingTimer()
+  const el = titleElement.value
 
-  // 重置状态
-  isTypingComplete = false
-  titleElement.value.innerHTML = ''
+  // 1. 暂时设置完整文本以计算所需高度
+  //    设置为不可见以防止完整文本闪烁
+  el.style.visibility = 'hidden'
+  // 在计算前重置 min-height，防止高度在页面切换时累积
+  el.style.minHeight = '0'
+  el.innerHTML = title
 
-  // 等待下一个tick后开始打字
+  // 2. 等待 DOM 更新
   await nextTick()
+
+  // 3. 获取计算出的高度并将其应用为 min-height
+  //    这会预留空间并防止布局跳动
+  const finalHeight = el.scrollHeight
+  // 额外加 1px 作为安全边距
+  el.style.minHeight = `${finalHeight + 1}px`
+
+  // 4. 使元素再次可见并清除其内容以开始动画
+  el.style.visibility = 'visible'
+  el.innerHTML = ''
+
+  // 清理现有计时器并重置完成标志
+  clearTypingTimer()
+  isTypingComplete = false
+
+  // 短暂延迟后启动打字机效果
   typingTimer = setTimeout(() => {
-    typeWriter(newTitle)
+    typeWriter(title)
   }, 100)
+}
+
+// 监听标题变化，重新开始打字效果
+watch(pageTitle, (newTitle) => {
+  if (newTitle) {
+    setupAndStartTypewriter(newTitle)
+  }
 }, { immediate: false })
 
 // 组件挂载后开始打字效果
 onMounted(async () => {
   await nextTick()
-
-  if (titleElement.value && pageTitle.value) {
-    typingTimer = setTimeout(() => {
-      typeWriter(pageTitle.value)
-    }, 100)
+  if (pageTitle.value) {
+    setupAndStartTypewriter(pageTitle.value)
   }
 })
 
