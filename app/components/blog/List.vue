@@ -130,6 +130,7 @@ const { data: articles } = await useAsyncData('blog-articles', async (): Promise
 
     // 悬停效果
     &:hover {
+      z-index: 1;
 
       // 扫描线效果
       &::before {

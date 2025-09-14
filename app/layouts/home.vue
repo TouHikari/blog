@@ -68,13 +68,13 @@
   margin-top: 1em;
 
   .page-content {
-    flex: 3;
+    flex: 5;
     min-width: 0;
     padding: 0 10px;
   }
 
   .page-sidebar {
-    flex: 1;
+    flex: 2;
     min-width: 0;
     padding: 0 10px;
   }
@@ -90,6 +90,10 @@
     flex-direction: column;
     justify-content: space-between;
   }
+
+  .page-home-slot {
+    text-align: start;
+  }
 }
 
 @media (min-width: #{$breakpoint-mobile}) and (max-width: #{$breakpoint-tablet - 1px}) {
@@ -101,6 +105,10 @@
     display: flex;
     flex-direction: column;
     justify-content: space-between;
+  }
+
+  .page-home-slot {
+    text-align: start;
   }
 }
 

@@ -52,13 +52,15 @@ onUnmounted(() => {
     <p class="greetings">--- W E L L C O M E ---</p>
     <div class="info">
       <div class="copyright">© 2025 TouHikari's Blog</div>
-      <div class="driver">Powered by <a class="nust-link" href="https://nuxt.com/" target="_blank">Nust 4</a>.</div>
+      <div class="driver">Powered by <a class="nust-link" href="https://nuxt.com/" target="_blank">Nuxt 4</a>.</div>
     </div>
     <p id="site-runtime-display">
       <span class="runtime-prefix">TouHikari [STATUS:ONLINE] LOGGED_IN_FOR: </span>
       <span class="runtime">{{ siteRuntimeDisplay }}</span>
     </p>
-    <a class="beian-link" href="https://beian.miit.gov.cn/" target="_blank">陕ICP备2025068002号</a>
+    <div class="beian">
+      <a class="beian-link" href="https://beian.miit.gov.cn/" target="_blank">陕ICP备2025068002号</a>
+    </div>
   </div>
 </template>
 
