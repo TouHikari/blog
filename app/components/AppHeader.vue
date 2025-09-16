@@ -128,7 +128,7 @@ onUnmounted(() => {
   flex: 1;
   max-width: 1200px;
   margin: 0 auto;
-  width: 100%;
+  width: calc(100vw - 40px);
 }
 
 .nav-brand {
@@ -155,8 +155,10 @@ onUnmounted(() => {
 }
 
 .hamburger-button {
+  display: flex;
   font-size: x-large;
   color: $gray-400;
+  padding: 0;
 }
 
 .mobile-nav-items {
@@ -194,30 +196,31 @@ onUnmounted(() => {
   }
 }
 
-@media (max-width: #{$breakpoint-tablet - 1px}) {
-  .nav-items {
-    display: none;
-  }
-
-  .mobile-nav {
-    display: block;
-  }
-}
-
 @media (max-width: #{$breakpoint-mobile - 1px}) {
   .navbar {
-    padding: 0 10px;
+    padding: 0 20px;
+    padding: 6px 0;
   }
 
   .nav-brand,
   .nav-button {
     font-size: medium;
   }
+
+  .nav-items {
+    display: none;
+  }
+
+  .mobile-nav {
+    display: flex;
+    align-items: center;
+  }
 }
 
 @media (min-width: #{$breakpoint-mobile}) and (max-width: #{$breakpoint-tablet - 1px}) {
   .navbar {
-    max-width: 680px;
+    max-width: 720px;
+    padding: 6px 0;
   }
 
   .nav-brand,
@@ -229,6 +232,7 @@ onUnmounted(() => {
 @media (min-width: #{$breakpoint-tablet}) and (max-width: #{$breakpoint-desktop - 1px}) {
   .navbar {
     max-width: 920px;
+    padding: 6px 0;
   }
 
   .nav-brand,

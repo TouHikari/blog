@@ -98,7 +98,7 @@
 
 @media (min-width: #{$breakpoint-mobile}) and (max-width: #{$breakpoint-tablet - 1px}) {
   .container {
-    max-width: 680px;
+    max-width: 720px;
   }
 
   .page-container {
