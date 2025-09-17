@@ -3,9 +3,6 @@ title: "VuePress 风格的 Markdown 功能演示"
 date: 2025-08-12
 tags: ["markdown", "vuepress", "nuxt-content"]
 ---
-
-# VuePress 风格的 Markdown 功能演示
-
 这篇文章展示了如何在 Nuxt Content 中实现 VuePress 风格的 Markdown 扩展功能。
 
 ## 代码块功能

@@ -110,7 +110,7 @@ onUnmounted(() => {
 
   .runtime-container {
     display: inline-block;
-    background: linear-gradient(to right, $bg-tertiary, black);
+    background: linear-gradient(to right, $bg-tertiary, transparent);
     padding: 2.5px 15px;
   }
 

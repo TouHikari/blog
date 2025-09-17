@@ -19,14 +19,18 @@
 
 </script>
 
-<style>
+<style scoped lang="scss">
+@use '~/styles/variables' as *;
+@use '~/styles/fonts' as *;
+
 .links-container {
   margin: 1rem auto;
 }
 
 .links-list {
-  list-style-type: none;
-  padding: 0;
+  font-family: $font-mono;
+  list-style-type: circle;
+  padding-left: 20px;
 }
 
 .links-list li {
@@ -34,4 +38,7 @@
   font-size: 13px;
 }
 
+.links-list li::marker {
+  color: $cyberpunk-pink;
+}
 </style>
