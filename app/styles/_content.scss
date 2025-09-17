@@ -1,11 +1,39 @@
 @use './variables' as *;
+@use './fonts' as *;
+
+li {
+  list-style-type: circle;
+
+  &::marker {
+    color: $cyberpunk-light-yellow;
+  }
+}
+
+blockquote {
+  position: relative;
+  padding: 1px 40px;
+  margin-left: 0;
+  margin-right: 0;
+  background: linear-gradient(to right, rgba($color: $cyberpunk-yellow, $alpha: 0.2), rgba($color: $cyberpunk-pink, $alpha: 0.2) 2%, rgba($color: $cyberpunk-pink, $alpha: 0.15));
+
+  &::before {
+    content: '';
+    position: absolute;
+    left: 0;
+    top: 0;
+    bottom: 0;
+    width: 3px;
+    background-color: $cyberpunk-light-yellow;
+    box-shadow: 0 0 10px $cyberpunk-light-yellow;
+  }
+}
 
 .content-prose pre {
   max-width: 100%;
   overflow-x: auto;
-  background-color: $white-15;
+  background: linear-gradient(to right, rgba($color: $cyberpunk-pink, $alpha: 0.2), rgba($color: $cyberpunk-pink, $alpha: 0.15));
   border-radius: 2px;
-  padding: 10px;
+  padding: 15px;
 
   &::-webkit-scrollbar {
     height: 1px;
@@ -23,7 +51,36 @@
     background: $cyberpunk-pink;
   }
 }
-.code {
-  max-width: 100%;
+
+code {
   overflow-x: auto;
+  padding: 0 24px;
+  width: fit-content;
+  min-width: 100%;
+  transition: color .5s;
+}
+
+table {
+  border-collapse: collapse;
+  margin: 1rem 0;
+  overflow: hidden;
+  border: 1px solid rgba($color: $white, $alpha: 0.1);
+}
+
+th,
+td {
+  padding: 0.75rem 1rem;
+  text-align: left;
+  border: 1px solid rgba($color: $white, $alpha: 0.1);
+}
+
+thead th {
+  background-color: $bg-tertiary;
+  color: $white;
+  font-weight: 600;
+  font-family: $font-cyber;
+}
+
+tbody tr:nth-child(even) {
+  background-color: rgba($color: $white, $alpha: 0.02);
 }
