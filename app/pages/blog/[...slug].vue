@@ -1,10 +1,10 @@
 <script setup lang="ts">
 // 获取路由参数
 const route = useRoute()
-const slug = Array.isArray(route.params.slug) ? route.params.slug.join('/') : route.params.slug
 
 // 查询博客文章
-const { data: article } = await useAsyncData(`blog-${slug}`, async () => {
+const { data: article } = await useAsyncData(route.path, async () => {
+  const slug = Array.isArray(route.params.slug) ? route.params.slug.join('/') : route.params.slug
   return await queryCollection('blog').path(`/blog/${slug}`).first()
 })
 
