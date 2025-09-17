@@ -49,15 +49,19 @@ onUnmounted(() => {
 
 <template>
   <div class="footer-container">
-    <p class="greetings">--- W E L L C O M E ---</p>
+    <p class="greetings"><strong class="greetings-strong">----- W E L L C O M E -----</strong></p>
     <div class="info">
       <div class="copyright">© 2025 TouHikari's Blog</div>
       <div class="driver">Powered by <a class="nust-link" href="https://nuxt.com/" target="_blank">Nuxt 4</a>.</div>
     </div>
-    <p id="site-runtime-display">
-      <span class="runtime-prefix">TouHikari [STATUS:ONLINE] LOGGED_IN_FOR: </span>
-      <span class="runtime">{{ siteRuntimeDisplay }}</span>
-    </p>
+    <div id="site-runtime-display">
+      <p class="runtime-container">
+        <span class="runtime-prefix">TouHikari [STATUS:ONLINE] LOGGED_IN_FOR: </span>
+        <ClientOnly>
+          <span class="runtime">{{ siteRuntimeDisplay }}</span>
+        </ClientOnly>
+      </p>
+    </div>
     <div class="beian">
       <a class="beian-link" href="https://beian.miit.gov.cn/" target="_blank">陕ICP备2025068002号</a>
     </div>
@@ -67,17 +71,30 @@ onUnmounted(() => {
 <style lang="scss" scoped>
 @use '~/styles/fonts' as *;
 @use '~/styles/variables' as *;
+@use '~/styles/terminal-glow' as *;
 
 .footer-container {
   display: flex;
   flex-direction: column;
   text-align: center;
   font-family: $font-cyber;
-  margin: 60px 0 30px 0;
+  margin: 30px 0 30px 0;
 }
 
 .greetings {
   color: $cyberpunk-light-yellow;
+  cursor: default;
+
+  .greetings-strong {
+    transition: all 0.1s ease-in-out;
+
+    &:hover {
+      text-shadow:
+        0 0 5px currentcolor,
+        0 0 21px currentcolor;
+      @include flicker-effect();
+    }
+  }
 }
 
 .info {
@@ -90,12 +107,23 @@ onUnmounted(() => {
   font-family: $font-mono;
   color: $cyberpunk-light-yellow;
   min-height: 30px;
+
+  .runtime-container {
+    display: inline-block;
+    background: linear-gradient(to right, $bg-tertiary, black);
+    padding: 2.5px 15px;
+  }
+
+  .runtime {
+    white-space: nowrap;
+  }
 }
 
 @media (max-width: #{$breakpoint-mobile - 1px}) {
   #site-runtime-display {
     display: flex;
     flex-direction: column;
+    align-items: center;
     text-align: center;
   }
 }

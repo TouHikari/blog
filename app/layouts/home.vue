@@ -6,25 +6,29 @@
   <div class="container">
     <AppHeader />
     <main class="main-content">
-      <HomeTitle />
+      <div class="inner">
+        <HomeTitle />
+      </div>
       <div class="page-container">
-        <div class="page-content">
-          <div class="page-home-slot">
-            <slot />
+        <div class="inner">
+          <div class="page-content">
+            <div class="page-home-slot">
+              <slot />
+            </div>
+            <div class="page-blog">
+              <BlogList />
+            </div>
           </div>
-          <div class="page-blog">
-            <BlogList />
+          <div class="page-sidebar">
+            <!-- <HomeSearch /> -->
+            <hr />
+            <HomeRecentPosts />
+            <hr />
+            <HomeTagsCloud />
+            <hr />
+            <HomeLinks />
+            <hr />
           </div>
-        </div>
-        <div class="page-sidebar">
-          <!-- <HomeSearch /> -->
-          <hr />
-          <HomeRecentPosts />
-          <hr />
-          <HomeTagsCloud />
-          <hr />
-          <HomeLinks />
-          <hr />
         </div>
       </div>
     </main>
@@ -66,6 +70,8 @@
   flex-direction: row;
   justify-content: space-between;
   margin-top: 1em;
+  padding: 3em 0;
+  background: linear-gradient(to bottom, $bg-tertiary, $bg-primary);
 
   .page-content {
     flex: 5;
@@ -81,52 +87,26 @@
 }
 
 @media (max-width: #{$breakpoint-mobile - 1px}) {
-  .container {
-    padding: 0 20px;
-  }
-
-  .page-container {
-    display: flex;
-    flex-direction: column;
-    justify-content: space-between;
-  }
-
   .page-home-slot {
     text-align: start;
   }
 }
 
 @media (min-width: #{$breakpoint-mobile}) and (max-width: #{$breakpoint-tablet - 1px}) {
-  .container {
-    max-width: 720px;
-  }
-
-  .page-container {
-    display: flex;
-    flex-direction: column;
-    justify-content: space-between;
-  }
-
   .page-home-slot {
     text-align: start;
   }
 }
 
 @media (min-width: #{$breakpoint-tablet}) and (max-width: #{$breakpoint-desktop - 1px}) {
-  .container {
-    max-width: 920px;
-  }
+  //
 }
 
 @media (min-width: #{$breakpoint-desktop}) and (max-width: #{$breakpoint-desktop-lg - 1px}) {
-  .container {
-    max-width: 1000px;
-  }
+  //
 }
 
 @media (min-width: #{$breakpoint-desktop-lg}) {
-  .container {
-    max-width: 1200px;
-  }
+  //
 }
 </style>

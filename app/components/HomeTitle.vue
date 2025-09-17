@@ -29,7 +29,8 @@ onMounted(() => {
 @use '~/styles/terminal-glow' as *;
 
 .home-title-container {
-  margin-top: 50px;
+  margin: 50px 0 0 0;
+  width: 100%;
   cursor: default;
   user-select: none;
 }
@@ -37,6 +38,7 @@ onMounted(() => {
 .title {
   text-wrap: balance;
   opacity: 0.1;
+  padding-bottom: 1px;
 }
 
 .blink-fast {

@@ -9,7 +9,7 @@ html {
   color-scheme: dark;
   font-family: $font-sans;
   color: $white;
-  background-color: $black;
+  background-color: $bg-primary;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   text-rendering: auto;
@@ -142,9 +142,21 @@ a {
   transition: background-color var(--vp-t-color), color var(--vp-t-color);
 }
 
+.inner {
+  display: flex;
+  padding: 0;
+  margin: 0 auto;
+}
+
 @media (max-width: #{$breakpoint-mobile - 1px}) {
   h1 {
     font-size: 1.7em !important;
+  }
+
+  .inner {
+    padding: 0 20px;
+    flex-direction: column;
+    justify-content: space-between;
   }
 }
 
@@ -152,16 +164,28 @@ a {
   h1 {
     font-size: 1.7em !important;
   }
+
+  .inner {
+    max-width: 720px;
+    flex-direction: column;
+    justify-content: space-between;
+  }
 }
 
 @media (min-width: #{$breakpoint-tablet}) and (max-width: #{$breakpoint-desktop - 1px}) {
-  //
+  .inner {
+    max-width: 920px;
+  }
 }
 
 @media (min-width: #{$breakpoint-desktop}) and (max-width: #{$breakpoint-desktop-lg - 1px}) {
-  //
+  .inner {
+    max-width: 1000px;
+  }
 }
 
 @media (min-width: #{$breakpoint-desktop-lg}) {
-  //
+  .inner {
+    max-width: 1200px;
+  }
 }
