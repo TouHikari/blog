@@ -6,9 +6,15 @@
   <div class="container">
     <AppHeader />
     <main class="main-content">
-      <BlogTitle />
-      <div class="content-prose">
-        <slot />
+      <div class="inner">
+        <BlogTitle />
+      </div>
+      <div class="content-container">
+        <div class="inner">
+          <div class="content-prose">
+            <slot />
+          </div>
+        </div>
       </div>
     </main>
     <AppFooter />
@@ -19,7 +25,6 @@
 @use '~/styles/variables' as *;
 
 .container {
-  max-width: 1200px;
   margin: 0 auto;
 }
 
@@ -27,45 +32,37 @@
   padding-top: 1.5em;
 }
 
-@media (max-width: #{$breakpoint-mobile - 1px}) {
-  .container {
-    padding: 0 20px;
-  }
+.inner {
+  flex-direction: column;
+}
 
-  .page-container {
-    display: flex;
-    flex-direction: column;
-    justify-content: space-between;
-  }
+.content-container {
+  margin-top: 1em;
+  padding: 3em 0;
+  background: linear-gradient(to bottom, $bg-tertiary, $bg-primary);
+}
+
+.content-prose {
+  padding: 1em 0 2em 0;
+}
+
+@media (max-width: #{$breakpoint-mobile - 1px}) {
+  //
 }
 
 @media (min-width: #{$breakpoint-mobile}) and (max-width: #{$breakpoint-tablet - 1px}) {
-  .container {
-    max-width: 720px;
-  }
-
-  .page-container {
-    display: flex;
-    flex-direction: column;
-    justify-content: space-between;
-  }
+  //
 }
 
 @media (min-width: #{$breakpoint-tablet}) and (max-width: #{$breakpoint-desktop - 1px}) {
-  .container {
-    max-width: 920px;
-  }
+  //
 }
 
 @media (min-width: #{$breakpoint-desktop}) and (max-width: #{$breakpoint-desktop-lg - 1px}) {
-  .container {
-    max-width: 1000px;
-  }
+  //
 }
 
 @media (min-width: #{$breakpoint-desktop-lg}) {
-  .container {
-    max-width: 1200px;
-  }
+  //
 }
 </style>

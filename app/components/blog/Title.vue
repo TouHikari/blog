@@ -142,20 +142,32 @@ onMounted(async () => {
 onUnmounted(() => {
   clearTypingTimer()
 })
+
+const isMounted = ref(false)
+
+onMounted(() => {
+  isMounted.value = true
+})
 </script>
 
 <template>
-  <div class="title-container">
+  <div class="blog-title-container">
     <h1 ref="titleElement" class="title"></h1>
     <hr />
+    <div class="slogan-container">
+      <Icon v-if="isMounted" name="mdi:heart" class="heart-icon" />
+      <TypewriterSlogan />
+    </div>
   </div>
 </template>
 
 <style lang="scss" scoped>
 @use '~/styles/variables' as *;
+@use '~/styles/terminal-glow' as *;
 
-.title-container {
+.blog-title-container {
   margin-top: 50px;
+  width: 100%;
 }
 
 .title {
@@ -163,6 +175,42 @@ onUnmounted(() => {
   min-height: 54.39px;
   cursor: default;
   user-select: none;
+}
+
+.slogan-container {
+  display: flex;
+  flex-direction: row;
+  align-items: flex-start;
+  min-height: 60px;
+  gap: 8px;
+  margin-top: 10px;
+
+  @include glow-text-sm-1();
+}
+
+.heart-icon {
+  color: #ff0000;
+  font-size: 1.2em;
+  min-width: 1.2em;
+  margin-top: 6px;
+  @include glow-text-sm-1();
+  animation: heartbeat 2s ease-in-out infinite;
+  filter: drop-shadow(0 0 8px rgba(255, 71, 87, 0.6));
+  transition: all 0.3s ease;
+}
+
+@keyframes heartbeat {
+  0% {
+    opacity: 0;
+  }
+
+  50% {
+    opacity: 1;
+  }
+
+  100% {
+    opacity: 0;
+  }
 }
 
 :deep(.cursor) {
@@ -183,7 +231,7 @@ onUnmounted(() => {
 }
 
 @media (max-width: #{$breakpoint-mobile - 1px}) {
-  .title-container {
+  .blog-title-container {
     text-align: center;
   }
 }
