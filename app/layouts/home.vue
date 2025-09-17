@@ -70,7 +70,7 @@
   flex-direction: row;
   justify-content: space-between;
   margin-top: 1em;
-  padding: 3em 0;
+  padding: 2em 0;
   background: linear-gradient(to bottom, $bg-tertiary, $bg-primary);
 
   .page-content {
