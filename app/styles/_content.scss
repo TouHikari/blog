@@ -64,14 +64,13 @@ table {
   border-collapse: collapse;
   margin: 1rem 0;
   overflow: hidden;
-  border: 1px solid rgba($color: $white, $alpha: 0.1);
 }
 
 th,
 td {
   padding: 0.75rem 1rem;
   text-align: left;
-  border: 1px solid rgba($color: $white, $alpha: 0.1);
+  border: 1px solid rgba($color: $cyberpunk-pink, $alpha: 0.2);
 }
 
 thead th {
