@@ -1,6 +1,6 @@
 <template>
   <div class="links-container">
-    <h4>链接</h4>
+    <h4>相关链接</h4>
     <ul class="links-list">
       <li>
         <a href="https://github.com/TouHikari" target="_blank">GitHub - TouHikari</a>
@@ -10,6 +10,9 @@
       </li>
       <li>
         <a href="https://music.163.com/#/user/home?id=436110203" target="_blank">NetEase Music | 网易云音乐 - HvnZ_Null</a>
+      </li>
+      <li>
+        <a href="https://notes.owo.cab/" target="_blank">拾星絮语 | 『笔记小站』</a>
       </li>
     </ul>
   </div>
