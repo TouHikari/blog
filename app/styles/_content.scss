@@ -1,6 +1,153 @@
 @use './variables' as *;
 @use './fonts' as *;
+@use './cyber-effects' as *;
+@use './terminal-glow' as *;
 
+/* 标题样式 */
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  font-family: $font-cyber;
+  font-weight: $font-weight-medium;
+  letter-spacing: $letter-spacing-normal;
+}
+
+h3 {
+  font-size: 21px;
+}
+
+/* 溢光效果 */
+h1 {
+  @include glow-text-lg-1();
+}
+
+h2 {
+  @include glow-text-md-3();
+}
+
+h3,
+h4,
+h5,
+h6 {
+  @include glow-text-sm-2();
+}
+
+strong {
+  @include glow-text-sm-1();
+}
+
+/* 代码样式 */
+code,
+pre,
+kbd,
+samp {
+  font-family: $font-mono;
+  font-feature-settings: "liga" 1, "calt" 1;
+}
+
+pre code {
+  position: relative;
+  z-index: 1;
+  margin: 0;
+  padding: 10px 0;
+  background: transparent;
+  overflow-x: auto;
+  border-radius: 0;
+  font-size: $font-size-small;
+  line-height: $line-height-tight;
+}
+
+code {
+  overflow-x: auto;
+  padding: 0 24px;
+  width: fit-content;
+  min-width: 100%;
+  transition: color .5s;
+}
+
+/* 内联代码样式 */
+.main-content :not(pre)>code {
+  margin: 0;
+  padding: 3px 6px;
+  border-radius: 2px;
+  color: $cyberpunk-pink;
+  background: rgba(142, 150, 170, .14);
+  font-size: .875em;
+  overflow-wrap: break-word;
+  transition: background-color var(--vp-t-color), color var(--vp-t-color);
+}
+
+/* 链接样式 */
+.main-content a {
+  color: $cyberpunk-cyan;
+  text-decoration: none;
+
+  &:hover {
+    color: $cyberpunk-pink;
+    background-color: $cyberpunk-light-yellow;
+    text-shadow: none;
+  }
+}
+
+/* 内容区域样式 */
+.content-prose {
+  max-width: 100%;
+
+  h1>a,
+  h2>a,
+  h3>a,
+  h4>a,
+  h5>a,
+  h6>a {
+    color: white;
+
+    &:hover {
+      color: white;
+      background-color: transparent;
+      @include glow-text-lg-1();
+    }
+  }
+
+  pre {
+    max-width: 100%;
+    overflow-x: auto;
+    background: linear-gradient(to right, rgba($color: $cyberpunk-pink, $alpha: 0.2), rgba($color: $cyberpunk-pink, $alpha: 0.15));
+    border-radius: 2px;
+    padding: 15px;
+
+    &::-webkit-scrollbar {
+      height: 1px;
+    }
+
+    &::-webkit-scrollbar-track {
+      background: $bg-secondary;
+    }
+
+    &::-webkit-scrollbar-thumb {
+      background: $cyberpunk-cyan;
+    }
+
+    &::-webkit-scrollbar-thumb:hover {
+      background: $cyberpunk-pink;
+    }
+  }
+}
+
+/* 标题间距 */
+.main-content h2 {
+  margin-top: 2em;
+  margin-bottom: .8rem;
+}
+
+.main-content h3 {
+  margin-top: 1.5em;
+  margin-bottom: .6rem;
+}
+
+/* 列表样式 */
 li {
   list-style-type: circle;
 
@@ -9,6 +156,7 @@ li {
   }
 }
 
+/* 引用块样式 */
 blockquote {
   position: relative;
   padding: 1px 40px;
@@ -28,38 +176,7 @@ blockquote {
   }
 }
 
-.content-prose pre {
-  max-width: 100%;
-  overflow-x: auto;
-  background: linear-gradient(to right, rgba($color: $cyberpunk-pink, $alpha: 0.2), rgba($color: $cyberpunk-pink, $alpha: 0.15));
-  border-radius: 2px;
-  padding: 15px;
-
-  &::-webkit-scrollbar {
-    height: 1px;
-  }
-
-  &::-webkit-scrollbar-track {
-    background: $bg-secondary;
-  }
-
-  &::-webkit-scrollbar-thumb {
-    background: $cyberpunk-cyan;
-  }
-
-  &::-webkit-scrollbar-thumb:hover {
-    background: $cyberpunk-pink;
-  }
-}
-
-code {
-  overflow-x: auto;
-  padding: 0 24px;
-  width: fit-content;
-  min-width: 100%;
-  transition: color .5s;
-}
-
+/* 表格样式 */
 table {
   border-collapse: collapse;
   margin: 1rem 0;
