@@ -98,12 +98,12 @@ onUnmounted(() => {
   top: 0;
   left: 0;
   right: 0;
+  width: 100vw;
   z-index: 1000;
   display: flex;
   flex-direction: column;
   min-height: 1.5rem;
   max-height: 2rem;
-  font-family: $font-mono;
   backdrop-filter: blur(2px);
   transition: all 0.3s ease;
   cursor: default;
@@ -132,8 +132,8 @@ onUnmounted(() => {
 }
 
 .nav-brand {
-  font-family: $font-mono;
-  font-size: large;
+  font-family: $font-pixel;
+  font-size: 20px;
   font-weight: bold;
   color: $gray-400;
   transition: all 0.3s ease;
@@ -183,8 +183,8 @@ onUnmounted(() => {
   display: flex;
   align-items: center;
   gap: 5px;
-  font-family: $font-mono;
-  font-size: large;
+  font-family: $font-pixel;
+  font-size: 20px;
   font-weight: bold;
   color: $gray-400;
   height: 100%;
@@ -198,8 +198,8 @@ onUnmounted(() => {
 
 @media (max-width: #{$breakpoint-mobile - 1px}) {
   .navbar {
-    padding: 0 20px;
-    padding: 6px 0;
+    padding: 6px 20px;
+    margin: 0;
   }
 
   .nav-brand,

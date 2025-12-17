@@ -31,7 +31,6 @@
 }
 
 .links-list {
-  font-family: $font-cyber;
   list-style-type: circle;
   padding-left: 20px;
 }

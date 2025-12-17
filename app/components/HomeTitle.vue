@@ -5,7 +5,7 @@
         <span class="blink-fast"> |</span>
       </h1>
     </div>
-    <hr />
+    <hr>
     <div class="slogan-container">
       <Icon v-if="isMounted" name="mdi:heart" class="heart-icon" />
       <TypewriterSlogan />
@@ -26,9 +26,11 @@ onMounted(() => {
 
 <style lang="scss" scoped>
 @use '~/styles/variables' as *;
+@use '~/styles/fonts' as *;
 @use '~/styles/terminal-glow' as *;
 
 .home-title-container {
+  font-family: $font-cyber;
   margin: 50px 0 0 0;
   width: 100%;
   cursor: default;
