@@ -6,7 +6,6 @@
 html {
   scroll-behavior: smooth;
   color-scheme: dark;
-  font-family: $font-sans;
   color: $white;
   background-color: $bg-primary;
   -webkit-font-smoothing: antialiased;
@@ -16,7 +15,6 @@ html {
 }
 
 body {
-  font-family: $font-sans;
   line-height: $line-height-base;
   font-weight: $font-weight-normal;
   font-size: $font-size-base;

@@ -10,8 +10,20 @@ let isTypingComplete = false
 let typingTimer: NodeJS.Timeout | null = null
 const typingSpeed = 40 // 打字速度 (ms)
 
+// 博客文章接口定义
+interface BlogArticle {
+  title?: string
+  date?: string
+  description?: string
+  path?: string
+  meta?: {
+    tags?: string[]
+    excerpt?: unknown
+  }
+}
+
 // 博客文章标题数据
-const blogArticle = ref<any | null>(null)
+const blogArticle = ref<BlogArticle | null>(null)
 
 // 监听路由变化，若为博客文章则拉取对应标题
 watch(
@@ -22,7 +34,7 @@ watch(
       const { data } = await useAsyncData(`blog-${slug}`, async () => {
         return await queryCollection('blog').path(`/blog/${slug}`).first()
       })
-      blogArticle.value = data.value
+      blogArticle.value = data.value as BlogArticle | null
     } else {
       blogArticle.value = null
     }
@@ -152,8 +164,8 @@ onMounted(() => {
 
 <template>
   <div class="blog-title-container">
-    <h1 ref="titleElement" class="title"></h1>
-    <hr />
+    <h1 ref="titleElement" class="title" />
+    <hr>
     <div class="slogan-container">
       <Icon v-if="isMounted" name="mdi:heart" class="heart-icon" />
       <TypewriterSlogan />
@@ -163,6 +175,7 @@ onMounted(() => {
 
 <style lang="scss" scoped>
 @use '~/styles/variables' as *;
+@use '~/styles/fonts' as *;
 @use '~/styles/terminal-glow' as *;
 
 .blog-title-container {
@@ -171,6 +184,7 @@ onMounted(() => {
 }
 
 .title {
+  font-family: $font-cyber;
   font-size: 2rem;
   min-height: 54.39px;
   cursor: default;
@@ -233,6 +247,22 @@ onMounted(() => {
 @media (max-width: #{$breakpoint-mobile - 1px}) {
   .blog-title-container {
     text-align: center;
+  }
+
+  .slogan-container {
+    min-height: 60px;
+  }
+
+  @media (max-width: 540px) {
+    .slogan-container {
+      min-height: 85px;
+    }
+  }
+
+  @media (max-width: 380px) {
+    .slogan-container {
+      min-height: 110px;
+    }
   }
 }
 

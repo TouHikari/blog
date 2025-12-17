@@ -130,6 +130,7 @@ onMounted(async () => {
 
 .slogan {
   font-family: $font-mono;
+  text-align: left;
   color: $cyberpunk-pink;
   margin: 0;
 }

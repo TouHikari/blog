@@ -3,98 +3,255 @@
 @use './cyber-effects' as *;
 @use './terminal-glow' as *;
 
-/* 标题样式 */
+/* ===== 基础文本样式 ===== */
+p {
+  margin: 16px 0;
+  line-height: 1.7;
+  color: rgba($white, 0.9);
+}
+
+/* ===== 标题样式 ===== */
 h1,
 h2,
 h3,
 h4,
 h5,
 h6 {
-  font-family: $font-cyber;
   font-weight: $font-weight-medium;
   letter-spacing: $letter-spacing-normal;
+  margin-top: 24px;
+  margin-bottom: 16px;
+  line-height: 1.25;
 }
 
-h3 {
-  font-size: 21px;
-}
-
-/* 溢光效果 */
 h1 {
+  font-size: 2.25rem;
+  padding-bottom: 0.3rem;
   @include glow-text-lg-1();
 }
 
 h2 {
+  font-size: 1.875rem;
+  padding-bottom: 0.25rem;
+  margin-top: 2em;
+  margin-bottom: 0.8rem;
   @include glow-text-md-3();
 }
 
-h3,
-h4,
-h5,
-h6 {
+h3 {
+  font-size: 1.5rem;
+  margin-top: 1.5em;
+  margin-bottom: 0.6rem;
   @include glow-text-sm-2();
 }
 
-strong {
+h4 {
+  font-size: 1.25rem;
+  @include glow-text-sm-2();
+}
+
+h5 {
+  font-size: 1.125rem;
+  @include glow-text-sm-2();
+}
+
+h6 {
+  font-size: 1rem;
+  @include glow-text-sm-2();
+}
+
+strong,
+b {
+  font-weight: $font-weight-bold;
   @include glow-text-sm-1();
 }
 
-/* 代码样式 */
+em,
+i {
+  font-style: italic;
+  color: rgba($cyberpunk-cyan, 0.9);
+}
+
+/* ===== 代码样式 (VitePress 风格) ===== */
 code,
-pre,
 kbd,
 samp {
   font-family: $font-mono;
   font-feature-settings: "liga" 1, "calt" 1;
 }
 
-pre code {
-  position: relative;
-  z-index: 1;
+/* 内联代码 */
+:not(pre)>code {
   margin: 0;
-  padding: 10px 0;
-  background: transparent;
-  overflow-x: auto;
-  border-radius: 0;
-  font-size: $font-size-small;
-  line-height: $line-height-tight;
-}
-
-code {
-  overflow-x: auto;
-  padding: 0 24px;
-  width: fit-content;
-  min-width: 100%;
-  transition: color .5s;
-}
-
-/* 内联代码样式 */
-.main-content :not(pre)>code {
-  margin: 0;
-  padding: 3px 6px;
-  border-radius: 2px;
+  padding: 2px 6px;
+  border-radius: 4px;
   color: $cyberpunk-pink;
-  background: rgba(142, 150, 170, .14);
-  font-size: .875em;
-  overflow-wrap: break-word;
-  transition: background-color var(--vp-t-color), color var(--vp-t-color);
-}
+  background: rgba(142, 150, 170, 0.14);
+  font-size: 0.875em;
+  font-weight: 500;
+  border: 1px solid rgba($cyberpunk-pink, 0.1);
+  transition: all 0.2s ease;
 
-/* 链接样式 */
-.main-content a {
-  color: $cyberpunk-cyan;
-  text-decoration: none;
+  /* 智能换行处理 - 防止撑开移动端页面 */
+  word-wrap: break-word;
+  word-break: break-word;
+  overflow-wrap: break-word;
+
+  /* 在移动端允许更激进的换行 */
+  @media (max-width: 768px) {
+    word-break: break-all;
+    hyphens: auto;
+    max-width: 100%;
+    display: inline-block;
+    box-sizing: border-box;
+  }
 
   &:hover {
-    color: $cyberpunk-pink;
-    background-color: $cyberpunk-light-yellow;
-    text-shadow: none;
+    background: rgba(142, 150, 170, 0.2);
+    border-color: rgba($cyberpunk-pink, 0.3);
   }
 }
 
-/* 内容区域样式 */
+/* 代码块容器 */
+.content-prose pre,
+pre {
+  position: relative;
+  margin: 16px 0;
+  padding: 0;
+  border-radius: 8px;
+  overflow: hidden;
+  background: linear-gradient(135deg,
+      rgba($cyberpunk-pink, 0.08) 0%,
+      rgba($bg-secondary, 0.95) 15%,
+      rgba($bg-secondary, 0.95) 85%,
+      rgba($cyberpunk-cyan, 0.08) 100%);
+  border: 1px solid rgba($cyberpunk-pink, 0.15);
+  box-shadow:
+    0 4px 12px rgba(0, 0, 0, 0.4),
+    inset 0 1px 0 rgba($cyberpunk-cyan, 0.1);
+  counter-reset: line-number; // 重置行号计数器
+
+  /* 行号区域背景 */
+  &::after {
+    content: '';
+    position: absolute;
+    top: 2px; // 避开装饰条
+    left: 0;
+    bottom: 0;
+    width: 50px;
+    background: linear-gradient(135deg,
+        rgba($cyberpunk-cyan, 0.05) 0%,
+        rgba($bg-tertiary, 0.8) 50%,
+        rgba($cyberpunk-pink, 0.05) 100%);
+    border-right: 1px solid rgba($cyberpunk-cyan, 0.2);
+    z-index: 1;
+  }
+
+  /* 代码内容 */
+  code {
+    display: block;
+    padding: 20px 24px 20px 60px; // 左侧留出行号空间
+    margin: 0;
+    background: transparent;
+    color: rgba($white, 0.9);
+    font-size: 14px;
+    line-height: 1.5;
+    overflow-x: auto;
+    white-space: pre;
+    border-radius: 0;
+    width: 100%;
+    min-width: 100%;
+
+    /* 选中文本样式 */
+    &::selection {
+      background: rgba($cyberpunk-cyan, 0.3);
+    }
+
+    /* 每一行的样式 */
+    .line {
+      position: relative;
+      counter-increment: line-number; // 递增行号计数器
+
+      &::before {
+        content: counter(line-number);
+        position: absolute;
+        left: -50px;
+        width: 40px;
+        text-align: right;
+        color: rgba($cyberpunk-cyan, 0.6);
+        font-size: 12px;
+        font-weight: 500;
+        user-select: none;
+        pointer-events: none;
+        font-family: $font-mono;
+        text-shadow: 0 0 4px rgba($cyberpunk-cyan, 0.3);
+        transition: all 0.2s ease;
+        z-index: 2;
+      }
+
+      &:hover::before {
+        color: rgba($cyberpunk-pink, 0.8);
+        text-shadow: 0 0 6px rgba($cyberpunk-pink, 0.5);
+      }
+    }
+  }
+
+  /* 滚动条样式 */
+  &::-webkit-scrollbar {
+    height: 6px;
+  }
+
+  &::-webkit-scrollbar-track {
+    background: rgba($bg-secondary, 0.5);
+    border-radius: 3px;
+  }
+
+  &::-webkit-scrollbar-thumb {
+    background: linear-gradient(90deg, $cyberpunk-cyan, $cyberpunk-pink);
+    border-radius: 3px;
+    transition: all 0.2s ease;
+
+    &:hover {
+      background: linear-gradient(90deg, $cyberpunk-pink, $cyberpunk-yellow);
+    }
+  }
+}
+
+/* 代码块语言标签 */
+.content-prose pre[class*="language-"]::after,
+pre[class*="language-"]::after {
+  content: attr(data-lang);
+  position: absolute;
+  top: 8px;
+  right: 12px;
+  font-size: 12px;
+  font-weight: 500;
+  color: rgba($cyberpunk-cyan, 0.7);
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+  z-index: 3;
+}
+
+/* ===== 链接样式 ===== */
+.main-content a,
+.content-prose a {
+  color: $cyberpunk-cyan;
+  text-decoration: none;
+  border-bottom: 1px solid transparent;
+  transition: all 0.2s ease;
+  position: relative;
+
+  &:hover {
+    color: $cyberpunk-pink;
+  }
+
+  &:active {
+    color: $cyberpunk-yellow;
+  }
+}
+
+/* 标题链接特殊样式 */
 .content-prose {
-  max-width: 100%;
 
   h1>a,
   h2>a,
@@ -102,67 +259,69 @@ code {
   h4>a,
   h5>a,
   h6>a {
-    color: white;
+    color: inherit;
+    border: none;
 
     &:hover {
-      color: white;
-      background-color: transparent;
+      color: inherit;
+      text-shadow: inherit;
       @include glow-text-lg-1();
     }
   }
+}
 
-  pre {
-    max-width: 100%;
-    overflow-x: auto;
-    background: linear-gradient(to right, rgba($color: $cyberpunk-pink, $alpha: 0.2), rgba($color: $cyberpunk-pink, $alpha: 0.15));
-    border-radius: 2px;
-    padding: 15px;
+/* ===== 列表样式 ===== */
+ul,
+ol {
+  margin: 16px 0;
+  padding-left: 1.5rem;
+}
 
-    &::-webkit-scrollbar {
-      height: 1px;
-    }
+ul li {
+  list-style: none;
+  position: relative;
+  margin: 8px 0;
+  line-height: 1.6;
 
-    &::-webkit-scrollbar-track {
-      background: $bg-secondary;
-    }
-
-    &::-webkit-scrollbar-thumb {
-      background: $cyberpunk-cyan;
-    }
-
-    &::-webkit-scrollbar-thumb:hover {
-      background: $cyberpunk-pink;
-    }
+  &::before {
+    content: '▸';
+    position: absolute;
+    left: -1.2rem;
+    color: $cyberpunk-light-yellow;
+    font-weight: bold;
+    text-shadow: 0 0 4px $cyberpunk-light-yellow;
   }
 }
 
-/* 标题间距 */
-.main-content h2 {
-  margin-top: 2em;
-  margin-bottom: .8rem;
-}
-
-.main-content h3 {
-  margin-top: 1.5em;
-  margin-bottom: .6rem;
-}
-
-/* 列表样式 */
-li {
-  list-style-type: circle;
+ol li {
+  margin: 8px 0;
+  line-height: 1.6;
 
   &::marker {
-    color: $cyberpunk-light-yellow;
+    color: $cyberpunk-cyan;
+    font-weight: bold;
   }
 }
 
-/* 引用块样式 */
+/* 嵌套列表 */
+li ul,
+li ol {
+  margin: 8px 0;
+}
+
+/* ===== 引用块样式 ===== */
 blockquote {
   position: relative;
-  padding: 1px 40px;
-  margin-left: 0;
-  margin-right: 0;
-  background: linear-gradient(to right, rgba($color: $cyberpunk-yellow, $alpha: 0.2), rgba($color: $cyberpunk-pink, $alpha: 0.2) 2%, rgba($color: $cyberpunk-pink, $alpha: 0.15));
+  margin: 24px 0;
+  padding: 16px 24px;
+  background: linear-gradient(135deg,
+      rgba($cyberpunk-yellow, 0.08) 0%,
+      rgba($cyberpunk-pink, 0.05) 100%);
+  border-radius: 6px;
+  border-left: 4px solid $cyberpunk-light-yellow;
+  box-shadow:
+    0 2px 8px rgba(0, 0, 0, 0.2),
+    inset 0 1px 0 rgba($cyberpunk-yellow, 0.1);
 
   &::before {
     content: '';
@@ -170,33 +329,156 @@ blockquote {
     left: 0;
     top: 0;
     bottom: 0;
-    width: 3px;
-    background-color: $cyberpunk-light-yellow;
-    box-shadow: 0 0 10px $cyberpunk-light-yellow;
+    width: 4px;
+    background: linear-gradient(180deg,
+        $cyberpunk-light-yellow 0%,
+        $cyberpunk-yellow 50%,
+        $cyberpunk-pink 100%);
+    box-shadow: 0 0 8px rgba($cyberpunk-light-yellow, 0.5);
+  }
+
+  p {
+    margin: 0;
+    color: rgba($white, 0.85);
+    font-style: italic;
   }
 }
 
-/* 表格样式 */
+/* ===== 表格样式 ===== */
 table {
+  width: 100%;
   border-collapse: collapse;
-  margin: 1rem 0;
+  margin: 24px 0;
+  border-radius: 8px;
   overflow: hidden;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
+  background: rgba($bg-secondary, 0.8);
 }
 
-th,
-td {
-  padding: 0.75rem 1rem;
+thead {
+  background: linear-gradient(135deg,
+      rgba($cyberpunk-cyan, 0.2) 0%,
+      rgba($cyberpunk-pink, 0.15) 100%);
+}
+
+th {
+  padding: 16px 20px;
   text-align: left;
-  border: 1px solid rgba($color: $cyberpunk-pink, $alpha: 0.2);
-}
-
-thead th {
-  background-color: $bg-tertiary;
-  color: $white;
-  font-weight: 600;
   font-family: $font-cyber;
+  font-weight: 600;
+  color: $white;
+  border-bottom: 2px solid rgba($cyberpunk-cyan, 0.3);
+  position: relative;
+
+  &::after {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    height: 1px;
+    background: linear-gradient(90deg,
+        transparent 0%,
+        $cyberpunk-cyan 50%,
+        transparent 100%);
+  }
 }
 
-tbody tr:nth-child(even) {
-  background-color: rgba($color: $white, $alpha: 0.02);
+td {
+  padding: 12px 20px;
+  border-bottom: 1px solid rgba($cyberpunk-pink, 0.1);
+  color: rgba($white, 0.9);
+  transition: background-color 0.2s ease;
+}
+
+tbody tr {
+  &:hover {
+    background: rgba($cyberpunk-cyan, 0.05);
+  }
+
+  &:nth-child(even) {
+    background: rgba($white, 0.02);
+  }
+}
+
+/* ===== 图片样式 ===== */
+img {
+  max-width: 100%;
+  height: auto;
+  border-radius: 8px;
+  margin: 16px 0;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
+  border: 1px solid rgba($cyberpunk-cyan, 0.2);
+  transition: all 0.3s ease;
+
+  &:hover {
+    transform: scale(1.02);
+    box-shadow: 0 8px 24px rgba($cyberpunk-cyan, 0.2);
+    border-color: rgba($cyberpunk-cyan, 0.4);
+  }
+}
+
+/* ===== 键盘按键样式 ===== */
+kbd {
+  display: inline-block;
+  padding: 3px 8px;
+  font-size: 12px;
+  line-height: 1.4;
+  color: $white;
+  background: linear-gradient(135deg,
+      rgba($bg-tertiary, 0.9) 0%,
+      rgba($bg-secondary, 0.9) 100%);
+  border: 1px solid rgba($cyberpunk-cyan, 0.3);
+  border-radius: 4px;
+  box-shadow:
+    0 2px 4px rgba(0, 0, 0, 0.3),
+    inset 0 1px 0 rgba($white, 0.1);
+  text-shadow: 0 1px 2px rgba(0, 0, 0, 0.5);
+  margin: 0 2px;
+}
+
+/* ===== 内容区域整体样式 ===== */
+.content-prose {
+  max-width: 100%;
+  color: rgba($white, 0.9);
+  line-height: 1.7;
+
+  /* 首段不缩进 */
+  >p:first-child {
+    margin-top: 0;
+  }
+
+  /* 最后一个元素不留底边距 */
+  >*:last-child {
+    margin-bottom: 0;
+  }
+}
+
+/* ===== 响应式调整 ===== */
+@media (max-width: #{$breakpoint-mobile - 1px}) {
+
+  .content-prose pre,
+  pre {
+    margin: 12px -20px;
+    border-radius: 0;
+
+    code {
+      padding: 16px 20px;
+      font-size: 13px;
+    }
+  }
+
+  blockquote {
+    margin: 16px -10px;
+    padding: 12px 16px;
+  }
+
+  table {
+    font-size: 14px;
+
+    th,
+    td {
+      padding: 8px 12px;
+    }
+  }
 }
