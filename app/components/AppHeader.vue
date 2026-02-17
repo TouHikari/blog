@@ -132,8 +132,8 @@ onUnmounted(() => {
 }
 
 .nav-brand {
-  font-family: $font-pixel;
-  font-size: 20px;
+  font-family: $font-mono;
+  font-size: 18px;
   font-weight: bold;
   color: $gray-400;
   transition: all 0.3s ease;
@@ -183,8 +183,8 @@ onUnmounted(() => {
   display: flex;
   align-items: center;
   gap: 5px;
-  font-family: $font-pixel;
-  font-size: 20px;
+  font-family: $font-mono;
+  font-size: 18px;
   font-weight: bold;
   color: $gray-400;
   height: 100%;

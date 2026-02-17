@@ -1,36 +1,5 @@
 <script setup lang="ts">
-// 自动查询所有博客文章
-const { data: articles } = await useAsyncData('blog-articles', async (): Promise<any[]> => {
-  try {
-    // 直接获取blog集合中的所有文章
-    const allBlogArticles = await queryCollection('blog').all()
-
-    if (!allBlogArticles || allBlogArticles.length === 0) {
-      return []
-    }
-
-    // 处理每篇文章的摘要数据
-    const processedArticles = allBlogArticles.map((article: any) => {
-      let excerptContent = null
-
-      // 使用现成的excerpt数据
-      if (article.meta && article.meta.excerpt) {
-        excerptContent = article.meta.excerpt
-      }
-
-      return {
-        ...article,
-        excerptContent
-      }
-    })
-
-    // 按日期降序排序
-    return processedArticles.sort((a: any, b: any) => new Date(b.date).getTime() - new Date(a.date).getTime())
-  } catch (error) {
-    console.error('获取博客文章失败:', error)
-    return []
-  }
-})
+const { articles } = await useBlog()
 </script>
 
 <template>
@@ -47,7 +16,7 @@ const { data: articles } = await useAsyncData('blog-articles', async (): Promise
         <p v-else>{{ article.description || '暂无摘要' }}</p>
       </div>
       <div class="blog-tags" v-if="article.meta?.tags">
-        <span v-for="tag in article.meta.tags" :key="tag" class="blog-tag">{{ tag }}</span>
+        <UiTag v-for="tag in article.meta.tags" :key="tag">{{ tag }}</UiTag>
       </div>
     </div>
   </div>
@@ -104,64 +73,6 @@ const { data: articles } = await useAsyncData('blog-articles', async (): Promise
   margin-top: 1em;
   gap: 5px;
   flex-wrap: wrap;
-
-  .blog-tag {
-    font-family: $font-mono;
-    font-size: 0.75em;
-    font-weight: 600;
-    color: $cyberpunk-pink;
-    background: linear-gradient(135deg, rgba(0, 255, 255, 0.1), rgba(0, 255, 170, 0.05));
-    border: 1px solid $cyberpunk-pink;
-    border-radius: 2px;
-    padding: 2px 8px;
-    text-transform: uppercase;
-    letter-spacing: 0.5px;
-    position: relative;
-    overflow: hidden;
-    transition: all 0.05s ease;
-    cursor: default;
-    user-select: none;
-    white-space: nowrap;
-
-    // 内部发光效果
-    box-shadow:
-      inset 0 0 8px rgba(255, 64, 128, 0.2),
-      0 0 4px rgba(255, 64, 128, 0.3);
-
-    // 悬停效果
-    &:hover {
-      z-index: 1;
-
-      // 扫描线效果
-      &::before {
-        content: '';
-        position: absolute;
-        top: 0;
-        left: -100%;
-        width: 100%;
-        height: 1px;
-        background: linear-gradient(90deg, transparent, $cyberpunk-light-yellow, transparent);
-        animation: scan 2s infinite;
-      }
-
-      color: $cyberpunk-light-yellow;
-      border-color: $cyberpunk-light-yellow;
-      background: linear-gradient(135deg, rgba(255, 255, 0, 0.15), rgba(255, 190, 11, 0.08));
-      box-shadow: inset 0 0 12px rgba(255, 255, 0, 0.3),
-      0 0 8px rgba(255, 255, 0, 0.4),
-      0 0 16px rgba(255, 255, 0, 0.2);
-    }
-  }
-
-  @keyframes scan {
-    0% {
-      left: -100%;
-    }
-
-    100% {
-      left: 100%;
-    }
-  }
 }
 
 @media (max-width: #{$breakpoint-mobile - 1px}) {
