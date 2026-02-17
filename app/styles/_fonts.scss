@@ -4,6 +4,16 @@
 @import '@fontsource/noto-sans-sc/700.css';
 @import '@fontsource/orbitron/400.css';
 @import '@fontsource/orbitron/700.css';
+@import '@fontsource/fusion-pixel-10px-proportional-kr/400.css';
+
+@font-face {
+  font-family: 'FZG_CN';
+  src: url('/fonts/FZG_CN.otf.woff2') format('woff2'),
+        url('/fonts/FZG_CN.otf.woff') format('woff');
+  font-weight: normal;
+  font-style: normal;
+  font-display: swap;
+}
 
 /* ========== 纯西文字体栈（不包含中文） ========== */
 
@@ -43,6 +53,11 @@ $font-latin-cyber:
   "Liberation Mono",
   "Menlo";
 
+/* 纯西文像素字体 */
+$font-latin-pixel:
+  "Fusion Pixel 10px Proportional KR",
+  sans-serif;
+
 /* ========== 中文字体栈 ========== */
 
 /* 中文无衬线字体 */
@@ -73,6 +88,11 @@ $font-cjk-serif:
 /* 中文赛博朋克字体 */
 $font-cjk-cyber:
   $font-cjk-sans;
+
+/* 中文像素字体 */
+$font-cjk-pixel:
+  "FZG_CN",
+  sans-serif;
 
 /* ========== 系统回退字体栈 ========== */
 
@@ -105,3 +125,6 @@ $font-serif: $font-latin-serif, $font-cjk-serif, $font-fallback-serif;
 
 /* 赛博朋克字体栈 - 纯西文 → 纯中文 → 系统回退 */
 $font-cyber: $font-latin-cyber, $font-cjk-cyber, $font-fallback-mono;
+
+/* 像素字体栈 - 纯西文 → 纯中文 → 系统回退 */
+$font-pixel: $font-latin-pixel, $font-cjk-pixel, $font-fallback-mono;

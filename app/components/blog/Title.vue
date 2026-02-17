@@ -1,64 +1,14 @@
 <script setup lang="ts">
-import { ref, onMounted, onUnmounted, nextTick, computed, watch } from 'vue'
+import { ref, onMounted, onUnmounted, nextTick, watch } from 'vue'
 
-// 获取当前路由
-const route = useRoute()
+// 使用全局标题状态
+const { title: pageTitle } = usePageTitle()
 
 // 打字效果相关
 const titleElement = ref<HTMLElement | null>(null)
 let isTypingComplete = false
 let typingTimer: NodeJS.Timeout | null = null
 const typingSpeed = 40 // 打字速度 (ms)
-
-// 博客文章标题数据
-const blogArticle = ref<any | null>(null)
-
-// 监听路由变化，若为博客文章则拉取对应标题
-watch(
-  () => route.path,
-  async (newPath) => {
-    if (newPath.startsWith('/blog/')) {
-      const slug = newPath.replace(/^\/blog\//, '').replace(/\/$/, '')
-      const { data } = await useAsyncData(`blog-${slug}`, async () => {
-        return await queryCollection('blog').path(`/blog/${slug}`).first()
-      })
-      blogArticle.value = data.value
-    } else {
-      blogArticle.value = null
-    }
-  },
-  { immediate: true }
-)
-
-// 动态标题，根据路由直接生成
-const pageTitle = computed(() => {
-  const path = route.path
-
-  // 特殊路径的标题映射
-  const titleMap: Record<string, string> = {
-    '/': 'Home',
-    '/about': '[:INIT_USER/TouHikari]',
-    '/blog': '[SYS_ARCHIVES]',
-    '/categories': '[:METADATA_INDEX]',
-    '/tags': '[TAG_CLOUD]'
-  }
-
-  // 如果有直接映射，使用映射的标题
-  if (titleMap[path]) {
-    return titleMap[path]
-  }
-
-  // 对于博客文章，尝试获取标题
-  if (path.startsWith('/blog/')) {
-    // 优先显示内容集合里的标题，其次 fallback 到路径片段
-    if (blogArticle.value?.title) return blogArticle.value.title
-    const slugPart = path.split('/').filter(Boolean).slice(1).join('/');
-    return decodeURIComponent(slugPart || 'Blog Post')
-  }
-
-  // 默认标题
-  return 'Page'
-})
 
 // 清理定时器函数
 function clearTypingTimer() {
@@ -152,8 +102,8 @@ onMounted(() => {
 
 <template>
   <div class="blog-title-container">
-    <h1 ref="titleElement" class="title"></h1>
-    <hr />
+    <h1 ref="titleElement" class="title" />
+    <hr>
     <div class="slogan-container">
       <Icon v-if="isMounted" name="mdi:heart" class="heart-icon" />
       <TypewriterSlogan />
@@ -163,6 +113,7 @@ onMounted(() => {
 
 <style lang="scss" scoped>
 @use '~/styles/variables' as *;
+@use '~/styles/fonts' as *;
 @use '~/styles/terminal-glow' as *;
 
 .blog-title-container {
@@ -171,6 +122,7 @@ onMounted(() => {
 }
 
 .title {
+  font-family: $font-cyber;
   font-size: 2rem;
   min-height: 54.39px;
   cursor: default;
@@ -233,6 +185,22 @@ onMounted(() => {
 @media (max-width: #{$breakpoint-mobile - 1px}) {
   .blog-title-container {
     text-align: center;
+  }
+
+  .slogan-container {
+    min-height: 60px;
+  }
+
+  @media (max-width: 540px) {
+    .slogan-container {
+      min-height: 85px;
+    }
+  }
+
+  @media (max-width: 380px) {
+    .slogan-container {
+      min-height: 110px;
+    }
   }
 }
 

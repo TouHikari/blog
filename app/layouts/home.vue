@@ -21,13 +21,13 @@
           </div>
           <div class="page-sidebar">
             <!-- <HomeSearch /> -->
-            <hr />
+            <hr>
             <HomeRecentPosts />
-            <hr />
+            <hr>
             <HomeTagsCloud />
-            <hr />
+            <hr>
             <HomeLinks />
-            <hr />
+            <hr>
           </div>
         </div>
       </div>
@@ -38,6 +38,7 @@
 
 <style scoped lang="scss">
 @use '~/styles/variables' as *;
+@use '~/styles/fonts' as *;
 
 .container {
   margin: 0 auto;
@@ -45,6 +46,11 @@
 
 .main-content {
   padding-top: 1.5em;
+}
+
+.inner {
+  display: flex;
+  gap: 20px;
 }
 
 .page-home-slot {
@@ -76,13 +82,12 @@
   .page-content {
     flex: 5;
     min-width: 0;
-    padding: 0 10px;
   }
 
   .page-sidebar {
+    font-family: $font-pixel;
     flex: 2;
     min-width: 0;
-    padding: 0 10px;
   }
 }
 
