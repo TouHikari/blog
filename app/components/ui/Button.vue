@@ -27,7 +27,6 @@ const buttonClass = computed(() => {
 
 .navbar-brand,
 .nav {
-  font-family: $font-cyber;
   background: transparent;
   border: none;
 }

@@ -26,12 +26,17 @@
 @use '~/styles/variables' as *;
 @use '~/styles/fonts' as *;
 
+h4 {
+  border-bottom: 1px dashed;
+  padding-bottom: 0.5em;
+  margin-bottom: 1em;
+}
+
 .links-container {
-  margin: 1rem auto;
+  margin: 2rem auto;
 }
 
 .links-list {
-  font-family: $font-cyber;
   list-style-type: circle;
   padding-left: 20px;
 }
