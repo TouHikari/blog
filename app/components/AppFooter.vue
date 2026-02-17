@@ -9,7 +9,6 @@ function updateSiteRuntime() {
   const now = new Date()
   let timeDiff = now.getTime() - siteBirthday.getTime()
 
-  // Handle potential invalid date or future date
   if (isNaN(timeDiff) || timeDiff < 0) {
     siteRuntimeDisplay.value = "TouHikari [STATUS:ONLINE] System clock anomaly detected. Awaiting synchronization..."
     return
@@ -51,7 +50,7 @@ onUnmounted(() => {
   <div class="footer-container">
     <p class="greetings"><strong class="greetings-strong">----- W E L L C O M E -----</strong></p>
     <div class="info">
-      <div class="copyright">© 2025 TouHikari's Blog</div>
+      <div class="copyright">© 2026 TouHikari's Blog</div>
       <div class="driver">Powered by <a class="nust-link" href="https://nuxt.com/" target="_blank">Nuxt 4</a>.</div>
     </div>
     <div id="site-runtime-display">
