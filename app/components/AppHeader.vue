@@ -26,7 +26,9 @@ onUnmounted(() => {
   <div class="header-container" :class="{ 'scrolled': isScrolled }">
     <div class="navbar">
       <NuxtLink to="/">
-        <UiButton type="navbar-brand" class="nav-brand">[TouHikari@localhost ~]$</UiButton>
+        <UiButton type="navbar-brand" class="nav-brand">
+          [<span class="navbar-brand-name">TouHikari</span><span class="navbar-brand-at">@</span><span class="navbar-brand-host">localhost</span> ~]$
+        </UiButton>
       </NuxtLink>
       <div class="nav-items">
         <NuxtLink to="/blog">
@@ -56,35 +58,50 @@ onUnmounted(() => {
       </div>
       <div class="mobile-nav">
         <UiButton type="nav" class="hamburger-button" @click="toggleMenu">
-          <Icon :name="isMenuOpen ? 'mdi:close' : 'mdi:menu'" />
+          <svg
+            class="hamburger-icon"
+            :class="{ 'is-active': isMenuOpen }"
+            viewBox="0 0 24 24"
+            width="24"
+            height="24"
+            stroke="currentColor"
+            stroke-width="2"
+            stroke-linecap="round"
+          >
+            <line x1="4" y1="6" x2="20" y2="6" class="line-top" />
+            <line x1="4" y1="12" x2="20" y2="12" class="line-middle" />
+            <line x1="4" y1="18" x2="20" y2="18" class="line-bottom" />
+          </svg>
         </UiButton>
       </div>
-    </div>
-    <div v-if="isMenuOpen" class="mobile-nav-items">
-      <NuxtLink to="/blog" @click="toggleMenu">
-        <UiButton type="nav" class="nav-button">
-          <Icon name="mdi:database" class="nav-icon" />
-          Archives
-        </UiButton>
-      </NuxtLink>
-      <NuxtLink to="/categories" @click="toggleMenu">
-        <UiButton type="nav" class="nav-button">
-          <Icon name="mdi:folder-network" class="nav-icon" />
-          Categories
-        </UiButton>
-      </NuxtLink>
-      <NuxtLink to="/tags" @click="toggleMenu">
-        <UiButton type="nav" class="nav-button">
-          <Icon name="mdi:tag-multiple" class="nav-icon" />
-          Tags
-        </UiButton>
-      </NuxtLink>
-      <NuxtLink to="/about" @click="toggleMenu">
-        <UiButton type="nav" class="nav-button">
-          <Icon name="mdi:account-circle" class="nav-icon" />
-          About
-        </UiButton>
-      </NuxtLink>
+      <Transition name="menu-expand">
+        <div v-if="isMenuOpen" class="mobile-nav-items">
+          <NuxtLink to="/blog" @click="toggleMenu">
+            <UiButton type="nav" class="nav-button">
+              <Icon name="mdi:database" class="nav-icon" />
+              Archives
+            </UiButton>
+          </NuxtLink>
+          <NuxtLink to="/categories" @click="toggleMenu">
+            <UiButton type="nav" class="nav-button">
+              <Icon name="mdi:folder-network" class="nav-icon" />
+              Categories
+            </UiButton>
+          </NuxtLink>
+          <NuxtLink to="/tags" @click="toggleMenu">
+            <UiButton type="nav" class="nav-button">
+              <Icon name="mdi:tag-multiple" class="nav-icon" />
+              Tags
+            </UiButton>
+          </NuxtLink>
+          <NuxtLink to="/about" @click="toggleMenu">
+            <UiButton type="nav" class="nav-button">
+              <Icon name="mdi:account-circle" class="nav-icon" />
+              About
+            </UiButton>
+          </NuxtLink>
+        </div>
+      </Transition>
     </div>
   </div>
 </template>
@@ -105,6 +122,7 @@ onUnmounted(() => {
   min-height: 1.5rem;
   max-height: 2rem;
   backdrop-filter: blur(2px);
+  -webkit-backdrop-filter: blur(2px);
   transition: all 0.3s ease;
   cursor: default;
   user-select: none;
@@ -117,6 +135,7 @@ onUnmounted(() => {
     opacity: 1;
     background: linear-gradient($black-55, $transparent);
     backdrop-filter: blur(1px);
+    -webkit-backdrop-filter: blur(1px);
   }
 }
 
@@ -129,6 +148,8 @@ onUnmounted(() => {
   max-width: 1200px;
   margin: 0 auto;
   width: calc(100vw - 40px);
+  position: relative;
+  z-index: 10;
 }
 
 .nav-brand {
@@ -141,6 +162,30 @@ onUnmounted(() => {
 
   &:hover {
     color: white;
+  }
+  
+  .navbar-brand-name,
+  .navbar-brand-at,
+  .navbar-brand-host {
+    transition: inherit;
+  }
+
+  .navbar-brand-name {
+    &:hover {
+      color: $cyberpunk-cyan;
+    }
+  }
+
+  .navbar-brand-at {
+    &:hover {
+      color: gray;
+    }
+  }
+
+  .navbar-brand-host {
+    &:hover {
+      color: $cyberpunk-light-yellow;
+    }
   }
 }
 
@@ -166,12 +211,13 @@ onUnmounted(() => {
   gap: 10px;
   flex-direction: column;
   color: $gray-400;
-  background: rgba(0, 0, 0, 0.8);
+  background-color: rgba(0, 0, 0, 0.4);
   position: absolute;
   top: 100%;
   left: 0;
   right: 0;
   padding: 10px;
+  z-index: 1;
 
   .nav-button {
     width: 100%;
@@ -194,6 +240,49 @@ onUnmounted(() => {
     color: black;
     background-color: $gray-400;
   }
+}
+
+.hamburger-icon {
+  display: block;
+  cursor: pointer;
+
+  line {
+    transition: all 0.1s ease-in-out;
+    transform-origin: center;
+    transform-box: fill-box;
+  }
+
+  &.is-active {
+    .line-top {
+      transform: translateY(6px) rotate(45deg);
+    }
+    .line-middle {
+      opacity: 0;
+      transform: scaleX(0);
+    }
+    .line-bottom {
+      transform: translateY(-6px) rotate(-45deg);
+    }
+  }
+}
+
+.menu-expand-enter-active,
+.menu-expand-leave-active {
+  transition: all 0.1s ease-in-out;
+}
+
+.menu-expand-enter-from,
+.menu-expand-leave-to {
+  opacity: 0;
+  transform: translateY(-20px);
+  clip-path: inset(0 0 100% 0);
+}
+
+.menu-expand-enter-to,
+.menu-expand-leave-from {
+  opacity: 1;
+  transform: translateY(0);
+  clip-path: inset(0 0 0 0);
 }
 
 @media (max-width: #{$breakpoint-mobile - 1px}) {
