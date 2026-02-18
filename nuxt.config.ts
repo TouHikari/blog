@@ -55,6 +55,14 @@ export default defineNuxtConfig({
   },
 
   // 在Nuxt 4中，可以通过app配置来控制加载行为
+  nitro: {
+    prerender: {
+      crawlLinks: true,
+      routes: ['/sitemap.xml'],
+      ignore: ['/preview', '/secret']
+    },
+  },
+
   app: {
     head: {
       htmlAttrs: {
