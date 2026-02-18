@@ -2,13 +2,13 @@
 title: 在 Vue 3 项目中前端使用 Luckysheet 遇到的若干问题及解决方法
 date: 2025-08-07
 tags:
-  - Web
-  - Frontend
-  - Vue 3
-  - Luckysheet
-  - JavaScript
-  - TypeScript
-  - Scss
+  - web
+  - frontend
+  - vue 3
+  - luckysheet
+  - javaScript
+  - typeScript
+  - scss
 toc: true
 ---
 

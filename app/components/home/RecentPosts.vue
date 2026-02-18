@@ -49,13 +49,12 @@ h4 {
   color: $text-primary;
   text-decoration: none;
   font-size: 0.9em;
-  transition: all 0.3s ease;
+  transition: all 0.1s ease;
   
   &:hover {
     color: $cyberpunk-pink;
     padding-left: 5px;
     font-weight: bold;
-    // text-shadow: 0 0 8px $cyberpunk-pink;
   }
 }
 
