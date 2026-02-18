@@ -3,9 +3,9 @@ title: "[:INIT_USER/TouHikari]"
 layout: about
 date: 2025-05-03 23:40:24
 tags:
-  - Meta
-  - Identity
-  - Philosophy
+  - meta
+  - identity
+  - philosophy
 toc: true
 ---
 
@@ -52,21 +52,13 @@ toc: true
 
 你会发现我在数字网络中以不同的人格进行活动。不必对此感到困惑，它们都是构成我的独立碎片：
 
-- :: GitHub ::
+- :: GitHub :: [TouHikari](https://github.com/TouHikari)
 
-  [https://github.com/TouHikari](https://github.com/TouHikari)
+- :: Email | 电子邮箱 :: [tang20051026@foxmail.com](mailto:tang20051026@foxmail.com)
 
-- :: Email | 电子邮箱 ::
+- :: bilibili | 哔哩哔哩 :: [HvnZ_Null](https://space.bilibili.com/123365221)
 
-  [tang20051026@foxmail.com](mailto:tang20051026@foxmail.com)
-
-- :: bilibili | 哔哩哔哩 ::
-
-  [https://space.bilibili.com/123365221](https://space.bilibili.com/123365221)
-
-- :: NetEase Music | 网易云音乐 ::
-
-  [https://music.163.com/#/user/home?id=436110203](https://music.163.com/#/user/home?id=436110203)
+- :: NetEase Music | 网易云音乐 :: [HvnZ_Null](https://music.163.com/#/user/home?id=436110203)
 
 ---
 

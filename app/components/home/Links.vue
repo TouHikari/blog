@@ -53,5 +53,11 @@ h4 {
 
 .links {
   display: block;
+
+  &:hover {
+    color: $cyberpunk-pink;
+    padding-left: 5px;
+    font-weight: bold;
+  }
 }
 </style>
