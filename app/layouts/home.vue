@@ -56,6 +56,7 @@
 .page-home-slot {
   text-align: center;
   margin-top: 0;
+  font-family: $font-cyber;
 
   :deep(h1) {
     margin-top: 0 !important;
@@ -85,7 +86,7 @@
   }
 
   .page-sidebar {
-    font-family: $font-pixel;
+    font-family: $font-cyber;
     flex: 2;
     min-width: 0;
   }

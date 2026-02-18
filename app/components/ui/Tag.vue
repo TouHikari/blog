@@ -46,6 +46,8 @@ defineProps<{
     inset 0 0 8px rgba(255, 64, 128, 0.2),
     0 0 4px rgba(255, 64, 128, 0.3);
 
+  transition: all 0.1s ease;
+
   // 悬停效果
   &:hover {
     z-index: 1;

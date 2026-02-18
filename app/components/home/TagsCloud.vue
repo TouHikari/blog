@@ -25,6 +25,7 @@ const { tags } = useBlog()
 .tags-cloud-container {
   margin: 2rem auto;
   font-family: $font-pixel;
+  user-select: none;
 }
 
 h4 {

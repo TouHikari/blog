@@ -21,6 +21,7 @@ const { currentText } = useTypewriter()
   text-align: left;
   color: $cyberpunk-pink;
   margin: 0;
+  user-select: none;
 }
 
 .slogan-text {

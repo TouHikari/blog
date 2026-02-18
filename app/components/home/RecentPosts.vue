@@ -23,6 +23,7 @@ const { recentArticles } = useBlog()
 .recent-posts-container {
   margin: 2rem auto;
   font-family: $font-pixel;
+  user-select: none;
 }
 
 h4 {
@@ -53,7 +54,8 @@ h4 {
   &:hover {
     color: $cyberpunk-pink;
     padding-left: 5px;
-    text-shadow: 0 0 8px $cyberpunk-pink;
+    font-weight: bold;
+    // text-shadow: 0 0 8px $cyberpunk-pink;
   }
 }
 

@@ -3,16 +3,16 @@
     <h4>相关链接</h4>
     <ul class="links-list">
       <li>
-        <a href="https://github.com/TouHikari" target="_blank">GitHub - TouHikari</a>
+        <a class="links" href="https://github.com/TouHikari" target="_blank">GitHub - TouHikari</a>
       </li>
       <li>
-        <a href="https://space.bilibili.com/123365221" target="_blank">bilibili | 哔哩哔哩 - HvnZ_Null</a>
+        <a class="links" href="https://space.bilibili.com/123365221" target="_blank">bilibili | 哔哩哔哩 - HvnZ_Null</a>
       </li>
       <li>
-        <a href="https://music.163.com/#/user/home?id=436110203" target="_blank">NetEase Music | 网易云音乐 - HvnZ_Null</a>
+        <a class="links" href="https://music.163.com/#/user/home?id=436110203" target="_blank">NetEase Music | 网易云音乐 - HvnZ_Null</a>
       </li>
       <li>
-        <a href="https://notes.owo.cab/" target="_blank">拾星絮语 | 『笔记小站』</a>
+        <a class="links" href="https://notes.owo.cab/" target="_blank">拾星絮语 | 『笔记小站』</a>
       </li>
     </ul>
   </div>
@@ -34,6 +34,7 @@ h4 {
 
 .links-container {
   margin: 2rem auto;
+  user-select: none;
 }
 
 .links-list {
@@ -43,10 +44,14 @@ h4 {
 
 .links-list li {
   margin-bottom: 0.5rem;
-  font-size: 13px;
+  font-size: 14px;
 }
 
 .links-list li::marker {
   color: $cyberpunk-pink;
+}
+
+.links {
+  display: block;
 }
 </style>
