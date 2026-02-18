@@ -25,12 +25,14 @@ export const SLOGANS = [
   "Illuminating the path less traveled.",
   "Existence is pain... for a poorly configured server.",
   "Get Schwifty. (Then debug it.)",
-  "Nobody exists on purpose. Nobody belongs anywhere. We're all just code."
-]
+  "Nobody exists on purpose. Nobody belongs anywhere. We're all just code.",
+];
 
 export const TYPEWRITER_CONFIG = {
   typingSpeed: 70,
   deletingSpeed: 35,
   delayBeforeDeleting: 1500,
-  delayBeforeTypingNew: 500
-}
+  delayBeforeTypingNew: 500,
+};
+
+export const SITE_BIRTHDAY = "2025-05-02T01:37:13";
