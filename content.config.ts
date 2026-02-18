@@ -14,8 +14,10 @@ export default defineContentConfig({
       type: 'page',
       source: 'blog/*.md',
       schema: z.object({
-        date: z.string()
-      })
+        date: z.string().or(z.date()),
+        tags: z.array(z.string()).optional(),
+        toc: z.boolean().optional()
+      }).passthrough()
     })
   }
 })
