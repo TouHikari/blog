@@ -27,7 +27,7 @@ onUnmounted(() => {
     <div class="navbar">
       <NuxtLink to="/">
         <UiButton type="navbar-brand" class="nav-brand">
-          [<span class="navbar-brand-name">TouHikari</span><span class="navbar-brand-at">@</span><span class="navbar-brand-host">localhost</span> ~]$
+          <span>[</span><span class="navbar-brand-name">TouHikari</span><span class="navbar-brand-at">@</span><span class="navbar-brand-host">localhost</span><span>&nbsp;~]$</span>
         </UiButton>
       </NuxtLink>
       <div class="nav-items">
