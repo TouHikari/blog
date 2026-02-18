@@ -13,7 +13,7 @@
 </template>
 
 <script lang="ts" setup>
-const { recentArticles } = await useBlog()
+const { recentArticles } = useBlog()
 </script>
 
 <style lang="scss" scoped>
