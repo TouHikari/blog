@@ -1,7 +1,7 @@
 import type { Article } from '~/types'
 
-export const useBlog = async () => {
-  const { data: articles, refresh, status } = await useAsyncData('blog-articles', async () => {
+export const useBlog = () => {
+  const { data: articles, refresh, status } = useAsyncData('blog-articles', async () => {
     try {
       const allBlogArticles = await queryCollection('blog').all()
 
@@ -37,8 +37,11 @@ export const useBlog = async () => {
     if (!articles.value) return []
     const tagCounts: Record<string, number> = {}
     articles.value.forEach((article) => {
-      if (article.meta?.tags) {
-        article.meta.tags.forEach((tag: string) => {
+      // 检查 tags 字段可能存在的不同位置
+      const articleTags = article.tags || article.meta?.tags || []
+      
+      if (Array.isArray(articleTags)) {
+        articleTags.forEach((tag: string) => {
           tagCounts[tag] = (tagCounts[tag] || 0) + 1
         })
       }

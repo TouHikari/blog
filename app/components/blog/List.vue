@@ -1,5 +1,5 @@
 <script setup lang="ts">
-const { articles } = await useBlog()
+const { articles } = useBlog()
 </script>
 
 <template>
@@ -15,8 +15,8 @@ const { articles } = await useBlog()
         <ContentRenderer v-if="article.excerptContent" :value="article.excerptContent" />
         <p v-else>{{ article.description || '暂无摘要' }}</p>
       </div>
-      <div class="blog-tags" v-if="article.meta?.tags">
-        <UiTag v-for="tag in article.meta.tags" :key="tag">{{ tag }}</UiTag>
+      <div class="blog-tags" v-if="(article.tags || article.meta?.tags)">
+        <UiTag v-for="tag in (article.tags || article.meta?.tags)" :key="tag">{{ tag }}</UiTag>
       </div>
     </div>
   </div>

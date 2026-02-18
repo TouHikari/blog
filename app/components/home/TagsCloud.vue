@@ -15,7 +15,7 @@
 </template>
 
 <script lang="ts" setup>
-const { tags } = await useBlog()
+const { tags } = useBlog()
 </script>
 
 <style lang="scss" scoped>
