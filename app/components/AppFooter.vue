@@ -56,10 +56,12 @@ onUnmounted(() => {
 
 <template>
   <div class="footer-container">
-    <p class="greetings"><strong class="greetings-strong">----- W E L L C O M E -----</strong></p>
-    <div class="info">
-      <div class="copyright">© 2026 TouHikari's Blog</div>
-      <div class="driver">Powered by <a class="nust-link" href="https://nuxt.com/" target="_blank">Nuxt 4</a>.</div>
+    <p class="greetings">
+      <strong class="greetings-strong">----- W E L L C O M E -----</strong>
+    </p>
+    <div class="info" data-lock-container>
+      <div class="copyright" data-lock-marked>© 2026 TouHikari's Blog</div>
+      <div class="driver" data-lock-marked>Powered by <a class="nust-link" href="https://nuxt.com/" target="_blank">Nuxt 4</a>.</div>
     </div>
     <div id="site-runtime-display" :class="{ 'runtime-pulse': isPulse }">
       <p class="runtime-container">
@@ -69,7 +71,7 @@ onUnmounted(() => {
         </ClientOnly>
       </p>
     </div>
-    <div class="beian">
+    <div class="beian" data-lock-marked>
       <a class="beian-link" href="https://beian.miit.gov.cn/" target="_blank">陕ICP备2025068002号</a>
     </div>
   </div>
