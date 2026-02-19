@@ -148,18 +148,30 @@ code {
 }
 
 /* 列表样式 */
-li {
-  list-style-type: circle;
+ul,
+ol {
+  padding-left: 1.25em;
+}
 
+ul {
+  list-style-type: circle;
+}
+
+ol {
+  list-style-type: lower-greek;
+}
+
+li {
   &::marker {
-    color: $cyberpunk-light-yellow;
+    color: $cyberpunk-pink;
+    // font-family: $font-mono;
   }
 }
 
 /* 引用块样式 */
 blockquote {
   position: relative;
-  padding: 1px 40px;
+  padding: 1px 30px;
   margin-left: 0;
   margin-right: 0;
   background: linear-gradient(to right, rgba($color: $cyberpunk-yellow, $alpha: 0.2), rgba($color: $cyberpunk-pink, $alpha: 0.2) 2%, rgba($color: $cyberpunk-pink, $alpha: 0.15));
@@ -179,7 +191,7 @@ blockquote {
 /* 表格样式 */
 table {
   border-collapse: collapse;
-  margin: 1rem 0;
+  margin: 1rem auto;
   overflow: hidden;
 }
 
@@ -199,4 +211,46 @@ thead th {
 
 tbody tr:nth-child(even) {
   background-color: rgba($color: $white, $alpha: 0.02);
+}
+
+/* 文本样式 */
+del {
+  text-decoration: line-through;
+  color: gray;
+
+  &::before {
+    content: '[';
+    text-decoration: none;
+    display: inline-block;
+    font-family: $font-mono;
+  }
+
+  &::after {
+    content: '](deleted)';
+    text-decoration: none;
+    display: inline-block;
+    font-family: $font-mono;
+  }
+}
+
+u {
+  text-decoration: none;
+
+  background-image: linear-gradient($cyberpunk-pink, $cyberpunk-pink);
+  background-repeat: no-repeat;
+  background-size: 100% 1px;
+  background-position: 0 100%;
+
+  box-shadow: inset 0 -8px 6px -4px rgba($cyberpunk-pink, 0.4);
+
+  transition: box-shadow 0.1s ease;
+  
+  &:hover {
+    box-shadow: inset 0 -8px 6px -4px rgba($cyberpunk-pink, 0.8);
+  }
+}
+
+mark {
+  background-color: $cyberpunk-blue;
+  color: $cyberpunk-light-yellow;
 }
