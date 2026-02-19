@@ -39,7 +39,7 @@ export default defineNuxtPlugin((nuxtApp) => {
           height: 2px;
           background-color: rgba(0, 255, 255, 0.8); /* Match border color usually */
           opacity: 1;
-          transition: opacity 0.2s;
+          transition: opacity 0.1s;
         }
 
         .mouse-follower.snapped {
@@ -178,9 +178,11 @@ export default defineNuxtPlugin((nuxtApp) => {
           if (isTargetChanged || !follower.classList.contains("snapped")) {
             follower.style.transition =
               "all 0.2s cubic-bezier(0.25, 0.8, 0.25, 1)";
+            applyCustomStyles(targetElement);
+            elevateElement(targetElement);
           } else {
             follower.style.transition =
-              "width 0.1s, height 0.1s, border-radius 0.1s, top 0s, left 0s";
+              "width 0.1s, height 0.1s, border-radius 0.1s, top 0s, left 0s, background 0.1s, border 0.1s";
           }
 
           currentActiveTarget = targetElement;
@@ -195,9 +197,13 @@ export default defineNuxtPlugin((nuxtApp) => {
             follower.classList.add("snapped");
           }
         } else {
+          if (currentActiveTarget !== null) {
+            applyCustomStyles(null);
+            elevateElement(null);
+          }
           currentActiveTarget = null;
           follower.style.transition =
-            "width 0.1s, height 0.1s, border-radius 0.1s, transform 0.1s, top 0.05s, left 0.05s";
+            "width 0.1s, height 0.1s, border-radius 0.1s, transform 0.1s, top 0.05s, left 0.05s, background 0.1s, border 0.1s";
 
           follower.style.width = "20px";
           follower.style.height = "20px";
@@ -224,11 +230,6 @@ export default defineNuxtPlugin((nuxtApp) => {
         const container = getContainerElement(target);
 
         if (marked) {
-          if (lastSnappedElement !== marked) {
-            applyCustomStyles(marked);
-            elevateElement(marked);
-          }
-
           targetElement = marked;
           lastSnappedElement = marked;
           isSnapped = true;
@@ -240,11 +241,6 @@ export default defineNuxtPlugin((nuxtApp) => {
           targetElement = lastSnappedElement;
           isSnapped = true;
         } else {
-          if (lastSnappedElement) {
-            applyCustomStyles(null);
-            elevateElement(null);
-          }
-
           targetElement = null;
           isSnapped = false;
           lastSnappedElement = null;

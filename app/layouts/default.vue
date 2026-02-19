@@ -23,6 +23,7 @@
 
 <style scoped lang="scss">
 @use '~/styles/variables' as *;
+@use '~/styles/fonts' as *;
 
 .container {
   margin: 0 auto;
@@ -40,6 +41,42 @@
   margin-top: 1em;
   padding: 2em 0;
   background: linear-gradient(to bottom, $bg-tertiary, $bg-primary);
+  position: relative;
+
+  &::before {
+    content: "===Content begins here===";
+    position: absolute;
+    top: 1.5em;
+    left: 0;
+    width: 100%;
+    text-align: center;
+    font-family: $font-mono;
+    font-size: 14px;
+    color: gray;
+    transition: color 0.1s;
+    z-index: 10;
+    cursor: default;
+  }
+  
+  &::after {
+    content: "===Content ends here===";
+    position: absolute;
+    bottom: 1.5em;
+    left: 0;
+    width: 100%;
+    text-align: center;
+    font-family: $font-mono;
+    font-size: 14px;
+    color: gray;
+    transition: color 0.1s;
+    z-index: 10;
+    cursor: default;
+  }
+  
+  &:hover::before,
+  &:hover::after {
+    color: $cyberpunk-light-yellow;
+  }
 }
 
 .content-prose {
