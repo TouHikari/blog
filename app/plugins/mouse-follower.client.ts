@@ -17,7 +17,7 @@ export default defineNuxtPlugin((nuxtApp) => {
           position: fixed;
           pointer-events: none;
           z-index: 999; /* Higher than content, unless element is elevated */
-          background: var(--mf-bg, rgba(0, 255, 255, 0.2)); /* Default following color */
+          background: var(--mf-bg, rgba(0, 255, 255, 0.1)); /* Default following color */
           border: var(--mf-border, 1px solid rgba(0, 255, 255, 1));
           border-radius: 0; /* Square by default */
           transform: translate(-50%, -50%); /* Center on coordinate */
@@ -37,14 +37,14 @@ export default defineNuxtPlugin((nuxtApp) => {
           position: absolute;
           width: 2px;
           height: 2px;
-          background-color: rgba(0, 255, 255, 1); /* Match border color usually */
+          background-color: rgba(0, 255, 255, 0.8); /* Match border color usually */
           opacity: 1;
           transition: opacity 0.2s;
         }
 
         .mouse-follower.snapped {
-          background: var(--mf-bg-snapped, rgba(0, 255, 255, 0.2));
-          border: var(--mf-border-snapped, 1px solid rgba(0, 255, 255, 0.8));
+          background: var(--mf-bg-snapped, rgba(0, 255, 255, 0.1));
+          border: var(--mf-border-snapped, 1px solid rgba(0, 255, 255, 0.4));
           transform: translate(0, 0); /* Reset centering to match element rect */
           z-index: 0; /* Drop below elevated content when snapped */
         }
@@ -75,12 +75,31 @@ export default defineNuxtPlugin((nuxtApp) => {
         ".lock_wrap",
         ".lock_container",
         "[data-lock-container]",
+        "[data-lock-scan]",
       ];
 
       const getMarkedElement = (el: HTMLElement | null): HTMLElement | null => {
         if (!el) return null;
-        const selector = MARKED_SELECTORS.join(",");
-        return el.closest(selector) as HTMLElement | null;
+
+        const markSelector = MARKED_SELECTORS.join(",");
+        const directMark = el.closest(markSelector) as HTMLElement | null;
+        if (directMark) return directMark;
+
+        const scanContainer = el.closest(
+          "[data-lock-scan]",
+        ) as HTMLElement | null;
+        if (scanContainer) {
+          const scanSelector =
+            scanContainer.getAttribute("data-lock-scan") || "a, button";
+
+          const candidate = el.closest(scanSelector) as HTMLElement | null;
+
+          if (candidate && scanContainer.contains(candidate)) {
+            return candidate;
+          }
+        }
+
+        return null;
       };
 
       const getContainerElement = (
@@ -98,8 +117,19 @@ export default defineNuxtPlugin((nuxtApp) => {
           return;
         }
 
-        const bg = el.getAttribute("data-lock-bg");
-        const border = el.getAttribute("data-lock-border");
+        let bg = el.getAttribute("data-lock-bg");
+        let border = el.getAttribute("data-lock-border");
+
+        if (!bg || !border) {
+          const scanContainer = el.closest(
+            "[data-lock-scan]",
+          ) as HTMLElement | null;
+          if (scanContainer) {
+            if (!bg) bg = scanContainer.getAttribute("data-lock-bg");
+            if (!border)
+              border = scanContainer.getAttribute("data-lock-border");
+          }
+        }
 
         if (bg) {
           follower.style.setProperty("--mf-bg-snapped", bg);

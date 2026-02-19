@@ -68,9 +68,52 @@
 <!-- 容器结束：鼠标移出此处，光标收回 -->
 ```
 
-### 3.3 自定义样式配置 (Custom Styles)
+### 3.3 自动扫描 (Auto Scanning)
 
-你可以通过 data 属性为特定标记元素配置光标吸附时的颜色和边框。
+对于动态生成的内容（如 `ContentRenderer` 渲染的 Markdown），手动为每个元素添加标记可能很麻烦。
+可以使用 `data-lock-scan` 属性，让插件自动识别容器内的特定子元素。
+
+- **Attribute**: `data-lock-scan="selector"`
+- **Default**: 如果留空，默认为 `"a, button"`。
+
+**示例：**
+
+```html
+<!-- 自动将内部所有的 <a> 和 <button> 视为标记元素 -->
+<div
+  class="article-content"
+  data-lock-scan
+>
+  <p>Some text with <a href="#">link</a>.</p>
+</div>
+
+<!-- 自动将内部所有的 <code> 块视为标记元素 -->
+<div
+  class="code-blocks"
+  data-lock-scan="code"
+>
+  <pre><code>...</code></pre>
+</div>
+```
+
+**样式继承：**
+可以直接在 `data-lock-scan` 容器上定义 `data-lock-bg` 和 `data-lock-border`，所有被扫描到的子元素都会自动继承这些样式。
+
+```html
+<!-- 容器内的所有链接都会变成红色光标 -->
+<div
+  data-lock-scan="a"
+  data-lock-bg="rgba(255,0,0,0.2)"
+  data-lock-border="1px solid red"
+>
+  <a href="#">Link 1</a>
+  <a href="#">Link 2</a>
+</div>
+```
+
+### 3.4 自定义样式配置 (Custom Styles)
+
+可以通过 data 属性为特定标记元素配置光标吸附时的颜色和边框。
 
 **可用属性：**
 
@@ -99,7 +142,7 @@
 </button>
 ```
 
-### 3.4 元素层级与遮挡 (Z-Index Strategy)
+### 3.5 元素层级与遮挡 (Z-Index Strategy)
 
 为了确保光标背景块位于**页面背景之上**但**内容之下**，插件采用了动态层级策略：
 
