@@ -4,18 +4,27 @@ const { articles } = useBlog()
 
 <template>
   <div class="blog-list">
-    <div v-for="article in articles" :key="article.path" class="blog-item">
-      <div class="blog-header">
+    <div v-for="article in articles" :key="article.path" class="blog-item" data-lock-container>
+      <div class="blog-header" data-lock-marked>
         <h3 class="blog-title">
           <NuxtLink :to="article.path">{{ article.title }}</NuxtLink>
         </h3>
         <div class="blog-date">post @ {{ article.date }}</div>
       </div>
-      <div class="blog-excerpt">
+      <div
+        class="blog-excerpt"
+        data-lock-scan="p, h1, h2, h3, h4, h5, h6, li"
+        data-lock-bg="#FF408020"
+        data-lock-border="1px solid #FF408040"
+      >
         <ContentRenderer v-if="article.excerptContent" :value="article.excerptContent" />
         <p v-else>{{ article.description || '暂无摘要' }}</p>
       </div>
-      <div class="blog-tags" v-if="(article.tags || article.meta?.tags)">
+      <div class="blog-tags" v-if="(article.tags || article.meta?.tags)"
+        data-lock-marked
+        data-lock-bg="#FF408020"
+        data-lock-border="1px solid #FF408040"
+      >
         <UiTag v-for="tag in (article.tags || article.meta?.tags)" :key="tag">{{ tag }}</UiTag>
       </div>
     </div>
@@ -70,7 +79,7 @@ const { articles } = useBlog()
   display: flex;
   flex-direction: row;
   justify-content: flex-end;
-  margin-top: 1em;
+  padding: 5px;
   gap: 5px;
   flex-wrap: wrap;
 }
