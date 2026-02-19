@@ -12,20 +12,44 @@ export default defineNuxtPlugin((nuxtApp) => {
     .mouse-follower {
       position: fixed;
       pointer-events: none;
-      z-index: 9999;
-      background: var(--mf-bg, rgba(100, 255, 218, 0.1)); /* Default following color */
-      border: var(--mf-border, 1px solid rgba(100, 255, 218, 0.3));
-      border-radius: 50%;
+      z-index: 999; /* Higher than content, unless element is elevated */
+      background: var(--mf-bg, rgba(0, 255, 255, 0.2)); /* Default following color */
+      border: var(--mf-border, 1px solid rgba(0, 255, 255, 1));
+      border-radius: 0; /* Square by default */
       transform: translate(-50%, -50%); /* Center on coordinate */
       /* Transition is handled dynamically in JS */
       box-sizing: border-box;
       will-change: top, left, width, height, transform, border-radius;
+      
+      /* Center dot implementation */
+      display: flex;
+      align-items: center;
+      justify-content: center;
     }
+    
+    /* The center dot */
+    .mouse-follower::after {
+      content: '';
+      position: absolute;
+      width: 2px;
+      height: 2px;
+      background-color: rgba(0, 255, 255, 1); /* Match border color usually */
+      opacity: 1;
+      transition: opacity 0.2s;
+    }
+
     .mouse-follower.snapped {
-      background: var(--mf-bg-snapped, rgba(100, 255, 218, 0.2));
-      border: var(--mf-border-snapped, 1px solid rgba(100, 255, 218, 0.8));
+      background: var(--mf-bg-snapped, rgba(0, 255, 255, 0.2));
+      border: var(--mf-border-snapped, 1px solid rgba(0, 255, 255, 0.8));
       transform: translate(0, 0); /* Reset centering to match element rect */
+      z-index: 0; /* Drop below elevated content when snapped */
     }
+    
+    /* Hide dot when snapped */
+    .mouse-follower.snapped::after {
+      opacity: 0;
+    }
+    
     .mouse-follower.hidden {
       opacity: 0;
       transition: opacity 0.1s;
@@ -49,17 +73,12 @@ export default defineNuxtPlugin((nuxtApp) => {
       "[data-lock-container]",
     ];
 
-    // 1. 寻找被标记的元素 (Find Marked Element)
     const getMarkedElement = (el: HTMLElement | null): HTMLElement | null => {
       if (!el) return null;
-
-      // 使用 closest 向上查找，这样鼠标悬停在子元素上也能触发父级标记
-      // Use closest to find the nearest marked ancestor
       const selector = MARKED_SELECTORS.join(",");
       return el.closest(selector) as HTMLElement | null;
     };
 
-    // 2. 寻找动画生效的父元素 (Find Animation Container)
     const getContainerElement = (
       el: HTMLElement | null,
     ): HTMLElement | null => {
@@ -68,7 +87,6 @@ export default defineNuxtPlugin((nuxtApp) => {
       return el.closest(selector) as HTMLElement | null;
     };
 
-    // 3. 应用自定义样式 (Apply Custom Styles)
     const applyCustomStyles = (el: HTMLElement | null) => {
       if (!el) {
         follower.style.removeProperty("--mf-bg-snapped");
@@ -76,8 +94,6 @@ export default defineNuxtPlugin((nuxtApp) => {
         return;
       }
 
-      // 优先读取 data-lock-bg 和 data-lock-border
-      // Prioritize data-lock-bg and data-lock-border
       const bg = el.getAttribute("data-lock-bg");
       const border = el.getAttribute("data-lock-border");
 
@@ -94,12 +110,35 @@ export default defineNuxtPlugin((nuxtApp) => {
       }
     };
 
+    const elevateElement = (el: HTMLElement | null) => {
+      if (lastSnappedElement && lastSnappedElement !== el) {
+        lastSnappedElement.style.removeProperty("z-index");
+
+        if (lastSnappedElement.style.position === "relative") {
+          lastSnappedElement.style.removeProperty("position");
+        }
+      }
+
+      if (el) {
+        if (
+          el.style.position !== "absolute" &&
+          el.style.position !== "fixed" &&
+          el.style.position !== "relative"
+        ) {
+          const computed = window.getComputedStyle(el);
+          if (computed.position === "static") {
+            el.style.position = "relative";
+          }
+        }
+        el.style.zIndex = "1";
+      }
+    };
+
     const update = () => {
       if (isSnapped && targetElement) {
         const rect = targetElement.getBoundingClientRect();
         const computed = window.getComputedStyle(targetElement);
 
-        // When snapped, we want smooth transition for all properties
         follower.style.transition = "all 0.1s cubic-bezier(0.25, 0.8, 0.25, 1)";
 
         follower.style.width = `${rect.width}px`;
@@ -112,8 +151,6 @@ export default defineNuxtPlugin((nuxtApp) => {
           follower.classList.add("snapped");
         }
       } else {
-        // When following mouse, we want instant/fast movement for position,
-        // but smooth transition for shape restoration
         follower.style.transition =
           "width 0.1s, height 0.1s, border-radius 0.1s, transform 0.1s, top 0.05s, left 0.05s";
 
@@ -121,7 +158,7 @@ export default defineNuxtPlugin((nuxtApp) => {
         follower.style.height = "20px";
         follower.style.top = `${mouseY}px`;
         follower.style.left = `${mouseX}px`;
-        follower.style.borderRadius = "50%";
+        follower.style.borderRadius = "0";
 
         if (follower.classList.contains("snapped")) {
           follower.classList.remove("snapped");
@@ -141,10 +178,9 @@ export default defineNuxtPlugin((nuxtApp) => {
       const container = getContainerElement(target);
 
       if (marked) {
-        // 悬停在标记元素上 (Hovering marked element)
-        // 检查是否切换了新的标记元素 (Check if target changed)
         if (lastSnappedElement !== marked) {
           applyCustomStyles(marked);
+          elevateElement(marked);
         }
 
         targetElement = marked;
@@ -155,22 +191,20 @@ export default defineNuxtPlugin((nuxtApp) => {
         lastSnappedElement &&
         container.contains(lastSnappedElement)
       ) {
-        // 悬停在容器内，且之前已经吸附过某个元素，保持吸附在那个元素上 (Inside container, keep snapped to last element)
-        // 只有当鼠标移出容器时，才视为移开 (Only retract when leaving container)
         targetElement = lastSnappedElement;
         isSnapped = true;
       } else {
-        // 既不在标记元素上，也不在包含上次吸附元素的容器内 -> 恢复跟随鼠标 (Reset to follow mouse)
+        if (lastSnappedElement) {
+          applyCustomStyles(null);
+          elevateElement(null);
+        }
+
         targetElement = null;
         isSnapped = false;
-        // 清除记录，因为已经完全离开了相关区域
         lastSnappedElement = null;
-        // 清除自定义样式 (Clear custom styles)
-        applyCustomStyles(null);
       }
     });
 
-    // Handle mouse leaving the window
     document.addEventListener("mouseleave", () => {
       follower.classList.add("hidden");
     });
