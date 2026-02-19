@@ -1,8 +1,8 @@
 <template>
-  <div class="recent-posts-container">
-    <h4>最近文章</h4>
+  <div class="recent-posts-container" data-lock-container>
+    <h4 data-lock-marked>最近文章</h4>
     <ul class="recent-list">
-      <li v-for="article in recentArticles" :key="article.path" class="recent-item">
+      <li v-for="article in recentArticles" :key="article.path" class="recent-item" data-lock-marked>
         <NuxtLink :to="article.path" class="recent-link">
           {{ article.title }}
         </NuxtLink>
@@ -21,7 +21,7 @@ const { recentArticles } = useBlog()
 @use '~/styles/fonts' as *;
 
 .recent-posts-container {
-  margin: 2rem auto;
+  padding: 1rem 0;
   font-family: $font-pixel;
   user-select: none;
 }
@@ -29,6 +29,7 @@ const { recentArticles } = useBlog()
 h4 {
   border-bottom: 1px dashed;
   padding-bottom: 0.5em;
+  margin-top: 0;
   margin-bottom: 1em;
 }
 
@@ -36,10 +37,12 @@ h4 {
   list-style: none;
   padding: 0;
   margin: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 1em;
 }
 
 .recent-item {
-  margin-bottom: 1em;
   display: flex;
   flex-direction: column;
 }
