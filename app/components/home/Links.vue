@@ -1,17 +1,17 @@
 <template>
-  <div class="links-container">
-    <h4>相关链接</h4>
+  <div class="links-container" data-lock-container>
+    <h4 data-lock-marked>相关链接</h4>
     <ul class="links-list">
-      <li>
+      <li data-lock-marked>
         <a class="links" href="https://github.com/TouHikari" target="_blank">GitHub - TouHikari</a>
       </li>
-      <li>
+      <li data-lock-marked>
         <a class="links" href="https://space.bilibili.com/123365221" target="_blank">bilibili | 哔哩哔哩 - HvnZ_Null</a>
       </li>
-      <li>
+      <li data-lock-marked>
         <a class="links" href="https://music.163.com/#/user/home?id=436110203" target="_blank">NetEase Music | 网易云音乐 - HvnZ_Null</a>
       </li>
-      <li>
+      <li data-lock-marked>
         <a class="links" href="https://notes.owo.cab/" target="_blank">拾星絮语 | 『笔记小站』</a>
       </li>
     </ul>
@@ -29,17 +29,21 @@
 h4 {
   border-bottom: 1px dashed;
   padding-bottom: 0.5em;
+  margin-top: 0;
   margin-bottom: 1em;
 }
 
 .links-container {
-  margin: 2rem auto;
+  padding: 1rem 0;
   user-select: none;
 }
 
 .links-list {
+  display: flex;
+  flex-direction: column;
+  margin: 0;
   list-style-type: circle;
-  padding-left: 20px;
+  padding: 0 0 0 20px;
 }
 
 .links-list li {
