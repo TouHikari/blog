@@ -68,6 +68,37 @@
 <!-- 容器结束：鼠标移出此处，光标收回 -->
 ```
 
+### 3.3 自定义样式配置 (Custom Styles)
+
+你可以通过 data 属性为特定标记元素配置光标吸附时的颜色和边框。
+
+**可用属性：**
+
+- `data-lock-bg`: 定义吸附时的背景色（CSS 值）。
+- `data-lock-border`: 定义吸附时的边框（CSS 值）。
+
+**示例：**
+
+```html
+<!-- 红色半透明光标 -->
+<div
+  class="lock_marked"
+  data-lock-bg="rgba(255, 0, 0, 0.2)"
+  data-lock-border="1px solid red"
+>
+  Warning Block
+</div>
+
+<!-- 无背景，仅有粗边框 -->
+<button
+  class="lock_marked"
+  data-lock-bg="transparent"
+  data-lock-border="2px solid yellow"
+>
+  Outline Button
+</button>
+```
+
 ## 4. 技术细节
 
 ### DOM 结构
@@ -97,7 +128,7 @@
 - [x] 基础鼠标跟随
 - [x] 元素吸附逻辑
 - [x] 容器锁定逻辑
-- [ ] **自定义样式配置**：支持为不同标记元素配置不同的光标颜色/样式（如 `data-lock-style="red"`）。
+- [x] 自定义样式配置
 
 ---
 

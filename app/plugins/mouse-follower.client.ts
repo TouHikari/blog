@@ -13,8 +13,8 @@ export default defineNuxtPlugin((nuxtApp) => {
       position: fixed;
       pointer-events: none;
       z-index: 9999;
-      background: rgba(100, 255, 218, 0.1); /* Default following color */
-      border: 1px solid rgba(100, 255, 218, 0.3);
+      background: var(--mf-bg, rgba(100, 255, 218, 0.1)); /* Default following color */
+      border: var(--mf-border, 1px solid rgba(100, 255, 218, 0.3));
       border-radius: 50%;
       transform: translate(-50%, -50%); /* Center on coordinate */
       /* Transition is handled dynamically in JS */
@@ -22,13 +22,13 @@ export default defineNuxtPlugin((nuxtApp) => {
       will-change: top, left, width, height, transform, border-radius;
     }
     .mouse-follower.snapped {
-      background: rgba(100, 255, 218, 0.2);
-      border: 1px solid rgba(100, 255, 218, 0.8);
+      background: var(--mf-bg-snapped, rgba(100, 255, 218, 0.2));
+      border: var(--mf-border-snapped, 1px solid rgba(100, 255, 218, 0.8));
       transform: translate(0, 0); /* Reset centering to match element rect */
     }
     .mouse-follower.hidden {
       opacity: 0;
-      transition: opacity 0.3s;
+      transition: opacity 0.1s;
     }
   `;
     document.head.appendChild(style);
@@ -68,13 +68,39 @@ export default defineNuxtPlugin((nuxtApp) => {
       return el.closest(selector) as HTMLElement | null;
     };
 
+    // 3. 应用自定义样式 (Apply Custom Styles)
+    const applyCustomStyles = (el: HTMLElement | null) => {
+      if (!el) {
+        follower.style.removeProperty("--mf-bg-snapped");
+        follower.style.removeProperty("--mf-border-snapped");
+        return;
+      }
+
+      // 优先读取 data-lock-bg 和 data-lock-border
+      // Prioritize data-lock-bg and data-lock-border
+      const bg = el.getAttribute("data-lock-bg");
+      const border = el.getAttribute("data-lock-border");
+
+      if (bg) {
+        follower.style.setProperty("--mf-bg-snapped", bg);
+      } else {
+        follower.style.removeProperty("--mf-bg-snapped");
+      }
+
+      if (border) {
+        follower.style.setProperty("--mf-border-snapped", border);
+      } else {
+        follower.style.removeProperty("--mf-border-snapped");
+      }
+    };
+
     const update = () => {
       if (isSnapped && targetElement) {
         const rect = targetElement.getBoundingClientRect();
         const computed = window.getComputedStyle(targetElement);
 
         // When snapped, we want smooth transition for all properties
-        follower.style.transition = "all 0.3s cubic-bezier(0.25, 0.8, 0.25, 1)";
+        follower.style.transition = "all 0.1s cubic-bezier(0.25, 0.8, 0.25, 1)";
 
         follower.style.width = `${rect.width}px`;
         follower.style.height = `${rect.height}px`;
@@ -89,7 +115,7 @@ export default defineNuxtPlugin((nuxtApp) => {
         // When following mouse, we want instant/fast movement for position,
         // but smooth transition for shape restoration
         follower.style.transition =
-          "width 0.3s, height 0.3s, border-radius 0.3s, transform 0.3s, top 0.05s, left 0.05s";
+          "width 0.1s, height 0.1s, border-radius 0.1s, transform 0.1s, top 0.05s, left 0.05s";
 
         follower.style.width = "20px";
         follower.style.height = "20px";
@@ -116,6 +142,11 @@ export default defineNuxtPlugin((nuxtApp) => {
 
       if (marked) {
         // 悬停在标记元素上 (Hovering marked element)
+        // 检查是否切换了新的标记元素 (Check if target changed)
+        if (lastSnappedElement !== marked) {
+          applyCustomStyles(marked);
+        }
+
         targetElement = marked;
         lastSnappedElement = marked;
         isSnapped = true;
@@ -134,6 +165,8 @@ export default defineNuxtPlugin((nuxtApp) => {
         isSnapped = false;
         // 清除记录，因为已经完全离开了相关区域
         lastSnappedElement = null;
+        // 清除自定义样式 (Clear custom styles)
+        applyCustomStyles(null);
       }
     });
 
