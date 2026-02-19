@@ -38,13 +38,34 @@ export default defineNuxtPlugin((nuxtApp) => {
     let targetElement: HTMLElement | null = null;
     let isSnapped = false;
 
-    const isMarked = (el: HTMLElement) => {
-      // Basic filtering: ignore body, html
-      if (!el) return false;
-      if (el === document.body || el === document.documentElement) return false;
-      if (el.classList.contains("mouse-follower")) return false;
-      if (el.id === "__nuxt") return false;
-      return true;
+    const MARKED_SELECTORS = [
+      ".lock_marked",
+      "#lock_marked",
+      "[data-lock-marked]",
+    ];
+    const CONTAINER_SELECTORS = [
+      ".lock_wrap",
+      ".lock_container",
+      "[data-lock-container]",
+    ];
+
+    // 1. 寻找被标记的元素 (Find Marked Element)
+    const getMarkedElement = (el: HTMLElement | null): HTMLElement | null => {
+      if (!el) return null;
+
+      // 使用 closest 向上查找，这样鼠标悬停在子元素上也能触发父级标记
+      // Use closest to find the nearest marked ancestor
+      const selector = MARKED_SELECTORS.join(",");
+      return el.closest(selector) as HTMLElement | null;
+    };
+
+    // 2. 寻找动画生效的父元素 (Find Animation Container)
+    const getContainerElement = (
+      el: HTMLElement | null,
+    ): HTMLElement | null => {
+      if (!el) return null;
+      const selector = CONTAINER_SELECTORS.join(",");
+      return el.closest(selector) as HTMLElement | null;
     };
 
     const update = () => {
@@ -83,19 +104,36 @@ export default defineNuxtPlugin((nuxtApp) => {
       requestAnimationFrame(update);
     };
 
+    let lastSnappedElement: HTMLElement | null = null;
+
     window.addEventListener("mousemove", (e) => {
       mouseX = e.clientX;
       mouseY = e.clientY;
 
       const target = e.target as HTMLElement;
-      // We check if the target is marked.
-      // Since "act on all elements" is requested, we treat any non-root element as marked.
-      if (isMarked(target)) {
-        targetElement = target;
+      const marked = getMarkedElement(target);
+      const container = getContainerElement(target);
+
+      if (marked) {
+        // 悬停在标记元素上 (Hovering marked element)
+        targetElement = marked;
+        lastSnappedElement = marked;
+        isSnapped = true;
+      } else if (
+        container &&
+        lastSnappedElement &&
+        container.contains(lastSnappedElement)
+      ) {
+        // 悬停在容器内，且之前已经吸附过某个元素，保持吸附在那个元素上 (Inside container, keep snapped to last element)
+        // 只有当鼠标移出容器时，才视为移开 (Only retract when leaving container)
+        targetElement = lastSnappedElement;
         isSnapped = true;
       } else {
+        // 既不在标记元素上，也不在包含上次吸附元素的容器内 -> 恢复跟随鼠标 (Reset to follow mouse)
         targetElement = null;
         isSnapped = false;
+        // 清除记录，因为已经完全离开了相关区域
+        lastSnappedElement = null;
       }
     });
 
