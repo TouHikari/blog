@@ -1,7 +1,12 @@
 <template>
   <div class="tags-cloud-container" data-lock-container>
     <h4 data-lock-marked>标签云</h4>
-    <div class="tags-cloud" data-lock-marked>
+    <div
+      class="tags-cloud"
+      data-lock-marked
+      data-lock-bg="#FF408020"
+      data-lock-border="1px solid #FF408040"
+    >
       <UiTag 
         v-for="tag in tags" 
         :key="tag.name" 
