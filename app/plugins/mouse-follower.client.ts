@@ -173,8 +173,17 @@ export default defineNuxtPlugin((nuxtApp) => {
           const rect = targetElement.getBoundingClientRect();
           const computed = window.getComputedStyle(targetElement);
 
-          follower.style.transition =
-            "all 0.1s cubic-bezier(0.25, 0.8, 0.25, 1)";
+          const isTargetChanged = currentActiveTarget !== targetElement;
+
+          if (isTargetChanged || !follower.classList.contains("snapped")) {
+            follower.style.transition =
+              "all 0.2s cubic-bezier(0.25, 0.8, 0.25, 1)";
+          } else {
+            follower.style.transition =
+              "width 0.1s, height 0.1s, border-radius 0.1s, top 0s, left 0s";
+          }
+
+          currentActiveTarget = targetElement;
 
           follower.style.width = `${rect.width}px`;
           follower.style.height = `${rect.height}px`;
@@ -186,6 +195,7 @@ export default defineNuxtPlugin((nuxtApp) => {
             follower.classList.add("snapped");
           }
         } else {
+          currentActiveTarget = null;
           follower.style.transition =
             "width 0.1s, height 0.1s, border-radius 0.1s, transform 0.1s, top 0.05s, left 0.05s";
 
@@ -203,6 +213,7 @@ export default defineNuxtPlugin((nuxtApp) => {
       };
 
       let lastSnappedElement: HTMLElement | null = null;
+      let currentActiveTarget: HTMLElement | null = null;
 
       window.addEventListener("mousemove", (e) => {
         mouseX = e.clientX;
