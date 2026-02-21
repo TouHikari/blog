@@ -16,7 +16,7 @@ export default defineNuxtPlugin((nuxtApp) => {
         .mouse-follower {
           position: fixed;
           pointer-events: none;
-          z-index: 999; /* Higher than content, unless element is elevated */
+          z-index: 1999; /* Higher than content, unless element is elevated */
           background: var(--mf-bg, rgba(0, 255, 255, 0.1)); /* Default following color */
           border: var(--mf-border, 1px solid rgba(0, 255, 255, 1));
           border-radius: 0; /* Square by default */
