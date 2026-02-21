@@ -112,11 +112,30 @@ code {
   }
 
   pre {
+    position: relative;
     max-width: 100%;
     overflow-x: auto;
-    background: linear-gradient(to right, rgba($color: $cyberpunk-pink, $alpha: 0.2), rgba($color: $cyberpunk-pink, $alpha: 0.15));
+    background: linear-gradient(to right, rgba($cyberpunk-pink, 0.2), rgba($cyberpunk-pink, 0.2) 2%, rgba($cyberpunk-pink, 0.02));
     border-radius: 2px;
     padding: 15px;
+    
+    &::after {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      opacity: 0;
+      z-index: 1;
+      pointer-events: none;
+      background: linear-gradient(to right, rgba($cyberpunk-pink, 0), rgba($cyberpunk-pink, 0) 2%, rgba($cyberpunk-pink, 0.08));
+      transition: opacity 0.3s;
+    }
+
+    &:hover::after {
+      opacity: 1;
+    }
 
     &::-webkit-scrollbar {
       height: 1px;
@@ -174,8 +193,8 @@ blockquote {
   padding: 1px 30px;
   margin-left: 0;
   margin-right: 0;
-  background: linear-gradient(to right, rgba($color: $cyberpunk-yellow, $alpha: 0.2), rgba($color: $cyberpunk-pink, $alpha: 0.2) 2%, rgba($color: $cyberpunk-pink, $alpha: 0.15));
-
+  background: linear-gradient(to right, rgba($cyberpunk-yellow, 0.2), rgba($cyberpunk-pink, 0.2) 2%, rgba($cyberpunk-pink, 0.02));
+  
   &::before {
     content: '';
     position: absolute;
@@ -185,6 +204,25 @@ blockquote {
     width: 3px;
     background-color: $cyberpunk-light-yellow;
     box-shadow: 0 0 10px $cyberpunk-light-yellow;
+    z-index: 3;
+  }
+  
+  &::after {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    opacity: 0;
+    z-index: 1;
+    pointer-events: none;
+    background: linear-gradient(to right, rgba($cyberpunk-yellow, 0.1), rgba($cyberpunk-pink, 0) 2%, rgba($cyberpunk-pink, 0.08));
+    transition: opacity 0.3s;
+  }
+
+  &:hover::after {
+    opacity: 1;
   }
 }
 
@@ -199,7 +237,7 @@ th,
 td {
   padding: 0.75rem 1rem;
   text-align: left;
-  border: 1px solid rgba($color: $cyberpunk-pink, $alpha: 0.2);
+  border: 1px solid rgba($cyberpunk-pink, 0.2);
 }
 
 thead th {
@@ -210,7 +248,7 @@ thead th {
 }
 
 tbody tr:nth-child(even) {
-  background-color: rgba($color: $white, $alpha: 0.02);
+  background-color: rgba($white, 0.02);
 }
 
 /* 图片样式 */
@@ -255,7 +293,7 @@ u {
   box-shadow: inset 0 -8px 6px -4px rgba($cyberpunk-pink, 0.4);
 
   transition: box-shadow 0.1s ease;
-  
+
   &:hover {
     box-shadow: inset 0 -8px 6px -4px rgba($cyberpunk-pink, 0.8);
   }

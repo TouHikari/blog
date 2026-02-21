@@ -40,7 +40,7 @@ toc: true
 
 在实际 Vue 3 项目中，确实可以使用包管理器安装 Luckysheet：
 
-::: tabs#shell
+::tabs#shell
 
 @tab npm
 
@@ -60,7 +60,7 @@ pnpm install luckysheet
 yarn install luckysheet
 ```
 
-:::
+::
 
 通过这样安装的 Luckysheet 不会自己带上其他几个比较重要的模块，最重要的是 `luckyexcel`，以及可选的 `exceljs` 和 `file-saver`。其中：
 
@@ -70,7 +70,7 @@ yarn install luckysheet
 
 于是又去安装这三个依赖包：
 
-::: tabs#shell
+::tabs#shell
 
 @tab npm
 
@@ -96,13 +96,11 @@ yarn install exceljs
 yarn install file-saver
 ```
 
-:::
+::
 
-::: warning
-
+::warning
 具体是否使用这些模块取决于你的实际项目，上文仅为建议。正常情况下，这三个模块的使用与否不会对 Luckysheet 的可用性高低造成影响。
-
-:::
+::
 
 现在模块的安装看上去已经完成了。按理来说，现在只需要在 Vue 中导入这些模块，然后使用即可。
 
@@ -173,7 +171,8 @@ Uncaught ReferenceError: $ is not defined       luckysheet.js?v=24cc6d54:9624
 
 既然 `$` 没有被定义，那么我们就引入定义了这个 `$` 的依赖。
 
-::: note **按道理，到这里就应该好好看看官方文档了**。但是如果你直接在必应上搜索 `$ is not defined`，大概率会有许多文章提到 [`jQuery`](https://api.jquery.com/)。
+::alert{type="info"}
+**按道理，到这里就应该好好看看官方文档了**。但是如果你直接在必应上搜索 `$ is not defined`，大概率会有许多文章提到 [`jQuery`](https://api.jquery.com/)。
 
 **如果你认为真的是因为缺少 `jQuery` 的依赖，那么你就又成功走进另一个坑了！:D**
 
@@ -186,8 +185,7 @@ Uncaught ReferenceError: $ is not defined       luckysheet.js?v=24cc6d54:9624
 并且这还是在刚刚那个 vue 组件中 `import luckysheet from 'luckysheet'` 后才会出现的，若是把这行删除，网页会出现一连串的错误，无法正常渲染。按照官方的推荐做法，明显是不需要 import 这个模块的。说白了，这样做是为了解决由于引入了不完整的 Luckysheet 模块而导致的问题，仍然没有真的解决问题。
 
 这里不再提 `jQuery` 那些弯弯绕绕的了，和它没关系，或者说作为使用者不需要考虑它和 Luckysheet 之间的关系。**要解决 `$ is not defined` 的问题，只需引入 Luckysheet 自己的依赖即可**。
-
-:::
+::
 
 #### 通过 CDN 引入
 
@@ -243,7 +241,8 @@ Uncaught ReferenceError: $ is not defined       luckysheet.js?v=24cc6d54:9624
 </html>
 ```
 
-::: tip 为什么要在 `index.html` 中引入这两个 js 文件，而不是在 `main.js/ts` 中？
+::alert{type="info"}
+为什么要在 `index.html` 中引入这两个 js 文件，而不是在 `main.js/ts` 中？
 
 1. **非模块化依赖（全局暴露的 JS 库）**
 
@@ -252,8 +251,7 @@ Uncaught ReferenceError: $ is not defined       luckysheet.js?v=24cc6d54:9624
 2. **明确依赖加载顺序**
 
    某些 JS 依赖，如 Luckysheet 必须在 Vue 应用初始化之前被加载和执行，通过 `<script>` 标签能保证它们先于 `main.js/ts` 执行，保证全局依赖已就绪再进行框架初始化。
-
-:::
+::
 
 既然是在 `index.html` 中提前引入的 js 依赖，那么实际创建 Luckysheet 的 Vue 组件中就不需要再 `import luckysheet from 'luckysheet'` 了：
 
@@ -478,11 +476,12 @@ $(function () {
 
 **现在，就成功在页面上创建一个 Luckysheet 对象了。**
 
-::: important 如果要使用 TypeScript
+::alert{type="warning"}
+如果要使用 TypeScript
 
 **请注意 TypeScript 的类型检查**。可通过新建 `src/types/luckysheet.d.ts` 声明文件并在 `tsconfig.json` 中添加对 `"include"` 键的 `"src/**/*.d.ts"` 值，来声明 js 文件中的类型，以跳过 TypeScript 的类型检查。
 
-:::
+::
 
 ## 结语
 
