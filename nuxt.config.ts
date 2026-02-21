@@ -84,7 +84,8 @@ export default defineNuxtConfig({
         },
         { name: "author", content: "TouHikari" },
         { name: "robots", content: "index, follow" },
-        { name: "theme-color", content: "#00FFD5" },
+        { name: "theme-color", content: "#000000" },
+        { name: "apple-mobile-web-app-status-bar-style", content: "black-translucent" },
 
         // Open Graph
         { property: "og:type", content: "website" },
