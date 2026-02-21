@@ -29,13 +29,17 @@ defineProps<{
   text-transform: uppercase;
   letter-spacing: 0.5px;
   position: relative;
+  z-index: 1;
   overflow: hidden;
-  transition: all 0.05s ease;
+  transition: color 0.05s ease, background 0.05s ease, border-color 0.05s ease, box-shadow 0.05s ease;
   cursor: default;
   user-select: none;
   white-space: nowrap;
   text-decoration: none;
   display: inline-block; // Ensure transform works well
+  transform: translateZ(0); // 强制 GPU 加速，避免图层切换
+  -webkit-font-smoothing: antialiased; // 统一抗锯齿模式
+  -moz-osx-font-smoothing: grayscale;
 
   &.link {
     cursor: pointer;
@@ -46,11 +50,9 @@ defineProps<{
     inset 0 0 8px rgba(255, 64, 128, 0.2),
     0 0 4px rgba(255, 64, 128, 0.3);
 
-  transition: all 0.1s ease;
-
   // 悬停效果
   &:hover {
-    z-index: 1;
+    z-index: 2;
 
     // 扫描线效果
     &::before {
