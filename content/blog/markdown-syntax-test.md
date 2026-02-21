@@ -268,6 +268,12 @@ Ruby 标签 (注音):
 
 ::alert{type="info"}
 这是一条信息提示。
+  :::alert{type="info"}
+  这是一条信息提示。
+    ::::alert{type="info"}
+    这是一条信息提示。
+    ::::
+  :::
 ::
 
 ::alert{type="warning"}
