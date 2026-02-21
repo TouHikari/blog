@@ -17,7 +17,6 @@ useSeoMeta({
 
 <template>
   <div
-    data-lock-scan="p, h1, h2, h3, h4, h5, h6, li"
     data-lock-bg="#FF408020"
     data-lock-border="1px solid #FF408040"
   >
