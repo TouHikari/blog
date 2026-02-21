@@ -213,6 +213,13 @@ tbody tr:nth-child(even) {
   background-color: rgba($color: $white, $alpha: 0.02);
 }
 
+/* 图片样式 */
+img {
+  display: block;
+  margin: 0 auto;
+  max-width: 100%;
+}
+
 /* 文本样式 */
 del {
   text-decoration: line-through;
