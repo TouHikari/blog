@@ -47,5 +47,11 @@ h4 {
   gap: 0.8em;
   align-items: center;
   padding: 1em 0;
+  // 强制 GPU 加速，避免父容器层级变化影响子元素
+  transform: translateZ(0);
+  z-index: 1;
+  position: relative;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
 }
 </style>

@@ -82,6 +82,12 @@ const { articles } = useBlog()
   padding: 5px;
   gap: 5px;
   flex-wrap: wrap;
+  // 强制 GPU 加速，避免父容器层级变化影响子元素
+  transform: translateZ(0);
+  z-index: 1;
+  position: relative;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
 }
 
 @media (max-width: #{$breakpoint-mobile - 1px}) {
