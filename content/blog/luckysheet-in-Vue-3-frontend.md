@@ -8,7 +8,7 @@ tags:
   - luckysheet
   - javaScript
   - typeScript
-  - scss
+  - css
 toc: true
 ---
 
