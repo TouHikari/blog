@@ -220,6 +220,8 @@ del {
 
   &::before {
     content: '[';
+    font-feature-settings: "liga" 1, "calt" 1;
+    font-style: italic;
     text-decoration: none;
     display: inline-block;
     font-family: $font-mono;
@@ -227,6 +229,8 @@ del {
 
   &::after {
     content: '](deleted)';
+    font-feature-settings: "liga" 1, "calt" 1;
+    font-style: italic;
     text-decoration: none;
     display: inline-block;
     font-family: $font-mono;
