@@ -55,15 +55,23 @@ onUnmounted(() => {
 </script>
 
 <template>
-  <div class="footer-container">
-    <p class="greetings">
+  <div class="footer-container" data-lock-container>
+    <p class="greetings"
+      data-lock-marked
+      data-lock-bg="#FFBE0B0D"
+      data-lock-border="transparent"
+    >
       <strong class="greetings-strong">----- W E L L C O M E -----</strong>
     </p>
-    <div class="info" data-lock-container>
+    <div class="info">
       <div class="copyright" data-lock-marked>© 2026 TouHikari's Blog</div>
       <div class="driver" data-lock-marked>Powered by <a class="nust-link" href="https://nuxt.com/" target="_blank">Nuxt 4</a>.</div>
     </div>
-    <div id="site-runtime-display" :class="{ 'runtime-pulse': isPulse }">
+    <div id="site-runtime-display" :class="{ 'runtime-pulse': isPulse }"
+      data-lock-marked
+      data-lock-bg="#FF408020"
+      data-lock-border="transparent"
+    >
       <p class="runtime-container">
         <span class="runtime-prefix">TouHikari [STATUS:ONLINE] LOGGED_IN_FOR: </span>
         <ClientOnly>

@@ -44,7 +44,8 @@
   position: relative;
 
   &::before {
-    content: "===Content begins here===";
+    content: "=== Content begins here ===";
+    font-feature-settings: "liga" 1, "calt" 1;
     position: absolute;
     top: 1.5em;
     left: 0;
@@ -59,7 +60,8 @@
   }
   
   &::after {
-    content: "===Content ends here===";
+    content: "=== Content ends here ===";
+    font-feature-settings: "liga" 1, "calt" 1;
     position: absolute;
     bottom: 1.5em;
     left: 0;
