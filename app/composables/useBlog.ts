@@ -9,7 +9,12 @@ export const useBlog = () => {
         return []
       }
 
-      const processedArticles = allBlogArticles.map((article: any) => {
+      const visibleArticles = allBlogArticles.filter((article: any) => {
+        if (import.meta.dev) return true
+        return article.draft !== true
+      })
+
+      const processedArticles = visibleArticles.map((article: any) => {
         let excerptContent = null
         if (article.meta && article.meta.excerpt) {
           excerptContent = article.meta.excerpt
