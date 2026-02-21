@@ -15,6 +15,7 @@ export default defineContentConfig({
       source: 'blog/*.md',
       schema: z.object({
         date: z.string().or(z.date()),
+        draft: z.boolean().optional(),
         tags: z.array(z.string()).optional(),
         toc: z.boolean().optional()
       }).passthrough()

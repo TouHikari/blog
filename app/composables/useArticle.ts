@@ -14,6 +14,10 @@ export const useArticle = () => {
       const targetPath = `/blog/${slug}`
       const result = all.find(a => a.path === targetPath || a.path === `/${slug}` || a.path.endsWith(slug))
       
+      if (result && !import.meta.dev && result.draft === true) {
+        return null
+      }
+
       return result as Article | null
     } catch (e) {
       console.error('Error in queryCollection:', e)
