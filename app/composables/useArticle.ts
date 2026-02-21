@@ -1,6 +1,6 @@
 import type { Article } from '~/types'
 
-export const useArticle = () => {
+export const useArticle = (collection: 'blog' | 'test' = 'blog') => {
   const route = useRoute()
   const { setTitle } = usePageTitle()
 
@@ -9,9 +9,9 @@ export const useArticle = () => {
     if (!slug) return null
     
     try {
-      const all = await queryCollection('blog').all()
+      const all = await queryCollection(collection).all()
       
-      const targetPath = `/blog/${slug}`
+      const targetPath = `/${collection}/${slug}`
       const result = all.find(a => a.path === targetPath || a.path === `/${slug}` || a.path.endsWith(slug))
       
       if (result && !import.meta.dev && result.draft === true) {

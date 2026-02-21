@@ -19,6 +19,15 @@ export default defineContentConfig({
         tags: z.array(z.string()).optional(),
         toc: z.boolean().optional()
       }).passthrough()
+    }),
+    test: defineCollection({
+      type: 'page',
+      source: 'test/*.md',
+      schema: z.object({
+        date: z.string().or(z.date()).optional(),
+        draft: z.boolean().optional(),
+        toc: z.boolean().optional()
+      }).passthrough()
     })
   }
 })
