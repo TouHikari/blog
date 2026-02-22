@@ -55,7 +55,7 @@ withDefaults(defineProps<Props>(), {
     width: 100%;
     height: 100%;
     opacity: 0;
-    transition: opacity 0.3s;
+    transition: opacity 0.1s;
     z-index: 1;
     pointer-events: none;
   }

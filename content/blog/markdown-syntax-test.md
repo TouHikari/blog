@@ -95,6 +95,8 @@ _斜体文本 (Italic)_ 或 _斜体文本_
 > - 列表项
 > - **粗体**
 > - `代码`
+> 
+> [链接](https://www.example.com)
 
 ---
 
@@ -274,14 +276,20 @@ Ruby 标签 (注音):
     这是一条信息提示。
     ::::
   :::
+  
+[链接](https://www.example.com)
 ::
 
 ::alert{type="warning"}
 这是一条警告信息。
+
+[链接](https://www.example.com)
 ::
 
 ::alert{type="danger"}
 这是一条危险警告。
+
+[链接](https://www.example.com)
 ::
 
 ### 自定义容器 (如果是 GitHub 风格)
