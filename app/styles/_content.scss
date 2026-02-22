@@ -116,7 +116,6 @@ code {
     max-width: 100%;
     overflow-x: auto;
     background: linear-gradient(to right, rgba($cyberpunk-pink, 0.2), rgba($cyberpunk-pink, 0.2) 2%, rgba($cyberpunk-pink, 0.08));
-    border-radius: 2px;
     padding: 15px;
 
     &::after {
@@ -137,20 +136,32 @@ code {
       opacity: 1;
     }
 
+    // scrollbar-width: 1px;
+    // scrollbar-color: $cyberpunk-cyan $bg-secondary;
+
     &::-webkit-scrollbar {
       height: 1px;
     }
 
     &::-webkit-scrollbar-track {
-      background: $bg-secondary;
+      background: rgba($cyberpunk-background-pink, 0.1);
     }
 
     &::-webkit-scrollbar-thumb {
       background: $cyberpunk-cyan;
     }
 
-    &::-webkit-scrollbar-thumb:hover {
-      background: $cyberpunk-pink;
+    @media (pointer: fine) {
+      // scrollbar-width: 6px;
+      // scrollbar-color: $cyberpunk-cyan $bg-secondary;
+
+      &::-webkit-scrollbar {
+        height: 6px;
+      }
+
+      &::-webkit-scrollbar-thumb:hover {
+        background: $cyberpunk-pink;
+      }
     }
   }
 }
