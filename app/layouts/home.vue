@@ -39,6 +39,7 @@
 <style scoped lang="scss">
 @use '~/styles/variables' as *;
 @use '~/styles/fonts' as *;
+@use 'sass:string';
 
 .container {
   margin: 0 auto;
@@ -78,7 +79,7 @@
   justify-content: space-between;
   margin-top: 1em;
   padding: 2em 0;
-  background: linear-gradient(to bottom, $bg-tertiary, $bg-primary unquote("min(100%, 100vh)"));
+  background: linear-gradient(to bottom, $bg-tertiary, $bg-primary string.unquote("min(100%, 100vh)"));
 
   .page-content {
     flex: 5;
