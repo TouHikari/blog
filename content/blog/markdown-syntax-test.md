@@ -292,20 +292,6 @@ Ruby 标签 (注音):
 [链接](https://www.example.com)
 ::
 
-### 自定义容器 (如果是 GitHub 风格)
-
-> [!NOTE]
-> 这是一个 Note 提示块。
-
-> [!TIP]
-> 这是一个 Tip 提示块。
-
-> [!WARNING]
-> 这是一个 Warning 提示块。
-
-> [!IMPORTANT]
-> 这是一个 Important 提示块。
-
 ### Tabs 组件 (选项卡)
 
 **1. 基础用法 (Basic Usage)**
