@@ -1,9 +1,5 @@
 <script setup lang="ts">
 import ContentAlert from '~/components/content/Alert.vue'
-import type { Article } from '~/types'
-
-const route = useRoute()
-const { data: article } = useNuxtData<Article>(route.path)
 </script>
 
 <template>
@@ -16,10 +12,6 @@ const { data: article } = useNuxtData<Article>(route.path)
       <div class="content-container">
         <div class="inner">
           <div class="content-prose">
-            <ContentAlert type="warning" v-if="article?.description">
-              {{ article.description }}
-            </ContentAlert>
-            <br v-if="article?.description">
             <slot />
             <br>
             <ContentAlert type="info">
