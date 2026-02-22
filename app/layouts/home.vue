@@ -78,7 +78,7 @@
   justify-content: space-between;
   margin-top: 1em;
   padding: 2em 0;
-  background: linear-gradient(to bottom, $bg-tertiary, $bg-primary);
+  background: linear-gradient(to bottom, $bg-tertiary, $bg-primary unquote("min(100%, 100vh)"));
 
   .page-content {
     flex: 5;
