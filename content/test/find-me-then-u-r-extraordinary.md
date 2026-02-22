@@ -94,6 +94,8 @@ _斜体文本 (Italic)_ 或 _斜体文本_
 > - 列表项
 > - **粗体**
 > - `代码`
+>
+> [链接](https://www.example.com)
 
 ---
 
@@ -267,52 +269,26 @@ Ruby 标签 (注音):
 
 ::alert{type="info"}
 这是一条信息提示。
-  :::alert{type="info"}
-  这是一条信息提示。
-    ::::alert{type="info"}
-    这是一条信息提示。
-    ::::
-  :::
+:::alert{type="info"}
+这是一条信息提示。
+::::alert{type="info"}
+这是一条信息提示。
+::::
+:::
 
-[普通链接 (Google)](https://www.google.com)
-
-[带标题的链接](https://www.google.com "Google 首页")
-
-[引用式链接][ref-link]
+[链接](https://www.example.com)
 ::
 
 ::alert{type="warning"}
 这是一条警告信息。
 
-[普通链接 (Google)](https://www.google.com)
-
-[带标题的链接](https://www.google.com "Google 首页")
-
-[引用式链接][ref-link]
+[链接](https://www.example.com)
 ::
 
 ::alert{type="danger"}
 这是一条危险警告。
 
-**粗体文本 (Bold)** 或 **粗体文本**
-
-_斜体文本 (Italic)_ 或 _斜体文本_
-
-**_粗斜体文本 (Bold Italic)_**
-
-~~删除线文本 (Strikethrough)~~
-
-`行内代码 (Inline Code)`
-
-<u>下划线 (Underline)</u> (HTML 标签)
-
-<mark>高亮文本 (Highlight)</mark> (HTML 标签)
-
-[普通链接 (Google)](https://www.google.com)
-
-[带标题的链接](https://www.google.com "Google 首页")
-
-[引用式链接][ref-link]
+[链接](https://www.example.com)
 ::
 
 ### 自定义容器 (如果是 GitHub 风格)
@@ -328,6 +304,94 @@ _斜体文本 (Italic)_ 或 _斜体文本_
 
 > [!IMPORTANT]
 > 这是一个 Important 提示块。
+
+### Tabs 组件 (选项卡)
+
+**1. 基础用法 (Basic Usage)**
+
+::tabs
+#TabA
+这是 Tab A 的内容，包含普通文本。
+
+#TabB
+这是 Tab B 的内容。
+::
+
+**2. 包管理器代码块 (Package Managers)**
+
+::tabs
+#npm
+
+```bash
+npm install @nuxt/content
+```
+
+#pnpm
+
+```bash
+pnpm add @nuxt/content
+```
+
+#yarn
+
+```bash
+yarn add @nuxt/content
+```
+
+::
+
+**3. 复杂 Markdown 内容 (Complex Content)**
+
+::tabs
+#RichText
+**加粗文本** 和 _斜体_。
+
+- 列表项 1
+- 列表项 2
+
+> 这是一个引用块。
+
+#Image
+![占位图](https://placehold.co/600x200/000000/FFF?text=Markdown+Image)
+::
+
+**4. 嵌套组件 (Nested Components)**
+
+::tabs
+#Info
+:::alert{type="info"}
+这是一个嵌套在 Tab 中的 **Info** Alert。
+:::
+
+#Warning
+:::alert{type="warning"}
+这是一个嵌套在 Tab 中的 **Warning** Alert。
+:::
+
+#Danger
+:::alert{type="danger"}
+这是一个嵌套在 Tab 中的 **Danger** Alert。
+:::
+::
+
+**5. 长标题与溢出测试 (Long Titles)**
+
+::tabs
+#Short短
+短标题
+
+#MediumLengthTitle中等
+中等长度标题
+
+#VeryLongTitleExampleForTestingOverflowBehaviorInTheTabsHeaderArea非常长
+这是一个非常长的标题用于测试溢出处理，看看是否会出现滚动条。
+
+#Tab4
+Tab 4
+
+#Tab5
+Tab 5
+::
 
 ---
 
