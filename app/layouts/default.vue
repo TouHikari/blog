@@ -1,5 +1,5 @@
 <script setup lang="ts">
-
+import ContentAlert from '~/components/content/Alert.vue'
 </script>
 
 <template>
@@ -13,6 +13,10 @@
         <div class="inner">
           <div class="content-prose">
             <slot />
+            <br>
+            <ContentAlert type="info">
+              本文采用 <a href="https://creativecommons.org/licenses/by-sa/4.0/" target="_blank">知识共享署名-相同方式共享 4.0 国际许可协议</a> 进行许可。
+            </ContentAlert>
           </div>
         </div>
       </div>
