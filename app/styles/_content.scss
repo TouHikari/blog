@@ -118,7 +118,7 @@ code {
     background: linear-gradient(to right, rgba($cyberpunk-pink, 0.2), rgba($cyberpunk-pink, 0.2) 2%, rgba($cyberpunk-pink, 0.02));
     border-radius: 2px;
     padding: 15px;
-    
+
     &::after {
       content: '';
       position: absolute;
@@ -188,13 +188,82 @@ li {
 }
 
 /* 引用块样式 */
+// blockquote {
+//   position: relative;
+//   margin: 1em 0;
+//   padding: 1px 30px;
+//   border-left: 2px solid rgba($cyberpunk-cyan, 0.3);
+//   background: linear-gradient(to right, rgba($cyberpunk-cyan, 0.2), rgba($cyberpunk-blue, 0.1) 2%, rgba($cyberpunk-blue, 0.02));
+//   backdrop-filter: blur(4px);
+//   transition: border-left-color 0.1s ease;
+
+//   &::before {
+//     content: '';
+//     position: absolute;
+//     top: 0;
+//     bottom: 0;
+//     left: -2px;
+//     width: 3px;
+//     z-index: 2;
+
+//     background-image: linear-gradient($cyberpunk-cyan, $cyberpunk-cyan), linear-gradient($cyberpunk-cyan, $cyberpunk-cyan);
+//     background-size: 100% 8px;
+//     background-position: top left, bottom left;
+//     background-repeat: no-repeat;
+
+//     filter: drop-shadow(0 0 5px $cyberpunk-cyan);
+
+//     transition: background-size 0.4s cubic-bezier(0.22, 1, 0.36, 1), filter 0.1s ease;
+//   }
+
+//   &::after {
+//     content: '';
+//     position: absolute;
+//     inset: 0;
+//     z-index: 1;
+//     pointer-events: none;
+
+//     background: linear-gradient(to right, rgba($cyberpunk-cyan, 0.1), rgba($cyberpunk-blue, 0) 2%, rgba($cyberpunk-blue, 0.08));
+
+//     opacity: 0;
+//     transition: opacity 0.1s ease;
+//   }
+
+//   &:hover {
+//     border-left-color: rgba($cyberpunk-cyan, 0.8);
+
+//     &::after {
+//       opacity: 1;
+//     }
+
+//     &::before {
+//       background-size: 100% 51%;
+//       filter: drop-shadow(0 0 8px $cyberpunk-cyan);
+//     }
+//   }
+
+//   p {
+//     margin: 1em 0;
+//     line-height: 1.6;
+//     position: relative;
+//     z-index: 2;
+
+//     &:not(:last-child) {
+//       margin-bottom: 0.8rem;
+//     }
+//   }
+// }
 blockquote {
   position: relative;
   padding: 1px 30px;
-  margin-left: 0;
-  margin-right: 0;
-  background: linear-gradient(to right, rgba($cyberpunk-yellow, 0.2), rgba($cyberpunk-pink, 0.2) 2%, rgba($cyberpunk-pink, 0.02));
-  
+  margin: 1em 0;
+  background-color: rgba($bg-secondary, 0.8);
+  backdrop-filter: blur(4px);
+  overflow: hidden;
+
+  border-color: $cyberpunk-blue;
+  background: linear-gradient(to right, rgba($cyberpunk-blue, 0.2), rgba($cyberpunk-blue, 0.1) 2%, rgba($cyberpunk-blue, 0.02));
+
   &::before {
     content: '';
     position: absolute;
@@ -202,11 +271,11 @@ blockquote {
     top: 0;
     bottom: 0;
     width: 3px;
-    background-color: $cyberpunk-light-yellow;
-    box-shadow: 0 0 10px $cyberpunk-light-yellow;
+    background-color: $cyberpunk-cyan;
+    box-shadow: 0 0 10px $cyberpunk-cyan;
     z-index: 3;
   }
-  
+
   &::after {
     content: '';
     position: absolute;
@@ -215,14 +284,33 @@ blockquote {
     width: 100%;
     height: 100%;
     opacity: 0;
+    transition: opacity 0.1s;
     z-index: 1;
     pointer-events: none;
-    background: linear-gradient(to right, rgba($cyberpunk-yellow, 0.1), rgba($cyberpunk-pink, 0) 2%, rgba($cyberpunk-pink, 0.08));
-    transition: opacity 0.3s;
+    background: linear-gradient(to right, rgba($cyberpunk-blue, 0.1), rgba($cyberpunk-blue, 0) 2%, rgba($cyberpunk-blue, 0.08));
   }
 
   &:hover::after {
     opacity: 1;
+  }
+
+  & p,
+  .main-content & p {
+    position: relative;
+    z-index: 2;
+    margin: 1em 0;
+    font-size: 0.95rem;
+    line-height: 1.6;
+    color: $text-primary;
+  }
+
+  & a,
+  .main-content & a {
+    color: $cyberpunk-blue;
+
+    &:hover {
+      color: $cyberpunk-pink;
+    }
   }
 }
 
