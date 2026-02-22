@@ -1,4 +1,5 @@
 <script setup lang="ts">
+import ContentAlert from '~/components/content/Alert.vue'
 const { article, status, error } = await useArticle()
 </script>
 
@@ -9,7 +10,13 @@ const { article, status, error } = await useArticle()
   >
     <div v-if="status === 'pending'" class="status">Loading...</div>
     <div v-else-if="error || !article" class="status">Article not found!</div>
-    <ContentRenderer v-else :value="article" />
+    <div v-else>
+      <ContentAlert type="warning" v-if="article.description">
+        {{ article.description }}
+      </ContentAlert>
+      <br v-if="article.description">
+      <ContentRenderer :value="article" />
+    </div>
   </div>
 </template>
 
