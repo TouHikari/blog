@@ -84,6 +84,7 @@ withDefaults(defineProps<Props>(), {
     float: left;
     margin-right: 0.5em;
     margin-top: 0.1em;
+    margin-bottom: -0.5em;
     font-size: 1.4rem;
     line-height: 1;
     height: 1em;
