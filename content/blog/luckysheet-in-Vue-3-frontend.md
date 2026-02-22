@@ -40,26 +40,21 @@ toc: true
 
 在实际 Vue 3 项目中，确实可以使用包管理器安装 Luckysheet：
 
-::tabs#shell
-
-@tab npm
-
+::tabs
+#npm
 ```bash
 npm install luckysheet
 ```
 
-@tab pnpm
-
+#pnpm
 ```bash
 pnpm install luckysheet
 ```
 
-@tab yarn
-
+#yarn
 ```bash
 yarn install luckysheet
 ```
-
 ::
 
 通过这样安装的 Luckysheet 不会自己带上其他几个比较重要的模块，最重要的是 `luckyexcel`，以及可选的 `exceljs` 和 `file-saver`。其中：
@@ -70,35 +65,30 @@ yarn install luckysheet
 
 于是又去安装这三个依赖包：
 
-::tabs#shell
-
-@tab npm
-
+::tabs
+#npm
 ```bash
 npm install luckyexcel
 npm install exceljs
 npm install file-saver
 ```
 
-@tab pnpm
-
+#pnpm
 ```bash
 pnpm install luckyexcel
 pnpm install exceljs
 pnpm install file-saver
 ```
 
-@tab yarn
-
+#yarn
 ```bash
 yarn install luckyexcel
 yarn install exceljs
 yarn install file-saver
 ```
-
 ::
 
-::warning
+::alert{type="warning"}
 具体是否使用这些模块取决于你的实际项目，上文仅为建议。正常情况下，这三个模块的使用与否不会对 Luckysheet 的可用性高低造成影响。
 ::
 

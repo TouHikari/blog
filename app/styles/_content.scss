@@ -71,8 +71,7 @@ code {
 /* 内联代码样式 */
 .main-content :not(pre)>code {
   margin: 0;
-  padding: 3px 6px;
-  border-radius: 2px;
+  padding: 1px 6px;
   color: $cyberpunk-pink;
   background: rgba(142, 150, 170, .14);
   font-size: .875em;
@@ -115,7 +114,7 @@ code {
     position: relative;
     max-width: 100%;
     overflow-x: auto;
-    background: linear-gradient(to right, rgba($cyberpunk-pink, 0.2), rgba($cyberpunk-pink, 0.2) 2%, rgba($cyberpunk-pink, 0.02));
+    background: linear-gradient(to right, rgba($cyberpunk-pink, 0.2), rgba($cyberpunk-pink, 0.2) 2%, rgba($cyberpunk-pink, 0.08));
     border-radius: 2px;
     padding: 15px;
 
@@ -129,8 +128,8 @@ code {
       opacity: 0;
       z-index: 1;
       pointer-events: none;
-      background: linear-gradient(to right, rgba($cyberpunk-pink, 0), rgba($cyberpunk-pink, 0) 2%, rgba($cyberpunk-pink, 0.08));
-      transition: opacity 0.3s;
+      background: linear-gradient(to right, rgba($cyberpunk-pink, 0), rgba($cyberpunk-pink, 0) 2%, rgba($cyberpunk-pink, 0.12));
+      transition: opacity 0.1s;
     }
 
     &:hover::after {
