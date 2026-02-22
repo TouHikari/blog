@@ -1,31 +1,30 @@
 <template>
   <div class="alert-box" :class="[`type-${type}`]">
-    <div class="alert-icon-container">
+    <div class="alert-content">
       <div class="alert-icon">
         <Icon v-if="type === 'info'" name="mdi:information-outline" />
         <Icon v-else-if="type === 'warning'" name="mdi:alert-outline" />
         <Icon v-else-if="type === 'danger'" name="mdi:alert-octagon-outline" />
         <Icon v-else name="mdi:information-outline" />
       </div>
-      <div class="alert-content">
-        <slot />
-      </div>
+      <slot />
     </div>
   </div>
 </template>
 
 <script setup lang="ts">
 interface Props {
-  type?: 'info' | 'warning' | 'danger'
+  type?: 'info' | 'warning' | 'danger';
 }
 
 withDefaults(defineProps<Props>(), {
   type: 'info'
-})
+});
 </script>
 
 <style scoped lang="scss">
 @use "@/styles/variables" as *;
+@use "@/styles/terminal-glow" as *;
 
 .alert-box {
   position: relative;
@@ -63,36 +62,33 @@ withDefaults(defineProps<Props>(), {
   &:hover::after {
     opacity: 1;
   }
-  
-  .alert-icon-container {
-    position: relative;
-    z-index: 2;
-    display: flex;
-    gap: 1em;
-    margin: 1em 0;
-  }
-
-  .alert-icon {
-    flex-shrink: 0;
-    display: flex;
-    align-items: flex-start;
-    padding-top: 2px;
-    font-size: 1.4rem;
-  }
 
   .alert-content {
-    flex: 1;
+    position: relative;
+    z-index: 2;
+    margin: 1em 0;
     font-size: 0.95rem;
     line-height: 1.6;
     color: $text-primary;
 
     :deep(p) {
       margin: 0;
-      
+
       &:not(:last-child) {
         margin-bottom: 1em;
       }
     }
+  }
+
+  .alert-icon {
+    float: left;
+    margin-right: 0.5em;
+    margin-top: 0.1em;
+    font-size: 1.4rem;
+    line-height: 1;
+    height: 1em;
+    filter: drop-shadow(0 0 5px currentColor);
+    @include flicker-effect();
   }
 
   // Info
@@ -106,14 +102,13 @@ withDefaults(defineProps<Props>(), {
 
     .alert-icon {
       color: $cyberpunk-blue;
-      text-shadow: 0 0 5px rgba($cyberpunk-blue, 0.5);
     }
-    
+
     .alert-content :deep(a) {
-      color: $cyberpunk-blue;
+      color: $cyberpunk-blue !important;
 
       &:hover {
-        color: $cyberpunk-pink;
+        color: $cyberpunk-pink !important;
       }
     }
 
@@ -127,21 +122,20 @@ withDefaults(defineProps<Props>(), {
   &.type-warning {
     border-color: $cyberpunk-yellow;
     background: linear-gradient(to right, rgba($cyberpunk-yellow, 0.2), rgba($cyberpunk-yellow, 0.1) 2%, rgba($cyberpunk-yellow, 0.02));
-    
+
     &::after {
       background: linear-gradient(to right, rgba($cyberpunk-yellow, 0.1), rgba($cyberpunk-yellow, 0) 2%, rgba($cyberpunk-yellow, 0.08));
     }
 
     .alert-icon {
       color: $cyberpunk-yellow;
-      text-shadow: 0 0 5px rgba($cyberpunk-yellow, 0.5);
     }
 
     .alert-content :deep(a) {
-      color: $cyberpunk-yellow;
-      
+      color: $cyberpunk-yellow !important;
+
       &:hover {
-        color: $cyberpunk-pink;
+        color: $cyberpunk-pink !important;
       }
     }
 
@@ -155,21 +149,20 @@ withDefaults(defineProps<Props>(), {
   &.type-danger {
     border-color: $cyberpunk-pink;
     background: linear-gradient(to right, rgba($cyberpunk-pink, 0.2), rgba($cyberpunk-pink, 0.1) 2%, rgba($cyberpunk-pink, 0.02));
-    
+
     &::after {
       background: linear-gradient(to right, rgba($cyberpunk-pink, 0.1), rgba($cyberpunk-pink, 0) 2%, rgba($cyberpunk-pink, 0.08));
     }
 
     .alert-icon {
       color: $cyberpunk-pink;
-      text-shadow: 0 0 5px rgba($cyberpunk-pink, 0.5);
     }
 
     .alert-content :deep(a) {
-      color: $cyberpunk-pink;
-      
+      color: $cyberpunk-pink !important;
+
       &:hover {
-        color: $cyberpunk-pink;
+        color: $cyberpunk-pink !important;
       }
     }
 

@@ -145,9 +145,8 @@ onMounted(() => {
   font-size: 1.2em;
   min-width: 1.2em;
   margin-top: 6px;
-  @include glow-text-sm-1();
   animation: heartbeat 2s ease-in-out infinite;
-  filter: drop-shadow(0 0 8px rgba(255, 71, 87, 0.6));
+  filter: drop-shadow(0 0 5px #ff0000);
   transition: all 0.3s ease;
 }
 
