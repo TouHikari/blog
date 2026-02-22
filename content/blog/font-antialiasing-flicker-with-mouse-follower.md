@@ -11,6 +11,7 @@ tags:
   - rendering
   - debug
 toc: true
+description: ''
 ---
 
 在为我的博客引入 [mouse-follower](https://github.com/Cuberto/mouse-follower) 效果后，整个站点的交互感确实提升了不少，这种赛博朋克风的吸附动效（Snap Effect）正是我想要的。
