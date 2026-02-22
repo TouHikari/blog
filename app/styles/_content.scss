@@ -36,6 +36,7 @@ h6 {
 }
 
 strong {
+  font-weight: 550;
   @include glow-text-sm-1();
 }
 

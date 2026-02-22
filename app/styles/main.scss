@@ -44,6 +44,64 @@ a {
   }
 }
 
+input[type="checkbox"] {
+  appearance: none;
+  -webkit-appearance: none;
+  width: 1.1em;
+  height: 1.1em;
+  margin-right: 0.5em;
+  border: 1px solid $cyberpunk-blue;
+  background-color: $cyberpunk-background-blue;
+  backdrop-filter: blur(2px);
+  position: relative;
+  cursor: pointer;
+  vertical-align: text-bottom;
+  transition: all 0.1s;
+  box-shadow: 0 0 10px rgba($cyberpunk-cyan, 0.4), inset 0 0 5px rgba($cyberpunk-cyan, 0.1);
+
+  &:hover {
+    border-color: $cyberpunk-pink;
+    background-color: $cyberpunk-background-pink;
+    box-shadow: 0 0 10px rgba($cyberpunk-pink, 0.3), inset 0 0 5px rgba($cyberpunk-pink, 0.1);
+  }
+
+  &:checked {
+    background-color: $cyberpunk-background-yellow;
+    border-color: $cyberpunk-yellow;
+    box-shadow: 0 0 10px rgba($cyberpunk-yellow, 0.4), inset 0 0 5px rgba($cyberpunk-yellow, 0.1);
+
+    &:hover {
+      border-color: $cyberpunk-pink;
+      background-color: $cyberpunk-background-pink;
+      box-shadow: 0 0 10px rgba($cyberpunk-pink, 0.3), inset 0 0 5px rgba($cyberpunk-pink, 0.1);
+    }
+
+    &::after {
+      content: '';
+      position: absolute;
+      left: 35%;
+      top: 10%;
+      width: 25%;
+      height: 55%;
+      border: solid $cyberpunk-light-yellow;
+      border-width: 0 2px 2px 0;
+      transform: rotate(45deg);
+      // filter: drop-shadow(0 0 3px $cyberpunk-cyan);
+    }
+  }
+
+  &:disabled {
+    background-color: $cyberpunk-background-blue;
+    cursor: not-allowed;
+    opacity: 0.5;
+    box-shadow: none;
+
+    &:checked {
+      background-color: $cyberpunk-background-yellow;
+    }
+  }
+}
+
 .inner {
   display: flex;
   padding: 0;
