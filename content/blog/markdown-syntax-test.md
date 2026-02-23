@@ -423,7 +423,10 @@ function add(a, b) {
 export default {
   data() {
     return {
-      msg: 'Focused!' // [!code focus]
+      msg0: 'Focused!' // [!code focus]
+      nothing: 'hello'
+      msg1: 'Focused!' // [!code focus]
+      msg2: 'Focused!' // [!code focus]
     }
   }
 }
