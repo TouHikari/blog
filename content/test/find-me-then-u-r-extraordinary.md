@@ -186,6 +186,12 @@ This is a plain text block.
 No highlighting here.
 ```
 
+### 超长！
+
+```java
+public class MainApp extends Application { private SceneRouter router;  @Override public void start(Stage primaryStage) throws IOException { FontManager.loadFonts();  AssetSystem.getInstance().initialize();  router = new SceneRouter(primaryStage);  router.register("home", () -> new HomeView(router)); router.register("game", () -> new GameView(router)); router.register("gameover", () -> new GameOverView(router));  router.goTo("home"); primaryStage.setTitle("XT the Dungeoner"); primaryStage.setFullScreenExitHint(""); primaryStage.show(); }  @Override public void stop() throws Exception { AudioManager.getInstance().shutdown(); AssetSystem.getInstance().shutdown(); super.stop(); System.exit(0); }  public static void main(String[] args) { launch(args); } } 
+```
+
 ---
 
 ## 表格 (Tables)
@@ -392,6 +398,114 @@ Tab 5
 \`反引号\`
 
 \# 井号
+
+---
+
+## Shiki 装饰器测试 (Shiki Transformers)
+
+### 1. 差异对比 (Diff)
+
+使用 `// [!code ++]` 和 `// [!code --]` 标记。
+
+```ts
+function add(a, b) {
+  1// [!code --]
+  return a + b; // [!code ++]
+}
+```
+
+### 2. 聚焦 (Focus)
+
+使用 `// [!code focus]` 标记。
+
+```js
+export default {
+  data() {
+    return {
+      msg0: 'Focused!' // [!code focus]
+      nothing: 'hello'
+      msg1: 'Focused!' // [!code focus]
+      msg2: 'Focused!' // [!code focus]
+    }
+  }
+}
+```
+
+### 3. 高亮 (Highlight)
+
+#### 行高亮 (Line Highlight)
+
+使用 `// [!code highlight]` 标记。
+
+```ts
+// [!code highlight]
+const highlightedLine = 'This line is highlighted';
+const normalLine = 'This line is normal';
+// [!code highlight:3]
+const multiLine1 = 'Multiple lines';
+const multiLine2 = 'can be highlighted';
+const multiLine3 = 'at once';
+```
+
+也可以通过元数据指定行号 `{1,3-4}`：
+
+```ts {1,3-4}
+console.log('Line 1 highlighted');
+console.log('Line 2 normal');
+console.log('Line 3 highlighted');
+console.log('Line 4 highlighted');
+```
+
+### 4. 诊断状态 (Diagnostics)
+
+#### 错误 (Error)
+
+使用 `// [!code error]` 标记。
+
+```ts
+const a = 1;
+a = 2; // [!code error]
+```
+
+#### 警告 (Warning)
+
+使用 `// [!code warning]` 标记。
+
+```ts
+// [!code warning]
+console.warn('This is a warning');
+```
+
+### 5. 完整测试用例
+
+```ts
+import { defineComponent } from 'vue'
+
+export default defineComponent({
+  setup() {
+    // [!code highlight]
+    const count = ref(0) 
+    
+    // [!code --]
+    const oldFunction = () => {}
+    // [!code ++]
+    const newFunction = () => {
+      count.value++ // [!code focus]
+    }
+    
+    // [!code warning]
+    console.warn('Deprecation warning')
+    
+    // [!code error]
+    throw new Error('Something went wrong')
+
+    return {
+      count, // [!code word:count]
+      newFunction
+    }
+  }
+})
+```
 
 ---
 
