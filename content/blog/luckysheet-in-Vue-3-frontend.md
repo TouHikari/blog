@@ -62,20 +62,6 @@ yarn install luckysheet
 ```
 ::
 
-::alert{type="info"}
-通过这样安装的 Luckysheet 不会附带上其他几个比较重要的模块，最重要的是 `luckyexcel`，以及可选的 `exceljs` 和 `file-saver`。其中：
-
-- [luckyexcel](https://github.com/dream-num/Luckyexcel)：是一个适配 Luckysheet 的 excel 导入导出库，只支持 .xlsx 格式文件（不支持 .xls）。
-- [exceljs](https://github.com/exceljs/exceljs)：用于读取、操作并写入电子表格数据和样式到 xlsx 和 json 文件。
-- [file-saver](https://github.com/eligrey/FileSaver.js/)：用于在浏览器中实现文件的本地保存，支持将 Blob、File 等数据生成下载链接并触发保存操作，常用于导出数据或生成报表等前端场景。
-
-如果需要使用相关功能，可以考虑使用它们。
-
-::alert{type="warning"}
-具体是否使用这些模块取决于你的实际项目，上文仅为建议。正常情况下，这三个模块的使用与否不会对 Luckysheet 的可用性高低造成影响。
-::
-::
-
 现在模块的安装看上去已经完成了。按理来说，现在只需要在 Vue 中导入这些模块，然后使用即可。**但是事实并非如此**。
 
 ### 直接 import Luckysheet 并在 Vue 中使用它（非官方做法，会导致问题）
@@ -126,7 +112,7 @@ import LuckySheet from "./components/LuckySheet.vue";
 <style scoped></style>
 ```
 
-**然而进入网页，发现全部空白，什么都渲染不出来。这个思路看似没有问题，但是这样使用其实缺少了 Luckysheet 所需的依赖。**
+然而进入网页，发现**全部空白，什么都渲染不出来**。这个思路看似没有问题，但是这样**其实缺少了 Luckysheet 所需的依赖**。
 
 打开浏览器开发者工具 `F12`，查看 `控制台`/`console` 处的输出：
 
@@ -171,7 +157,7 @@ Uncaught ReferenceError: $ is not defined       luckysheet.js?v=24cc6d54:9624
 
 #### 通过 CDN 引入
 
-在项目根目录的 `index.html` 中的 `<head>` 标签内添加四个 `<link>` 标签（用于导入 CSS）和两个 `<script>` 标签（用于导入 JS），通过网络获取这六个文件。
+在项目根目录的 `index.html` 中的 `<head>` 标签内添加 4 个 `<link>` 标签（用于导入 CSS）和 2 个 `<script>` 标签（用于导入 JS），通过网络获取这 6 个文件。
 
 ```html title="index.html"
 <!DOCTYPE html>
@@ -219,7 +205,7 @@ Uncaught ReferenceError: $ is not defined       luckysheet.js?v=24cc6d54:9624
 
 可手动通过 CDN 获取文件，将其复制到项目目录，然后通过相对路径引入。
 
-在项目根目录的 `index.html` 中的 `<head>` 标签内添加四个 `<link>` 标签（用于导入 CSS）和两个 `<script>` 标签（用于导入 JS），通过本地引入这六个文件。
+在项目根目录的 `index.html` 中的 `<head>` 标签内添加 4 个 `<link>` 标签（用于导入 CSS）和 2 个 `<script>` 标签（用于导入 JS），通过本地引入这 6 个文件。
 
 ```html title="index.html"
 <!DOCTYPE html>
@@ -308,9 +294,23 @@ $(function () {
 
 这个问题就显得简单很多了，没有样式就说明样式没有被成功应用，没有图标就说明图标没有被成功导入。
 
-请再次仔细检查是否成功导入了 css 文件。只要确保在 `index.html` 中引入了 Luckysheet 的 css 文件，就可以正常渲染样式。
+请再次仔细检查是否成功导入并应用了 css 文件。只要确保在 `index.html` 中引入了 Luckysheet 的 css 文件，就可以正常渲染样式。
 
 **至此，项目就能成功地正常使用 Luckysheet 了。**
+
+::alert{type="info"}
+可以选择使用其他几个模块来扩展 Luckysheet 的功能，最重要的是 `luckyexcel`，以及可选的 `exceljs` 和 `file-saver`。其中：
+
+- [luckyexcel](https://github.com/dream-num/Luckyexcel)：是一个适配 Luckysheet 的 excel 导入导出库，只支持 .xlsx 格式文件（不支持 .xls）。
+- [exceljs](https://github.com/exceljs/exceljs)：用于读取、操作并写入电子表格数据和样式到 xlsx 和 json 文件。
+- [file-saver](https://github.com/eligrey/FileSaver.js/)：用于在浏览器中实现文件的本地保存，支持将 Blob、File 等数据生成下载链接并触发保存操作，常用于导出数据或生成报表等前端场景。
+
+如果需要使用相关功能，可以考虑使用它们。
+
+::alert{type="warning"}
+具体是否使用这些模块取决于你的实际项目，上文仅为建议。正常情况下，这三个模块的使用与否不会对 Luckysheet 的可用性高低造成影响。
+::
+::
 
 ## 结语
 
@@ -318,6 +318,6 @@ $(function () {
 
 可有些时候，开发者在解决实际问题时，可能并不想着去查阅文档。相反，他们很有可能会根据自己的经验去实操，想通过积攒的经验来解决问题。这种做法，若是能成功解决倒还好，但若是走错了路，就容易陷入问题接踵而至不能解决的困境。
 
-倒不是说不建议开发者和学习者去做实验、去搞研究，我要说的是这样的冒险精神固然可贵。可当你真的感到走投无路时，或是与 AI 共同困在一条路走到黑的茧房之中时，别忘了回头去看看文档！
+倒不是说不建议开发者和学习者去做实验、去搞研究，我要说的是这样的冒险精神固然可贵。可当你真的遇到了困难的时候，别忘了回头去看看文档！
 
-**往往在文档中就会有最正确、最合适的使用方法。任何时候都不要放弃查阅文档。**
+**往往在文档中就有正确、合适的使用方法。任何时候都不要放弃查阅文档。**
