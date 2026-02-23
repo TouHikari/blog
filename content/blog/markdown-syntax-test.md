@@ -187,6 +187,12 @@ This is a plain text block.
 No highlighting here.
 ```
 
+### 超长！
+
+```java
+public class MainApp extends Application { private SceneRouter router;  @Override public void start(Stage primaryStage) throws IOException { FontManager.loadFonts();  AssetSystem.getInstance().initialize();  router = new SceneRouter(primaryStage);  router.register("home", () -> new HomeView(router)); router.register("game", () -> new GameView(router)); router.register("gameover", () -> new GameOverView(router));  router.goTo("home"); primaryStage.setTitle("XT the Dungeoner"); primaryStage.setFullScreenExitHint(""); primaryStage.show(); }  @Override public void stop() throws Exception { AudioManager.getInstance().shutdown(); AssetSystem.getInstance().shutdown(); super.stop(); System.exit(0); }  public static void main(String[] args) { launch(args); } } 
+```
+
 ---
 
 ## 表格 (Tables)
@@ -448,16 +454,6 @@ console.log('Line 3 highlighted');
 console.log('Line 4 highlighted');
 ```
 
-#### 单词高亮 (Word Highlight)
-
-使用 `// [!code word:Hello]` 标记。
-
-```ts
-// [!code word:Hello]
-const message = 'Hello World';
-console.log('Hello again');
-```
-
 ### 4. 诊断状态 (Diagnostics)
 
 #### 错误 (Error)
@@ -478,16 +474,7 @@ a = 2; // [!code error]
 console.warn('This is a warning');
 ```
 
-### 5. 自定义注入 (Class Injection)
-
-使用 `// [!code class:custom-class]` 标记。
-
-```ts
-// [!code class:custom-class]
-console.log('This line has a custom class');
-```
-
-### 6. 完整测试用例
+### 5. 完整测试用例
 
 ```ts
 import { defineComponent } from 'vue'

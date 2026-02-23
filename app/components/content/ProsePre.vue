@@ -81,43 +81,44 @@ export default {
 .prose-pre {
   margin: 0;
   background-color: transparent !important;
+  overflow-x: auto;
 
-  :deep(code) {
-    display: block;
-    width: 100%;
-    padding: 20px 0;
-    font-family: inherit;
+  // scrollbar-width: 1px;
+  // scrollbar-color: $cyberpunk-cyan $bg-secondary;
 
-    // scrollbar-width: 1px;
+  &::-webkit-scrollbar {
+    height: 1px;
+  }
+
+  &::-webkit-scrollbar-track {
+    background: rgba($cyberpunk-background-pink, 0.1);
+  }
+
+  &::-webkit-scrollbar-thumb {
+    background: $cyberpunk-cyan;
+  }
+
+  @media (pointer: fine) {
+    // scrollbar-width: 6px;
     // scrollbar-color: $cyberpunk-cyan $bg-secondary;
-  
+
     &::-webkit-scrollbar {
-      height: 1px;
+      height: 6px;
     }
-  
-    &::-webkit-scrollbar-track {
-      background: rgba($cyberpunk-background-pink, 0.1);
-    }
-  
-    &::-webkit-scrollbar-thumb {
-      background: $cyberpunk-cyan;
-    }
-  
-    @media (pointer: fine) {
-      // scrollbar-width: 6px;
-      // scrollbar-color: $cyberpunk-cyan $bg-secondary;
-  
-      &::-webkit-scrollbar {
-        height: 6px;
-      }
-  
-      &::-webkit-scrollbar-thumb:hover {
-        background: $cyberpunk-pink;
-      }
+
+    &::-webkit-scrollbar-thumb:hover {
+      background: $cyberpunk-pink;
     }
   }
 
-  // 高亮行样式
+  :deep(code) {
+    display: block;
+    min-width: 100%;
+    width: fit-content;
+    padding: 20px 0;
+    font-family: inherit;
+  }
+
   :deep(.line) {
     padding: 0 18px;
     min-height: 1.5em;
