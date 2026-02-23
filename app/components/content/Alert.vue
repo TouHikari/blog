@@ -82,7 +82,7 @@ withDefaults(defineProps<Props>(), {
 
   .alert-icon {
     float: left;
-    margin-right: 0.5em;
+    margin-right: 0.38em;
     margin-top: 0.1em;
     margin-bottom: -0.5em;
     font-size: 1.4rem;
