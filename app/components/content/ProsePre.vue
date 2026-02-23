@@ -111,6 +111,21 @@ export default {
     }
   }
 
+  :deep(code:has(.line.focused)) {
+    .line:not(.focused) {
+      filter: blur(1.5px);
+      opacity: 0.6;
+      transition: filter 0.1s, opacity 0.1s;
+    }
+  }
+
+  &:hover :deep(code:has(.line.focused)) {
+    .line:not(.focused) {
+      filter: none;
+      opacity: 1;
+    }
+  }
+
   :deep(code) {
     display: block;
     min-width: 100%;
@@ -123,7 +138,6 @@ export default {
     padding: 0 18px;
     min-height: 1.5em;
     display: block;
-    // width: 100%;
 
     &.highlight {
       position: relative;
@@ -138,6 +152,22 @@ export default {
         height: 100%;
         background-color: $cyberpunk-light-pink;
         box-shadow: 0 0 10px $cyberpunk-light-pink;
+      }
+    }
+
+    &.focused {
+      position: relative;
+      background-color: rgba($cyberpunk-cyan, 0.1);
+
+      &::before {
+        content: '';
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 3px;
+        height: 100%;
+        background-color: $cyberpunk-cyan;
+        box-shadow: 0 0 10px $cyberpunk-cyan;
       }
     }
 
