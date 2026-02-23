@@ -396,6 +396,130 @@ Tab 5
 
 ---
 
+## Shiki 装饰器测试 (Shiki Transformers)
+
+### 1. 差异对比 (Diff)
+
+使用 `// [!code ++]` 和 `// [!code --]` 标记。
+
+```ts
+function add(a, b) {
+  1// [!code --]
+  return a + b; // [!code ++]
+}
+```
+
+### 2. 聚焦 (Focus)
+
+使用 `// [!code focus]` 标记。
+
+```js
+export default {
+  data() {
+    return {
+      msg: 'Focused!' // [!code focus]
+    }
+  }
+}
+```
+
+### 3. 高亮 (Highlight)
+
+#### 行高亮 (Line Highlight)
+
+使用 `// [!code highlight]` 标记。
+
+```ts
+// [!code highlight]
+const highlightedLine = 'This line is highlighted';
+const normalLine = 'This line is normal';
+// [!code highlight:3]
+const multiLine1 = 'Multiple lines';
+const multiLine2 = 'can be highlighted';
+const multiLine3 = 'at once';
+```
+
+也可以通过元数据指定行号 `{1,3-4}`：
+
+```ts {1,3-4}
+console.log('Line 1 highlighted');
+console.log('Line 2 normal');
+console.log('Line 3 highlighted');
+console.log('Line 4 highlighted');
+```
+
+#### 单词高亮 (Word Highlight)
+
+使用 `// [!code word:Hello]` 标记。
+
+```ts
+// [!code word:Hello]
+const message = 'Hello World';
+console.log('Hello again');
+```
+
+### 4. 诊断状态 (Diagnostics)
+
+#### 错误 (Error)
+
+使用 `// [!code error]` 标记。
+
+```ts
+const a = 1;
+a = 2; // [!code error]
+```
+
+#### 警告 (Warning)
+
+使用 `// [!code warning]` 标记。
+
+```ts
+// [!code warning]
+console.warn('This is a warning');
+```
+
+### 5. 自定义注入 (Class Injection)
+
+使用 `// [!code class:custom-class]` 标记。
+
+```ts
+// [!code class:custom-class]
+console.log('This line has a custom class');
+```
+
+### 6. 完整测试用例
+
+```ts
+import { defineComponent } from 'vue'
+
+export default defineComponent({
+  setup() {
+    // [!code highlight]
+    const count = ref(0) 
+    
+    // [!code --]
+    const oldFunction = () => {}
+    // [!code ++]
+    const newFunction = () => {
+      count.value++ // [!code focus]
+    }
+    
+    // [!code warning]
+    console.warn('Deprecation warning')
+    
+    // [!code error]
+    throw new Error('Something went wrong')
+
+    return {
+      count, // [!code word:count]
+      newFunction
+    }
+  }
+})
+```
+
+---
+
 ## 结尾
 
 End of Test Suite.

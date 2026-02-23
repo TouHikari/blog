@@ -110,60 +110,6 @@ code {
       @include glow-text-lg-1();
     }
   }
-
-  pre {
-    position: relative;
-    max-width: 100%;
-    overflow-x: auto;
-    background: linear-gradient(to right, rgba($cyberpunk-pink, 0.2), rgba($cyberpunk-pink, 0.2) 2%, rgba($cyberpunk-pink, 0.08));
-    padding: 15px;
-
-    &::after {
-      content: '';
-      position: absolute;
-      top: 0;
-      left: 0;
-      width: 100%;
-      height: 100%;
-      opacity: 0;
-      z-index: 1;
-      pointer-events: none;
-      background: linear-gradient(to right, rgba($cyberpunk-pink, 0), rgba($cyberpunk-pink, 0) 2%, rgba($cyberpunk-pink, 0.12));
-      transition: opacity 0.1s;
-    }
-
-    &:hover::after {
-      opacity: 1;
-    }
-
-    // scrollbar-width: 1px;
-    // scrollbar-color: $cyberpunk-cyan $bg-secondary;
-
-    &::-webkit-scrollbar {
-      height: 1px;
-    }
-
-    &::-webkit-scrollbar-track {
-      background: rgba($cyberpunk-background-pink, 0.1);
-    }
-
-    &::-webkit-scrollbar-thumb {
-      background: $cyberpunk-cyan;
-    }
-
-    @media (pointer: fine) {
-      // scrollbar-width: 6px;
-      // scrollbar-color: $cyberpunk-cyan $bg-secondary;
-
-      &::-webkit-scrollbar {
-        height: 6px;
-      }
-
-      &::-webkit-scrollbar-thumb:hover {
-        background: $cyberpunk-pink;
-      }
-    }
-  }
 }
 
 /* 标题间距 */
