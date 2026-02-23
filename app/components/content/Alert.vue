@@ -148,28 +148,28 @@ withDefaults(defineProps<Props>(), {
 
   // Danger
   &.type-danger {
-    border-color: $cyberpunk-pink;
-    background: linear-gradient(to right, rgba($cyberpunk-pink, 0.2), rgba($cyberpunk-pink, 0.1) 2%, rgba($cyberpunk-pink, 0.02));
+    border-color: $cyberpunk-red;
+    background: linear-gradient(to right, rgba($cyberpunk-red, 0.2), rgba($cyberpunk-red, 0.1) 2%, rgba($cyberpunk-red, 0.02));
 
     &::after {
-      background: linear-gradient(to right, rgba($cyberpunk-pink, 0.1), rgba($cyberpunk-pink, 0) 2%, rgba($cyberpunk-pink, 0.08));
+      background: linear-gradient(to right, rgba($cyberpunk-red, 0.1), rgba($cyberpunk-red, 0) 2%, rgba($cyberpunk-red, 0.08));
     }
 
     .alert-icon {
-      color: $cyberpunk-pink;
+      color: $cyberpunk-red;
     }
 
     .alert-content :deep(a) {
-      color: $cyberpunk-pink !important;
+      color: $cyberpunk-red !important;
 
       &:hover {
-        color: $cyberpunk-pink !important;
+        color: $cyberpunk-red !important;
       }
     }
 
     &::before {
-      background-color: $cyberpunk-light-pink;
-      box-shadow: 0 0 10px $cyberpunk-light-pink;
+      background-color: $cyberpunk-light-red;
+      box-shadow: 0 0 10px $cyberpunk-light-red;
     }
   }
 }
