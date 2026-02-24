@@ -53,12 +53,12 @@ npm install luckysheet
 
 #pnpm
 ```bash
-pnpm install luckysheet
+pnpm add luckysheet
 ```
 
 #yarn
 ```bash
-yarn install luckysheet
+yarn add luckysheet
 ```
 ::
 

@@ -510,6 +510,363 @@ export default defineComponent({
 
 ---
 
+## 代码块行号测试 (Line Numbers)
+
+### 默认显示行号
+
+```js
+const defaultShow = true;
+console.log('Line numbers are shown by default');
+for (let i = 0; i < 3; i++) {
+  console.log(i);
+}
+```
+
+### 禁用行号 (`no-lines`)
+
+使用 `no-lines` 标记：
+
+```js no-lines
+const hidden = true;
+console.log('No line numbers here');
+```
+
+### 混合测试 (Diff + Line Numbers)
+
+Diff 块不应显示行号，而是显示 `+` / `-` 符号，且位置与行号对齐。
+
+```diff
+- const oldVersion = 1.0;
++ const newVersion = 2.0;
+  console.log("Version updated");
+```
+
+### 超长代码块测试 (Large Code Block)
+
+```python
+# 生成斐波那契数列的前100项
+def fibonacci(n):
+    if n <= 0:
+        return []
+    elif n == 1:
+        return [0]
+    else:
+        fib_list = [0, 1]
+        while len(fib_list) < n:
+            next_fib = fib_list[-1] + fib_list[-2]
+            fib_list.append(next_fib)
+        return fib_list
+
+# 打印前100项
+fib_sequence = fibonacci(100)
+for i, num in enumerate(fib_sequence):
+    print(f"Fibonacci({i}) = {num}")
+
+# 这里为了凑行数，重复打印一些信息
+print("-" * 50)
+print("开始重复打印测试行号对齐情况...")
+print("-" * 50)
+
+for i in range(101, 150):
+    print(f"这是第 {i} 行代码，用于测试行号宽度是否自适应或者对齐是否正常。")
+    if i % 10 == 0:
+        print(f"--- 检查点: 第 {i} 行 ---")
+
+print("-" * 50)
+print("结束测试")
+print("-" * 50)
+
+# 生成斐波那契数列的前100项
+def fibonacci(n):
+    if n <= 0:
+        return []
+    elif n == 1:
+        return [0]
+    else:
+        fib_list = [0, 1]
+        while len(fib_list) < n:
+            next_fib = fib_list[-1] + fib_list[-2]
+            fib_list.append(next_fib)
+        return fib_list
+
+# 打印前100项
+fib_sequence = fibonacci(100)
+for i, num in enumerate(fib_sequence):
+    print(f"Fibonacci({i}) = {num}")
+
+# 这里为了凑行数，重复打印一些信息
+print("-" * 50)
+print("开始重复打印测试行号对齐情况...")
+print("-" * 50)
+
+for i in range(101, 150):
+    print(f"这是第 {i} 行代码，用于测试行号宽度是否自适应或者对齐是否正常。")
+    if i % 10 == 0:
+        print(f"--- 检查点: 第 {i} 行 ---")
+
+print("-" * 50)
+print("结束测试")
+print("-" * 50)
+
+# 生成斐波那契数列的前100项
+def fibonacci(n):
+    if n <= 0:
+        return []
+    elif n == 1:
+        return [0]
+    else:
+        fib_list = [0, 1]
+        while len(fib_list) < n:
+            next_fib = fib_list[-1] + fib_list[-2]
+            fib_list.append(next_fib)
+        return fib_list
+
+# 打印前100项
+fib_sequence = fibonacci(100)
+for i, num in enumerate(fib_sequence):
+    print(f"Fibonacci({i}) = {num}")
+
+# 这里为了凑行数，重复打印一些信息
+print("-" * 50)
+print("开始重复打印测试行号对齐情况...")
+print("-" * 50)
+
+for i in range(101, 150):
+    print(f"这是第 {i} 行代码，用于测试行号宽度是否自适应或者对齐是否正常。")
+    if i % 10 == 0:
+        print(f"--- 检查点: 第 {i} 行 ---")
+
+print("-" * 50)
+print("结束测试")
+print("-" * 50)
+
+# 生成斐波那契数列的前100项
+def fibonacci(n):
+    if n <= 0:
+        return []
+    elif n == 1:
+        return [0]
+    else:
+        fib_list = [0, 1]
+        while len(fib_list) < n:
+            next_fib = fib_list[-1] + fib_list[-2]
+            fib_list.append(next_fib)
+        return fib_list
+
+# 打印前100项
+fib_sequence = fibonacci(100)
+for i, num in enumerate(fib_sequence):
+    print(f"Fibonacci({i}) = {num}")
+
+# 这里为了凑行数，重复打印一些信息
+print("-" * 50)
+print("开始重复打印测试行号对齐情况...")
+print("-" * 50)
+
+for i in range(101, 150):
+    print(f"这是第 {i} 行代码，用于测试行号宽度是否自适应或者对齐是否正常。")
+    if i % 10 == 0:
+        print(f"--- 检查点: 第 {i} 行 ---")
+
+print("-" * 50)
+print("结束测试")
+print("-" * 50)
+
+# 生成斐波那契数列的前100项
+def fibonacci(n):
+    if n <= 0:
+        return []
+    elif n == 1:
+        return [0]
+    else:
+        fib_list = [0, 1]
+        while len(fib_list) < n:
+            next_fib = fib_list[-1] + fib_list[-2]
+            fib_list.append(next_fib)
+        return fib_list
+
+# 打印前100项
+fib_sequence = fibonacci(100)
+for i, num in enumerate(fib_sequence):
+    print(f"Fibonacci({i}) = {num}")
+
+# 这里为了凑行数，重复打印一些信息
+print("-" * 50)
+print("开始重复打印测试行号对齐情况...")
+print("-" * 50)
+
+for i in range(101, 150):
+    print(f"这是第 {i} 行代码，用于测试行号宽度是否自适应或者对齐是否正常。")
+    if i % 10 == 0:
+        print(f"--- 检查点: 第 {i} 行 ---")
+
+print("-" * 50)
+print("结束测试")
+print("-" * 50)
+
+# 生成斐波那契数列的前100项
+def fibonacci(n):
+    if n <= 0:
+        return []
+    elif n == 1:
+        return [0]
+    else:
+        fib_list = [0, 1]
+        while len(fib_list) < n:
+            next_fib = fib_list[-1] + fib_list[-2]
+            fib_list.append(next_fib)
+        return fib_list
+
+# 打印前100项
+fib_sequence = fibonacci(100)
+for i, num in enumerate(fib_sequence):
+    print(f"Fibonacci({i}) = {num}")
+
+# 这里为了凑行数，重复打印一些信息
+print("-" * 50)
+print("开始重复打印测试行号对齐情况...")
+print("-" * 50)
+
+for i in range(101, 150):
+    print(f"这是第 {i} 行代码，用于测试行号宽度是否自适应或者对齐是否正常。")
+    if i % 10 == 0:
+        print(f"--- 检查点: 第 {i} 行 ---")
+
+print("-" * 50)
+print("结束测试")
+print("-" * 50)
+
+# 生成斐波那契数列的前100项
+def fibonacci(n):
+    if n <= 0:
+        return []
+    elif n == 1:
+        return [0]
+    else:
+        fib_list = [0, 1]
+        while len(fib_list) < n:
+            next_fib = fib_list[-1] + fib_list[-2]
+            fib_list.append(next_fib)
+        return fib_list
+
+# 打印前100项
+fib_sequence = fibonacci(100)
+for i, num in enumerate(fib_sequence):
+    print(f"Fibonacci({i}) = {num}")
+
+# 这里为了凑行数，重复打印一些信息
+print("-" * 50)
+print("开始重复打印测试行号对齐情况...")
+print("-" * 50)
+
+for i in range(101, 150):
+    print(f"这是第 {i} 行代码，用于测试行号宽度是否自适应或者对齐是否正常。")
+    if i % 10 == 0:
+        print(f"--- 检查点: 第 {i} 行 ---")
+
+print("-" * 50)
+print("结束测试")
+print("-" * 50)
+
+# 生成斐波那契数列的前100项
+def fibonacci(n):
+    if n <= 0:
+        return []
+    elif n == 1:
+        return [0]
+    else:
+        fib_list = [0, 1]
+        while len(fib_list) < n:
+            next_fib = fib_list[-1] + fib_list[-2]
+            fib_list.append(next_fib)
+        return fib_list
+
+# 打印前100项
+fib_sequence = fibonacci(100)
+for i, num in enumerate(fib_sequence):
+    print(f"Fibonacci({i}) = {num}")
+
+# 这里为了凑行数，重复打印一些信息
+print("-" * 50)
+print("开始重复打印测试行号对齐情况...")
+print("-" * 50)
+
+for i in range(101, 150):
+    print(f"这是第 {i} 行代码，用于测试行号宽度是否自适应或者对齐是否正常。")
+    if i % 10 == 0:
+        print(f"--- 检查点: 第 {i} 行 ---")
+
+print("-" * 50)
+print("结束测试")
+print("-" * 50)
+
+# 生成斐波那契数列的前100项
+def fibonacci(n):
+    if n <= 0:
+        return []
+    elif n == 1:
+        return [0]
+    else:
+        fib_list = [0, 1]
+        while len(fib_list) < n:
+            next_fib = fib_list[-1] + fib_list[-2]
+            fib_list.append(next_fib)
+        return fib_list
+
+# 打印前100项
+fib_sequence = fibonacci(100)
+for i, num in enumerate(fib_sequence):
+    print(f"Fibonacci({i}) = {num}")
+
+# 这里为了凑行数，重复打印一些信息
+print("-" * 50)
+print("开始重复打印测试行号对齐情况...")
+print("-" * 50)
+
+for i in range(101, 150):
+    print(f"这是第 {i} 行代码，用于测试行号宽度是否自适应或者对齐是否正常。")
+    if i % 10 == 0:
+        print(f"--- 检查点: 第 {i} 行 ---")
+
+print("-" * 50)
+print("结束测试")
+print("-" * 50)
+
+# 生成斐波那契数列的前100项
+def fibonacci(n):
+    if n <= 0:
+        return []
+    elif n == 1:
+        return [0]
+    else:
+        fib_list = [0, 1]
+        while len(fib_list) < n:
+            next_fib = fib_list[-1] + fib_list[-2]
+            fib_list.append(next_fib)
+        return fib_list
+
+# 打印前100项
+fib_sequence = fibonacci(100)
+for i, num in enumerate(fib_sequence):
+    print(f"Fibonacci({i}) = {num}")
+
+# 这里为了凑行数，重复打印一些信息
+print("-" * 50)
+print("开始重复打印测试行号对齐情况...")
+print("-" * 50)
+
+for i in range(101, 150):
+    print(f"这是第 {i} 行代码，用于测试行号宽度是否自适应或者对齐是否正常。")
+    if i % 10 == 0:
+        print(f"--- 检查点: 第 {i} 行 ---")
+
+print("-" * 50)
+print("结束测试")
+print("-" * 50)
+```
+
+---
+
 ## 结尾
 
 End of Test Suite.
