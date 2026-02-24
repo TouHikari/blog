@@ -1,7 +1,8 @@
 <script setup lang="ts">
+import { computed } from 'vue';
 import type { PropType, StyleValue } from 'vue';
 
-defineProps({
+const props = defineProps({
   code: {
     type: String,
     default: ''
@@ -31,6 +32,22 @@ defineProps({
     default: null
   }
 });
+
+const showLineNumbers = computed(() => {
+  const language = props.language || '';
+  const filename = props.filename || '';
+  const classes = props.class || '';
+
+  if (language === 'diff' || /\blanguage-diff\b/.test(String(classes))) {
+    return false;
+  }
+
+  const hasNoLines =
+    /\b(?:no-lines)\b/.test(filename) ||
+    /\b(?:no-lines)\b/.test(String(classes));
+
+  return !hasNoLines;
+});
 </script>
 
 <script lang="ts">
@@ -40,7 +57,7 @@ export default {
 </script>
 
 <template>
-  <div class="prose-pre-container">
+  <div class="prose-pre-container" :class="{ 'has-line-numbers': showLineNumbers }">
     <pre :class="['prose-pre', $props.class]" :style="$props.style"><slot /></pre>
   </div>
 </template>
@@ -71,6 +88,54 @@ export default {
 
   &:hover::after {
     opacity: 1;
+  }
+
+  &.has-line-numbers {
+    :deep(code) {
+      counter-reset: line;
+    }
+
+    :deep(.line) {
+      counter-increment: line;
+
+      &.diff.remove {
+        counter-increment: none;
+      }
+
+      position: relative;
+      padding-left: 3rem;
+
+      &:not(.diff)::after {
+        content: counter(line);
+        position: absolute;
+        top: 0;
+        left: 1rem;
+        width: 1.5rem;
+        height: 100%;
+
+        // display: flex;
+        // align-items: flex-end;
+        // justify-content: flex-end;
+
+        padding-right: 0.5rem;
+        color: rgba($cyberpunk-cyan, 1);
+        font-size: 0.85rem;
+        box-sizing: border-box;
+      }
+
+      &.diff::after {
+        left: 1rem;
+        width: 1.5rem;
+        height: 100%;
+
+        // display: flex;
+        // align-items: flex-end;
+        // justify-content: flex-end;
+
+        padding-right: 0.5rem;
+        box-sizing: border-box;
+      }
+    }
   }
 
   code {
@@ -130,7 +195,7 @@ export default {
     display: block;
     min-width: 100%;
     width: fit-content;
-    padding: 20px 0;
+    padding: 15px 0;
     font-family: inherit;
   }
 
@@ -192,10 +257,10 @@ export default {
         font-weight: bold;
         text-shadow: 0 0 10px currentColor;
       }
-      
+
       &.add {
         background-color: rgba($cyberpunk-green, 0.1);
-        
+
         &::before {
           background-color: $cyberpunk-light-green;
         }
