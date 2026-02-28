@@ -1,0 +1,9 @@
+$:
+  vscode:
+    - docker:
+        image: docker.cnb.cool/zhxycn/env:latest
+      services:
+        - vscode
+        - docker
+      env:
+        CNB_WELCOME_EXECUTE_COMMAND: npm install && npm run dev
