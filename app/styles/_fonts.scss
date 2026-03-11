@@ -5,6 +5,7 @@
 @import '@fontsource/orbitron/400.css';
 @import '@fontsource/orbitron/700.css';
 @import '@fontsource/fusion-pixel-10px-proportional-kr/400.css';
+@import url('https://cdn.jsdelivr.net/npm/@mogeko/maple-mono-cn@7.9.0/dist/font/result.css');
 
 @font-face {
   font-family: 'FZG_CN';
@@ -25,7 +26,6 @@ $font-latin-sans:
 /* 纯西文等宽字体 */
 $font-latin-mono:
   "JetBrains Mono",
-  "Maple Mono NF CN",
   "Fira Code",
   "SF Mono",
   "Monaco",
@@ -71,6 +71,8 @@ $font-cjk-sans:
 
 /* 中文等宽字体 */
 $font-cjk-mono:
+  "Maple Mono NF CN",
+  "Maple Mono CN",
   "Sarasa Gothic SC",
   "WenQuanYi Zen Hei Mono",
   "Noto Sans Mono CJK SC",
