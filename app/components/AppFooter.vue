@@ -64,7 +64,7 @@ onUnmounted(() => {
       <strong class="greetings-strong">----- W E L L C O M E -----</strong>
     </p>
     <div class="info">
-      <div class="copyright" data-lock-marked>© 2026 TouHikari's Blog</div>
+      <div class="copyright" data-lock-marked>© 2026 <a href="https://github.com/TouHikari/blog" target="_blank">TouHikari's Blog</a></div>
       <div class="driver" data-lock-marked>Powered by <a class="nust-link" href="https://nuxt.com/" target="_blank">Nuxt 4</a>.</div>
     </div>
     <div id="site-runtime-display" :class="{ 'runtime-pulse': isPulse }"
