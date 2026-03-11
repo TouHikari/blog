@@ -255,20 +255,4 @@ onUnmounted(() => {
     text-align: center;
   }
 }
-
-@media (min-width: #{$breakpoint-mobile}) and (max-width: #{$breakpoint-tablet - 1px}) {
-  //
-}
-
-@media (min-width: #{$breakpoint-tablet}) and (max-width: #{$breakpoint-desktop - 1px}) {
-  //
-}
-
-@media (min-width: #{$breakpoint-desktop}) and (max-width: #{$breakpoint-desktop-lg - 1px}) {
-  //
-}
-
-@media (min-width: #{$breakpoint-desktop-lg}) {
-  //
-}
 </style>
