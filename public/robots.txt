@@ -1,19 +1,3 @@
-User-Agent: *
-Allow: /
-
-# Disallow admin and private areas
-Disallow: /admin/
-Disallow: /_nuxt/
-Disallow: /api/
-
-# Allow important pages
-Allow: /blog/
-Allow: /categories/
-Allow: /tags/
-Allow: /about/
-
-# Sitemap location
-Sitemap: http://touhikari.top/sitemap.xml
-
-# Crawl delay (optional)
-Crawl-delay: 1
+version https://git-lfs.github.com/spec/v1
+oid sha256:237b0389a532a0f622f653a99ee69762687f9d543393a82a1a61abcc7d0ae51f
+size 321
