@@ -99,27 +99,27 @@ body::before {
 
 @mixin glow-text-lg-1 {
   text-shadow:
-    0 0 7px currentcolor,
-    0 0 10px currentcolor,
-    0 0 21px currentcolor,
-    0 0 42px currentcolor;
+    0 0 6px currentcolor,
+    0 0 9px currentcolor,
+    0 0 18px currentcolor,
+    0 0 36px currentcolor;
   @include flicker-effect();
 }
 
 @mixin glow-text-lg-2 {
   text-shadow:
-    0 0 10px currentcolor,
-    0 0 21px currentcolor,
-    0 0 42px currentcolor,
-    0 0 63px currentcolor;
+    0 0 9px currentcolor,
+    0 0 18px currentcolor,
+    0 0 36px currentcolor,
+    0 0 54px currentcolor;
   @include flicker-effect();
 }
 
 @mixin glow-text-lg-3 {
   text-shadow:
-    0 0 21px currentcolor,
-    0 0 42px currentcolor,
-    0 0 63px currentcolor,
-    0 0 84px currentcolor;
+    0 0 18px currentcolor,
+    0 0 36px currentcolor,
+    0 0 54px currentcolor,
+    0 0 72px currentcolor;
   @include flicker-effect();
 }
