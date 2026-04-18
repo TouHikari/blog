@@ -16,6 +16,15 @@
   font-display: swap;
 }
 
+@font-face {
+  font-family: 'AlimamaShuHeiTi';
+  src: url('/fonts/AlimamaShuHeiTi-Bold.woff2') format('woff2'),
+        url('/fonts/AlimamaShuHeiTi-Bold.woff') format('woff');
+  font-weight: 700;
+  font-style: normal;
+  font-display: swap;
+}
+
 /* ========== 纯西文字体栈（不包含中文） ========== */
 
 /* 纯西文无衬线字体 */
@@ -89,6 +98,7 @@ $font-cjk-serif:
 
 /* 中文赛博朋克字体 */
 $font-cjk-cyber:
+  "AlimamaShuHeiTi",
   $font-cjk-sans;
 
 /* 中文像素字体 */
