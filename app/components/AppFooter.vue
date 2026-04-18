@@ -1,8 +1,8 @@
 <script setup lang="ts">
-import { ref, onMounted, onUnmounted, nextTick } from 'vue';
-import { SITE_BIRTHDAY } from '#imports';
+import { ref, onMounted, onUnmounted, nextTick } from "vue";
+import { SITE_BIRTHDAY } from "#imports";
 
-const siteRuntimeDisplay = ref<string>('');
+const siteRuntimeDisplay = ref<string>("");
 const isPulse = ref(false);
 let intervalId: NodeJS.Timeout | null = null;
 
@@ -18,7 +18,8 @@ async function updateSiteRuntime() {
   }, 50);
 
   if (isNaN(timeDiff) || timeDiff < 0) {
-    siteRuntimeDisplay.value = "TouHikari [STATUS:ONLINE] System clock anomaly detected. Awaiting synchronization...";
+    siteRuntimeDisplay.value =
+      "TouHikari [STATUS:ONLINE] System clock anomaly detected. Awaiting synchronization...";
     return;
   }
 
@@ -34,7 +35,7 @@ async function updateSiteRuntime() {
   const seconds = Math.floor(timeDiff / 1000);
 
   // Format: %dd %hh:%mm:%ss
-  const runtimeString = `${days}d ${String(hours).padStart(2, '0')}h:${String(minutes).padStart(2, '0')}m:${String(seconds).padStart(2, '0')}s`;
+  const runtimeString = `${days}d ${String(hours).padStart(2, "0")}h:${String(minutes).padStart(2, "0")}m:${String(seconds).padStart(2, "0")}s`;
 
   siteRuntimeDisplay.value = `${runtimeString}`;
 }
@@ -55,8 +56,12 @@ onUnmounted(() => {
 </script>
 
 <template>
-  <div class="footer-container" data-lock-container>
-    <p class="greetings"
+  <div
+    class="footer-container"
+    data-lock-container
+  >
+    <p
+      class="greetings"
       data-lock-marked
       data-lock-bg="#FFBE0B0D"
       data-lock-border="transparent"
@@ -64,31 +69,71 @@ onUnmounted(() => {
       <strong class="greetings-strong">----- W E L L C O M E -----</strong>
     </p>
     <div class="info">
-      <div class="copyright" data-lock-marked>© 2026 <a href="https://github.com/TouHikari/blog" target="_blank">TouHikari's Blog</a></div>
-      <div class="driver" data-lock-marked>Powered by <a class="nust-link" href="https://nuxt.com/" target="_blank">Nuxt 4</a>.</div>
+      <div
+        class="copyright"
+        data-lock-marked
+      >
+        © 2026
+        <a
+          href="https://github.com/TouHikari/blog"
+          target="_blank"
+          >TouHikari's Blog</a
+        >
+      </div>
+      <div
+        class="driver"
+        data-lock-marked
+      >
+        Powered by
+        <a
+          class="nuxt-link"
+          href="https://nuxt.com/"
+          target="_blank"
+        >
+          <img
+            src="/favicon.ico"
+            alt="Nuxt 4"
+            width="16px"
+            style="display: inline-block"
+          />
+          Nuxt 4 </a
+        >.
+      </div>
     </div>
-    <div id="site-runtime-display" :class="{ 'runtime-pulse': isPulse }"
+    <div
+      id="site-runtime-display"
+      :class="{ 'runtime-pulse': isPulse }"
       data-lock-marked
       data-lock-bg="#FF408020"
       data-lock-border="transparent"
     >
       <p class="runtime-container">
-        <span class="runtime-prefix">TouHikari [STATUS:ONLINE] LOGGED_IN_FOR: </span>
+        <span class="runtime-prefix"
+          >TouHikari [STATUS:ONLINE] LOGGED_IN_FOR:
+        </span>
         <ClientOnly>
           <span class="runtime">{{ siteRuntimeDisplay }}</span>
         </ClientOnly>
       </p>
     </div>
-    <div class="beian" data-lock-marked>
-      <a class="beian-link" href="https://beian.miit.gov.cn/" target="_blank">陕ICP备2025068002号</a>
+    <div
+      class="beian"
+      data-lock-marked
+    >
+      <a
+        class="beian-link"
+        href="https://beian.miit.gov.cn/"
+        target="_blank"
+        >陕ICP备2025068002号</a
+      >
     </div>
   </div>
 </template>
 
 <style lang="scss" scoped>
-@use '~/styles/fonts' as *;
-@use '~/styles/variables' as *;
-@use '~/styles/terminal-glow' as *;
+@use "~/styles/fonts" as *;
+@use "~/styles/variables" as *;
+@use "~/styles/terminal-glow" as *;
 
 .footer-container {
   display: flex;
@@ -107,7 +152,7 @@ onUnmounted(() => {
   padding: 5px 0;
 
   &::before {
-    content: '';
+    content: "";
     position: absolute;
     top: 0;
     left: 0;
@@ -144,6 +189,13 @@ onUnmounted(() => {
   margin-bottom: 20px;
 }
 
+.nuxt-link {
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+  vertical-align: middle;
+}
+
 #site-runtime-display {
   font-family: $font-mono;
   color: $cyberpunk-light-yellow;
@@ -152,31 +204,40 @@ onUnmounted(() => {
   overflow: hidden;
 
   &::before {
-    content: '';
+    content: "";
     position: absolute;
     top: 0;
     left: 0;
     width: 100%;
     height: 100%;
-    background: linear-gradient(to right, $cyberpunk-background-pink, transparent);
+    background: linear-gradient(
+      to right,
+      $cyberpunk-background-pink,
+      transparent
+    );
     opacity: 0;
     pointer-events: none;
     z-index: 0;
   }
 
   &.runtime-pulse::before {
-    content: '';
+    content: "";
     animation: flash-fade 1s ease-out forwards;
   }
 
   &::after {
-    content: '';
+    content: "";
     position: absolute;
     top: 0;
     left: -50%;
     width: 50%;
     height: 100%;
-    background: linear-gradient(to right, transparent, $cyberpunk-pink, transparent);
+    background: linear-gradient(
+      to right,
+      transparent,
+      $cyberpunk-pink,
+      transparent
+    );
     opacity: 0.3;
     transform: skewX(-20deg);
     pointer-events: none;
@@ -234,7 +295,6 @@ onUnmounted(() => {
 }
 
 @keyframes yellow-breathing {
-
   0%,
   100% {
     background-color: rgba($cyberpunk-yellow, 0);
