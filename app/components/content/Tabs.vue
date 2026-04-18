@@ -50,6 +50,7 @@ const activeTab = ref(tabNames.value[0]);
     padding: 0.5em 1em;
     background: transparent;
     border: none;
+    border-bottom: 2px solid transparent;
     border-right: 1px solid rgba($cyberpunk-background-pink, 0.3);
     color: $text-muted;
     font-family: $font-mono;
@@ -67,7 +68,7 @@ const activeTab = ref(tabNames.value[0]);
     &.active {
       color: $cyberpunk-pink;
       background: rgba($cyberpunk-pink, 0.08);
-      border-bottom: 2px solid $cyberpunk-pink;
+      border-bottom-color: $cyberpunk-pink;
     }
   }
 
