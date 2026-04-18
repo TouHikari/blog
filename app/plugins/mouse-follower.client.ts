@@ -203,7 +203,7 @@ export default defineNuxtPlugin((nuxtApp) => {
           }
           currentActiveTarget = null;
           follower.style.transition =
-            "width 0.1s, height 0.1s, border-radius 0.1s, transform 0.1s, top 0.05s, left 0.05s, background 0.1s, border 0.1s";
+            "width 0.1s, height 0.1s, border-radius 0.1s, transform 0.1s, top 0s, left 0s, background 0.1s, border 0.1s";
 
           follower.style.width = "20px";
           follower.style.height = "20px";
