@@ -5,6 +5,15 @@ export default defineNuxtConfig({
 
   modules: ["@nuxt/content", "@nuxt/eslint", "@nuxt/icon", "@nuxt/image"],
 
+  vite: {
+    optimizeDeps: {
+      include: [
+        '@vue/devtools-core',
+        '@vue/devtools-kit',
+      ]
+    }
+  },
+
   content: {
     build: {
       markdown: {
