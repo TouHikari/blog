@@ -1,0 +1,19 @@
+{
+  "recommendations": [
+    "formulahendry.auto-rename-tag",
+    "Nuxt.mdc",
+    "antfu.goto-alias",
+    "yzhang.markdown-all-in-one",
+    "koehlma.markdown-math",
+    "shd101wyy.markdown-preview-enhanced",
+    "bierner.markdown-mermaid",
+    "PKief.material-icon-theme",
+    "bpruitt-goddard.mermaid-markdown-syntax-highlighting",
+    "Nuxtr.nuxt-vscode-extentions",
+    "Nuxtr.nuxtr-vscode",
+    "christian-kohler.path-intellisense",
+    "esbenp.prettier-vscode",
+    "jock.svg",
+    "Vue.volar"
+  ],
+}
