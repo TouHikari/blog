@@ -1,6 +1,7 @@
 <script setup lang="ts">
 import { computed } from 'vue';
 import type { PropType, StyleValue } from 'vue';
+import Mermaid from './Mermaid.vue';
 
 const props = defineProps({
   code: {
@@ -48,6 +49,13 @@ const showLineNumbers = computed(() => {
 
   return !hasNoLines;
 });
+
+/* mermaid 代码块交由 Mermaid 组件渲染为图表 */
+const isMermaid = computed(
+  () =>
+    (props.language === 'mermaid' || /\blanguage-mermaid\b/.test(String(props.class || ''))) &&
+    Boolean(props.code?.trim())
+);
 </script>
 
 <script lang="ts">
@@ -57,7 +65,8 @@ export default {
 </script>
 
 <template>
-  <div class="prose-pre-container" :class="{ 'has-line-numbers': showLineNumbers }">
+  <Mermaid v-if="isMermaid" :code="props.code" />
+  <div v-else class="prose-pre-container" :class="{ 'has-line-numbers': showLineNumbers }">
     <pre :class="['prose-pre', $props.class]" :style="$props.style"><slot /></pre>
   </div>
 </template>

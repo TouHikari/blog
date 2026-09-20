@@ -36,6 +36,7 @@ export default defineNuxtConfig({
             "lua",
             "make",
             "markdown",
+            "mermaid",
             "python",
             "rust",
             "scss",
@@ -149,6 +150,13 @@ export default defineNuxtConfig({
 
   // 或者通过ssr配置来优化加载
   ssr: true,
+
+  vite: {
+    optimizeDeps: {
+      // mermaid 在客户端按需动态加载，提前预构建避免首次渲染时的编译延迟
+      include: ["mermaid"],
+    },
+  },
 
   css: ["katex/dist/katex.min.css", "~/styles/main.scss"],
 });
