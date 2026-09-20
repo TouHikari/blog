@@ -88,6 +88,9 @@ import ContentAlert from '~/components/content/Alert.vue'
 
 .content-prose {
   padding: 1em 0 2em 0;
+  text-align: justify;
+  text-justify: inter-ideograph;
+  overflow-wrap: break-word;
 }
 
 @media (max-width: #{$breakpoint-mobile - 1px}) {
