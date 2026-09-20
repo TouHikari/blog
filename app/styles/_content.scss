@@ -271,10 +271,10 @@ blockquote {
   }
 }
 
-/* 表格样式 */
+/* 表格样式（外层横向滚动容器见 components/content/ProseTable.vue） */
 table {
   border-collapse: collapse;
-  margin: 1rem auto;
+  margin: 0 auto;
   overflow: hidden;
 }
 
