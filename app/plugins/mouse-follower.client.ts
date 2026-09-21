@@ -1,3 +1,7 @@
+// 标记/容器选择器常量：模块加载时构建一次，避免在事件处理中重复 join
+const MARKED_SELECTOR = [".lock_marked", "#lock_marked", "[data-lock-marked]"].join(",");
+const CONTAINER_SELECTOR = [".lock_wrap", ".lock_container", "[data-lock-container]", "[data-lock-scan]"].join(",");
+
 export default defineNuxtPlugin((nuxtApp) => {
   if (import.meta.server) return;
 
@@ -65,24 +69,19 @@ export default defineNuxtPlugin((nuxtApp) => {
       let mouseY = 0;
       let targetElement: HTMLElement | null = null;
       let isSnapped = false;
+      let lastSnappedElement: HTMLElement | null = null;
+      let currentActiveTarget: HTMLElement | null = null;
 
-      const MARKED_SELECTORS = [
-        ".lock_marked",
-        "#lock_marked",
-        "[data-lock-marked]",
-      ];
-      const CONTAINER_SELECTORS = [
-        ".lock_wrap",
-        ".lock_container",
-        "[data-lock-container]",
-        "[data-lock-scan]",
-      ];
+      // 帧调度去重标志 + 矩形/样式缓存失效标记（事件驱动，替代原每帧空转）
+      let frameScheduled = false;
+      let rectDirty = true;
+      let cachedRect = { top: 0, left: 0, width: 0, height: 0 };
+      let cachedBorderRadius = "0";
 
       const getMarkedElement = (el: HTMLElement | null): HTMLElement | null => {
         if (!el) return null;
 
-        const markSelector = MARKED_SELECTORS.join(",");
-        const directMark = el.closest(markSelector) as HTMLElement | null;
+        const directMark = el.closest(MARKED_SELECTOR) as HTMLElement | null;
         if (directMark) return directMark;
 
         const scanContainer = el.closest(
@@ -106,8 +105,7 @@ export default defineNuxtPlugin((nuxtApp) => {
         el: HTMLElement | null,
       ): HTMLElement | null => {
         if (!el) return null;
-        const selector = CONTAINER_SELECTORS.join(",");
-        return el.closest(selector) as HTMLElement | null;
+        return el.closest(CONTAINER_SELECTOR) as HTMLElement | null;
       };
 
       const applyCustomStyles = (el: HTMLElement | null) => {
@@ -170,10 +168,24 @@ export default defineNuxtPlugin((nuxtApp) => {
 
       const update = () => {
         if (isSnapped && targetElement) {
-          const rect = targetElement.getBoundingClientRect();
-          const computed = window.getComputedStyle(targetElement);
-
           const isTargetChanged = currentActiveTarget !== targetElement;
+
+          // 读取阶段：仅在目标切换或缓存失效（scroll / resize）时触碰布局/样式（原实现每帧读取）
+          if (isTargetChanged) {
+            cachedBorderRadius = window.getComputedStyle(targetElement).borderRadius;
+            rectDirty = true;
+          }
+
+          if (rectDirty) {
+            const box = targetElement.getBoundingClientRect();
+            cachedRect = {
+              top: box.top,
+              left: box.left,
+              width: box.width,
+              height: box.height,
+            };
+            rectDirty = false;
+          }
 
           if (isTargetChanged || !follower.classList.contains("snapped")) {
             follower.style.transition =
@@ -187,11 +199,11 @@ export default defineNuxtPlugin((nuxtApp) => {
 
           currentActiveTarget = targetElement;
 
-          follower.style.width = `${rect.width}px`;
-          follower.style.height = `${rect.height}px`;
-          follower.style.top = `${rect.top}px`;
-          follower.style.left = `${rect.left}px`;
-          follower.style.borderRadius = computed.borderRadius;
+          follower.style.width = `${cachedRect.width}px`;
+          follower.style.height = `${cachedRect.height}px`;
+          follower.style.top = `${cachedRect.top}px`;
+          follower.style.left = `${cachedRect.left}px`;
+          follower.style.borderRadius = cachedBorderRadius;
 
           if (!follower.classList.contains("snapped")) {
             follower.classList.add("snapped");
@@ -215,13 +227,21 @@ export default defineNuxtPlugin((nuxtApp) => {
             follower.classList.remove("snapped");
           }
         }
-        requestAnimationFrame(update);
       };
 
-      let lastSnappedElement: HTMLElement | null = null;
-      let currentActiveTarget: HTMLElement | null = null;
+      // 事件驱动的帧调度：仅在状态可能变化时请求下一帧（替代原每帧空转）
+      const scheduleUpdate = () => {
+        if (frameScheduled) return;
+        frameScheduled = true;
+        requestAnimationFrame(() => {
+          frameScheduled = false;
+          update();
+        });
+      };
 
-      window.addEventListener("mousemove", (e) => {
+      // mousemove 与 mouseover 共用：后者覆盖「鼠标静止时鼠标下元素变化」的场景
+      // （DOM 替换、动画推动、目标被移除）；重复触发由 scheduleUpdate 去重
+      const handlePointerActivity = (e: MouseEvent) => {
         mouseX = e.clientX;
         mouseY = e.clientY;
 
@@ -245,7 +265,24 @@ export default defineNuxtPlugin((nuxtApp) => {
           isSnapped = false;
           lastSnappedElement = null;
         }
+
+        scheduleUpdate();
+      };
+
+      window.addEventListener("mousemove", handlePointerActivity);
+      window.addEventListener("mouseover", handlePointerActivity);
+
+      // 吸附框视口坐标随滚动 / 缩放变化：显式失效缓存并按需请求一帧
+      const invalidateRect = () => {
+        rectDirty = true;
+        if (isSnapped) scheduleUpdate();
+      };
+
+      window.addEventListener("scroll", invalidateRect, {
+        passive: true,
+        capture: true,
       });
+      window.addEventListener("resize", invalidateRect);
 
       document.addEventListener("mouseleave", () => {
         follower.classList.add("hidden");
@@ -255,7 +292,7 @@ export default defineNuxtPlugin((nuxtApp) => {
         follower.classList.remove("hidden");
       });
 
-      requestAnimationFrame(update);
+      scheduleUpdate();
     };
 
     if (window.requestIdleCallback) {
