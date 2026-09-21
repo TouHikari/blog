@@ -5,22 +5,25 @@
 ## 1. 加载链路
 
 - `nuxt.config.ts`：`css: ["katex/dist/katex.min.css", "~/styles/main.scss"]`。
-- `main.scss` → `@use './variables'`、`'./fonts'`、`'./content'`。
-- `_content.scss` → `@use './cyber-effects'`、`'./terminal-glow'`（两个特效文件随内容样式一并打包）。
-- 组件内按需 `@use`（SCSS 模块系统，变量/字体/mixin 可在任意组件复用）：
+- `main.scss` → `@use './variables'`、`'./fonts'`、`'./content'`。其中 `'./fonts'` 是字体 CSS 的**唯一注入点**，只允许出现在这里。
+- `_content.scss` → `@use './font-stacks'`、`'./cyber-effects'`、`'./terminal-glow'`（两个特效文件随内容样式一并打包）。
+- 组件内按需 `@use`（SCSS 模块系统，变量/字体栈/mixin 可在任意组件复用）：
 
 ```scss
 @use '@/styles/variables' as *;
-@use '@/styles/fonts' as *;
+@use '@/styles/font-stacks' as *;
 @use '@/styles/terminal-glow' as *; // 需要发光/闪烁效果时
 ```
+
+> ⚠️ 组件**禁止** `@use '@/styles/fonts'`：该文件承载全部 `@font-face` 声明，Sass 的 `@use` 会把它复制进每个组件的 CSS 产物（曾导致每页 HTML 膨胀至 2.6 MB）。
 
 ## 2. 文件职责
 
 | 文件 | 职责 |
 | --- | --- |
 | `_variables.scss` | 全部设计令牌：颜色、间距、字体尺寸/行高/字重、布局、断点、动画、网格与扫描线参数 |
-| `_fonts.scss` | `@fontsource` 导入、本地 `@font-face`（FZG_CN、AlimamaShuHeiTi）、五类组合字体栈 |
+| `_font-stacks.scss` | 五类组合字体栈等纯 SCSS 变量（零 CSS 输出），供组件 `@use` |
+| `_fonts.scss` | 字体 CSS 唯一注入点：`@fontsource` 导入与本地 `@font-face`（FZG_CN、AlimamaShuHeiTi），仅被 `main.scss` 引用 |
 | `_content.scss` | Markdown 正文排版：标题辉光、代码、行内代码、链接、列表、引用、表格、图片、文本样式 |
 | `cyber-effects.scss` | 霓虹动画工具类与关键帧：`neon-glow`、`glitching`、`flicker`、`pulse`、`cyber-hover` |
 | `terminal-glow.scss` | 全屏扫描线（`body::before`）、`flicker` 关键帧、`glow-text-*` / `flicker-effect` mixin |
@@ -48,7 +51,7 @@
 | `$font-pixel` | 侧边栏小标题（Fusion Pixel + FZG_CN） |
 | `$font-serif` | 衬线场景 |
 
-新增字体的步骤：引入字体文件（`@fontsource/*` 或 `public/fonts/`）→ 在 `_fonts.scss` 声明 `@font-face`/导入 → 更新对应组合栈。
+新增字体的步骤：引入字体文件（`@fontsource/*` 或 `public/fonts/`）→ 在 `_fonts.scss` 声明 `@font-face`/导入（CSS 层）→ 在 `_font-stacks.scss` 更新对应组合栈（变量层）。
 
 ## 5. 排版与交互规范（修改时必须保持）
 

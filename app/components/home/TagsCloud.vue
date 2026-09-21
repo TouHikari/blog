@@ -25,7 +25,7 @@ const { tags } = useBlog()
 
 <style lang="scss" scoped>
 @use '~/styles/variables' as *;
-@use '~/styles/fonts' as *;
+@use '~/styles/font-stacks' as *;
 
 .tags-cloud-container {
   padding: 1rem 0 0 0;

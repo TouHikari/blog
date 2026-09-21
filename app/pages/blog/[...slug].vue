@@ -22,7 +22,7 @@ const { article, status, error } = await useArticle()
 
 <style scoped lang="scss">
 @use '~/styles/variables' as *;
-@use '~/styles/fonts' as *;
+@use '~/styles/font-stacks' as *;
 
 .status {
   text-align: center;

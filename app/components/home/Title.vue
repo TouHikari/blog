@@ -26,7 +26,7 @@ onMounted(() => {
 
 <style lang="scss" scoped>
 @use '~/styles/variables' as *;
-@use '~/styles/fonts' as *;
+@use '~/styles/font-stacks' as *;
 @use '~/styles/terminal-glow' as *;
 
 .home-title-container {

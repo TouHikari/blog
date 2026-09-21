@@ -24,7 +24,7 @@
 
 <style scoped lang="scss">
 @use '~/styles/variables' as *;
-@use '~/styles/fonts' as *;
+@use '~/styles/font-stacks' as *;
 
 h4 {
   border-bottom: 1px dashed;

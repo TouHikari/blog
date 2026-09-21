@@ -19,7 +19,7 @@ const buttonClass = computed(() => {
 </script>
 
 <style scoped lang="scss">
-@use '~/styles/fonts' as *;
+@use '~/styles/font-stacks' as *;
 
 * {
   cursor: pointer;

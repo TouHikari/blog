@@ -1,14 +1,16 @@
 # 样式令牌与字体栈速查
 
-设计变量的唯一来源：`app/styles/_variables.scss`；字体栈：`app/styles/_fonts.scss`；发光特效 mixin：`app/styles/terminal-glow.scss`。
+设计变量的唯一来源：`app/styles/_variables.scss`；字体栈变量：`app/styles/_font-stacks.scss`；发光特效 mixin：`app/styles/terminal-glow.scss`；字体 CSS 唯一注入点：`app/styles/_fonts.scss`（仅被 `main.scss` 引用，组件禁止 `@use`）。
 
 组件中引用方式：
 
 ```scss
 @use '@/styles/variables' as *;
-@use '@/styles/fonts' as *;
+@use '@/styles/font-stacks' as *;
 @use '@/styles/terminal-glow' as *; // 需要发光/闪烁时
 ```
+
+注意：组件禁止 `@use '@/styles/fonts'`（字体 CSS 唯一注入点，组件引用会导致 `@font-face` 复制进每个 CSS chunk）。
 
 ## 1. 品牌色（`$cyberpunk-*`）
 
@@ -57,7 +59,7 @@
 
 媒体查询写法：`@media (max-width: #{$breakpoint-mobile - 1px}) { ... }`；`.inner` 容器宽度阶梯为 720 / 920 / 1000 / 1200px（见 `main.scss`、`home.vue`、`AppHeader.vue`）。
 
-## 4. 字体栈（`_fonts.scss`）
+## 4. 字体栈（`_font-stacks.scss`）
 
 组合规则：**纯西文 → 中文 → 系统回退**。
 

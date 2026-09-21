@@ -14,7 +14,7 @@ defineProps<{
 </script>
 
 <style scoped lang="scss">
-@use '~/styles/fonts' as *;
+@use '~/styles/font-stacks' as *;
 @use '~/styles/variables' as *;
 
 .blog-tag {

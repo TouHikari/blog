@@ -25,7 +25,7 @@ const activeTab = ref(tabNames.value[0]);
 
 <style scoped lang="scss">
 @use "@/styles/variables" as *;
-@use "@/styles/fonts" as *;
+@use "@/styles/font-stacks" as *;
 
 .tabs-container {
   margin: 1.5em 0;

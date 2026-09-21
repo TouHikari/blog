@@ -131,7 +131,7 @@ onUnmounted(() => {
 </template>
 
 <style lang="scss" scoped>
-@use "~/styles/fonts" as *;
+@use "~/styles/font-stacks" as *;
 @use "~/styles/variables" as *;
 @use "~/styles/terminal-glow" as *;
 

@@ -18,7 +18,7 @@ const { recentArticles } = useBlog()
 
 <style lang="scss" scoped>
 @use '~/styles/variables' as *;
-@use '~/styles/fonts' as *;
+@use '~/styles/font-stacks' as *;
 
 .recent-posts-container {
   padding: 1rem 0;

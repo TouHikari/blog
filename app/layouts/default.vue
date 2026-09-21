@@ -27,7 +27,7 @@ import ContentAlert from '~/components/content/Alert.vue'
 
 <style scoped lang="scss">
 @use '~/styles/variables' as *;
-@use '~/styles/fonts' as *;
+@use '~/styles/font-stacks' as *;
 @use 'sass:string';
 
 .container {
