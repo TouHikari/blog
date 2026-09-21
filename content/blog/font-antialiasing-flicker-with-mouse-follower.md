@@ -2,6 +2,7 @@
 title: 记一次前端“玄学”问题：鼠标交互导致的字体粗细闪烁排查与解决
 draft: true
 date: 2026-02-21
+category: web
 tags:
   - web
   - frontend

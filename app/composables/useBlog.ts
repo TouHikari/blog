@@ -1,11 +1,17 @@
 import type { Article } from '~/types'
 
+// 兼容 tags 字段的两种历史存放位置（顶层 tags / meta.tags）
+const articleTags = (article: Article): string[] => {
+  const tags = article.tags || article.meta?.tags || []
+  return Array.isArray(tags) ? tags : []
+}
+
 export const useBlog = () => {
   const { data: articles, refresh, status } = useAsyncData('blog-articles', async () => {
     try {
       // 字段投影：剔除 body（渲染 AST），避免列表数据把文章全文序列化进 payload
       const allBlogArticles = await queryCollection('blog')
-        .select('title', 'path', 'date', 'description', 'tags', 'draft', 'meta')
+        .select('title', 'path', 'date', 'description', 'tags', 'category', 'draft', 'meta')
         .all()
 
       if (!allBlogArticles || allBlogArticles.length === 0) {
@@ -42,24 +48,41 @@ export const useBlog = () => {
     if (!articles.value) return []
     const tagCounts: Record<string, number> = {}
     articles.value.forEach((article) => {
-      // 检查 tags 字段可能存在的不同位置
-      const articleTags = article.tags || article.meta?.tags || []
-      
-      if (Array.isArray(articleTags)) {
-        articleTags.forEach((tag: string) => {
-          tagCounts[tag] = (tagCounts[tag] || 0) + 1
-        })
-      }
+      articleTags(article).forEach((tag) => {
+        tagCounts[tag] = (tagCounts[tag] || 0) + 1
+      })
     })
     return Object.entries(tagCounts)
       .map(([name, count]) => ({ name, count }))
       .sort((a, b) => b.count - a.count)
   })
 
+  const categories = computed(() => {
+    if (!articles.value) return []
+    const categoryCounts: Record<string, number> = {}
+    articles.value.forEach((article) => {
+      if (article.category) {
+        categoryCounts[article.category] = (categoryCounts[article.category] || 0) + 1
+      }
+    })
+    return Object.entries(categoryCounts)
+      .map(([name, count]) => ({ name, count }))
+      .sort((a, b) => b.count - a.count)
+  })
+
+  const articlesByTag = (tag: string) =>
+    (articles.value ?? []).filter((article) => articleTags(article).includes(tag))
+
+  const articlesByCategory = (category: string) =>
+    (articles.value ?? []).filter((article) => article.category === category)
+
   return {
     articles,
     recentArticles,
     tags,
+    categories,
+    articlesByTag,
+    articlesByCategory,
     refresh,
     status
   }

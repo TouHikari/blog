@@ -3,6 +3,7 @@ export interface Article {
   path: string
   date: string
   description?: string
+  category?: string
   meta?: {
     excerpt?: any
     tags?: string[]

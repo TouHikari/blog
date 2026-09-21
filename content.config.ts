@@ -17,6 +17,7 @@ export default defineContentConfig({
         date: z.string().or(z.date()),
         draft: z.boolean().optional(),
         tags: z.array(z.string()).optional(),
+        category: z.string().optional(),
         toc: z.boolean().optional()
       }).passthrough()
     }),

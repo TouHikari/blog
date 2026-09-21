@@ -1,6 +1,7 @@
 ---
 title: FreeRTOS 实时操作系统调度策略研究
 date: 2026-06-05
+category: os
 tags:
   - rtos
   - freertos

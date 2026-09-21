@@ -2,6 +2,7 @@
 title: Markdown 语法全量测试指南
 draft: true
 date: 2026-02-19
+category: meta
 tags:
   - markdown
   - test

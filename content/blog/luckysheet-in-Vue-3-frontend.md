@@ -1,6 +1,7 @@
 ---
 title: 在 Vue 3 项目中前端使用 Luckysheet 遇到的若干问题及解决方法
 date: 2025-08-07
+category: web
 tags:
   - web
   - frontend

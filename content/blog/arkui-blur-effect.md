@@ -2,6 +2,7 @@
 title: ArkUI 中实现模糊效果的几种方法
 draft: true
 date: 2026-04-18
+category: mobile
 tags:
   - arkui
   - harmonyos

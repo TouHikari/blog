@@ -1,6 +1,7 @@
 ---
 title: 软件架构设计对工业软件质量的影响研究
 date: 2026-07-05
+category: architecture
 tags:
   - software-architecture
   - industrial-software

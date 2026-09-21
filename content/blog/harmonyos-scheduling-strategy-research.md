@@ -1,6 +1,7 @@
 ---
 title: 鸿蒙操作系统（HarmonyOS）调度策略研究
 date: 2026-06-05
+category: os
 tags:
   - harmonyos
   - operating-system
