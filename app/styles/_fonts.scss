@@ -1,5 +1,6 @@
 // 注意：本文件仅承载字体 CSS 输出（@import / @font-face），必须保持零 SCSS 变量。
 // 字体栈变量位于 _font-stacks.scss，供组件 @use 取用。
+// Maple Mono CN 的 @font-face 分片声明位于 _maple-mono-cn.scss（自托管，替代 jsDelivr 远程引用）。
 // 本文件只允许被 main.scss 单点 @use；组件直接引用会把全套字体声明复制进各自的 CSS chunk。
 
 @import '@fontsource/jetbrains-mono/400.css';
@@ -9,7 +10,6 @@
 @import '@fontsource/orbitron/400.css';
 @import '@fontsource/orbitron/700.css';
 @import '@fontsource/fusion-pixel-10px-proportional-kr/400.css';
-@import url('https://cdn.jsdelivr.net/npm/@mogeko/maple-mono-cn@7.9.0/dist/font/result.css');
 
 @font-face {
   font-family: 'FZG_CN';

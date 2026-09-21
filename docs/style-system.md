@@ -5,7 +5,7 @@
 ## 1. 加载链路
 
 - `nuxt.config.ts`：`css: ["katex/dist/katex.min.css", "~/styles/main.scss"]`。
-- `main.scss` → `@use './variables'`、`'./fonts'`、`'./content'`。其中 `'./fonts'` 是字体 CSS 的**唯一注入点**，只允许出现在这里。
+- `main.scss` → `@use './variables'`、`'./fonts'`、`'./maple-mono-cn'`、`'./content'`。其中 `'./fonts'` 与 `'./maple-mono-cn'` 是字体 CSS 的**唯一注入点**，只允许出现在这里。
 - `_content.scss` → `@use './font-stacks'`、`'./cyber-effects'`、`'./terminal-glow'`（两个特效文件随内容样式一并打包）。
 - 组件内按需 `@use`（SCSS 模块系统，变量/字体栈/mixin 可在任意组件复用）：
 
@@ -24,6 +24,7 @@
 | `_variables.scss` | 全部设计令牌：颜色、间距、字体尺寸/行高/字重、布局、断点、动画、网格与扫描线参数 |
 | `_font-stacks.scss` | 五类组合字体栈等纯 SCSS 变量（零 CSS 输出），供组件 `@use` |
 | `_fonts.scss` | 字体 CSS 唯一注入点：`@fontsource` 导入与本地 `@font-face`（FZG_CN、AlimamaShuHeiTi），仅被 `main.scss` 引用 |
+| `_maple-mono-cn.scss` | Maple Mono CN 的 239 条 `@font-face` 分片声明（自托管 `public/fonts/maple-mono-cn/`，Git LFS），仅被 `main.scss` 引用 |
 | `_content.scss` | Markdown 正文排版：标题辉光、代码、行内代码、链接、列表、引用、表格、图片、文本样式 |
 | `cyber-effects.scss` | 霓虹动画工具类与关键帧：`neon-glow`、`glitching`、`flicker`、`pulse`、`cyber-hover` |
 | `terminal-glow.scss` | 全屏扫描线（`body::before`）、`flicker` 关键帧、`glow-text-*` / `flicker-effect` mixin |
@@ -46,7 +47,7 @@
 | 组合栈 | 用途 |
 | --- | --- |
 | `$font-sans` | 正文 |
-| `$font-mono` | 代码、导航、状态栏（JetBrains Mono + Maple Mono CN CDN） |
+| `$font-mono` | 代码、导航、状态栏（JetBrains Mono + Maple Mono CN 自托管） |
 | `$font-cyber` | 标题、页脚、侧边栏（Orbitron + AlimamaShuHeiTi） |
 | `$font-pixel` | 侧边栏小标题（Fusion Pixel + FZG_CN） |
 | `$font-serif` | 衬线场景 |

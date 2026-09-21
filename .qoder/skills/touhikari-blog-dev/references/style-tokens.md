@@ -1,6 +1,6 @@
 # 样式令牌与字体栈速查
 
-设计变量的唯一来源：`app/styles/_variables.scss`；字体栈变量：`app/styles/_font-stacks.scss`；发光特效 mixin：`app/styles/terminal-glow.scss`；字体 CSS 唯一注入点：`app/styles/_fonts.scss`（仅被 `main.scss` 引用，组件禁止 `@use`）。
+设计变量的唯一来源：`app/styles/_variables.scss`；字体栈变量：`app/styles/_font-stacks.scss`；发光特效 mixin：`app/styles/terminal-glow.scss`；字体 CSS 唯一注入点：`app/styles/_fonts.scss`、`app/styles/_maple-mono-cn.scss`（均仅被 `main.scss` 引用，组件禁止 `@use`）。
 
 组件中引用方式：
 
@@ -66,12 +66,12 @@
 | 组合栈 | 组成 |
 | --- | --- |
 | `$font-sans` | `$font-latin-sans` → `$font-cjk-sans` → 系统回退 |
-| `$font-mono` | JetBrains Mono → Maple Mono NF CN（CDN）→ 回退（代码、导航、状态栏） |
+| `$font-mono` | JetBrains Mono → Maple Mono CN（自托管）→ 回退（代码、导航、状态栏） |
 | `$font-serif` | Times New Roman → Songti SC 回退 |
 | `$font-cyber` | Orbitron → AlimamaShuHeiTi → 回退（标题、页脚、侧边栏） |
 | `$font-pixel` | Fusion Pixel 10px Proportional KR → FZG_CN → 回退（侧边栏小标题） |
 
-字体来源：`@fontsource/*`（JetBrains Mono、Noto Sans SC、Orbitron、Fusion Pixel）、本地 `public/fonts/`（FZG_CN、AlimamaShuHeiTi）、jsDelivr CDN（Maple Mono CN）。
+字体来源：`@fontsource/*`（JetBrains Mono、Noto Sans SC、Orbitron、Fusion Pixel）、本地 `public/fonts/`（FZG_CN、AlimamaShuHeiTi、Maple Mono CN 分片，均走 Git LFS）。
 
 ## 5. 终端特效 mixin（`terminal-glow.scss`）
 
