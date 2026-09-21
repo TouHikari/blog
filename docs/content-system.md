@@ -46,6 +46,7 @@
 
 - `useAsyncData` key：`'blog-articles'`（全局共享缓存，列表页/侧边栏/标签云多处调用只请求一次）。
 - 返回：`articles`（按 `date` 倒序）、`recentArticles`（前 5 篇）、`tags`（按文章数排序的 `{ name, count }`）、`refresh`、`status`。
+- 列表查询使用 `.select()` 字段投影（`title`/`path`/`date`/`description`/`tags`/`draft`/`meta`），剔除 `body` 渲染 AST，避免文章全文序列化进 payload；`meta` 用于承载摘要 `excerpt`。
 - 标签字段同时兼容 `article.tags` 与 `article.meta.tags` 两种位置。
 
 ### useArticle（详情）

@@ -5,6 +5,16 @@ export default defineNuxtConfig({
 
   modules: ["@nuxt/content", "@nuxt/eslint", "@nuxt/icon", "@nuxt/image"],
 
+  // NuxtLink 预取策略：关闭默认的「进入视口即预取」（visibility），仅保留 hover/focus 交互预取。
+  // 注意：必须显式声明 visibility: false —— defu 会与 Nuxt 默认的 { visibility: true } 深合并。
+  experimental: {
+    defaults: {
+      nuxtLink: {
+        prefetchOn: { visibility: false, interaction: true },
+      },
+    },
+  },
+
   vite: {
     optimizeDeps: {
       include: [

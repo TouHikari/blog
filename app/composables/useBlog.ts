@@ -3,22 +3,22 @@ import type { Article } from '~/types'
 export const useBlog = () => {
   const { data: articles, refresh, status } = useAsyncData('blog-articles', async () => {
     try {
-      const allBlogArticles = await queryCollection('blog').all()
+      // 字段投影：剔除 body（渲染 AST），避免列表数据把文章全文序列化进 payload
+      const allBlogArticles = await queryCollection('blog')
+        .select('title', 'path', 'date', 'description', 'tags', 'draft', 'meta')
+        .all()
 
       if (!allBlogArticles || allBlogArticles.length === 0) {
         return []
       }
 
-      const visibleArticles = allBlogArticles.filter((article: any) => {
+      const visibleArticles = allBlogArticles.filter((article) => {
         if (import.meta.dev) return true
         return article.draft !== true
       })
 
-      const processedArticles = visibleArticles.map((article: any) => {
-        let excerptContent = null
-        if (article.meta && article.meta.excerpt) {
-          excerptContent = article.meta.excerpt
-        }
+      const processedArticles = visibleArticles.map((article) => {
+        const excerptContent = article.meta?.excerpt ?? null
         return {
           ...article,
           excerptContent
