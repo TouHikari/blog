@@ -1,5 +1,9 @@
 <script setup lang="ts">
 import ContentAlert from '~/components/content/Alert.vue'
+
+const route = useRoute()
+// 页面可通过 definePageMeta({ hideLicense: true }) 隐藏版权提示
+const showLicense = computed(() => route.meta.hideLicense !== true)
 </script>
 
 <template>
@@ -14,7 +18,7 @@ import ContentAlert from '~/components/content/Alert.vue'
           <div class="content-prose">
             <slot />
             <br>
-            <ContentAlert type="info">
+            <ContentAlert v-if="showLicense" type="info">
               本文采用 <a href="https://creativecommons.org/licenses/by-sa/4.0/" target="_blank">知识共享署名-相同方式共享 4.0 国际许可协议</a> 进行许可。
             </ContentAlert>
           </div>
@@ -32,10 +36,15 @@ import ContentAlert from '~/components/content/Alert.vue'
 
 .container {
   margin: 0 auto;
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+  min-height: 100dvh;
 }
 
 .main-content {
   padding-top: 1.5em;
+  flex: 1;
 }
 
 .inner {

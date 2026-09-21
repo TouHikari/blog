@@ -43,10 +43,15 @@
 
 .container {
   margin: 0 auto;
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+  min-height: 100dvh;
 }
 
 .main-content {
   padding-top: 1.5em;
+  flex: 1;
 }
 
 .inner {
