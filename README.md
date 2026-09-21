@@ -70,7 +70,7 @@ nuxt.config.ts       Nuxt 配置（内容渲染、prerender、SEO、Vite）
 - 文章放在 `content/blog/`（正式）或 `content/test/`（测试页），首页与关于页为 `content/index.md`、`content/about.md`。
 - 文章 frontmatter 常用字段：`title`、`date`（必填）、`description`、`tags`、`draft`、`toc`。
 - 首页文章列表的摘要使用 `<!--more-->` 标记截断。
-- `draft: true` 的文章只在本机开发环境可见，不会进入生产构建。
+- `draft: true` 的文章只在本机开发环境渲染可见；生产环境不进入列表 / 详情 / sitemap（数据保留在客户端快照，属刻意设计，详见 [docs/content-system.md](docs/content-system.md)）。
 - Markdown 组件语法（`::alert`、`::tabs`、公式、Mermaid 等）见 [docs/component-system.md](docs/component-system.md)。
 
 ## 部署

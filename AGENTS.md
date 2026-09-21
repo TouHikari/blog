@@ -69,7 +69,7 @@ nuxt.config.ts       Nuxt 配置（内容渲染、prerender、SEO、Vite）
 - 文章 frontmatter：`title`、`date`（必填）、`description`、`tags`、`draft`、`toc`。
 - 首页文章列表的摘要使用 `<!--more-->` 标记。
 - `::tabs` 的 slot 标题必须以 ASCII 字母开头（如 `#C++ 应用层接口`）；嵌套在 `::tabs` 内的 alert 使用 `:::alert{type="warning"}` 三冒号语法。
-- `draft: true` 的文章仅在本机 dev 环境可见，不会出现在生产构建中。
+- `draft: true` 的文章仅在本机 dev 环境渲染可见；生产环境不进入列表 / 详情 / sitemap（数据保留在客户端快照，属刻意设计）。
 
 ## Git 提交规范
 

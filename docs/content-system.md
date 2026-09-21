@@ -21,7 +21,7 @@
 | `date` | blog 必填 | 字符串或日期；文章列表按此字段倒序排列 |
 | `description` | 全部（可选） | 文章页会渲染为顶部的 `ContentAlert type="warning"`；也用于 SEO description |
 | `tags` | blog（可选） | 字符串数组；列表页标签与标签统计使用 |
-| `draft` | blog / test（可选） | `true` 时仅本机 dev 环境可见，不进入生产构建 |
+| `draft` | blog / test（可选） | `true` 时仅本机 dev 环境可见；生产环境不进入渲染输出（列表过滤、详情拦截、不进 sitemap），数据保留在客户端快照（刻意设计，见第 4 节） |
 | `toc` | blog / test（可选） | 内容目录开关 |
 
 ## 3. 摘要截断标记
@@ -39,6 +39,8 @@
 | `useBlog` 列表 | dev 环境显示全部；生产构建过滤掉 `draft === true` |
 | `useArticle` 详情 | 生产环境访问草稿文章时返回 `null`，页面显示 “Article not found!” |
 | `content` 集合（首页/关于） | 不参与草稿过滤 |
+
+> **数据层说明**：生产构建产物的 `__nuxt_content/<collection>/sql_dump.txt`（客户端 WASM SQLite 快照，Base64 + GZIP）仍包含草稿原文——渲染层隔离（见上表）不受影响；此为刻意保留的设计（可用于埋设隐藏内容），并非泄漏。
 
 ## 5. 查询与数据流
 

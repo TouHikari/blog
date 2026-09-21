@@ -33,7 +33,7 @@ const { data: articles, refresh, status } = useAsyncData('blog-articles', async 
 - `.select()` 字段投影剔除 `body`，避免全文 AST 进入序列化 payload。
 - `useBlog` 另提供 `tags` / `categories`（`{name, count}` 计数排序）与 `articlesByTag` / `articlesByCategory` 过滤函数，供 `/tags`、`/categories` 页的就地展开结果区复用。
 - 排序在 JS 层完成（按 `date` 倒序）。
-- 草稿过滤：dev 环境全部可见；生产构建过滤 `draft === true`。
+- 草稿过滤：dev 环境全部可见；生产环境过滤 `draft === true`。
 
 ### 单篇查询（对应 `useArticle`）
 
