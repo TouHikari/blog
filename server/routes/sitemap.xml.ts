@@ -19,22 +19,10 @@ export default defineEventHandler(async (event) => {
   } = useRuntimeConfig(event)
 
   const articles = await queryCollection(event, 'blog')
-    .select('path', 'date', 'draft', 'tags')
+    .select('path', 'date', 'draft')
     .all()
 
   const published = articles.filter((article) => article.draft !== true)
-
-  // 标签聚合：标签名 → 该标签下最新文章日期
-  const tagLatestDate = new Map<string, string>()
-  for (const article of published) {
-    const date = toDateString(article.date)
-    for (const tag of article.tags ?? []) {
-      const current = tagLatestDate.get(tag)
-      if (!current || date > current) {
-        tagLatestDate.set(tag, date)
-      }
-    }
-  }
 
   const entries: Array<{
     loc: string
@@ -52,15 +40,7 @@ export default defineEventHandler(async (event) => {
       lastmod: toDateString(article.date),
       changefreq: 'monthly',
       priority: '0.8'
-    })),
-    ...[...tagLatestDate.entries()]
-      .sort(([a], [b]) => a.localeCompare(b))
-      .map(([tag, lastmod]) => ({
-        loc: `${siteUrl}/tags/${encodeURIComponent(tag)}`,
-        lastmod,
-        changefreq: 'weekly',
-        priority: '0.6'
-      }))
+    }))
   ]
 
   const xml = [

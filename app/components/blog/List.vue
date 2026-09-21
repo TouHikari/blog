@@ -1,10 +1,18 @@
 <script setup lang="ts">
-const { articles } = useBlog()
+import type { Article } from '~/types'
+
+// 可选传入筛选后的文章列表（标签/分类展开区复用），缺省时展示全量
+const props = defineProps<{
+  articles?: Article[]
+}>()
+
+const { articles: allArticles } = useBlog()
+const displayArticles = computed(() => props.articles ?? allArticles.value ?? [])
 </script>
 
 <template>
   <div class="blog-list">
-    <div v-for="article in articles" :key="article.path" class="blog-item" data-lock-container>
+    <div v-for="article in displayArticles" :key="article.path" class="blog-item" data-lock-container>
       <div class="blog-header" data-lock-marked>
         <h3 class="blog-title">
           <NuxtLink :to="article.path">{{ article.title }}</NuxtLink>
@@ -73,6 +81,8 @@ const { articles } = useBlog()
 
 .blog-excerpt {
   text-wrap: pretty;
+  text-align: justify;
+  text-justify: inter-ideograph;
 }
 
 .blog-tags {

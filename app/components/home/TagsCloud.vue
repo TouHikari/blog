@@ -10,7 +10,7 @@
       <UiTag 
         v-for="tag in tags" 
         :key="tag.name" 
-        :to="`/tags/${tag.name}`" 
+        :to="{ path: '/tags', query: { tag: tag.name } }" 
         class="tag-item"
       >
         {{ tag.name }}
