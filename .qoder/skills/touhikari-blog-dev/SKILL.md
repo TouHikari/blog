@@ -31,7 +31,7 @@ description: TouHikari.top 博客仓库开发技能。在 TouHikari.top 项目�
 
 ### 2. 撰写新文章
 
-1. 在 `content/blog/` 新建 `*.md`，frontmatter 至少包含 `title` 与 `date`（`date` 必填）。
+1. 在 `content/blog/` 新建 `*.md`，frontmatter 至少包含 `title` 与 `date`（`date` 必填）；可选 `category`（单值分类，`/categories` 数据源）。
 2. 需要在首页列表展示摘要时，在摘要结束处插入 `<!--more-->`。
 3. 组件与公式语法见 [references/mdc-authoring.md](references/mdc-authoring.md)。
 4. `draft: true` 的文章仅本机 dev 可见，不会进入生产构建。

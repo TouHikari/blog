@@ -10,6 +10,7 @@ TouHikari.top 的文章由 `@nuxt/content` v3 + MDC 渲染。以下为本项目�
 ---
 title: 文章标题          # 字符串，可选
 date: 2026-02-19        # 必填
+category: web           # 可选，单值分类（/categories 数据源）
 description: 摘要描述    # 可选，会渲染为文章页顶部的 warning Alert
 tags:                   # 可选，字符串数组
   - tag-a

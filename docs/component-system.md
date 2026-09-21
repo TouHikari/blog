@@ -62,7 +62,8 @@
 | 组件 | 职责 |
 | --- | --- |
 | `Title.vue` | default 布局的文章页标题：打字机逐字渲染 + 光标闪烁 + 心跳图标 + 标语；消费 `usePageTitle` 的全局标题；通过临时渲染完整文本计算 `min-height` 避免布局跳动 |
-| `List.vue` | 文章列表（标题 / 日期 / 摘要 / 标签）；数据来自 `useBlog`；每个条目为 Lock Marked 容器 |
+| `List.vue` | 文章列表（标题 / 日期 / 摘要 / 标签）；数据来自 `useBlog`，可选 prop `articles` 传入筛选结果（标签/分类展开区复用）；摘要区两端对齐；每个条目为 Lock Marked 容器 |
+| `QueryResult.vue` | 查询结果单元：终端风查询头（`label` / `term` / 条目数）+ `BlogList`，左侧荧光竖条；供 `/tags`、`/categories` 就地展开使用 |
 
 ## 4. home/
 
@@ -70,7 +71,7 @@
 | --- | --- |
 | `Title.vue` | 首页主标题（固定文案 + `bootup` 开机动画）与标语 |
 | `RecentPosts.vue` | 侧边栏「最近文章」：`recentArticles`（前 5 篇），带 Lock Marked 标记 |
-| `TagsCloud.vue` | 侧边栏「标签云」：`tags` 计数排序，跳转 `/tags/<name>`；带 Lock Marked 标记 |
+| `TagsCloud.vue` | 侧边栏「标签云」：`tags` 计数排序，跳转 `/tags/<编码后的名字>`（`encodeURIComponent`）；带 Lock Marked 标记 |
 | `Links.vue` | 侧边栏「相关链接」：GitHub / Bilibili / 网易云音乐 / 友链；带 Lock Marked 标记 |
 
 ## 5. ui/
@@ -78,7 +79,8 @@
 | 组件 | 职责 |
 | --- | --- |
 | `Button.vue` | 基础按钮：`type: 'navbar-brand' \| 'nav'`，仅负责外观（导航中与 `NuxtLink` 组合使用） |
-| `Tag.vue` | 标签样式：`to` 可选（有则渲染为 `NuxtLink`）；hover 青→亮黄扫描线动效 |
+| `Tag.vue` | 标签样式：`to` 可选（有则渲染为 `NuxtLink`）；`clickable` 渲染为 `<button>` 并透传 `click`；`active` 为选中点亮态；hover 青→亮黄扫描线动效 |
+| `Collapse.vue` | 折叠容器：ResizeObserver 持续测量内容高度，高度过渡始终跟随实际内容（字体加载等引起的晚到高度变化也会被平滑吸收）；展开 0.3s / 收起 0.2s 不对称节奏；`contentKey` 变化时内容重建淡入；展开过渡完成时派发 `expanded` 事件（供调用方在动画结束后执行滚动等依赖最终布局的动作）；闭合时内容保留（随高度收缩）并通过 `inert` 禁用交互 |
 
 ## 6. Lock Marked 集成点
 

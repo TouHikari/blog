@@ -8,15 +8,13 @@
 | --- | --- | --- | --- |
 | `/` | `pages/index.vue` | `home` | 已实现（内容来自 `content/index.md`） |
 | `/about` | `pages/about.vue` | `default` | 已实现（内容来自 `content/about.md`） |
-| `/blog` | `pages/blog/index.vue` | `default` | 占位（空模板，待实现归档页） |
+| `/blog` | `pages/blog/index.vue` | `default` | 已实现（归档页：统计头 + 年/月分组列表，数据来自 `useBlog`） |
 | `/blog/[...slug]` | `pages/blog/[...slug].vue` | `default` | 已实现（文章页，`useArticle('blog')`） |
 | `/test/[...slug]` | `pages/test/[...slug].vue` | `default` | 已实现（渲染测试页，`useArticle('test')`） |
-| `/categories` | `pages/categories/index.vue` | `default` | 占位（待实现） |
-| `/categories/[category]` | `pages/categories/[category].vue` | `default` | 占位（待实现） |
-| `/tags` | `pages/tags/index.vue` | `default` | 占位（待实现） |
-| `/tags/[tag]` | `pages/tags/[tag].vue` | `default` | 占位（待实现） |
+| `/categories` | `pages/categories/index.vue` | `default` | 已实现（分类索引：点击就地展开结果，数据来自 `useBlog`） |
+| `/tags` | `pages/tags/index.vue` | `default` | 已实现（标签云：点击就地展开结果，支持 `?tag=` 参数） |
 
-> 导航栏中的 Archives / Categories / Tags 入口已存在，`/tags/<name>` 链接由 `TagsCloud` 生成；分类与标签页面目前渲染空内容，实现时请先阅读本文档与内容系统文档。
+> 标签与分类均采用「就地展开」交互（`ui/Collapse.vue` 承载高度动画），无独立详情页；首页侧栏标签云通过 `/tags?tag=<名字>` 跳转并自动展开对应标签；列表型页面（`/blog`、`/categories`、`/tags`）均设 `definePageMeta({ hideLicense: true })` 隐藏 CC 版权 Alert。
 
 ## 2. 布局
 
@@ -26,7 +24,9 @@
 | `home.vue` | 首页（`definePageMeta({ layout: 'home' })`） | `AppHeader` → `HomeTitle` → 双栏容器（内容 5 : 侧边栏 2）：左侧正文 slot + `BlogList`，右侧 `RecentPosts` / `TagsCloud` / `Links` → `AppFooter` |
 | `clean.vue` | 预留 | 空布局，当前未被任何页面使用 |
 
-正文区约定：`.content-prose` 负责两端对齐与 `overflow-wrap: break-word`；`=== Content begins/ends here ===` 伪元素标识由 `default.vue` 提供（hover 变亮黄）。
+正文区约定：`.content-prose` 负责两端对齐与 `overflow-wrap: break-word`；`=== Content begins/ends here ===` 伪元素标识由 `default.vue` 提供（hover 变亮黄）。`default` 布局末尾自动附加的 CC BY-SA 4.0 版权 Alert 可通过页面 `definePageMeta({ hideLicense: true })` 隐藏。
+
+页脚贴底：`default` 与 `home` 布局的根容器均为纵向 flex（`min-height: 100dvh`）且 `main` 占满剩余高度——页面内容不足一屏时页脚保持贴住视口底部。
 
 ## 3. 页面标题系统（usePageTitle）
 
@@ -60,7 +60,7 @@
 
 1. 在 `app/pages/` 下创建 `.vue` 文件（目录结构即路由）。
 2. 需要特殊布局时使用 `definePageMeta({ layout: 'home' })`。
-3. 内容驱动页面通过 `useAsyncData` + `queryCollection` 查询（保持同步模式，参考 `pages/index.vue`）。
+3. 内容驱动页面通过 `useAsyncData` + `queryCollection` 查询（保持同步模式，参考 `pages/index.vue`）；博客列表型页面复用 `useBlog`（参考 `pages/blog/index.vue`）。
 4. 在 `usePageTitle` 的 `titleMap` 中登记标题（可选）。
 5. 交互区域可添加 Lock Marked 标记（`data-lock-container` / `data-lock-marked`）。
 6. 完成后验证：SSR 无上下文报错、标题正确、CSS 在全部断点下正常。

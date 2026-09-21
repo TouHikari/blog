@@ -16,15 +16,22 @@
 
 ```ts
 const { data: articles, refresh, status } = useAsyncData('blog-articles', async () => {
-  const all = await queryCollection('blog').all()
-  const visible = all.filter((a: any) => import.meta.dev || a.draft !== true)
-  return visible.sort((a, b) => new Date(b.date).getTime() - new Date(a.date).getTime())
+  // 字段投影：剔除 body（渲染 AST），避免列表数据把文章全文序列化进 payload
+  const all = await queryCollection('blog')
+    .select('title', 'path', 'date', 'description', 'tags', 'category', 'draft', 'meta')
+    .all()
+  const visible = all.filter((a) => import.meta.dev || a.draft !== true)
+  return visible
+    .map((a) => ({ ...a, excerptContent: a.meta?.excerpt ?? null }))
+    .sort((a, b) => new Date(b.date).getTime() - new Date(a.date).getTime())
 })
 ```
 
 要点：
 
 - `useAsyncData` 第一个参数是缓存 key；同一 key 全局共享数据与请求状态（首页列表、侧边栏、标签云共用 `'blog-articles'`）。
+- `.select()` 字段投影剔除 `body`，避免全文 AST 进入序列化 payload。
+- `useBlog` 另提供 `tags` / `categories`（`{name, count}` 计数排序）与 `articlesByTag` / `articlesByCategory` 过滤函数，供 `/tags`、`/categories` 页的就地展开结果区复用。
 - 排序在 JS 层完成（按 `date` 倒序）。
 - 草稿过滤：dev 环境全部可见；生产构建过滤 `draft === true`。
 
@@ -77,6 +84,7 @@ useSeoMeta({
 `queryCollection(name)` 返回链式 QueryBuilder：
 
 - `.all()` / `.first()`：取全部 / 第一条
+- `.select(...fields)`：字段投影（列出需要序列化的字段，剔除 `body` 等大字段）
 - `.path(path)`：按文档路径精确匹配（如 `/blog/slug`）
 - `.where(field, operator, value)`：条件过滤（如 `.where('draft', '=', false)`）
 
