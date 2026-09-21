@@ -1,6 +1,6 @@
 <script setup lang="ts">
 import ContentAlert from '~/components/content/Alert.vue'
-const { article, status, error } = await useArticle('test')
+const { article, status, error } = useArticle('test')
 </script>
 
 <template>

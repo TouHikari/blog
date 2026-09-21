@@ -1,10 +1,10 @@
 import type { Article } from '~/types'
 
-export const useArticle = async (collection: 'blog' | 'test' = 'blog') => {
+export const useArticle = (collection: 'blog' | 'test' = 'blog') => {
   const route = useRoute()
   const { setTitle } = usePageTitle()
 
-  const { data: article, error, status, refresh } = useAsyncData(route.path, async () => {
+  const { data: article, error, status } = useAsyncData(route.path, async () => {
     const slug = Array.isArray(route.params.slug) ? route.params.slug.join('/') : route.params.slug
     if (!slug) return null
     
@@ -33,10 +33,6 @@ export const useArticle = async (collection: 'blog' | 'test' = 'blog') => {
       setTitle(newTitle)
     }
   }, { immediate: true })
-
-  if (status.value === 'pending') {
-    await refresh()
-  }
 
   if (error.value) {
     console.error('Error fetching article:', error.value)
