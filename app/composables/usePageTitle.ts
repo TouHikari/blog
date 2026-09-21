@@ -1,6 +1,11 @@
+type RouteBoundTitle = {
+  path: string
+  value: string
+}
+
 export const usePageTitle = () => {
   const route = useRoute()
-  const customTitle = useState<string | null>('page-custom-title', () => null)
+  const customTitle = useState<RouteBoundTitle | null>('page-custom-title', () => null)
 
   const titleMap: Record<string, string> = {
     '/': 'Home',
@@ -11,9 +16,9 @@ export const usePageTitle = () => {
   }
 
   const title = computed(() => {
-    // 1. If a custom title is set (e.g. by a page component), use it
-    if (customTitle.value) {
-      return customTitle.value
+    // 1. If a custom title is set for the current route, use it
+    if (customTitle.value?.path === route.path) {
+      return customTitle.value.value
     }
 
     // 2. Check static map
@@ -33,7 +38,10 @@ export const usePageTitle = () => {
   })
 
   const setTitle = (newTitle: string) => {
-    customTitle.value = newTitle
+    customTitle.value = {
+      path: route.path,
+      value: newTitle
+    }
   }
 
   const clearTitle = () => {
