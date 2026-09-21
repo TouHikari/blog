@@ -1,9 +1,17 @@
 // https://nuxt.com/docs/api/configuration/nuxt-config
+
+// 站点地址唯一来源：canonical / og / JSON-LD / sitemap 均由此派生
+const siteUrl = "https://touhikari.top";
+
 export default defineNuxtConfig({
   compatibilityDate: "2025-07-15",
   devtools: { enabled: false },
 
   modules: ["@nuxt/content", "@nuxt/eslint", "@nuxt/icon", "@nuxt/image"],
+
+  runtimeConfig: {
+    public: { siteUrl },
+  },
 
   // NuxtLink 预取策略：关闭默认的「进入视口即预取」（visibility），仅保留 hover/focus 交互预取。
   // 注意：必须显式声明 visibility: false —— defu 会与 Nuxt 默认的 { visibility: true } 深合并。
@@ -18,8 +26,9 @@ export default defineNuxtConfig({
   vite: {
     optimizeDeps: {
       include: [
-        '@vue/devtools-core',
-        '@vue/devtools-kit',
+        "@vue/devtools-core",
+        "@vue/devtools-kit",
+        "mermaid",
       ]
     }
   },
@@ -116,8 +125,8 @@ export default defineNuxtConfig({
           content:
             "TouHikari 的数字幽灵日志。穿梭于代码与现实的边界，记录那些隐藏在防火墙之后的故事、实验和顿悟。",
         },
-        { property: "og:url", content: "http://touhikari.top" },
-        { property: "og:image", content: "http://touhikari.top/favicon.png" },
+        { property: "og:url", content: siteUrl },
+        { property: "og:image", content: `${siteUrl}/favicon.png` },
         { property: "og:locale", content: "zh_CN" },
 
         // Twitter Card
@@ -128,7 +137,7 @@ export default defineNuxtConfig({
           content:
             "TouHikari 的数字幽灵日志。穿梭于代码与现实的边界，记录那些隐藏在防火墙之后的故事、实验和顿悟。",
         },
-        { name: "twitter:image", content: "http://touhikari.top/favicon.png" },
+        { name: "twitter:image", content: `${siteUrl}/favicon.png` },
 
         // 其他元数据
         { name: "format-detection", content: "telephone=no" },
@@ -138,7 +147,7 @@ export default defineNuxtConfig({
       link: [
         { rel: "icon", type: "image/png", href: "/favicon.png" },
         { rel: "apple-touch-icon", href: "/favicon.png" },
-        { rel: "canonical", href: "http://touhikari.top" },
+        { rel: "canonical", href: siteUrl },
         {
           rel: "alternate",
           type: "application/rss+xml",
@@ -153,7 +162,7 @@ export default defineNuxtConfig({
             "@context": "https://schema.org",
             "@type": "Person",
             name: "TouHikari",
-            url: "http://touhikari.top",
+            url: siteUrl,
             sameAs: [
               "https://github.com/touhikari",
               "https://space.bilibili.com/123365221",
@@ -169,13 +178,6 @@ export default defineNuxtConfig({
 
   // 或者通过ssr配置来优化加载
   ssr: true,
-
-  vite: {
-    optimizeDeps: {
-      // mermaid 在客户端按需动态加载，提前预构建避免首次渲染时的编译延迟
-      include: ["mermaid"],
-    },
-  },
 
   css: ["katex/dist/katex.min.css", "~/styles/main.scss"],
 });

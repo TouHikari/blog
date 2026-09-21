@@ -26,7 +26,7 @@
 
 ## 3. 静态生成与 prerender
 
-- `npm run generate` 会基于 `crawlLinks` 爬取站内链接并预渲染所有页面；`public/` 下的 `sitemap.xml`、`robots.txt` 为静态文件直接提供。
+- `npm run generate` 会基于 `crawlLinks` 爬取站内链接并预渲染所有页面；`sitemap.xml` 由 `server/routes/sitemap.xml.ts` 在构建时生成（prerender 静态化输出，数据与页面查询一致、自动排除草稿），`robots.txt` 为 `public/` 下的静态文件直接提供。
 - 内容（`content/`）在构建期固化：修改文章后需要重新构建部署才会生效。
 - 文章页 `description` 等渲染细节见 `docs/content-system.md`。
 
@@ -69,6 +69,7 @@ sharp_binary_host=https://registry.npmmirror.com/-/binary/sharp
 ## 7. 静态资源与 LFS
 
 - `.gitattributes` 将 `public/**` 交给 Git LFS 管理，不要绕过 LFS 直接提交二进制大文件。
+- 字体文件：`public/fonts/`（FZG_CN、AlimamaShuHeiTi、`maple-mono-cn/` 的 239 个 woff2 分片）均由 LFS 管理；EdgeOne 云端构建可正常拉取（已实测验证）。
 - 新增图片建议放入 `public/images/<文章名>/` 目录（现有文章已按此组织）。
 
 ## 8. 变更检查清单
