@@ -1,15 +1,12 @@
 <script setup lang="ts">
 import type { Article } from '~/types'
+import { toIsoDate } from '~/utils/date'
 
 definePageMeta({
   hideLicense: true
 })
 
 const { articles, tags } = useBlog()
-
-// date 可能是 string 或 Date，统一取 YYYY-MM-DD 前缀
-const toIsoDate = (value: string | Date) =>
-  (value instanceof Date ? value.toISOString() : String(value)).slice(0, 10)
 
 type ArchiveMonth = { month: string; articles: Article[] }
 type ArchiveYear = { year: string; months: ArchiveMonth[] }

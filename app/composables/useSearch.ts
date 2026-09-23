@@ -69,6 +69,7 @@ export const useSearch = () => {
     status.value = 'loading'
     try {
       const data = await $fetch<{ entries: SearchIndexEntry[] }>('/search-index.json')
+      if (!Array.isArray(data?.entries)) throw new Error('Unexpected search index payload')
       entries.value = data.entries
       status.value = 'ready'
     } catch (error) {

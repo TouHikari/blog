@@ -1,5 +1,6 @@
 <script setup lang="ts">
 import type { Article } from '~/types'
+import { toIsoDate } from '~/utils/date'
 
 // 可选传入筛选后的文章列表（标签/分类展开区复用），缺省时展示全量
 const props = defineProps<{
@@ -17,7 +18,7 @@ const displayArticles = computed(() => props.articles ?? allArticles.value ?? []
         <h3 class="blog-title">
           <NuxtLink :to="article.path">{{ article.title }}</NuxtLink>
         </h3>
-        <div class="blog-date">post @ {{ article.date }}</div>
+        <div class="blog-date">post @ {{ toIsoDate(article.date) }}</div>
       </div>
       <div
         class="blog-excerpt"
