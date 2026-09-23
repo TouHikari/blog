@@ -34,7 +34,7 @@
 
 1. 优先级：`customTitle`（组件调用 `setTitle` 设置） > `titleMap` 静态映射 > 路径回退。
 2. `titleMap` 映射：`/` → Home、`/about` → `[:INIT_USER/TouHikari]`、`/blog` → `[SYS_ARCHIVES]`、`/categories` → `[:METADATA_INDEX]`、`/tags` → `[TAG_CLOUD]`。
-3. `/blog/` 前缀的路径回退为 slug 文本；路由变化时自动清除 `customTitle`。
+3. `/blog/` 前缀的路径回退为 slug 文本；路由变化时仅清除已不属于新路由的 `customTitle`（生产构建下静态缓存命中会使 `setTitle` 先于 `_route` 同步执行，无条件清除会误删刚设置的标题）。
 4. 数据驱动页面（文章页）通过 watch 文章标题调用 `setTitle`，标题最终由 `blog/Title.vue` 以打字机方式渲染。
 
 新增页面时的做法：在 `titleMap` 中登记路径，或由页面内调用 `setTitle`（数据加载完成后经 `watch` 同步）。

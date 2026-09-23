@@ -48,9 +48,12 @@ export const usePageTitle = () => {
     customTitle.value = null
   }
 
-  // Automatically clear custom title on route change
-  watch(() => route.path, () => {
-    clearTitle()
+  // 仅清除已不属于新路由的标题：生产构建下 setTitle 可能先于 _route 同步（page:finish）执行，
+  // 无条件清除会把刚设置的标题误删
+  watch(() => route.path, (newPath) => {
+    if (customTitle.value && customTitle.value.path !== newPath) {
+      clearTitle()
+    }
   })
 
   return {
