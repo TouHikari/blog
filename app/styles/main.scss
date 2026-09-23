@@ -2,6 +2,7 @@
 @use './fonts' as *;
 @use './maple-mono-cn';
 @use './content' as *;
+@use './scanlines';
 
 /* 全局 */
 html {

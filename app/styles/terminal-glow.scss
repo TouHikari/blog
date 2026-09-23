@@ -1,61 +1,7 @@
-/* --- 模拟扫描线 --- */
-/* 应用到 body 或包裹主要内容的容器 (.your-main-content-container) */
-body::before {
-  content: '';
-  position: fixed;
-  /* 使用 fixed 确保覆盖整个视口 */
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  z-index: 9999;
-  /* 确保在最顶层 */
-  pointer-events: none;
-  /* 使扫描线不影响鼠标交互 */
-  opacity: 0.15;
-  /* 调整扫描线的透明度 */
-  /* 使用 repeating-linear-gradient 创建扫描线 */
-  background: repeating-linear-gradient(to bottom,
-      transparent 0px,
-      /* 条纹之间的间隔 */
-      transparent 2px,
-      rgba(18, 16, 16, 0.2) 3px,
-      /* 扫描线颜色和透明度 */
-      rgba(18, 16, 16, 0.2) 4px);
-  background-size: 100% 4px;
-  /* 控制条纹的高度和间隔 */
-}
-
-/* --- CRT 轻微闪烁动画 --- */
-@keyframes flicker {
-
-  0%,
-  100% {
-    opacity: 1;
-  }
-
-  10%,
-  60% {
-    opacity: 0.98;
-  }
-
-  30%,
-  80% {
-    opacity: 1.02;
-  }
-
-  50%,
-  90% {
-    opacity: 0.95;
-  }
-}
+/* 本文件为纯 mixin（零 CSS 输出），供组件 @use 取用；全局 CSS 输出（扫描线 / flicker 关键帧 / .icon）见 _scanlines.scss。 */
 
 @mixin flicker-effect {
   animation: flicker 3s infinite alternate;
-}
-
-.icon {
-  text-shadow: none !important;
 }
 
 @mixin glow-text-sm-1 {

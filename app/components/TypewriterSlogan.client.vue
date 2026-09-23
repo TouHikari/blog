@@ -1,7 +1,7 @@
 <template>
   <p class="slogan">
-    <span style="color: cyan;">touhikari</span><span style="color: gray;">@</span><span
-      style="color: yellow;">localhost</span><span style="color: white;">:~$ </span>
+    <span class="brand">touhikari</span><span class="at">@</span><span
+      class="host">localhost</span><span class="path">:~$ </span>
     <span class="slogan-text">
       {{ currentText }}<span class="cursor">_</span>
     </span>
@@ -22,6 +22,22 @@ const { currentText } = useTypewriter()
   color: $cyberpunk-pink;
   margin: 0;
   user-select: none;
+}
+
+.brand {
+  color: $cyberpunk-cyan;
+}
+
+.at {
+  color: $gray-500;
+}
+
+.host {
+  color: $cyberpunk-light-yellow;
+}
+
+.path {
+  color: $white;
 }
 
 .slogan-text {
