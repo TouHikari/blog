@@ -17,7 +17,6 @@
     "@nuxt/content": "^3.6.3",
     "@nuxt/eslint": "^1.8.0",
     "@nuxt/icon": "^1.15.0",
-    "@nuxt/image": "^1.11.0",
     "@shikijs/transformers": "^3.9.2",
     "better-sqlite3": "^12.6.2",
     "eslint": "^9.32.0",

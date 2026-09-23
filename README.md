@@ -17,17 +17,17 @@ TouHikari 的个人技术博客，采用「暗色终端 + 赛博朋克」视觉�
 | 内容 | `@nuxt/content` v3（Markdown + MDC 自定义组件） |
 | 样式 | SCSS（sass-embedded）+ 自定义设计变量与终端特效 |
 | 渲染增强 | Shiki 代码高亮、KaTeX 数学公式、Mermaid 图表 |
-| 图标 / 图片 | `@nuxt/icon`、`@nuxt/image` |
+| 图标 | `@nuxt/icon` |
 | 代码质量 | `@nuxt/eslint` |
 | 包管理 | npm |
 | 部署 | 腾讯云 EdgeOne（静态生成） |
 
 ## 功能特性
 
-- 首页：文章列表 + 侧边栏（最近文章 / 标签云 / 相关链接）
+- 首页：文章列表 + 侧边栏（搜索 / 最近文章 / 标签云 / 相关链接）
 - 文章页：描述弹窗、MDC 自定义组件（Alert / Tabs）、代码行号与聚焦行高亮、Mermaid 图表、KaTeX 公式
 - 交互效果：鼠标跟随与吸附系统（Lock Marked）、打字机标语、终端启动动画、扫描线
-- 性能：视口 / 悬停 / 触摸预加载
+- 性能：hover-only 预加载（50ms 防抖 + 去重；触屏设备跳过）
 - SEO：Open Graph、Twitter Card、JSON-LD、sitemap、robots
 
 ## 快速开始
@@ -45,19 +45,19 @@ npm run preview    # 本地预览生产构建
 注意事项：
 
 - 本项目使用 npm 管理依赖（以 `package-lock.json` 为准），不要引入 pnpm 依赖树：`node_modules` 中混装两套依赖会显著拖慢 Nuxt/Vite 的启动与热更新。
-- `.npmrc` 中为 native 依赖配置了部分二进制下载镜像（better-sqlite3 / sharp）；修改镜像配置前请先阅读 [docs/build-and-deploy.md](docs/build-and-deploy.md)，只允许添加经过验证的镜像路径。
+- `.npmrc` 中为 native 依赖（better-sqlite3）配置了二进制下载镜像；修改镜像配置前请先阅读 [docs/build-and-deploy.md](docs/build-and-deploy.md)，只允许添加经过验证的镜像路径。
 
 ## 目录结构
 
 ```text
 app/                 前端源码（Nuxt 4 目录结构）
 ├─ components/       content（Markdown 组件）/ blog / home / ui + 根级公共组件
-├─ composables/      useArticle / useBlog / usePageTitle / useTypewriter
+├─ composables/      useArticle / useBlog / useSearch / usePageTitle / useTypewriter
 ├─ layouts/          default / home / clean
 ├─ pages/            文件式路由页面
 ├─ plugins/          mouse-follower（Lock Marked）/ prefetch（预加载）
 ├─ styles/           SCSS 变量、字体栈与终端特效
-├─ types/ utils/     类型定义与工具（常量、Mermaid 渲染）
+├─ types/ utils/     类型定义与工具（常量、日期、Mermaid 渲染）
 content/             Markdown 内容（index.md / about.md / blog/ / test/）
 docs/                项目技术文档
 public/              静态资源（Git LFS 管理）
@@ -76,7 +76,7 @@ nuxt.config.ts       Nuxt 配置（内容渲染、prerender、SEO、Vite）
 ## 部署
 
 项目部署于腾讯云 EdgeOne，云端构建命令为 `npm run generate`（静态生成，prerender 开启 `crawlLinks`）。
-部署与依赖安装的注意事项（`.npmrc` 镜像纪律、ipx/sharp 依赖链）见 [docs/build-and-deploy.md](docs/build-and-deploy.md)。
+部署与依赖安装的注意事项（`.npmrc` 镜像纪律与历史事故记录）见 [docs/build-and-deploy.md](docs/build-and-deploy.md)。
 
 ## 文档
 

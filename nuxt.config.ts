@@ -1,5 +1,7 @@
 // https://nuxt.com/docs/api/configuration/nuxt-config
 
+import { SITE_TITLE } from "./app/utils/constants";
+
 // 站点地址唯一来源：canonical / og / JSON-LD / sitemap 均由此派生
 const siteUrl = "https://touhikari.top";
 
@@ -7,7 +9,7 @@ export default defineNuxtConfig({
   compatibilityDate: "2025-07-15",
   devtools: { enabled: false },
 
-  modules: ["@nuxt/content", "@nuxt/eslint", "@nuxt/icon", "@nuxt/image"],
+  modules: ["@nuxt/content", "@nuxt/eslint", "@nuxt/icon"],
 
   runtimeConfig: {
     public: { siteUrl },
@@ -97,7 +99,7 @@ export default defineNuxtConfig({
       htmlAttrs: {
         lang: "zh-CN",
       },
-      title: "[TouHikari@localhost ~]$",
+      title: SITE_TITLE,
       meta: [
         { charset: "utf-8" },
         { name: "viewport", content: "width=device-width, initial-scale=1" },
@@ -119,19 +121,20 @@ export default defineNuxtConfig({
         // Open Graph
         { property: "og:type", content: "website" },
         { property: "og:site_name", content: "TouHikari.top" },
-        { property: "og:title", content: "[TouHikari@localhost ~]$" },
+        { property: "og:title", content: SITE_TITLE },
         {
           property: "og:description",
           content:
             "TouHikari 的数字幽灵日志。穿梭于代码与现实的边界，记录那些隐藏在防火墙之后的故事、实验和顿悟。",
         },
         { property: "og:url", content: siteUrl },
+        // 专用分享封面图（1200×630）待设计置入后切换为 /og-cover.png
         { property: "og:image", content: `${siteUrl}/favicon.png` },
         { property: "og:locale", content: "zh_CN" },
 
         // Twitter Card
         { name: "twitter:card", content: "summary_large_image" },
-        { name: "twitter:title", content: "[TouHikari@localhost ~]$" },
+        { name: "twitter:title", content: SITE_TITLE },
         {
           name: "twitter:description",
           content:

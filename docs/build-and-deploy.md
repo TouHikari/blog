@@ -16,7 +16,7 @@
 
 | 配置 | 说明 |
 | --- | --- |
-| `modules` | `@nuxt/content`、`@nuxt/eslint`、`@nuxt/icon`、`@nuxt/image` |
+| `modules` | `@nuxt/content`、`@nuxt/eslint`、`@nuxt/icon` |
 | `content.build.markdown` | TOC 深度 3；Shiki 高亮主题 `houston` + 语言白名单；`remark-math` + `rehype-katex`（数学公式） |
 | `nitro.prerender` | `crawlLinks: true`；额外路由 `/sitemap.xml`；忽略 `/preview`、`/secret` |
 | `app.head` | 全站 SEO：标题、描述、keywords、Open Graph、Twitter Card、JSON-LD、canonical、RSS link |
@@ -38,27 +38,27 @@
 
 ## 5. .npmrc 二进制镜像纪律（重要）
 
-项目中存在 native 模块（`better-sqlite3`、`sharp`），其预编译二进制默认从 GitHub Releases 下载，网络受限时需要二进制镜像。当前 `.npmrc` 只配置了**两个经过验证的镜像**：
+项目中存在 native 模块（`better-sqlite3`，`@nuxt/content` 构建依赖），其预编译二进制默认从 GitHub Releases 下载，网络受限时需要二进制镜像。当前 `.npmrc` 只配置了**一个经过验证的镜像**：
 
 ```ini
 better_sqlite3_binary_host=https://registry.npmmirror.com/-/binary/better-sqlite3
-sharp_binary_host=https://registry.npmmirror.com/-/binary/sharp
 ```
 
 ### 规则
 
 1. 只允许添加**实际验证过存在**（`curl -I` 返回 200/302）的镜像路径。
-2. **严禁**配置 `sharp_libvips_binary_host`：npmmirror 的 libvips 路径实测 404。
-3. libvips 保持默认 GitHub 源（云端 EdgeOne 构建环境可以访问 GitHub，无需镜像）。
+2. 依赖树引入任何带原生二进制的包（如 sharp）前，先验证镜像路径；**严禁**配置未验证的路径——历史上 npmmirror 的 libvips 路径实测 404，导致过完整构建事故（见下方根因链）。
 
-### 事故根因链（2026-09 实测案例）
+### 历史事故根因链（2026-09 实测案例，已闭环）
 
-1. `@nuxt/image` 被注册在 `modules` 中，其运行时依赖会打进 server bundle；
+1. `@nuxt/image` 曾被注册在 `modules` 中（现已移除），其运行时依赖会打进 server bundle；
 2. `ipx` 是 `@nuxt/image` 的 `optionalDependency`，其传递依赖 `sharp` 需要下载 libvips 原生二进制；
 3. `.npmrc` 中错误的 `sharp_libvips_binary_host`（404）把 sharp 的下载改道至死路 → sharp 安装失败 → npm 按 optional 语义**静默跳过** ipx 子树（安装阶段无报错）；
 4. 依赖 lock 变化导致 EdgeOne 依赖缓存失效、触发全新安装后，prerender 阶段加载 server 运行时即报 `Cannot find package 'ipx'`。
 
-结论：**错误的镜像比没有镜像更危险**。镜像配置变更后应验证本地安装，并关注云端首次全量构建。
+**闭环处理（2026-09-23）**：`@nuxt/image` 全站零使用，已从 `modules`、依赖与 `.npmrc` 中完整移除，`sharp → libvips` 风险链从源头消除。
+
+结论保留：**错误的镜像比没有镜像更危险**。镜像配置变更后应验证本地安装，并关注云端首次全量构建。
 
 ## 6. EdgeOne 部署
 
