@@ -6,8 +6,10 @@ const { title: pageTitle } = usePageTitle()
 
 // 打字效果相关
 const titleElement = ref<HTMLElement | null>(null)
+const textRef = ref<HTMLElement | null>(null)
+const cursorRef = ref<HTMLElement | null>(null)
 let isTypingComplete = false
-let typingTimer: NodeJS.Timeout | null = null
+let typingTimer: ReturnType<typeof setTimeout> | null = null
 const typingSpeed = 40 // 打字速度 (ms)
 
 // 清理定时器函数
@@ -20,54 +22,43 @@ function clearTypingTimer() {
 
 // 一次性打字效果函数
 function typeWriter(text: string, charIndex: number = 0) {
-  if (!titleElement.value || isTypingComplete) return
+  if (!textRef.value || isTypingComplete) return
 
   if (charIndex < text.length) {
-    // 打字状态
-    const textToShow = text.substring(0, charIndex + 1)
-    titleElement.value.innerHTML = textToShow + '<span class="cursor">|</span>'
+    textRef.value.textContent = text.substring(0, charIndex + 1)
 
     typingTimer = setTimeout(() => {
       typeWriter(text, charIndex + 1)
     }, typingSpeed)
   } else {
-    // 打字完成，保持光标闪烁
-    titleElement.value.innerHTML = text + '<span class="cursor"> |</span>'
+    textRef.value.textContent = text
     isTypingComplete = true
   }
 }
 
-// 设置并启动打字机效果
+// 用完整文本的实测高度设置 min-height，预留空间防止打字过程布局跳动（测量时隐藏光标避免临界换行）
 async function setupAndStartTypewriter(title: string) {
-  if (!titleElement.value) return
+  if (!titleElement.value || !textRef.value) return
 
   const el = titleElement.value
 
-  // 1. 暂时设置完整文本以计算所需高度
-  //    设置为不可见以防止完整文本闪烁
   el.style.visibility = 'hidden'
-  // 在计算前重置 min-height，防止高度在页面切换时累积
   el.style.minHeight = '0'
-  el.innerHTML = title
+  if (cursorRef.value) cursorRef.value.style.display = 'none'
+  textRef.value.textContent = title
 
-  // 2. 等待 DOM 更新
   await nextTick()
 
-  // 3. 获取计算出的高度并将其应用为 min-height
-  //    这会预留空间并防止布局跳动
   const finalHeight = el.scrollHeight
-  // 额外加 1px 作为安全边距
   el.style.minHeight = `${finalHeight + 1}px`
 
-  // 4. 使元素再次可见并清除其内容以开始动画
+  if (cursorRef.value) cursorRef.value.style.display = ''
   el.style.visibility = 'visible'
-  el.innerHTML = ''
+  textRef.value.textContent = ''
 
-  // 清理现有计时器并重置完成标志
   clearTypingTimer()
   isTypingComplete = false
 
-  // 短暂延迟后启动打字机效果
   typingTimer = setTimeout(() => {
     typeWriter(title)
   }, 100)
@@ -102,7 +93,9 @@ onMounted(() => {
 
 <template>
   <div class="blog-title-container">
-    <h1 ref="titleElement" class="title" />
+    <h1 ref="titleElement" class="title">
+      <span ref="textRef" class="title-text" /><span ref="cursorRef" class="cursor">|</span>
+    </h1>
     <hr>
     <div class="slogan-container">
       <Icon v-if="isMounted" name="mdi:heart" class="heart-icon" />
@@ -164,7 +157,7 @@ onMounted(() => {
   }
 }
 
-:deep(.cursor) {
+.cursor {
   animation: blink 1s infinite;
 }
 

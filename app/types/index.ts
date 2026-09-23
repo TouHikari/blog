@@ -4,13 +4,15 @@ export interface Article {
   date: string
   description?: string
   category?: string
+  tags?: string[]
+  draft?: boolean
   meta?: {
-    excerpt?: any
+    excerpt?: Record<string, unknown>
     tags?: string[]
-    [key: string]: any
+    [key: string]: unknown
   }
-  excerptContent?: any
-  [key: string]: any
+  excerptContent?: Record<string, unknown> | null
+  [key: string]: unknown
 }
 
 export interface SloganConfig {

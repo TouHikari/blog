@@ -9,7 +9,7 @@ import type { PropType, StyleValue } from 'vue';
  */
 defineProps({
   class: {
-    type: [String, Object, Array] as PropType<any>,
+    type: [String, Object, Array] as PropType<string | Record<string, unknown> | unknown[]>,
     default: null
   },
   style: {

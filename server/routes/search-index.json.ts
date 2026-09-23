@@ -1,7 +1,5 @@
-// 构建时（prerender）生成的搜索索引：每篇文章的正文纯文本（按标题切分的章节拼接）
-// - nuxt.config 的 nitro.prerender.routes 已包含 /search-index.json：构建时请求本路由并静态化输出到产物
-// - 文本来源：@nuxt/content 的 queryCollectionSearchSections（自动解压 body AST 并按章节提取文本）
-// - dev 环境包含草稿（与 useBlog 列表语义一致）；生产构建过滤，草稿正文不进入公开产物
+// 构建时（prerender）生成的搜索索引：queryCollectionSearchSections 按章节提取正文纯文本并按 path 聚合
+// draft 语义与 useBlog 一致（dev 含 / 生产构建过滤）；nuxt.config 的 nitro.prerender.routes 已登记本路由
 export default defineEventHandler(async (event) => {
   const sections = await queryCollectionSearchSections(event, 'blog')
   const articles = await queryCollection(event, 'blog').select('path', 'draft').all()

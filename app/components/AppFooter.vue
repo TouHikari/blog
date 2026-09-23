@@ -4,7 +4,8 @@ import { SITE_BIRTHDAY } from "#imports";
 
 const siteRuntimeDisplay = ref<string>("");
 const isPulse = ref(false);
-let intervalId: NodeJS.Timeout | null = null;
+const currentYear = useState("copyright-year", () => new Date().getFullYear());
+let intervalId: ReturnType<typeof setInterval> | null = null;
 
 async function updateSiteRuntime() {
   const siteBirthday = new Date(SITE_BIRTHDAY);
@@ -73,10 +74,11 @@ onUnmounted(() => {
         class="copyright"
         data-lock-marked
       >
-        © 2026
+        © {{ currentYear }}
         <a
           href="https://github.com/TouHikari/blog"
           target="_blank"
+          rel="noopener noreferrer"
           >TouHikari's Blog</a
         >
       </div>
@@ -89,11 +91,12 @@ onUnmounted(() => {
           class="nuxt-link"
           href="https://nuxt.com/"
           target="_blank"
+          rel="noopener noreferrer"
         >
           <img
             src="/favicon.ico"
             alt="Nuxt 4"
-            width="16px"
+            width="16"
             style="display: inline-block"
           />
           Nuxt 4 </a
@@ -124,6 +127,7 @@ onUnmounted(() => {
         class="beian-link"
         href="https://beian.miit.gov.cn/"
         target="_blank"
+        rel="noopener noreferrer"
         >陕ICP备2025068002号</a
       >
     </div>

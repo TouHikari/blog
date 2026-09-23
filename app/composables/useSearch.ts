@@ -20,7 +20,6 @@ export interface HighlightSegment {
 const SNIPPET_BEFORE = 24
 const SNIPPET_AFTER = 72
 
-// 关键词切分（大小写不敏感，全部命中；空关键词返回整段）
 export const highlightSegments = (text: string, keyword: string): HighlightSegment[] => {
   const q = keyword.trim().toLowerCase()
   if (!q) return [{ text, hit: false }]
@@ -41,7 +40,6 @@ export const highlightSegments = (text: string, keyword: string): HighlightSegme
   return segments
 }
 
-// 正文命中处上下文片段（前 / 后窗口 + 省略号）
 const extractSnippet = (text: string, position: number, length: number): string => {
   const start = Math.max(0, position - SNIPPET_BEFORE)
   const end = Math.min(text.length, position + length + SNIPPET_AFTER)
@@ -60,7 +58,7 @@ export const useSearch = () => {
     return lookup
   })
 
-  // 懒加载构建时索引（仅客户端触发；会话内只请求一次，失败允许重试）
+  // 懒加载构建时索引：会话内只请求一次，失败可重试
   const loadIndex = async () => {
     if (!import.meta.client) return
     // 提前持有 ref，避免 await 之后触碰依赖 Nuxt 上下文的 API（见 docs/nuxt-async-composable-pitfalls.md）
@@ -79,7 +77,6 @@ export const useSearch = () => {
     }
   }
 
-  // 元数据（标题 / 描述 / 分类 / 标签）与正文索引合并匹配；元数据命中优先展示
   const search = (keyword: string): SearchResult[] => {
     const q = keyword.trim().toLowerCase()
     if (!q) return []

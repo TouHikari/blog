@@ -9,7 +9,7 @@ export function useTypewriter() {
   let currentSloganFull = ''
   let charIndex = 0
   let isDeleting = false
-  let timeoutId: any = null
+  let timeoutId: ReturnType<typeof setTimeout> | null = null
 
   function refillAvailableSlogans() {
     availableSlogans = [...SLOGANS]
