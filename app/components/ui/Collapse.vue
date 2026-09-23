@@ -71,6 +71,8 @@ const onTransitionEnd = (event: TransitionEvent) => {
 }
 
 .collapse-inner {
+  // flow-root 建立 BFC：防止内容首元素上边距折叠穿透，导致 offsetHeight 实测值低估（底部被 overflow 裁切）
+  display: flow-root;
   opacity: 0;
   transition: opacity 0.25s ease-out;
 }
