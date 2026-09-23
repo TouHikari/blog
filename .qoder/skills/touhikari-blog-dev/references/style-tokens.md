@@ -84,8 +84,6 @@
 
 `body::before` 由该文件提供全屏扫描线覆盖层（`fixed`、`pointer-events: none`）。
 
-`cyber-effects.scss` 提供 `neon-glow`、`glitching`、`flicker`、`pulse`、`cyber-hover` 等工具类与动画，经 `_content.scss` 引入。
-
 ## 6. 复合交互规范（改动时保持）
 
 - **Alert**：左侧竖条（3px + 发光）+ `::after` 全屏渐变叠加层，hover 时 `opacity: 0 → 1`，过渡 0.1s。

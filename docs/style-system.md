@@ -6,7 +6,7 @@
 
 - `nuxt.config.ts`：`css: ["katex/dist/katex.min.css", "~/styles/main.scss"]`。
 - `main.scss` → `@use './variables'`、`'./fonts'`、`'./maple-mono-cn'`、`'./content'`。其中 `'./fonts'` 与 `'./maple-mono-cn'` 是字体 CSS 的**唯一注入点**，只允许出现在这里。
-- `_content.scss` → `@use './font-stacks'`、`'./cyber-effects'`、`'./terminal-glow'`（两个特效文件随内容样式一并打包）。
+- `_content.scss` → `@use './font-stacks'`、`'./terminal-glow'`（发光/闪烁 mixin 随内容样式一并打包）。
 - 组件内按需 `@use`（SCSS 模块系统，变量/字体栈/mixin 可在任意组件复用）：
 
 ```scss
@@ -26,7 +26,6 @@
 | `_fonts.scss` | 字体 CSS 唯一注入点：`@fontsource` 导入与本地 `@font-face`（FZG_CN、AlimamaShuHeiTi），仅被 `main.scss` 引用 |
 | `_maple-mono-cn.scss` | Maple Mono CN 的 239 条 `@font-face` 分片声明（自托管 `public/fonts/maple-mono-cn/`，Git LFS），仅被 `main.scss` 引用 |
 | `_content.scss` | Markdown 正文排版：标题辉光、代码、行内代码、链接、列表、引用、表格、图片、文本样式 |
-| `cyber-effects.scss` | 霓虹动画工具类与关键帧：`neon-glow`、`glitching`、`flicker`、`pulse`、`cyber-hover` |
 | `terminal-glow.scss` | 全屏扫描线（`body::before`）、`flicker` 关键帧、`glow-text-*` / `flicker-effect` mixin |
 | `main.scss` | 全局基础：`html/body`、选区、链接、复选框、`.inner` 容器宽度阶梯与多断点适配 |
 
@@ -78,4 +77,4 @@
 
 - 组件内**不硬编码色值与字体**，一律复用变量（例外：`data-lock-*` 属性中的行内色值，与既有写法保持一致）。
 - 需要发光/闪烁时复用 `terminal-glow.scss` 的 mixin，不要在组件内重复定义关键帧。
-- 全局性修改（如新增工具类）放入 `cyber-effects.scss` / `terminal-glow.scss`；一次性的组件样式留在组件 `<style scoped>` 内。
+- 全局性修改（如新增工具类或关键帧）放入 `terminal-glow.scss`；一次性的组件样式留在组件 `<style scoped>` 内。
