@@ -36,3 +36,5 @@ export const TYPEWRITER_CONFIG = {
 };
 
 export const SITE_BIRTHDAY = "2025-05-02T01:37:13";
+
+export const SITE_TITLE = "[TouHikari@localhost ~]$";

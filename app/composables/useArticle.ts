@@ -1,8 +1,10 @@
 import type { Article } from '~/types'
+import { toIsoDate } from '~/utils/date'
 
 export const useArticle = (collection: 'blog' | 'test' = 'blog') => {
   const route = useRoute()
   const { setTitle } = usePageTitle()
+  const { public: { siteUrl } } = useRuntimeConfig()
 
   const { data: article, error, status } = useAsyncData(route.path, async () => {
     const slug = Array.isArray(route.params.slug) ? route.params.slug.join('/') : route.params.slug
@@ -26,6 +28,27 @@ export const useArticle = (collection: 'blog' | 'test' = 'blog') => {
   useSeoMeta({
     title: () => article.value?.title || 'Blog Article',
     description: () => article.value?.description || 'Blog article content'
+  })
+
+  useHead({
+    script: () => {
+      const value = article.value
+      if (!value || collection !== 'blog') return []
+      return [
+        {
+          type: 'application/ld+json',
+          innerHTML: JSON.stringify({
+            '@context': 'https://schema.org',
+            '@type': 'BlogPosting',
+            headline: value.title,
+            description: value.description,
+            datePublished: toIsoDate(value.date),
+            author: { '@type': 'Person', name: 'TouHikari', url: siteUrl },
+            mainEntityOfPage: `${siteUrl}${route.path}`
+          })
+        }
+      ]
+    }
   })
 
   watch(() => article.value?.title, (newTitle) => {
