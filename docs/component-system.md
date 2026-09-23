@@ -70,8 +70,9 @@
 | 组件 | 职责 |
 | --- | --- |
 | `Title.vue` | 首页主标题（固定文案 + `bootup` 开机动画）与标语 |
+| `Search.vue` | 侧边栏「搜索」：终端风输入框；元数据（标题 / 描述 / 分类 / 标签）经 `useSearch` 即时匹配，正文经构建时索引匹配并展示高亮片段；`UiCollapse` 展开 / 收起动画 + 结果限高滚动；带 Lock Marked 标记 |
 | `RecentPosts.vue` | 侧边栏「最近文章」：`recentArticles`（前 5 篇），带 Lock Marked 标记 |
-| `TagsCloud.vue` | 侧边栏「标签云」：`tags` 计数排序，跳转 `/tags/<编码后的名字>`（`encodeURIComponent`）；带 Lock Marked 标记 |
+| `TagsCloud.vue` | 侧边栏「标签云」：`tags` 计数排序，跳转 `/tags?tag=<名字>` 深链（Vue Router query 自动编解码）；带 Lock Marked 标记 |
 | `Links.vue` | 侧边栏「相关链接」：GitHub / Bilibili / 网易云音乐 / 友链；带 Lock Marked 标记 |
 
 ## 5. ui/

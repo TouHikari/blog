@@ -1,7 +1,7 @@
 import type { Article } from '~/types'
 
 // 兼容 tags 字段的两种历史存放位置（顶层 tags / meta.tags）
-const articleTags = (article: Article): string[] => {
+export const articleTags = (article: Article): string[] => {
   const tags = article.tags || article.meta?.tags || []
   return Array.isArray(tags) ? tags : []
 }

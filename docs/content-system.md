@@ -64,6 +64,12 @@
 | `pages/index.vue` | `'home-content'` | `queryCollection('content').path('/').first()` |
 | `pages/about.vue` | `'about-content'` | `queryCollection('content').path('/about').first()` |
 
+### 搜索索引（search-index.json）
+
+- `server/routes/search-index.json.ts` 在构建时（prerender）生成 `search-index.json`（与 sitemap.xml 同模式）：数据源为 `queryCollectionSearchSections(event, 'blog')`（自动解压 body AST、按标题切分章节并提取纯文本），再按文章 `path` 聚合为 `{ entries: [{ path, text }] }`。
+- 草稿语义与 `useBlog` 一致：dev 构建包含草稿，生产构建过滤（草稿正文不进入公开产物）。
+- 客户端 `app/composables/useSearch.ts` 在搜索框聚焦时懒加载该索引（`useState` 会话缓存，失败可重试），与元数据匹配（标题 / 描述 / 分类 / 标签）合并为搜索域；结果展示见组件体系文档的 `home/Search.vue`。
+
 ## 6. SEO
 
 - 全局默认元数据在 `nuxt.config.ts` 的 `app.head`（站名、描述、keywords、Open Graph、Twitter Card、JSON-LD Person、canonical、RSS link 等）。

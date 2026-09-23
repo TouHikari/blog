@@ -20,7 +20,7 @@
             </div>
           </div>
           <div class="page-sidebar">
-            <!-- <HomeSearch /> -->
+            <HomeSearch />
             <hr>
             <HomeRecentPosts />
             <hr>
