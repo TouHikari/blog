@@ -9,12 +9,12 @@ const { article, status, error } = useArticle(props.collection ?? 'blog')
 </script>
 
 <template>
-  <div
-    data-lock-bg="#FF408020"
-    data-lock-border="1px solid #FF408040"
-  >
+  <div data-lock-bg="#FF408020" data-lock-border="1px solid #FF408040">
     <div v-if="status === 'pending'" class="status">Loading...</div>
-    <div v-else-if="error || !article" class="status">Article not found!</div>
+    <div v-else-if="error || !article" class="status">
+      <p>文章不存在！</p>
+      <p>404 Article not found!</p>
+    </div>
     <div v-else>
       <ContentAlert type="warning" v-if="article.description">
         {{ article.description }}
