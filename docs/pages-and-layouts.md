@@ -24,7 +24,7 @@
 | `home.vue` | 首页（`definePageMeta({ layout: 'home' })`） | `AppHeader` → `HomeTitle` → 双栏容器（内容 5 : 侧边栏 2）：左侧正文 slot + `BlogList`，右侧 `RecentPosts` / `TagsCloud` / `Links` → `AppFooter` |
 | `clean.vue` | 预留 | 空布局，当前未被任何页面使用 |
 
-正文区约定：`.content-prose` 负责两端对齐与 `overflow-wrap: break-word`；`=== Content begins/ends here ===` 伪元素标识由 `default.vue` 提供（hover 变亮黄）。`default` 布局末尾自动附加的 CC BY-SA 4.0 版权 Alert 可通过页面 `definePageMeta({ hideLicense: true })` 隐藏。
+正文区约定：`.content-prose` 负责两端对齐与 `overflow-wrap: break-word`；`=== Content begins/ends here ===` 伪元素标识由 `default.vue` 提供（hover 变亮黄）。`default` 布局末尾自动附加的 CC BY-SA 4.0 版权 Alert 可通过页面 `definePageMeta({ hideLicense: true })` 隐藏；文章页（`/blog/*`、`/test/*`）由 `article-license` 中间件在导航阶段查询文章存在性并设置该 meta——文章不存在（或生产环境下的草稿）时版权条自动隐藏（布局渲染早于 `ArticlePage` 数据就绪，无法由组件内状态后置控制，只能借路由 meta 提前判定）。
 
 页脚贴底：`default` 与 `home` 布局的根容器均为纵向 flex（`min-height: 100dvh`）且 `main` 占满剩余高度——页面内容不足一屏时页脚保持贴住视口底部。
 
@@ -63,3 +63,14 @@ hover-only 收敛策略，只针对站内链接（`/` 开头且非 `#`）：
 4. 在 `usePageTitle` 的 `titleMap` 中登记标题（可选）。
 5. 交互区域可添加 Lock Marked 标记（`data-lock-container` / `data-lock-marked`）。
 6. 完成后验证：SSR 无上下文报错、标题正确、CSS 在全部断点下正常。
+
+## 7. 错误页（app/error.vue）
+
+`app/error.vue` 是 Nuxt 根级错误页（特殊页面），渲染时**完整替换 `app.vue`**（`nuxt-root` 中错误组件与 AppComponent 互斥），遵循以下约定：
+
+- 不使用 `NuxtLayout`（布局渲染链不存在）；页面自行引用 `AppHeader` / `AppFooter`，保持全局导航与页脚信息（备案号、运行时长）完整；
+- `app.vue` 的 `titleTemplate` 不生效，错误页自带完整标题（`404 | TouHikari.top`）；
+- 文案与配色区分 404（页面不存在）与其它状态码（如 500 服务器故障），`statusCode` 缺省兜底为 500；
+- 恢复导航使用 `clearError({ redirect: '/' })`：成功导航后错误态会被 Nuxt 自动清除（`pages/runtime/plugins/router.js` 的 `afterEach`）；当前 URL 已是 `/` 的重复导航场景（如首页运行时错误）由 `clearError` 自身兜底恢复——这也是恢复入口用 `<button>` 而非 `NuxtLink` 的原因；
+- 错误页内的 `NuxtLink`（`AppHeader` / `AppFooter`）可直接使用，导航成功后自动恢复；
+- 静态站行为：线上不存在的路径在 HTML 层由 EdgeOne 平台 404 兜底（不经过 `error.vue`）；`error.vue` 实际覆盖「客户端 SPA 导航到无效路径」与「运行时错误」场景。

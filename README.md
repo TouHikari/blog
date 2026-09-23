@@ -26,6 +26,7 @@ TouHikari 的个人技术博客，采用「暗色终端 + 赛博朋克」视觉�
 
 - 首页：文章列表 + 侧边栏（搜索 / 最近文章 / 标签云 / 相关链接）
 - 文章页：描述弹窗、MDC 自定义组件（Alert / Tabs）、代码行号与聚焦行高亮、Mermaid 图表、KaTeX 公式
+- 错误页：终端风 404 / 500 状态区分、霓虹大字与恢复导航
 - 交互效果：鼠标跟随与吸附系统（Lock Marked）、打字机标语、终端启动动画、扫描线
 - 性能：hover-only 预加载（50ms 防抖 + 去重；触屏设备跳过）
 - SEO：Open Graph、Twitter Card、JSON-LD、sitemap、robots

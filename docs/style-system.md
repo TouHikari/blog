@@ -27,7 +27,8 @@
 | `_fonts.scss` | 字体 CSS 唯一注入点：`@fontsource` 导入与本地 `@font-face`（FZG_CN、AlimamaShuHeiTi），仅被 `main.scss` 引用 |
 | `_maple-mono-cn.scss` | Maple Mono CN 的 239 条 `@font-face` 分片声明（自托管 `public/fonts/maple-mono-cn/`，Git LFS），仅被 `main.scss` 引用 |
 | `_content.scss` | Markdown 正文排版：标题辉光、代码、行内代码、链接、列表、引用、表格、图片、文本样式 |
-| `terminal-glow.scss` | 全屏扫描线（`body::before`）、`flicker` 关键帧、`glow-text-*` / `flicker-effect` mixin |
+| `terminal-glow.scss` | 发光/闪烁 mixin（`glow-text-*` / `flicker-effect`），零 CSS 输出 |
+| `_scanlines.scss` | 全屏扫描线（`body::before`）与全局关键帧（`flicker`、`blink`） |
 | `main.scss` | 全局基础：`html/body`、选区、链接、复选框、`.inner` 容器宽度阶梯与多断点适配 |
 
 ## 3. 设计令牌（摘要）
