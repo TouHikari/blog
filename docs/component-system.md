@@ -56,6 +56,7 @@
 | `AppHeader.vue` | 固定顶栏：`[TouHikari@localhost ~]$` 品牌、Archives/Categories/Tags/About 导航；滚动超过 100px 后半透明（hover 恢复）；移动端汉堡菜单（`menu-expand` Transition） |
 | `AppFooter.vue` | 页脚：欢迎语、版权、Powered by、站点运行时长（基于 `SITE_BIRTHDAY`，`ClientOnly` 渲染防水合不一致）、备案号；整块为 Lock Marked 容器 |
 | `TypewriterSlogan.client.vue` | 打字机标语（client-only）；随机选取 `SLOGANS` 且一轮内不重复，配置见 `app/utils/constants.ts` |
+| `ArticlePage.vue` | 文章页共用渲染容器：`blog/[...slug]` 与 `test/[...slug]` 两个页面统一使用（`collection` prop 区分数据源，默认 `blog`），承载 `useArticle` + description Alert + `ContentRenderer` 与 `Loading...` / `Article not found!` 两态 |
 
 ## 3. blog/
 
