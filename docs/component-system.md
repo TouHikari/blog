@@ -90,7 +90,7 @@
 
 - 文章列表条目（`blog/List.vue`）：容器 `data-lock-container`，标题/摘要/标签 `data-lock-marked`；
 - 首页侧边栏（`home/*`）与页脚（`AppFooter.vue`）：各条目 `data-lock-marked`；
-- 首页/关于/文章页正文容器：`data-lock-bg="#FF408020"`、`data-lock-border="1px solid #FF408040"`。
+- 首页/关于/文章页正文容器：仅预埋了 `data-lock-bg="#FF408020"`、`data-lock-border="1px solid #FF408040"`（未启用 `data-lock-scan`，正文内链接/按钮暂不吸附）。
 
 新增标记时注意：被标记元素背景应保持透明或半透明，否则吸附光标会被遮挡（见 Lock Marked 文档的层级策略）。
 
