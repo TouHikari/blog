@@ -10,5 +10,6 @@ const { data: about } = await useAsyncData('about-content', async () => {
     data-lock-border="1px solid #FF408040"
   >
     <ContentRenderer v-if="about" :value="about" />
+    <div v-else>关于页内容加载中...</div>
   </div>
 </template>

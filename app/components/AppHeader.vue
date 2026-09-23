@@ -4,26 +4,50 @@ import { ref, onMounted, onUnmounted } from 'vue'
 const isScrolled = ref(false)
 const scrollThreshold = 100 // 滚动多少像素后触发半透明效果
 const isMenuOpen = ref(false)
+const headerRef = ref<HTMLElement | null>(null)
 
+let scrollFrame: number | null = null
 const handleScroll = () => {
-  isScrolled.value = window.scrollY > scrollThreshold
+  if (scrollFrame !== null) return
+  scrollFrame = requestAnimationFrame(() => {
+    scrollFrame = null
+    isScrolled.value = window.scrollY > scrollThreshold
+  })
 }
 
 const toggleMenu = () => {
   isMenuOpen.value = !isMenuOpen.value
 }
 
+const handleDocumentClick = (event: MouseEvent) => {
+  if (!isMenuOpen.value) return
+  if (headerRef.value && event.target instanceof Node && headerRef.value.contains(event.target)) return
+  isMenuOpen.value = false
+}
+
+const handleKeydown = (event: KeyboardEvent) => {
+  if (event.key === 'Escape' && isMenuOpen.value) {
+    isMenuOpen.value = false
+  }
+}
+
 onMounted(() => {
-  window.addEventListener('scroll', handleScroll)
+  handleScroll()
+  window.addEventListener('scroll', handleScroll, { passive: true })
+  document.addEventListener('click', handleDocumentClick)
+  document.addEventListener('keydown', handleKeydown)
 })
 
 onUnmounted(() => {
+  if (scrollFrame !== null) cancelAnimationFrame(scrollFrame)
   window.removeEventListener('scroll', handleScroll)
+  document.removeEventListener('click', handleDocumentClick)
+  document.removeEventListener('keydown', handleKeydown)
 })
 </script>
 
 <template>
-  <div class="header-container" :class="{ 'scrolled': isScrolled }">
+  <div ref="headerRef" class="header-container" :class="{ 'scrolled': isScrolled }">
     <div class="navbar">
       <NuxtLink to="/">
         <UiButton type="navbar-brand" class="nav-brand">
@@ -57,7 +81,8 @@ onUnmounted(() => {
         </NuxtLink>
       </div>
       <div class="mobile-nav">
-        <UiButton type="nav" class="hamburger-button" @click="toggleMenu">
+        <UiButton type="nav" class="hamburger-button" :aria-expanded="isMenuOpen" aria-controls="mobile-nav-menu"
+          :aria-label="isMenuOpen ? '关闭菜单' : '打开菜单'" @click="toggleMenu">
           <svg
             class="hamburger-icon"
             :class="{ 'is-active': isMenuOpen }"
@@ -75,7 +100,7 @@ onUnmounted(() => {
         </UiButton>
       </div>
       <Transition name="menu-expand">
-        <div v-if="isMenuOpen" class="mobile-nav-items">
+        <div v-if="isMenuOpen" id="mobile-nav-menu" class="mobile-nav-items">
           <NuxtLink to="/blog" @click="toggleMenu">
             <UiButton type="nav" class="nav-button">
               <Icon name="mdi:database" class="nav-icon" />
