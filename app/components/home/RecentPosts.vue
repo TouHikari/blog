@@ -6,19 +6,22 @@
         <NuxtLink :to="article.path" class="recent-link">
           {{ article.title }}
         </NuxtLink>
-        <span class="recent-date">{{ article.date }}</span>
+        <span class="recent-date">{{ toIsoDate(article.date) }}</span>
       </li>
     </ul>
   </div>
 </template>
 
 <script lang="ts" setup>
+import { toIsoDate } from '~/utils/date'
+
 const { recentArticles } = useBlog()
 </script>
 
 <style lang="scss" scoped>
 @use '~/styles/variables' as *;
 @use '~/styles/font-stacks' as *;
+@use '~/styles/sidebar' as *;
 
 .recent-posts-container {
   padding: 1rem 0;
@@ -27,10 +30,7 @@ const { recentArticles } = useBlog()
 }
 
 h4 {
-  border-bottom: 1px dashed;
-  padding-bottom: 0.5em;
-  margin-top: 0;
-  margin-bottom: 1em;
+  @include sidebar-heading;
 }
 
 .recent-list {

@@ -26,6 +26,7 @@ const { tags } = useBlog()
 <style lang="scss" scoped>
 @use '~/styles/variables' as *;
 @use '~/styles/font-stacks' as *;
+@use '~/styles/sidebar' as *;
 
 .tags-cloud-container {
   padding: 1rem 0 0 0;
@@ -34,10 +35,7 @@ const { tags } = useBlog()
 }
 
 h4 {
-  border-bottom: 1px dashed;
-  padding-bottom: 0.5em;
-  margin-top: 0;
-  margin-bottom: 0;
+  @include sidebar-heading(0);
 }
 
 .tags-cloud {

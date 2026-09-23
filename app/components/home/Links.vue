@@ -3,16 +3,16 @@
     <h4 data-lock-marked>相关链接</h4>
     <ul class="links-list">
       <li data-lock-marked>
-        <a class="links" href="https://github.com/TouHikari" target="_blank">GitHub - TouHikari</a>
+        <a class="links" href="https://github.com/TouHikari" target="_blank" rel="noopener noreferrer">GitHub - TouHikari</a>
       </li>
       <li data-lock-marked>
-        <a class="links" href="https://space.bilibili.com/123365221" target="_blank">bilibili | 哔哩哔哩 - HvnZ_Null</a>
+        <a class="links" href="https://space.bilibili.com/123365221" target="_blank" rel="noopener noreferrer">bilibili | 哔哩哔哩 - HvnZ_Null</a>
       </li>
       <li data-lock-marked>
-        <a class="links" href="https://music.163.com/#/user/home?id=436110203" target="_blank">NetEase Music | 网易云音乐 - HvnZ_Null</a>
+        <a class="links" href="https://music.163.com/#/user/home?id=436110203" target="_blank" rel="noopener noreferrer">NetEase Music | 网易云音乐 - HvnZ_Null</a>
       </li>
       <li data-lock-marked>
-        <a class="links" href="https://notes.owo.cab/" target="_blank">拾星絮语 | 『笔记小站』</a>
+        <a class="links" href="https://notes.owo.cab/" target="_blank" rel="noopener noreferrer">拾星絮语 | 『笔记小站』</a>
       </li>
     </ul>
   </div>
@@ -25,12 +25,10 @@
 <style scoped lang="scss">
 @use '~/styles/variables' as *;
 @use '~/styles/font-stacks' as *;
+@use '~/styles/sidebar' as *;
 
 h4 {
-  border-bottom: 1px dashed;
-  padding-bottom: 0.5em;
-  margin-top: 0;
-  margin-bottom: 1em;
+  @include sidebar-heading;
 }
 
 .links-container {

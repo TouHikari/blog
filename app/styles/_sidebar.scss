@@ -1,0 +1,6 @@
+@mixin sidebar-heading($margin-bottom: 1em) {
+  border-bottom: 1px dashed;
+  padding-bottom: 0.5em;
+  margin-top: 0;
+  margin-bottom: $margin-bottom;
+}

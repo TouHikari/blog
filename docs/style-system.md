@@ -23,6 +23,7 @@
 | --- | --- |
 | `_variables.scss` | 全部设计令牌：颜色、间距、字体尺寸/行高/字重、布局、断点、动画、网格与扫描线参数 |
 | `_font-stacks.scss` | 五类组合字体栈等纯 SCSS 变量（零 CSS 输出），供组件 `@use` |
+| `_sidebar.scss` | 侧边栏组件共用 mixin（`sidebar-heading` 标题样式：虚线底边 + 统一间距），零 CSS 输出 |
 | `_fonts.scss` | 字体 CSS 唯一注入点：`@fontsource` 导入与本地 `@font-face`（FZG_CN、AlimamaShuHeiTi），仅被 `main.scss` 引用 |
 | `_maple-mono-cn.scss` | Maple Mono CN 的 239 条 `@font-face` 分片声明（自托管 `public/fonts/maple-mono-cn/`，Git LFS），仅被 `main.scss` 引用 |
 | `_content.scss` | Markdown 正文排版：标题辉光、代码、行内代码、链接、列表、引用、表格、图片、文本样式 |

@@ -1,5 +1,6 @@
 <script setup lang="ts">
 import { highlightSegments } from '~/composables/useSearch'
+import { toIsoDate } from '~/utils/date'
 
 const { search, loadIndex, indexStatus } = useSearch()
 
@@ -47,7 +48,7 @@ const metaEmpty = computed(() => !shownResults.value.length && indexStatus.value
                 <mark v-if="segment.hit">{{ segment.text }}</mark><template v-else>{{ segment.text }}</template>
               </template>
             </p>
-            <span class="result-date">{{ result.article.date }}</span>
+            <span class="result-date">{{ toIsoDate(result.article.date) }}</span>
           </li>
         </ul>
       </div>
@@ -58,6 +59,7 @@ const metaEmpty = computed(() => !shownResults.value.length && indexStatus.value
 <style scoped lang="scss">
 @use '~/styles/variables' as *;
 @use '~/styles/font-stacks' as *;
+@use '~/styles/sidebar' as *;
 
 .search-container {
   padding: 1rem 0 0 0;
@@ -65,10 +67,7 @@ const metaEmpty = computed(() => !shownResults.value.length && indexStatus.value
 }
 
 h4 {
-  border-bottom: 1px dashed;
-  padding-bottom: 0.5em;
-  margin-top: 0;
-  margin-bottom: 1em;
+  @include sidebar-heading;
 }
 
 .search-box {
