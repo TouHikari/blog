@@ -9,8 +9,8 @@
 | `/` | `pages/index.vue` | `home` | 已实现（内容来自 `content/index.md`） |
 | `/about` | `pages/about.vue` | `default` | 已实现（内容来自 `content/about.md`） |
 | `/blog` | `pages/blog/index.vue` | `default` | 已实现（归档页：统计头 + 年/月分组列表，数据来自 `useBlog`） |
-| `/blog/[...slug]` | `pages/blog/[...slug].vue` | `default` | 已实现（文章页，`useArticle('blog')`） |
-| `/test/[...slug]` | `pages/test/[...slug].vue` | `default` | 已实现（渲染测试页，`useArticle('test')`） |
+| `/blog/[...slug]` | `pages/blog/[...slug].vue` | `default` | 已实现（文章页；渲染由 `ArticlePage` 承载，`useArticle('blog')`） |
+| `/test/[...slug]` | `pages/test/[...slug].vue` | `default` | 已实现（渲染测试页；渲染由 `ArticlePage` 承载，`collection="test"` → `useArticle('test')`） |
 | `/categories` | `pages/categories/index.vue` | `default` | 已实现（分类索引：点击就地展开结果，数据来自 `useBlog`） |
 | `/tags` | `pages/tags/index.vue` | `default` | 已实现（标签云：点击就地展开结果，支持 `?tag=` 参数） |
 
@@ -48,13 +48,12 @@
 
 ## 5. 预加载（plugins/prefetch.client.ts）
 
-三条预加载路径，全部只针对站内链接（`/` 开头且非 `#`）：
+hover-only 收敛策略，只针对站内链接（`/` 开头且非 `#`）：
 
-1. **视口预加载**：`IntersectionObserver` 观察所有 `<a>`，进入视口即 `preloadRouteComponents` + `preloadPayload`。
-2. **悬停预加载**：`mouseover` 50ms 延迟触发（`mouseout` 取消）。
-3. **触摸预加载**：`touchstart` 立即触发。
+1. **普通 `<a>` 链接**（本插件）：`mouseover` 后 50ms 防抖触发 `preloadRouteComponents` + `preloadPayload`（`Set` 去重；`mouseout` 取消，同一链接内部子元素间移动不重置）；触屏设备（`pointer: coarse`）无 hover 语义，直接跳过。
+2. **`NuxtLink`**：由 `nuxt.config.ts` 的 `experimental.defaults.nuxtLink.prefetchOn = { visibility: false, interaction: true }` 控制——关闭「进入视口即预取」，仅保留 hover / focus 交互预取。
 
-路由切换后延迟 500ms 重新观察新链接。该插件只在客户端运行（`.client.ts`）。
+该插件只在客户端运行（`.client.ts`）。
 
 ## 6. 新增页面指引
 
