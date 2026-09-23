@@ -53,16 +53,10 @@ const onExpanded = () => {
       <span>{{ tags.length }} tags indexed</span>
     </div>
 
-    <div v-if="tags.length" class="tags-cloud" data-lock-container data-lock-marked>
-      <UiTag
-        v-for="tag in tags"
-        :key="tag.name"
-        clickable
-        :active="selectedTag === tag.name"
-        class="cloud-tag"
-        data-lock-marked
-        @click="toggleTag(tag.name)"
-      >
+    <div v-if="tags.length" class="tags-cloud" data-lock-container data-lock-marked data-lock-bg="#FF408020"
+      data-lock-border="1px solid #FF408040">
+      <UiTag v-for="tag in tags" :key="tag.name" clickable :active="selectedTag === tag.name" class="cloud-tag"
+        @click="toggleTag(tag.name)">
         <span class="tag-name">{{ tag.name }}</span><span class="tag-count">×{{ tag.count }}</span>
       </UiTag>
     </div>
@@ -70,12 +64,8 @@ const onExpanded = () => {
 
     <div ref="resultRef" class="result-anchor">
       <UiCollapse :open="!!selectedTag" :content-key="lastSelectedTag ?? undefined" @expanded="onExpanded">
-        <BlogQueryResult
-          v-if="lastSelectedTag"
-          label="TAG_QUERY"
-          :term="lastSelectedTag"
-          :articles="selectedArticles"
-        />
+        <BlogQueryResult v-if="lastSelectedTag" label="TAG_QUERY" :term="lastSelectedTag"
+          :articles="selectedArticles" />
       </UiCollapse>
     </div>
   </div>
