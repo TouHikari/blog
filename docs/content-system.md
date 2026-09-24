@@ -55,7 +55,7 @@
 
 - `useAsyncData` key：`route.path`。
 - slug 解析：`route.params.slug` 为数组时以 `/` 拼接，查询路径为 `/${collection}/${slug}`。
-- 生产环境对 `draft` 返回 `null`；同时负责页面 SEO（`useSeoMeta` getter 形式）与页面标题联动（watch 标题并调用 `usePageTitle().setTitle`）。
+- 生产环境对 `draft` 返回 `null`；同时负责页面 SEO（`useSeoMeta` getter 形式）、页面标题联动（watch 标题并调用 `usePageTitle().setTitle`）与 CC 版权条显隐（数据就绪后写入 `route.meta.hideLicense`，使用 `flush: 'sync'` 的 watch 保证 SSR 判定正确；详见 `docs/pages-and-layouts.md`）。
 
 ### 页面级查询
 

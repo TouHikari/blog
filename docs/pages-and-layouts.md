@@ -24,7 +24,7 @@
 | `home.vue` | 首页（`definePageMeta({ layout: 'home' })`） | `AppHeader` → `HomeTitle` → 双栏容器（内容 5 : 侧边栏 2）：左侧正文 slot + `BlogList`，右侧 `RecentPosts` / `TagsCloud` / `Links` → `AppFooter` |
 | `clean.vue` | 预留 | 空布局，当前未被任何页面使用 |
 
-正文区约定：`.content-prose` 负责两端对齐与 `overflow-wrap: break-word`；`=== Content begins/ends here ===` 伪元素标识由 `default.vue` 提供（hover 变亮黄）。`default` 布局末尾自动附加的 CC BY-SA 4.0 版权 Alert 可通过页面 `definePageMeta({ hideLicense: true })` 隐藏；文章页（`/blog/*`、`/test/*`）由 `article-license` 中间件在导航阶段查询文章存在性并设置该 meta——文章不存在（或生产环境下的草稿）时版权条自动隐藏（布局渲染早于 `ArticlePage` 数据就绪，无法由组件内状态后置控制，只能借路由 meta 提前判定）。
+正文区约定：`.content-prose` 负责两端对齐与 `overflow-wrap: break-word`；`=== Content begins/ends here ===` 伪元素标识由 `default.vue` 提供（hover 变亮黄）。`default` 布局末尾自动附加的 CC BY-SA 4.0 版权 Alert 可通过页面 `definePageMeta({ hideLicense: true })` 隐藏；文章页（`/blog/*`、`/test/*`）的版权条显隐由 `useArticle` 数据驱动——数据（含 payload 缓存命中）就绪后写入 `route.meta.hideLicense`，文章不存在（或生产环境下的草稿）时自动隐藏。watch 必须使用 `flush: 'sync'`：SSR 下非 sync 的 watch 不建立 effect、无法跟随异步数据 resolve，sync 才能保证预渲染 HTML 判定正确；同时避免在导航守卫中查询内容（会触发客户端 WASM SQLite 初始化，拖慢跳转）。
 
 页脚贴底：`default` 与 `home` 布局的根容器均为纵向 flex（`min-height: 100dvh`）且 `main` 占满剩余高度——页面内容不足一屏时页脚保持贴住视口底部。
 
@@ -48,9 +48,9 @@
 
 ## 5. 预加载（plugins/prefetch.client.ts）
 
-hover-only 收敛策略，只针对站内链接（`/` 开头且非 `#`）：
+按指针类型收敛的预取策略（不做视口批量预取，避免抢占首屏带宽），只针对站内链接（`/` 开头且非 `#`）：
 
-1. **普通 `<a>` 链接**（本插件）：`mouseover` 后 50ms 防抖触发 `preloadRouteComponents` + `preloadPayload`（`Set` 去重；`mouseout` 取消，同一链接内部子元素间移动不重置）；触屏设备（`pointer: coarse`）无 hover 语义，直接跳过。
+1. **普通 `<a>` 链接**（本插件）：桌面端 `mouseover` 后 50ms 防抖触发 `preloadRouteComponents` + `preloadPayload`（`Set` 去重；`mouseout` 取消，同一链接内部子元素间移动不重置）；触屏设备（`pointer: coarse`）无 hover 语义，改为 `pointerdown` 后 60ms 预取，期间滚动（`touchmove`）或手势取消（`pointercancel`）则放弃，避免滑动误预取。
 2. **`NuxtLink`**：由 `nuxt.config.ts` 的 `experimental.defaults.nuxtLink.prefetchOn = { visibility: false, interaction: true }` 控制——关闭「进入视口即预取」，仅保留 hover / focus 交互预取。
 
 该插件只在客户端运行（`.client.ts`）。
