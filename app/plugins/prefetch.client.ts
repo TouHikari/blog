@@ -1,23 +1,19 @@
-// 站内链接预加载（hover-only 收敛版）
-// - 仅在鼠标悬停站内链接 50ms 后预取，避免视口内批量预取抢占首屏带宽
+// 站内链接预加载（桌面 hover / 触屏 pointerdown 双策略）
+// - 桌面（pointer: fine）：鼠标悬停站内链接 50ms 后预取，避免视口内批量预取抢占首屏带宽
+// - 触屏（pointer: coarse）：无 hover 语义，手指按下（pointerdown）后 60ms 预取；
+//   期间滚动（touchmove）或手势取消（pointercancel）则放弃，避免滑动时的误预取
 // - NuxtLink 自身的预取策略由 nuxt.config.ts 的 experimental.defaults.nuxtLink.prefetchOn 控制
 //   （visibility: false + interaction: true），本插件主要覆盖 NuxtLink 之外的普通 <a> 链接
-// - 触屏设备（pointer: coarse）没有 hover 语义，直接跳过
 export default defineNuxtPlugin(() => {
-  if (window.matchMedia('(pointer: coarse)').matches) {
-    return
-  }
-
   const prefetched = new Set<string>()
-  let timer: ReturnType<typeof setTimeout> | null = null
-  let currentLink: HTMLAnchorElement | null = null
 
-  const cancelPending = () => {
-    if (timer) {
-      clearTimeout(timer)
-      timer = null
+  const prefetch = (href: string) => {
+    if (prefetched.has(href)) {
+      return
     }
-    currentLink = null
+    prefetched.add(href)
+    preloadRouteComponents(href)
+    preloadPayload(href)
   }
 
   const resolveInternalHref = (target: EventTarget | null): { link: HTMLAnchorElement; href: string } | null => {
@@ -27,6 +23,47 @@ export default defineNuxtPlugin(() => {
       return null
     }
     return { link, href }
+  }
+
+  if (window.matchMedia('(pointer: coarse)').matches) {
+    // 触屏：按下后短延时预取，滚动 / 手势取消则放弃
+    let touchTimer: ReturnType<typeof setTimeout> | null = null
+
+    const cancelTouchPrefetch = () => {
+      if (touchTimer) {
+        clearTimeout(touchTimer)
+        touchTimer = null
+      }
+    }
+
+    const handlePointerDown = (event: PointerEvent) => {
+      const hit = resolveInternalHref(event.target)
+      cancelTouchPrefetch()
+      if (!hit) {
+        return
+      }
+      touchTimer = setTimeout(() => {
+        touchTimer = null
+        prefetch(hit.href)
+      }, 60)
+    }
+
+    document.addEventListener('pointerdown', handlePointerDown, { passive: true })
+    document.addEventListener('touchmove', cancelTouchPrefetch, { passive: true })
+    document.addEventListener('pointercancel', cancelTouchPrefetch, { passive: true })
+    return
+  }
+
+  // 桌面：hover 50ms 防抖预取
+  let timer: ReturnType<typeof setTimeout> | null = null
+  let currentLink: HTMLAnchorElement | null = null
+
+  const cancelPending = () => {
+    if (timer) {
+      clearTimeout(timer)
+      timer = null
+    }
+    currentLink = null
   }
 
   const handleMouseOver = (event: MouseEvent) => {
@@ -45,9 +82,7 @@ export default defineNuxtPlugin(() => {
     // 50ms 防抖：鼠标快速划过时不会触发预取
     timer = setTimeout(() => {
       timer = null
-      prefetched.add(hit.href)
-      preloadRouteComponents(hit.href)
-      preloadPayload(hit.href)
+      prefetch(hit.href)
     }, 50)
   }
 
