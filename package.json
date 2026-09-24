@@ -34,5 +34,11 @@
     "rehype-katex": "^7.0.1",
     "remark-math": "^6.0.0",
     "sass-embedded": "^1.90.0"
+  },
+  "allowScripts": {
+    "better-sqlite3": true,
+    "@parcel/watcher": true,
+    "esbuild": true,
+    "unrs-resolver": true
   }
 }
