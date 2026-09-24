@@ -1,9 +1,8 @@
 import type { Article } from '~/types'
 import { toIsoDate } from '~/utils/date'
 
-// 文章可见性规则（生产环境下草稿视为不存在）的唯一定义：
-// useArticle 与 article-license 中间件共用，避免两处判断漂移
-export const queryVisibleArticle = async (collection: 'blog' | 'test', path: string): Promise<Article | null> => {
+// 文章可见性规则（生产环境下草稿视为不存在）的唯一定义，避免多处判断漂移
+const queryVisibleArticle = async (collection: 'blog' | 'test', path: string): Promise<Article | null> => {
   const result = await queryCollection(collection).path(path).first()
 
   if (result && !import.meta.dev && result.draft === true) {
@@ -55,6 +54,13 @@ export const useArticle = (collection: 'blog' | 'test' = 'blog') => {
       ]
     }
   })
+
+  // CC 版权条显隐：文章不存在（含生产环境草稿）时隐藏，default 布局读取 route.meta.hideLicense
+  // 必须 flush: 'sync' —— SSR 下非 sync 的 watch 不建立 effect，异步数据 resolve 后不会触发；
+  // sync 在 SSR 中注册的真实 effect 能在数据 resolve 时同步刷新 meta，保证预渲染 HTML 判定正确
+  watch(article, (value) => {
+    route.meta.hideLicense = !value
+  }, { immediate: true, flush: 'sync' })
 
   watch(() => article.value?.title, (newTitle) => {
     if (newTitle) {
