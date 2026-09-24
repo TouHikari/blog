@@ -97,6 +97,7 @@ onUnmounted(() => {
             src="/favicon.ico"
             alt="Nuxt 4"
             width="16"
+            height="16"
             style="display: inline-block"
           />
           Nuxt 4 </a

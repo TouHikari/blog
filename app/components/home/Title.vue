@@ -68,7 +68,7 @@ onMounted(() => {
 
   0%,
   10% {
-    opacity: 0;
+    opacity: 0.1;
   }
 
   11%,

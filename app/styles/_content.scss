@@ -23,6 +23,13 @@ h1 {
   @include glow-text-lg-1();
 }
 
+// 小屏下减弱 h1 光晕：大面积 text-shadow 会抬高文字周围背景亮度、拉低对比度并增加渲染成本
+@media (max-width: #{$breakpoint-mobile - 1px}) {
+  h1 {
+    text-shadow: 0 0 6px currentcolor, 0 0 9px currentcolor;
+  }
+}
+
 h2 {
   @include glow-text-md-1();
 }

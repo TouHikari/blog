@@ -184,6 +184,7 @@ onUnmounted(() => {
   color: $gray-400;
   transition: all 0.3s ease;
   height: 100%;
+  min-height: 24px;
 
   &:hover {
     color: white;
@@ -218,6 +219,13 @@ onUnmounted(() => {
   display: flex;
   flex-direction: row;
   height: 100%;
+}
+
+// 导航链接的包裹层：贴合按钮高度并保证点击目标 ≥24px（WCAG 2.2 target-size）
+.navbar > a,
+.nav-items > a {
+  display: flex;
+  align-items: center;
 }
 
 .mobile-nav {
@@ -259,6 +267,7 @@ onUnmounted(() => {
   font-weight: bold;
   color: $gray-400;
   height: 100%;
+  min-height: 24px;
   transition: all 0.08s ease;
 
   &:hover {

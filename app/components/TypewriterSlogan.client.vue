@@ -41,11 +41,12 @@ const { currentText } = useTypewriter()
 }
 
 .slogan-text {
-  color: $cyberpunk-pink;
+  // 使用更亮的粉色以满足 WCAG AA 对比度（4.5:1）
+  color: $cyberpunk-light-pink;
 
   .cursor {
     animation: blink 1s infinite;
-    color: $cyberpunk-pink;
+    color: $cyberpunk-light-pink;
   }
 }
 
