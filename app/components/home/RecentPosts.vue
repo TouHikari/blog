@@ -1,6 +1,6 @@
 <template>
   <div class="recent-posts-container" data-lock-container>
-    <h4 data-lock-marked>最近文章</h4>
+    <h2 data-lock-marked>最近文章</h2>
     <ul class="recent-list">
       <li v-for="article in recentArticles" :key="article.path" class="recent-item" data-lock-marked>
         <NuxtLink :to="article.path" class="recent-link">
@@ -29,8 +29,8 @@ const { recentArticles } = useBlog()
   user-select: none;
 }
 
-h4 {
-  @include sidebar-heading;
+h2 {
+  @include sidebar-title;
 }
 
 .recent-list {

@@ -1,6 +1,6 @@
 <template>
   <div class="links-container" data-lock-container>
-    <h4 data-lock-marked>相关链接</h4>
+    <h2 data-lock-marked>相关链接</h2>
     <ul class="links-list">
       <li data-lock-marked>
         <a class="links" href="https://github.com/TouHikari" target="_blank" rel="noopener noreferrer">GitHub - TouHikari</a>
@@ -27,8 +27,8 @@
 @use '~/styles/font-stacks' as *;
 @use '~/styles/sidebar' as *;
 
-h4 {
-  @include sidebar-heading;
+h2 {
+  @include sidebar-title;
 }
 
 .links-container {

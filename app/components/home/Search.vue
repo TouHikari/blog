@@ -20,7 +20,7 @@ const metaEmpty = computed(() => !shownResults.value.length && indexStatus.value
 
 <template>
   <div class="search-container" data-lock-container>
-    <h4 data-lock-marked>搜索</h4>
+    <h2 data-lock-marked>搜索</h2>
     <div class="search-box">
       <span class="prompt" aria-hidden="true">&gt;</span>
       <input v-model="query" type="search" class="search-input" placeholder="输入关键词..." aria-label="搜索文章"
@@ -66,8 +66,8 @@ const metaEmpty = computed(() => !shownResults.value.length && indexStatus.value
   font-family: $font-pixel;
 }
 
-h4 {
-  @include sidebar-heading;
+h2 {
+  @include sidebar-title;
 }
 
 .search-box {

@@ -15,9 +15,9 @@ const displayArticles = computed(() => props.articles ?? allArticles.value ?? []
   <div class="blog-list">
     <div v-for="article in displayArticles" :key="article.path" class="blog-item" data-lock-container>
       <div class="blog-header" data-lock-marked>
-        <h3 class="blog-title">
+        <h2 class="blog-title">
           <NuxtLink :to="article.path">{{ article.title }}</NuxtLink>
-        </h3>
+        </h2>
         <div class="blog-date">post @ {{ toIsoDate(article.date) }}</div>
       </div>
       <div
@@ -43,6 +43,7 @@ const displayArticles = computed(() => props.articles ?? allArticles.value ?? []
 <style scoped lang="scss">
 @use '~/styles/font-stacks' as *;
 @use '~/styles/variables' as *;
+@use '~/styles/terminal-glow' as *;
 
 .blog-list {
   margin-top: 1em;
@@ -64,6 +65,8 @@ const displayArticles = computed(() => props.articles ?? allArticles.value ?? []
 
   .blog-title {
     font-family: $font-cyber;
+    font-size: 21px;
+    @include glow-text-sm-2();
     padding-right: 5px;
     margin-top: 0;
     margin-bottom: 0;

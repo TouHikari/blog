@@ -1,6 +1,6 @@
 <template>
   <div class="tags-cloud-container" data-lock-container>
-    <h4 data-lock-marked>标签云</h4>
+    <h2 data-lock-marked>标签云</h2>
     <div
       class="tags-cloud"
       data-lock-marked
@@ -34,8 +34,8 @@ const { tags } = useBlog()
   user-select: none;
 }
 
-h4 {
-  @include sidebar-heading(0);
+h2 {
+  @include sidebar-title(0);
 }
 
 .tags-cloud {

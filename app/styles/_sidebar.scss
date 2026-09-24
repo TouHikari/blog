@@ -1,6 +1,14 @@
+@use './terminal-glow' as *;
+
 @mixin sidebar-heading($margin-bottom: 1em) {
   border-bottom: 1px dashed;
   padding-bottom: 0.5em;
   margin-top: 0;
   margin-bottom: $margin-bottom;
+}
+
+@mixin sidebar-title($margin-bottom: 1em) {
+  @include sidebar-heading($margin-bottom);
+  font-size: 1em;
+  @include glow-text-sm-2();
 }
