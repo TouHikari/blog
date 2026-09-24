@@ -22,7 +22,7 @@
 | `app.head` | 全站 SEO：标题、描述、keywords、Open Graph、Twitter Card、JSON-LD、canonical、RSS link |
 | `ssr` | `true`（服务端渲染 + 静态生成） |
 | `vite.optimizeDeps.include` | `["mermaid"]`：mermaid 为客户端动态加载，预构建避免首次渲染的编译延迟 |
-| `css` | `katex/dist/katex.min.css` + `~/styles/main.scss` |
+| `css` | `~/styles/main.scss`（KaTeX 样式在 `ArticlePage` 内按需引入） |
 
 ## 3. 静态生成与 prerender
 
@@ -69,7 +69,7 @@ better_sqlite3_binary_host=https://registry.npmmirror.com/-/binary/better-sqlite
 ## 7. 静态资源与 LFS
 
 - `.gitattributes` 将 `public/**` 交给 Git LFS 管理，不要绕过 LFS 直接提交二进制大文件。
-- 字体文件：`public/fonts/`（FZG_CN、AlimamaShuHeiTi、`maple-mono-cn/` 的 239 个 woff2 分片）均由 LFS 管理；EdgeOne 云端构建可正常拉取（已实测验证）。
+- 字体文件：`public/fonts/`（FZG_CN、Orbitron、`maple-mono-cn/` 239 个分片、`alimama-shuheiti/` 34 个分片）均由 LFS 管理；EdgeOne 云端构建可正常拉取（已实测验证）。
 - 新增图片建议放入 `public/images/<文章名>/` 目录（现有文章已按此组织）。
 
 ## 8. 变更检查清单

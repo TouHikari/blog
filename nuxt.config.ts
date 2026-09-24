@@ -182,5 +182,5 @@ export default defineNuxtConfig({
   // 或者通过ssr配置来优化加载
   ssr: true,
 
-  css: ["katex/dist/katex.min.css", "~/styles/main.scss"],
+  css: ["~/styles/main.scss"],
 });

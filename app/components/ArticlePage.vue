@@ -1,4 +1,6 @@
 <script setup lang="ts">
+// 仅文章页需要 KaTeX 样式（从全局 css 拆出，减小其他页面的 CSS 体积）
+import 'katex/dist/katex.min.css'
 import ContentAlert from '~/components/content/Alert.vue'
 
 const props = defineProps<{

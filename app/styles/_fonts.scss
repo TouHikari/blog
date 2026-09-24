@@ -1,30 +1,39 @@
 // 注意：本文件仅承载字体 CSS 输出（@import / @font-face），必须保持零 SCSS 变量。
 // 字体栈变量位于 _font-stacks.scss，供组件 @use 取用。
 // Maple Mono CN 的 @font-face 分片声明位于 _maple-mono-cn.scss（自托管，替代 jsDelivr 远程引用）。
+// AlimamaShuHeiTi 的 @font-face 分片声明位于 _alimama-shuheiti.scss（自托管，cn-font-split 生成）。
+// Orbitron 自托管于 public/fonts/（固定 URL，便于在首页 preload——见 app/pages/index.vue）。
 // 本文件只允许被 main.scss 单点 @use；组件直接引用会把全套字体声明复制进各自的 CSS chunk。
 
 @import '@fontsource/jetbrains-mono/400.css';
 @import '@fontsource/jetbrains-mono/700.css';
 @import '@fontsource/noto-sans-sc/400.css';
 @import '@fontsource/noto-sans-sc/700.css';
-@import '@fontsource/orbitron/400.css';
-@import '@fontsource/orbitron/700.css';
 @import '@fontsource/fusion-pixel-10px-proportional-kr/400.css';
+
+@font-face {
+  font-family: 'Orbitron';
+  src: url('/fonts/orbitron-latin-400-normal.woff2') format('woff2');
+  font-weight: 400;
+  font-style: normal;
+  font-display: swap;
+  unicode-range: U+0000-00FF,U+0131,U+0152-0153,U+02BB-02BC,U+02C6,U+02DA,U+02DC,U+0304,U+0308,U+0329,U+2000-206F,U+20AC,U+2122,U+2191,U+2193,U+2212,U+2215,U+FEFF,U+FFFD;
+}
+
+@font-face {
+  font-family: 'Orbitron';
+  src: url('/fonts/orbitron-latin-700-normal.woff2') format('woff2');
+  font-weight: 700;
+  font-style: normal;
+  font-display: swap;
+  unicode-range: U+0000-00FF,U+0131,U+0152-0153,U+02BB-02BC,U+02C6,U+02DA,U+02DC,U+0304,U+0308,U+0329,U+2000-206F,U+20AC,U+2122,U+2191,U+2193,U+2212,U+2215,U+FEFF,U+FFFD;
+}
 
 @font-face {
   font-family: 'FZG_CN';
   src: url('/fonts/FZG_CN.otf.woff2') format('woff2'),
         url('/fonts/FZG_CN.otf.woff') format('woff');
   font-weight: normal;
-  font-style: normal;
-  font-display: swap;
-}
-
-@font-face {
-  font-family: 'AlimamaShuHeiTi';
-  src: url('/fonts/AlimamaShuHeiTi-Bold.woff2') format('woff2'),
-        url('/fonts/AlimamaShuHeiTi-Bold.woff') format('woff');
-  font-weight: 700;
   font-style: normal;
   font-display: swap;
 }
