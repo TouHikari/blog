@@ -25,3 +25,4 @@ trigger: always_on
 15. 新增代码避免使用 `any` 类型（既有代码中的宽松类型不要扩散）；样式优先复用 `app/styles/` 中的 SCSS 变量与字体栈，不要硬编码色值和字体。
 16. `public/**` 下的静态资源由 Git LFS 管理（见 `.gitattributes`），不要绕过 LFS 直接提交二进制大文件。
 17. Git 提交信息遵循 Conventional Commits 中文规范：`<type>(<scope>): <subject>`，type/scope 用英文、subject/body 用中文，中英文之间加空格（详见 `AGENTS.md`）。
+18. 不要在代码中写任何不必要的注释，只保留必要的注释——用于解释「为什么」（非显然的机制、约束、坑与兼容性原因）；复述代码行为、变更历史或编辑过程说明的注释一律不写。

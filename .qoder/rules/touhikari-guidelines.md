@@ -55,6 +55,7 @@ trigger: always_on
 - Mermaid 图表主题为亮黄色系赛博朋克风格，hover 过渡需与 `Alert` 组件保持一致，不要改回默认配色（见 `app/utils/mermaid.ts`）。
 - 异步 Composable：不要在 composable 内 `await` 之后再调用依赖 Nuxt 上下文的 API（`useSeoMeta` / `useState` / `useHead`），详见 `docs/nuxt-async-composable-pitfalls.md`。
 - 新增页面时同步考虑页面标题（`usePageTitle` 的 `titleMap` 或 `customTitle` 机制，见 `docs/pages-and-layouts.md`）。
+- 注释纪律：不要在代码中写任何不必要的注释，只保留必要的注释（解释「为什么」：非显然的机制、约束、坑与兼容性原因）；复述代码行为、变更历史或编辑说明的注释一律不写。
 
 ## 内容与组件语法速记（详见 docs/）
 

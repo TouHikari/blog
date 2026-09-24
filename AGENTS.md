@@ -24,6 +24,7 @@
 - 包管理器使用 **npm**（以 `package-lock.json` 为准）；禁止在 `node_modules` 中混装 npm 与 pnpm 依赖树（会导致 Nuxt/Vite 启动极慢）。重装依赖时删除 `node_modules` 与 pnpm 残留（`.pnpm`、`pnpm-lock.yaml`），保留 `package-lock.json` 并用 npm 重新安装。
 - **`.npmrc` 二进制镜像纪律**：只允许配置实测存在（HTTP 200/302）的镜像路径；严禁添加 `sharp_libvips_binary_host`（镜像 404 会导致 sharp 安装失败、ipx 子树缺失，使 EdgeOne 云端构建在 prerender 阶段崩溃）。详见 `docs/build-and-deploy.md`。
 - 新增代码避免使用 `any` 类型；样式优先复用 `app/styles/` 中的 SCSS 变量与字体栈，不硬编码色值和字体。
+- **注释纪律**：不要在代码中写任何不必要的注释，只保留必要的注释（解释「为什么」：非显然的机制、约束、坑与兼容性原因）；复述代码行为、变更历史或编辑说明的注释一律不写。
 - `public/**` 下的静态资源由 Git LFS 管理（见 `.gitattributes`），不要绕过 LFS 直接提交二进制大文件。
 - 行内数学公式必须使用 `$...$` 定界符（不支持 `\(...\)`）。
 
